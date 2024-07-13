@@ -10,4 +10,5 @@ package proyecto_encomienda.INCIDENTES;
  */
 public class GestorIncidentes {
     public int i;
+    private String hola;
 }
