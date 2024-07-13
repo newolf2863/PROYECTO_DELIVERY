@@ -9,5 +9,5 @@ package proyecto_encomienda.INCIDENTES;
  * @author Issac
  */
 public class GestorIncidentes {
-    
+    public int i;
 }
