@@ -9,6 +9,13 @@ package proyecto_encomienda.INCIDENTES;
  * @author Issac
  */
 public class GestorIncidentes {
-    public int i;
-    private String hola;
+    private Inventario inventario;
+
+    public GestorIncidentes(Inventario inventario) {
+        this.inventario = inventario;
+    }
+
+    public void guardarPaquete(Incidente incidente) {
+        incidente.guardarPaquete();
+    }
 }
