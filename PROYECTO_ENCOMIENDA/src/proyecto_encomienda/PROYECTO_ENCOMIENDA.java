@@ -14,7 +14,7 @@ public class PROYECTO_ENCOMIENDA {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        System.out.println("Hola a todos, prro");
+        System.out.println("Hola a todos, ");
         // TODO code application logic here
     }
     
