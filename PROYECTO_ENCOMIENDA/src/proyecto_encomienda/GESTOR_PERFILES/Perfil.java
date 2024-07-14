@@ -9,5 +9,8 @@ package proyecto_encomienda.GESTOR_PERFILES;
  * @author Issac
  */
 public class Perfil {
+
+    private int id;
+
     
 }
