@@ -24,6 +24,6 @@ public class Vehiculo {
         return false;
     }
 
-    public void pruebaCommit(){
+    public void pruebaBranch(){
     }
 }
