@@ -8,10 +8,17 @@ package proyecto_encomienda.INCIDENTES;
  *
  * @author Issac
  */
-public class ErrorDireccion extends Incidente{
+public class ErrorDireccion extends Incidente {
     @Override
     public void actuar() {
         // Lógica específica para Error de Dirección
         System.out.println("Actuando sobre error de dirección.");
+        corregirDireccion();
+        notificarCliente();
+    }
+    
+    private void corregirDireccion() {
+        // Lógica para corregir la dirección
+        System.out.println("Corrigiendo dirección del paquete: " + getIdPaquete());
     }
 }
