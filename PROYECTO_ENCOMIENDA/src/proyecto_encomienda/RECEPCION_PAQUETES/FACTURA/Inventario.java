@@ -21,6 +21,15 @@ public class Inventario {
         paquetes.add(paquete);
     }
     
+    public Paquete obtenerPaquete(String codigoTracking) {
+        for (Paquete paquete : paquetes) {
+            if (paquete.obtenerCodigo().equals(codigoTracking)) {
+                return paquete;
+            }
+        }
+        return null;
+    }
+    
     public EstadoDelPaquete verificarEstadoPaquete(String codigoTracking) {
         for (Paquete paquete : paquetes) {
             if (paquete.obtenerCodigo().equals(codigoTracking)) {

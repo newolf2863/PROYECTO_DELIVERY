@@ -13,13 +13,20 @@ public class Paquete {
     private Seguimiento seguimiento;
     private String codigoTracking;
     private double peso;
-    private double dimension;
+    private double ancho;
+    private double largo;
     private String contenido;
     //private Perfil remitente;
     private String direccionDestino;
 
-    public Paquete() {
+    public Paquete(String codigoTracking, double ancho, double largo, String contenido, String destino) {
         this.estado = new Pendiente(this);
+        this.seguimiento = new Seguimiento(estado);
+        this.codigoTracking = codigoTracking;
+        this.ancho = ancho;
+        this.largo = largo;
+        this.contenido = contenido;
+        this.direccionDestino = destino;
     }
     
     public void cambiarEstado(EstadoDelPaquete estado) {

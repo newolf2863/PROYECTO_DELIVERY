@@ -25,4 +25,8 @@ public class EnCurso extends EstadoDelPaquete {
         // TODO: Feedback
     }
     
+    @Override
+    public String toString() {
+        return "En curso";
+    }
 }

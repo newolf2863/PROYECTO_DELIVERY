@@ -4,23 +4,39 @@
  */
 package proyecto_encomienda;
 
+import proyecto_encomienda.RECEPCION_PAQUETES.FACTURA.Inventario;
+import proyecto_encomienda.RECEPCION_PAQUETES.FACTURA.Paquete;
+import proyecto_encomienda.RECEPCION_PAQUETES.FACTURA.Pendiente;
+
 /**
  *
  * @author Issac
  */
 
-import proyecto_encomienda.INCIDENTES.main_Incidentes;
 public class PROYECTO_ENCOMIENDA {
 
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        System.out.println("Hola a todos, ");
-        System.out.println("prueba");
-        // TODO code application logic here
-        main_Incidentes incidente1 = new main_Incidentes();
-        incidente1.iniciar();
-    }
-    
+        Inventario inventario = new Inventario();
+        Paquete paquete1 = new Paquete("123456789", 20.5, 30.2, "Libros", "Quito, Ecuador");
+        Paquete paquete2 = new Paquete("987654321", 35.4, 15.8, "Juguetes", "Guayaquil, Ecuador");
+        Paquete paquete3 = new Paquete("000000000", 42.1, 23.9, "Ropa", "Cuenca, Ecuador");
+
+        inventario.agregarPaquete(paquete1);
+        inventario.agregarPaquete(paquete2);
+        inventario.agregarPaquete(paquete3);
+        
+        System.out.println(inventario.verificarEstadoPaquete("123456789"));
+        inventario.obtenerPaquete("123456789").iniciarEnvio();
+        System.out.println(inventario.verificarEstadoPaquete("123456789"));
+        inventario.obtenerPaquete("123456789").iniciarEnvio();
+        System.out.println(inventario.verificarEstadoPaquete("123456789"));
+        inventario.obtenerPaquete("123456789").completarEnvio();
+        System.out.println(inventario.verificarEstadoPaquete("123456789"));
+        Paquete paquete = inventario.obtenerPaquete("123456789");
+        paquete.cambiarEstado(new Pendiente(paquete));
+        System.out.println(inventario.verificarEstadoPaquete("123456789"));
+    }  
 }

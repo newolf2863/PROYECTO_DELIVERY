@@ -24,4 +24,8 @@ public class Entregado extends EstadoDelPaquete {
         // TODO: Error
     }
     
+    @Override
+    public String toString() {
+        return "Entregado";
+    }
 }

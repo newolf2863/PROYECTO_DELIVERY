@@ -11,6 +11,10 @@ package proyecto_encomienda.RECEPCION_PAQUETES.FACTURA;
 public class Seguimiento {
     private EstadoDelPaquete estado;
 
+    public Seguimiento(EstadoDelPaquete estado) {
+        this.estado = estado;
+    }
+
     public void notificar(EstadoDelPaquete estado) {
         this.estado = estado;
     }

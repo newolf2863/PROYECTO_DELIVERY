@@ -24,5 +24,9 @@ public class Pendiente extends EstadoDelPaquete {
     public void completarEnvio() {
         // TODO: Error
     }
-    
+
+    @Override
+    public String toString() {
+        return "Pendiente";
+    }
 }
