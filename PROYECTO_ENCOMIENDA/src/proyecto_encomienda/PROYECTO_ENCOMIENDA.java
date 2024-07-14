@@ -16,6 +16,7 @@ public class PROYECTO_ENCOMIENDA {
     public static void main(String[] args) {
         // TODO code application logic here
         // prueba
+        System.out.println("Hola mundo");
     }
     
 }
