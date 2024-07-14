@@ -8,14 +8,10 @@ package proyecto_encomienda.INCIDENTES;
  *
  * @author Issac
  */
-public class GestorIncidentes {
-    private Inventario inventario;
-
-    public GestorIncidentes(Inventario inventario) {
-        this.inventario = inventario;
-    }
-
-    public void guardarPaquete(Incidente incidente) {
-        incidente.guardarPaquete();
+public class RechazoEntrega extends Incidente{
+    @Override
+    public void actuar() {
+        // Lógica específica para Rechazo de Entrega
+        System.out.println("Actuando sobre rechazo de entrega.");
     }
 }

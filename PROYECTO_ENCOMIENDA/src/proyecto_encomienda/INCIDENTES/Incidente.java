@@ -8,14 +8,11 @@ package proyecto_encomienda.INCIDENTES;
  *
  * @author Issac
  */
-public class GestorIncidentes {
-    private Inventario inventario;
-
-    public GestorIncidentes(Inventario inventario) {
-        this.inventario = inventario;
-    }
-
-    public void guardarPaquete(Incidente incidente) {
-        incidente.guardarPaquete();
+abstract class Incidente {
+    public abstract void actuar();
+    
+    public void guardarPaquete() {
+        // Lógica para guardar el paquete
+        System.out.println("Estado de paquete guardado.");
     }
 }

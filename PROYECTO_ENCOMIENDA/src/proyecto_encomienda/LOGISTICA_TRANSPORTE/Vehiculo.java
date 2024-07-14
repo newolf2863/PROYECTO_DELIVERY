@@ -2,10 +2,13 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package proyecto_encomienda.LOGISTICA_TRANSPORTE;
+package Negocio;
 
-
-    public class Vehiculo {
+/**
+ *
+ * @author juand_jus2zd
+ */
+public class Vehiculo {
     
     public String numeroPlaca;
     public double capacidad;
@@ -20,4 +23,5 @@ package proyecto_encomienda.LOGISTICA_TRANSPORTE;
     public boolean obtenerPaquete(){
         return false;
     }
-
+    
+}
