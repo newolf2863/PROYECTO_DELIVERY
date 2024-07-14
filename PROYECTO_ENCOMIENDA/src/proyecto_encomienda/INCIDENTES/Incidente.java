@@ -13,6 +13,6 @@ abstract class Incidente {
     
     public void guardarPaquete() {
         // Lógica para guardar el paquete
-        System.out.println("Paquete guardado.");
+        System.out.println("Estado de paquete guardado.");
     }
 }
