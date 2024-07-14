@@ -4,6 +4,8 @@
  */
 package proyecto_encomienda.RECEPCION_PAQUETES.FACTURA;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author Issac
@@ -32,6 +34,10 @@ public class Paquete {
     public void cambiarEstado(EstadoDelPaquete estado) {
         this.estado = estado;
         seguimiento.notificar(estado);
+    }
+    
+    public ArrayList<String> obtenerHistorialEstados() {
+        return seguimiento.obtenerEstadosAnteriores();
     }
     
     public EstadoDelPaquete obtenerEstado() {

@@ -38,5 +38,6 @@ public class PROYECTO_ENCOMIENDA {
         Paquete paquete = inventario.obtenerPaquete("123456789");
         paquete.cambiarEstado(new Pendiente(paquete));
         System.out.println(inventario.verificarEstadoPaquete("123456789"));
+        System.out.println(paquete.obtenerHistorialEstados());        
     }  
 }
