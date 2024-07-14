@@ -23,5 +23,7 @@ public class Vehiculo {
     public boolean obtenerPaquete(){
         return false;
     }
-    
+
+    public void pruebaCommit(){
+    }
 }
