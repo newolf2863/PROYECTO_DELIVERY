@@ -13,5 +13,6 @@ public class RechazoEntrega extends Incidente{
     public void actuar() {
         // Lógica específica para Rechazo de Entrega
         System.out.println("Actuando sobre rechazo de entrega.");
+        System.out.println("Actuand sobre la prueba");
     }
 }
