@@ -11,6 +11,6 @@ package proyecto_encomienda.GESTOR_PERFILES;
 public class Perfil {
 
     private int id;
-
+    private String nombre;
     
 }
