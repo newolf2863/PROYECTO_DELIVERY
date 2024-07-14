@@ -16,17 +16,17 @@ public class main_Incidentes {
         Incidente errorDireccion = new ErrorDireccion();
         Incidente paquetePerdido = new PaquetePerdido();
         Incidente dañoPaquete = new DañoPaquete();
-        Incidente rechazoEntrega = new RechazoEntrega();
+        Incidente rechazarEntre = new RechazoEntrega();
 
         gestor.guardarPaquete(errorDireccion);
         gestor.guardarPaquete(paquetePerdido);
         gestor.guardarPaquete(dañoPaquete);
-        gestor.guardarPaquete(rechazoEntrega);
+        gestor.guardarPaquete(rechazarEntre);
 
         errorDireccion.actuar();
         paquetePerdido.actuar();
         dañoPaquete.actuar();
-        rechazoEntrega.actuar();
+        rechazarEntre.actuar();
     }
     
 }
