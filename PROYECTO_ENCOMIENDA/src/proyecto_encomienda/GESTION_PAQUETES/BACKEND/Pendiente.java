@@ -2,30 +2,31 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package proyecto_encomienda.RECEPCION_PAQUETES.FACTURA;
+package proyecto_encomienda.GESTION_PAQUETES.BACKEND;
 
 /**
  *
  * @author Rodrigo Haro
  */
-public class Entregado extends EstadoDelPaquete {
+public class Pendiente extends EstadoDelPaquete {
 
-    public Entregado(Paquete paquete) {
+    public Pendiente(Paquete paquete) {
         super(paquete);
     }
 
     @Override
     public void iniciarEnvio() {
-        // TODO: Error
+        paquete.cambiarEstado(new EnCurso(paquete));
+        // TODO: Feedback
     }
 
     @Override
     public void completarEnvio() {
         // TODO: Error
     }
-    
+
     @Override
     public String toString() {
-        return "Entregado";
+        return "Pendiente";
     }
 }
