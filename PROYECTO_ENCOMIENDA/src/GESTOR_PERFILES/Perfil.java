@@ -22,7 +22,7 @@ public abstract class Perfil {
 
     public abstract void editarPerfil(List<String> datos);
 
-    public abstract String[] obtenerDatos();
+    public abstract List<String> obtenerDatos();
 
     public String getDireccion() {
         return direccion;
