@@ -17,7 +17,7 @@ public class MovePanelWithAnimation extends JFrame {
     private JLabel moveButton;
     private int targetX;
     private Timer timer;
-    private boolean bandera = false;
+    private boolean bandera = true;
 
     public MovePanelWithAnimation() {
         // Configurar el Timer para la animación

@@ -37,20 +37,32 @@ public class PaqueteMenu extends javax.swing.JFrame {
     private void initComponents() {
 
         jPControl = new javax.swing.JPanel();
+        jLSelectH = new javax.swing.JLabel();
         jMinimizarMenu = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
         jLHome = new javax.swing.JLabel();
-        jLHome1 = new javax.swing.JLabel();
-        jLHome2 = new javax.swing.JLabel();
-        jLHome3 = new javax.swing.JLabel();
-        jLHome4 = new javax.swing.JLabel();
-        jLHome5 = new javax.swing.JLabel();
+        jLLineaH = new javax.swing.JLabel();
+        jLSelectA = new javax.swing.JLabel();
+        jLAdministracion = new javax.swing.JLabel();
+        jLLineaA = new javax.swing.JLabel();
+        jLSelectP = new javax.swing.JLabel();
+        jLPaqueteria = new javax.swing.JLabel();
+        jLLineaP = new javax.swing.JLabel();
+        jLSelectF = new javax.swing.JLabel();
+        jLFactura = new javax.swing.JLabel();
+        jLLineaF = new javax.swing.JLabel();
+        jLSelectI = new javax.swing.JLabel();
+        jLIncidentes = new javax.swing.JLabel();
+        jLLineaI = new javax.swing.JLabel();
+        jLSelectT = new javax.swing.JLabel();
+        jLTransporte = new javax.swing.JLabel();
+        jLLineaT = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+        btnAdm = new javax.swing.JLabel();
+        btnPac = new javax.swing.JLabel();
+        btnFac = new javax.swing.JLabel();
+        btnInc = new javax.swing.JLabel();
+        btnTran = new javax.swing.JLabel();
+        btnHom = new javax.swing.JLabel();
         jMenu = new javax.swing.JLabel();
         jPBackground = new javax.swing.JPanel();
         btnMinimizar = new javax.swing.JLabel();
@@ -61,10 +73,22 @@ public class PaqueteMenu extends javax.swing.JFrame {
         setMinimumSize(new java.awt.Dimension(1000, 500));
         setName("Login"); // NOI18N
         setUndecorated(true);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPControl.setBackground(new java.awt.Color(51, 51, 51));
         jPControl.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLSelectH.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLSelectHMouseClicked(evt);
+            }
+        });
+        jPControl.add(jLSelectH, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 58, 230, 52));
 
         jMinimizarMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto_encomienda/GESTION_PAQUETES/FRONTEND/imagenes/icons8_Menu_32px.png"))); // NOI18N
         jMinimizarMenu.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -75,35 +99,94 @@ public class PaqueteMenu extends javax.swing.JFrame {
         });
         jPControl.add(jMinimizarMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 10, -1, 30));
 
-        jLabel2.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(111, 174, 2));
-        jLabel2.setText("Administración");
-        jPControl.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 127, -1, -1));
+        jLHome.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
+        jLHome.setForeground(new java.awt.Color(111, 174, 2));
+        jLHome.setText("Home");
+        jPControl.add(jLHome, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 70, -1, -1));
 
-        jLabel3.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(111, 174, 2));
-        jLabel3.setText("Home");
-        jPControl.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 70, -1, -1));
+        jLLineaH.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLLineaH.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto_encomienda/GESTION_PAQUETES/FRONTEND/imagenes/line2.png"))); // NOI18N
+        jPControl.add(jLLineaH, new org.netbeans.lib.awtextra.AbsoluteConstraints(-30, 85, 220, 20));
 
-        jLabel4.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(111, 174, 2));
-        jLabel4.setText("Incidentes");
-        jPControl.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 297, -1, -1));
+        jLSelectA.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLSelectAMouseClicked(evt);
+            }
+        });
+        jPControl.add(jLSelectA, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 112, 230, 52));
 
-        jLabel7.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(111, 174, 2));
-        jLabel7.setText("Paqueteria");
-        jPControl.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 182, -1, -1));
+        jLAdministracion.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
+        jLAdministracion.setForeground(new java.awt.Color(111, 174, 2));
+        jLAdministracion.setText("Administración");
+        jPControl.add(jLAdministracion, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 127, -1, -1));
 
-        jLabel8.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(111, 174, 2));
-        jLabel8.setText("Factura");
-        jPControl.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 240, -1, -1));
+        jLLineaA.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLLineaA.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto_encomienda/GESTION_PAQUETES/FRONTEND/imagenes/line2.png"))); // NOI18N
+        jPControl.add(jLLineaA, new org.netbeans.lib.awtextra.AbsoluteConstraints(-30, 142, 220, 20));
 
-        jLabel9.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(111, 174, 2));
-        jLabel9.setText("Transporte");
-        jPControl.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 352, -1, -1));
+        jLSelectP.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLSelectPMouseClicked(evt);
+            }
+        });
+        jPControl.add(jLSelectP, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 171, 230, 52));
+
+        jLPaqueteria.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
+        jLPaqueteria.setForeground(new java.awt.Color(111, 174, 2));
+        jLPaqueteria.setText("Paqueteria");
+        jPControl.add(jLPaqueteria, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 182, -1, -1));
+
+        jLLineaP.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLLineaP.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto_encomienda/GESTION_PAQUETES/FRONTEND/imagenes/line2.png"))); // NOI18N
+        jPControl.add(jLLineaP, new org.netbeans.lib.awtextra.AbsoluteConstraints(-30, 197, 220, 20));
+
+        jLSelectF.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLSelectFMouseClicked(evt);
+            }
+        });
+        jPControl.add(jLSelectF, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 230, 230, 52));
+
+        jLFactura.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
+        jLFactura.setForeground(new java.awt.Color(111, 174, 2));
+        jLFactura.setText("Factura");
+        jPControl.add(jLFactura, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 240, -1, -1));
+
+        jLLineaF.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLLineaF.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto_encomienda/GESTION_PAQUETES/FRONTEND/imagenes/line2.png"))); // NOI18N
+        jPControl.add(jLLineaF, new org.netbeans.lib.awtextra.AbsoluteConstraints(-30, 255, 220, 20));
+
+        jLSelectI.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLSelectIMouseClicked(evt);
+            }
+        });
+        jPControl.add(jLSelectI, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 284, 230, 52));
+
+        jLIncidentes.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
+        jLIncidentes.setForeground(new java.awt.Color(111, 174, 2));
+        jLIncidentes.setText("Incidentes");
+        jPControl.add(jLIncidentes, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 297, -1, -1));
+
+        jLLineaI.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLLineaI.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto_encomienda/GESTION_PAQUETES/FRONTEND/imagenes/line2.png"))); // NOI18N
+        jPControl.add(jLLineaI, new org.netbeans.lib.awtextra.AbsoluteConstraints(-30, 312, 220, 20));
+
+        jLSelectT.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLSelectTMouseClicked(evt);
+            }
+        });
+        jPControl.add(jLSelectT, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 342, 230, 52));
+
+        jLTransporte.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
+        jLTransporte.setForeground(new java.awt.Color(111, 174, 2));
+        jLTransporte.setText("Transporte");
+        jPControl.add(jLTransporte, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 352, -1, -1));
+
+        jLLineaT.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLLineaT.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto_encomienda/GESTION_PAQUETES/FRONTEND/imagenes/line2.png"))); // NOI18N
+        jPControl.add(jLLineaT, new org.netbeans.lib.awtextra.AbsoluteConstraints(-30, 367, 220, 20));
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto_encomienda/GESTION_PAQUETES/FRONTEND/imagenes/icons8_Sign_Out_32px.png"))); // NOI18N
         jButton1.setBorder(null);
@@ -119,14 +202,30 @@ public class PaqueteMenu extends javax.swing.JFrame {
             }
         });
         jPControl.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 440, 40, 40));
-        jPControl.add(jLHome, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 120, 30, 30));
-        jPControl.add(jLHome1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 180, 30, 30));
-        jPControl.add(jLHome2, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 240, 30, 30));
-        jPControl.add(jLHome3, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 300, 30, 30));
-        jPControl.add(jLHome4, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 350, 30, 30));
 
-        jLHome5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto_encomienda/GESTION_PAQUETES/FRONTEND/imagenes/icons8_Home_32px.png"))); // NOI18N
-        jPControl.add(jLHome5, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 67, 30, 30));
+        btnAdm.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        btnAdm.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto_encomienda/GESTION_PAQUETES/FRONTEND/imagenes/administracion.png"))); // NOI18N
+        jPControl.add(btnAdm, new org.netbeans.lib.awtextra.AbsoluteConstraints(185, 120, 40, 33));
+
+        btnPac.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        btnPac.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto_encomienda/GESTION_PAQUETES/FRONTEND/imagenes/caja.png"))); // NOI18N
+        jPControl.add(btnPac, new org.netbeans.lib.awtextra.AbsoluteConstraints(185, 180, 40, 33));
+
+        btnFac.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        btnFac.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto_encomienda/GESTION_PAQUETES/FRONTEND/imagenes/factura.png"))); // NOI18N
+        jPControl.add(btnFac, new org.netbeans.lib.awtextra.AbsoluteConstraints(185, 240, 40, 33));
+
+        btnInc.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        btnInc.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto_encomienda/GESTION_PAQUETES/FRONTEND/imagenes/exclamacion.png"))); // NOI18N
+        jPControl.add(btnInc, new org.netbeans.lib.awtextra.AbsoluteConstraints(185, 295, 40, 33));
+
+        btnTran.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        btnTran.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto_encomienda/GESTION_PAQUETES/FRONTEND/imagenes/camion.png"))); // NOI18N
+        jPControl.add(btnTran, new org.netbeans.lib.awtextra.AbsoluteConstraints(185, 350, 40, 33));
+
+        btnHom.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        btnHom.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto_encomienda/GESTION_PAQUETES/FRONTEND/imagenes/icons8_Home_32px.png"))); // NOI18N
+        jPControl.add(btnHom, new org.netbeans.lib.awtextra.AbsoluteConstraints(185, 67, 40, 33));
 
         jMenu.setForeground(new java.awt.Color(111, 174, 2));
         jMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto_encomienda/GESTION_PAQUETES/FRONTEND/imagenes/PANEL.png"))); // NOI18N
@@ -172,6 +271,7 @@ public class PaqueteMenu extends javax.swing.JFrame {
                 System.exit(0);
             }
         } catch (Exception e) {
+            
             JOptionPane.showMessageDialog(this, e);
         }
         
@@ -179,7 +279,7 @@ public class PaqueteMenu extends javax.swing.JFrame {
 
     private void btnMinimizarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMinimizarMouseClicked
         this.setState(proyecto_encomienda.GESTION_PAQUETES.FRONTEND.PaqueteMenu.ICONIFIED);
-        this.mover.setBandera(false);
+        this.mover.setBandera(true);
     }//GEN-LAST:event_btnMinimizarMouseClicked
 
     private void jMinimizarMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMinimizarMenuMouseClicked
@@ -198,6 +298,74 @@ public class PaqueteMenu extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, e);
         }
     }//GEN-LAST:event_jButton1MouseClicked
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        jLLineaH.setVisible(true);
+        jLLineaA.setVisible(false);
+        jLLineaP.setVisible(false);
+        jLLineaF.setVisible(false);
+        jLLineaI.setVisible(false);
+        jLLineaT.setVisible(false);
+        
+    }//GEN-LAST:event_formWindowOpened
+
+    private void jLSelectHMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLSelectHMouseClicked
+        jLLineaH.setVisible(true);
+        jLLineaA.setVisible(false);
+        jLLineaP.setVisible(false);
+        jLLineaF.setVisible(false);
+        jLLineaI.setVisible(false);
+        jLLineaT.setVisible(false);
+    }//GEN-LAST:event_jLSelectHMouseClicked
+
+    private void jLSelectAMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLSelectAMouseClicked
+        jLLineaH.setVisible(false);
+        jLLineaA.setVisible(true);
+        jLLineaP.setVisible(false);
+        jLLineaF.setVisible(false);
+        jLLineaI.setVisible(false);
+        jLLineaT.setVisible(false);
+    }//GEN-LAST:event_jLSelectAMouseClicked
+
+    private void jLSelectPMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLSelectPMouseClicked
+        jLLineaH.setVisible(false);
+        jLLineaA.setVisible(false);
+        jLLineaP.setVisible(true);
+        jLLineaF.setVisible(false);
+        jLLineaI.setVisible(false);
+        jLLineaT.setVisible(false);
+        
+    }//GEN-LAST:event_jLSelectPMouseClicked
+
+    private void jLSelectFMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLSelectFMouseClicked
+        jLLineaH.setVisible(false);
+        jLLineaA.setVisible(false);
+        jLLineaP.setVisible(false);
+        jLLineaF.setVisible(true);
+        jLLineaI.setVisible(false);
+        jLLineaT.setVisible(false);
+        
+    }//GEN-LAST:event_jLSelectFMouseClicked
+
+    private void jLSelectIMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLSelectIMouseClicked
+        jLLineaH.setVisible(false);
+        jLLineaA.setVisible(false);
+        jLLineaP.setVisible(false);
+        jLLineaF.setVisible(false);
+        jLLineaI.setVisible(true);
+        jLLineaT.setVisible(false);
+        
+    }//GEN-LAST:event_jLSelectIMouseClicked
+
+    private void jLSelectTMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLSelectTMouseClicked
+        jLLineaH.setVisible(false);
+        jLLineaA.setVisible(false);
+        jLLineaP.setVisible(false);
+        jLLineaF.setVisible(false);
+        jLLineaI.setVisible(false);
+        jLLineaT.setVisible(true);
+        
+    }//GEN-LAST:event_jLSelectTMouseClicked
 
     
     /**
@@ -237,21 +405,33 @@ public class PaqueteMenu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel btnAdm;
     private javax.swing.JLabel btnCerrar;
+    private javax.swing.JLabel btnFac;
+    private javax.swing.JLabel btnHom;
+    private javax.swing.JLabel btnInc;
     private javax.swing.JLabel btnMinimizar;
+    private javax.swing.JLabel btnPac;
+    private javax.swing.JLabel btnTran;
     private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLAdministracion;
+    private javax.swing.JLabel jLFactura;
     private javax.swing.JLabel jLHome;
-    private javax.swing.JLabel jLHome1;
-    private javax.swing.JLabel jLHome2;
-    private javax.swing.JLabel jLHome3;
-    private javax.swing.JLabel jLHome4;
-    private javax.swing.JLabel jLHome5;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
+    private javax.swing.JLabel jLIncidentes;
+    private javax.swing.JLabel jLLineaA;
+    private javax.swing.JLabel jLLineaF;
+    private javax.swing.JLabel jLLineaH;
+    private javax.swing.JLabel jLLineaI;
+    private javax.swing.JLabel jLLineaP;
+    private javax.swing.JLabel jLLineaT;
+    private javax.swing.JLabel jLPaqueteria;
+    private javax.swing.JLabel jLSelectA;
+    private javax.swing.JLabel jLSelectF;
+    private javax.swing.JLabel jLSelectH;
+    private javax.swing.JLabel jLSelectI;
+    private javax.swing.JLabel jLSelectP;
+    private javax.swing.JLabel jLSelectT;
+    private javax.swing.JLabel jLTransporte;
     private javax.swing.JLabel jLabelFondo;
     private javax.swing.JLabel jMenu;
     private javax.swing.JLabel jMinimizarMenu;
