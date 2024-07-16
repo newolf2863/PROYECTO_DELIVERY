@@ -1,6 +1,5 @@
 package GESTOR_PERFILES;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -23,7 +22,7 @@ public class Recepcionista extends Perfil{
 
     @Override
     public List<String> obtenerDatos() {
-        return Arrays.asList(getNombre(), getRUC(), getDireccion(), getTelefono(), getEmail());
+        return Arrays.asList(getNombre(), getCI_RUC(), getDireccion(), getTelefono(), getEmail());
     }
 
     public void registrarRecepcionPaquete(){

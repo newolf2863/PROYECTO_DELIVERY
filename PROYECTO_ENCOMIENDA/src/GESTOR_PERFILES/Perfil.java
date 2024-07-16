@@ -1,12 +1,11 @@
 package GESTOR_PERFILES;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public abstract class Perfil {
 
     private final String nombre;
-    private final String RUC;
+    private final String CI_RUC;
     private String direccion;
     private String telefono;
     private String email;
@@ -16,7 +15,7 @@ public abstract class Perfil {
         this.nombre = nombre;
         this.direccion = direccion;
         this.email = email;
-        this.RUC = RUC;
+        this.CI_RUC = RUC;
         this.telefono = telefono;
     }
 
@@ -44,8 +43,8 @@ public abstract class Perfil {
         return nombre;
     }
 
-    public String getRUC() {
-        return RUC;
+    public String getCI_RUC() {
+        return CI_RUC;
     }
 
     public String getTelefono() {

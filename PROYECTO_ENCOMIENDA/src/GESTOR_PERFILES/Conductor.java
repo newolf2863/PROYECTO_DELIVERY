@@ -1,5 +1,4 @@
 package GESTOR_PERFILES;
-import proyecto_encomienda.*;
 
 import java.util.Arrays;
 import java.util.List;
@@ -7,12 +6,10 @@ import java.util.List;
 public class Conductor extends Perfil {
 
     private String licencia;
-    private Vehiculo vehiculo;
 
-    public Conductor(String nombre, String RUC, String direccion, String telefono, String email, String licencia, Vehiculo vehiculo) {
+    public Conductor(String nombre, String RUC, String direccion, String telefono, String email, String licencia) {
         super(nombre, RUC, direccion, telefono, email);
         this.licencia = licencia;
-        this.vehiculo = vehiculo;
     }
 
     @Override
@@ -25,7 +22,7 @@ public class Conductor extends Perfil {
 
     @Override
     public List<String> obtenerDatos() {
-        return Arrays.asList(getNombre(), getRUC(), getDireccion(), getTelefono(), getEmail(), getLicencia(), vehiculo.getPlaca());
+        return Arrays.asList(getNombre(), getCI_RUC(), getDireccion(), getTelefono(), getEmail(), getLicencia());
     }
 
     /*public List<Paquete> consultarPaquetesAsignados(List<Asignacion> asignaciones){
@@ -43,11 +40,4 @@ public class Conductor extends Perfil {
         this.licencia = licencia;
     }
 
-    public Vehiculo getVehiculo() {
-        return vehiculo;
-    }
-
-    public void setVehiculo(Vehiculo vehiculo) {
-        this.vehiculo = vehiculo;
-    }
 }

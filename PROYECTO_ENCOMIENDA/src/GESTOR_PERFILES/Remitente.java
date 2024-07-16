@@ -26,7 +26,7 @@ public class Remitente extends Perfil{
 
     @Override
     public List<String> obtenerDatos() {
-        return Arrays.asList(getNombre(), getRUC(), getDireccion(), getTelefono(), getEmail(), getEmpresa(), getNombreEmpresa());
+        return Arrays.asList(getNombre(), getCI_RUC(), getDireccion(), getTelefono(), getEmail(), getEmpresa(), getNombreEmpresa());
     }
 
     public String getEmpresa() {
