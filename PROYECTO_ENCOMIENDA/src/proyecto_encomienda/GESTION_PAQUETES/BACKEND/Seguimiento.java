@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 /**
  *
- * @author Rodrigo Haro
+ * @author Juguitos
  */
 public class Seguimiento {
     private EstadoDelPaquete estadoActual;

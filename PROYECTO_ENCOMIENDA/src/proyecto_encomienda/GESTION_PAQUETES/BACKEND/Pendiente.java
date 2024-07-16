@@ -6,7 +6,7 @@ package proyecto_encomienda.GESTION_PAQUETES.BACKEND;
 
 /**
  *
- * @author Rodrigo Haro
+ * @author Juguitos
  */
 public class Pendiente extends EstadoDelPaquete {
 

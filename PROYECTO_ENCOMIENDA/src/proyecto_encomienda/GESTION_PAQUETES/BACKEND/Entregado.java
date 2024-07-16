@@ -6,7 +6,7 @@ package proyecto_encomienda.GESTION_PAQUETES.BACKEND;
 
 /**
  *
- * @author Rodrigo Haro
+ * @author Rodrigo Haro y Amigos
  */
 public class Entregado extends EstadoDelPaquete {
 

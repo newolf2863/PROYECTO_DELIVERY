@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 /**
  *
- * @author Issac
+ * @author Juguitos
  */
 public class Paquete {
     private EstadoDelPaquete estado;
