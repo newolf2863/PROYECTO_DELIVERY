@@ -4,9 +4,9 @@
  */
 package proyecto_encomienda;
 
-import proyecto_encomienda.RECEPCION_PAQUETES.FACTURA.Inventario;
-import proyecto_encomienda.RECEPCION_PAQUETES.FACTURA.Paquete;
-import proyecto_encomienda.RECEPCION_PAQUETES.FACTURA.Pendiente;
+import proyecto_encomienda.GESTION_PAQUETES.BACKEND.Inventario;
+import proyecto_encomienda.GESTION_PAQUETES.BACKEND.Paquete;
+import proyecto_encomienda.GESTION_PAQUETES.BACKEND.Pendiente;
 
 /**
  *
