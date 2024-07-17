@@ -2,12 +2,12 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package Negocio;
+package proyecto_encomienda.RECEPCION_PAQUETES.FACTURA;
 
 /**
  *
- * @author juand_jus2zd
+ * @author Issac
  */
-public class Conductor {
+public class Paquete {
     
 }

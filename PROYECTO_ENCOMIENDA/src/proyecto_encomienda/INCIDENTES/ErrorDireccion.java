@@ -8,27 +8,10 @@ package proyecto_encomienda.INCIDENTES;
  *
  * @author Issac
  */
-public class ErrorDireccion extends Incidente {
+public class ErrorDireccion extends Incidente{
     @Override
     public void actuar() {
         // Lógica específica para Error de Dirección
         System.out.println("Actuando sobre error de dirección.");
-        corregirDireccion();
-        notificarCliente();
-    }
-    
-    private void corregirDireccion() {
-        // Lógica para corregir la dirección
-        System.out.println("Corrigiendo dirección del paquete: " + getIdPaquete());
-    }
-
-    @Override
-    public void guardarEnArchivo() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public void registrarIncidente() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 }

@@ -14,14 +14,4 @@ public class DañoPaquete extends Incidente{
         // Lógica específica para Daño de Paquete
         System.out.println("Actuando sobre daño de paquete.");
     }
-
-    @Override
-    public void guardarEnArchivo() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public void registrarIncidente() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
 }

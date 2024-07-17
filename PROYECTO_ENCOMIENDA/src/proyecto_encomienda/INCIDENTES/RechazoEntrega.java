@@ -18,6 +18,7 @@ public class RechazoEntrega extends Incidente {
         // Lógica específica para Rechazo de Entrega
         System.out.println("Actuando sobre rechazo de entrega: " + getIdPaquete());
     }
+<<<<<<< HEAD
 
     @Override
     public void guardarEnArchivo() {
@@ -53,4 +54,6 @@ public class RechazoEntrega extends Incidente {
         // Lógica específica para registrar un incidente de Rechazo de Entrega
         System.out.println("Incidente registrado (Rechazo de Entrega): " + getDescripcion());
     }
+=======
+>>>>>>> main
 }
