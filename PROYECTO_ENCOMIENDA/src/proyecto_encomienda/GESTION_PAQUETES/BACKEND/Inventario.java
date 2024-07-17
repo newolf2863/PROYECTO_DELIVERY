@@ -38,4 +38,10 @@ public class Inventario {
         }
         return null;
     }
+//    public void actualizarEstadoPaquete(String codigoTracking, String nuevoEstado) {
+//        Paquete paquete = obtenerPaquete(codigoTracking);
+//        if (paquete != null) {
+//            paquete.cambiarEstado(nuevoEstado);
+//        }
+//    }
 }

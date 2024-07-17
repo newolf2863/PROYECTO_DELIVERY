@@ -3,6 +3,8 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package proyecto_encomienda.INCIDENTES;
+import proyecto_encomienda.GESTION_PAQUETES.BACKEND.Inventario;
+
 
 /**
  *
@@ -18,10 +20,10 @@ public class main_Incidentes {
         Incidente dañoPaquete = new DañoPaquete();
         Incidente rechazarEntre = new RechazoEntrega();
 
-        gestor.guardarPaquete(errorDireccion);
-        gestor.guardarPaquete(paquetePerdido);
-        gestor.guardarPaquete(dañoPaquete);
-        gestor.guardarPaquete(rechazarEntre);
+        gestor.crearIncidente(errorDireccion, "2");
+//        gestor.crearIncidente(paquetePerdido);
+//        gestor.crearIncidente(dañoPaquete);
+//        gestor.crearIncidente(rechazarEntre);
 
         errorDireccion.actuar();
         paquetePerdido.actuar();
