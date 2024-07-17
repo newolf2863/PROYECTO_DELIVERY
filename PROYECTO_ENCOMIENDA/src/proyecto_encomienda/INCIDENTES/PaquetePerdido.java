@@ -4,11 +4,7 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.time.LocalDateTime;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class PaquetePerdido extends Incidente {
@@ -44,7 +40,7 @@ public class PaquetePerdido extends Incidente {
             writer.write("Estado: " + estadoActual + "\n");
             writer.write("------------------------------\n");
             System.out.println("Información del incidente guardada en archivo: " + new File(archivo).getAbsolutePath());
-            
+            System.out.println("idPaquete"+idPaquete);
             // Actualizar el último estado registrado para este paquete
             ultimoEstadoPorPaquete.put(idPaquete, estadoActual);
         } catch (IOException e) {
