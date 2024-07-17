@@ -75,7 +75,17 @@ public class PaqueteMenu extends javax.swing.JFrame {
         jPTransporte = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jPPaqueteria = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        jLSelectInventario = new javax.swing.JLabel();
+        jLSelectAgregarPaq = new javax.swing.JLabel();
+        jLSelectEliminarPaq = new javax.swing.JLabel();
+        jLSelectAct = new javax.swing.JLabel();
+        jLImgInventario = new javax.swing.JLabel();
+        jLImgEstado = new javax.swing.JLabel();
+        jLImgEliminar = new javax.swing.JLabel();
+        jLImgAgregar = new javax.swing.JLabel();
+        jLTitulo = new javax.swing.JLabel();
+        jSeparator1 = new javax.swing.JSeparator();
+        jSeparator2 = new javax.swing.JSeparator();
         jPBackground = new javax.swing.JPanel();
         jLabelFondo = new javax.swing.JLabel();
 
@@ -311,10 +321,80 @@ public class PaqueteMenu extends javax.swing.JFrame {
         jPPaqueteria.setOpaque(false);
         jPPaqueteria.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setFont(new java.awt.Font("Eras Demi ITC", 0, 18)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(204, 204, 204));
-        jLabel1.setText("Gestión Integral de Paquetes");
-        jPPaqueteria.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 310, -1));
+        jLSelectInventario.setToolTipText("");
+        jLSelectInventario.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(111, 174, 2), 2));
+        jLSelectInventario.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLSelectInventario.setName("Inventario"); // NOI18N
+        jPPaqueteria.add(jLSelectInventario, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 130, 140, 130));
+
+        jLSelectAgregarPaq.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(111, 174, 2), 2));
+        jLSelectAgregarPaq.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jPPaqueteria.add(jLSelectAgregarPaq, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 130, 140, 130));
+
+        jLSelectEliminarPaq.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(111, 174, 2), 2));
+        jLSelectEliminarPaq.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jPPaqueteria.add(jLSelectEliminarPaq, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 130, 140, 130));
+
+        jLSelectAct.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(111, 174, 2), 2));
+        jLSelectAct.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jPPaqueteria.add(jLSelectAct, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 130, 140, 130));
+
+        jLImgInventario.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        jLImgInventario.setForeground(new java.awt.Color(204, 204, 204));
+        jLImgInventario.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLImgInventario.setIcon(new javax.swing.ImageIcon("C:\\Users\\migue\\Downloads\\gestion-de-materiales (1).png")); // NOI18N
+        jLImgInventario.setText("Inventario");
+        jLImgInventario.setToolTipText("");
+        jLImgInventario.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLImgInventario.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jLImgInventario.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jPPaqueteria.add(jLImgInventario, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 150, 100, -1));
+
+        jLImgEstado.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        jLImgEstado.setForeground(new java.awt.Color(204, 204, 204));
+        jLImgEstado.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLImgEstado.setIcon(new javax.swing.ImageIcon("C:\\Users\\migue\\Downloads\\estado.png")); // NOI18N
+        jLImgEstado.setText("Estado");
+        jLImgEstado.setToolTipText("");
+        jLImgEstado.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLImgEstado.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jLImgEstado.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jPPaqueteria.add(jLImgEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 150, 100, -1));
+
+        jLImgEliminar.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        jLImgEliminar.setForeground(new java.awt.Color(204, 204, 204));
+        jLImgEliminar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLImgEliminar.setIcon(new javax.swing.ImageIcon("C:\\Users\\migue\\Downloads\\eliminar.png")); // NOI18N
+        jLImgEliminar.setText("Eliminar");
+        jLImgEliminar.setToolTipText("");
+        jLImgEliminar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLImgEliminar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jLImgEliminar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jPPaqueteria.add(jLImgEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 150, 100, -1));
+
+        jLImgAgregar.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        jLImgAgregar.setForeground(new java.awt.Color(204, 204, 204));
+        jLImgAgregar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLImgAgregar.setIcon(new javax.swing.ImageIcon("C:\\Users\\migue\\Downloads\\anadir.png")); // NOI18N
+        jLImgAgregar.setText("Agregar");
+        jLImgAgregar.setToolTipText("");
+        jLImgAgregar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLImgAgregar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jLImgAgregar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jPPaqueteria.add(jLImgAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 150, 100, -1));
+
+        jLTitulo.setFont(new java.awt.Font("Eras Demi ITC", 0, 18)); // NOI18N
+        jLTitulo.setForeground(new java.awt.Color(204, 204, 204));
+        jLTitulo.setText("Gestión Integral de Paquetes");
+        jPPaqueteria.add(jLTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 310, -1));
+
+        jSeparator1.setBackground(new java.awt.Color(111, 174, 2));
+        jSeparator1.setForeground(new java.awt.Color(111, 174, 2));
+        jPPaqueteria.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, 890, 20));
+
+        jSeparator2.setBackground(new java.awt.Color(111, 174, 2));
+        jSeparator2.setForeground(new java.awt.Color(111, 174, 2));
+        jPPaqueteria.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 290, 890, 20));
 
         getContentPane().add(jPPaqueteria, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 0, 950, 500));
 
@@ -536,6 +616,10 @@ public class PaqueteMenu extends javax.swing.JFrame {
     private javax.swing.JLabel jLAdministracion;
     private javax.swing.JLabel jLFactura;
     private javax.swing.JLabel jLHome;
+    private javax.swing.JLabel jLImgAgregar;
+    private javax.swing.JLabel jLImgEliminar;
+    private javax.swing.JLabel jLImgEstado;
+    private javax.swing.JLabel jLImgInventario;
     private javax.swing.JLabel jLIncidentes;
     private javax.swing.JLabel jLLineaA;
     private javax.swing.JLabel jLLineaF;
@@ -545,13 +629,17 @@ public class PaqueteMenu extends javax.swing.JFrame {
     private javax.swing.JLabel jLLineaT;
     private javax.swing.JLabel jLPaqueteria;
     private javax.swing.JLabel jLSelectA;
+    private javax.swing.JLabel jLSelectAct;
+    private javax.swing.JLabel jLSelectAgregarPaq;
+    private javax.swing.JLabel jLSelectEliminarPaq;
     private javax.swing.JLabel jLSelectF;
     private javax.swing.JLabel jLSelectH;
     private javax.swing.JLabel jLSelectI;
+    private javax.swing.JLabel jLSelectInventario;
     private javax.swing.JLabel jLSelectP;
     private javax.swing.JLabel jLSelectT;
+    private javax.swing.JLabel jLTitulo;
     private javax.swing.JLabel jLTransporte;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -566,5 +654,7 @@ public class PaqueteMenu extends javax.swing.JFrame {
     private javax.swing.JPanel jPIncidentes;
     private javax.swing.JPanel jPPaqueteria;
     private javax.swing.JPanel jPTransporte;
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JSeparator jSeparator2;
     // End of variables declaration//GEN-END:variables
 }
