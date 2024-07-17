@@ -8,7 +8,7 @@ import java.awt.event.ActionListener;
 public class TipoAcciónGUI extends JFrame {
 
     public TipoAcciónGUI() {
-        setTitle("Ingresar al Sistema");
+        setTitle("Ingresar al sistema");
         setSize(1000, 600);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
