@@ -9,9 +9,6 @@ package proyecto_encomienda.Facturación;
  * @author USUARIO
  */
 public interface CalculoPrecio {
-    
-    public void calcularValor();
-    public void actualizarParametro();
-    
-    
+    void calcularValor(Paquete paquete);
+    void actualizarParámetro(double parametro);
 }

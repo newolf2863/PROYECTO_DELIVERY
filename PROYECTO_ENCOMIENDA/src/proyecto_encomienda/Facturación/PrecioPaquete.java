@@ -8,21 +8,58 @@ package proyecto_encomienda.Facturación;
  *
  * @author Xelan
  */
-public class PrecioPaquete implements CalculoPrecio{
-     private double precioPorDimension;
+public class PrecioPaquete implements CalculoPrecio {
+    private double precioPorDimensión;
     private double precioPorKg;
-    
-    //Constructor
+    private double precio;
 
-    @Override
-    public void calcularValor() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    // Constructor
+    public PrecioPaquete(double precioPorDimensión, double precioPorKg) {
+        this.precioPorDimensión = precioPorDimensión;
+        this.precioPorKg = precioPorKg;
+    }
+
+    public void calcularPorDimension(Paquete paquete) {
+        precio += paquete.getDimension() * precioPorDimensión;
+    }
+
+    public void calcularPorKg(Paquete paquete) {
+        precio += paquete.getPeso() * precioPorKg;
     }
 
     @Override
-    public void actualizarParametro() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public void calcularValor(Paquete paquete) {
+        calcularPorDimension(paquete);
+        calcularPorKg(paquete);
     }
 
-    
+    @Override
+    public void actualizarParámetro(double parametro) {
+        // Implementación para actualizar parámetros si es necesario
+    }
+
+    public double getPrecio() {
+        return precio;
+    }
+
+    // Getters y setters
+    public double getPrecioPorDimensión() {
+        return precioPorDimensión;
+    }
+
+    public void setPrecioPorDimensión(double precioPorDimensión) {
+        this.precioPorDimensión = precioPorDimensión;
+    }
+
+    public double getPrecioPorKg() {
+        return precioPorKg;
+    }
+
+    public void setPrecioPorKg(double precioPorKg) {
+        this.precioPorKg = precioPorKg;
+    }
+
+    public void setPrecio(double precio) {
+        this.precio = precio;
+    }
 }

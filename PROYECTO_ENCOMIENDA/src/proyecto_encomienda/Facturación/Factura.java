@@ -3,75 +3,80 @@ package proyecto_encomienda.Facturación;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Date;
 
-/**
- *
- * @author Xelan
- */
 public class Factura {
-    private static int idFac = 1; 
-    private int numFac;
-    private String cliente;
-    private String entrega;
-    private LocalDate date;
-    private ArrayList<Double> montos;
-    
-    public Factura(String cliente, String entrega, LocalDate date) {
-        this.numFac = idFac;
-        idFac++;
-        this.cliente = cliente;
+    private int id;
+    private Paquete entrega;
+    private Usuario cliente;
+    private Date fechaEmision;
+    private double montoTotal;
+
+    // Constructor
+    public Factura(int id, Paquete entrega, Usuario cliente, Date fechaEmision) {
+        this.id = id;
         this.entrega = entrega;
-        this.date = date;
-        this.montos = new ArrayList<>();
+        this.cliente = cliente;
+        this.fechaEmision = fechaEmision;
     }
 
-    public int getNumFac() {
-        return numFac;
+    // Métodos
+    public void consultarFactura() {
+        // Implementación del método
     }
 
-    public String getCliente() {
-        return cliente;
+    public void emitirFactura() {
+        Precio precio = new Precio();
+        montoTotal = precio.calcularTotal(entrega);
+        System.out.println("Factura emitida. Monto total: " + montoTotal);
     }
 
+    public void anularFactura() {
+        // Implementación del método
+    }
 
-    public String getEntrega() {
+    public void calcularTotal() {
+        // Implementación del método
+    }
+
+    // Getters y setters
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public Paquete getEntrega() {
         return entrega;
     }
 
-    public void setEntrega(String entrega) {
+    public void setEntrega(Paquete entrega) {
         this.entrega = entrega;
     }
 
-    public LocalDate getDate() {
-        return date;
+    public Usuario getCliente() {
+        return cliente;
     }
 
-    public void setDate(LocalDate date) {
-        this.date = date;
+    public void setCliente(Usuario cliente) {
+        this.cliente = cliente;
     }
 
-    public ArrayList<Double> getMontos() {
-        return montos;
+    public Date getFechaEmision() {
+        return fechaEmision;
     }
 
-    public void addMonto(Double monto) {
-        this.montos.add(monto);
+    public void setFechaEmision(Date fechaEmision) {
+        this.fechaEmision = fechaEmision;
     }
 
     public double getMontoTotal() {
-        return montos.stream().mapToDouble(Double::doubleValue).sum();
+        return montoTotal;
     }
-        @Override
-    public String toString() {
-        return "Factura{" +
-                "numFac=" + numFac +
-                ", cliente='" + cliente + '\'' +
-                ", entrega='" + entrega + '\'' +
-                ", date=" + date +
-                ", montoTotal=" + getMontoTotal() +
-                '}';
+
+    public void setMontoTotal(double montoTotal) {
+        this.montoTotal = montoTotal;
     }
 }
-
-
-

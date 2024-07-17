@@ -8,17 +8,39 @@ package proyecto_encomienda.Facturación;
  *
  * @author Xelan
  */
-public class Impuesto implements CalculoPrecio{
-    private double valorIva = 0.15;
+public class Impuesto implements CalculoPrecio {
+    private double iva;
+    private double precio;
 
-    @Override
-    public void calcularValor() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    // Constructor
+    public Impuesto(double iva) {
+        this.iva = iva;
     }
 
     @Override
-    public void actualizarParametro() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public void calcularValor(Paquete paquete) {
+        precio = paquete.getDimension() * iva;
     }
-    
+
+    @Override
+    public void actualizarParámetro(double parametro) {
+        this.iva = parametro;
+    }
+
+    public double getPrecio() {
+        return precio;
+    }
+
+    // Getters y setters
+    public double getIva() {
+        return iva;
+    }
+
+    public void setIva(double iva) {
+        this.iva = iva;
+    }
+
+    public void setPrecio(double precio) {
+        this.precio = precio;
+    }
 }
