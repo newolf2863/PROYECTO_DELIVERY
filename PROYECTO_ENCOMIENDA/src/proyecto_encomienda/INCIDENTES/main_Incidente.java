@@ -1,22 +1,28 @@
 package proyecto_encomienda.INCIDENTES;
 
-import proyecto_encomienda.GESTION_PAQUETES.BACKEND.Inventario;
+
 import proyecto_encomienda.GESTION_PAQUETES.BACKEND.Paquete;
 import proyecto_encomienda.INCIDENTES.GestorIncidentes;
 import proyecto_encomienda.INCIDENTES.PaquetePerdido;
 import proyecto_encomienda.INCIDENTES.RechazoEntrega;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
+import proyecto_encomienda.GESTION_PAQUETES.BACKEND.Inventario;
 
 public class main_Incidente {
 
-    public static void main(String[] args) {
-        Inventario inventario = new Inventario();
+    public static void main(String[] args){
+        Inventario inventario=new Inventario();
         Scanner scanner = new Scanner(System.in);
+        String archivo = "incidentes.txt";
 
         System.out.print("Ingrese el ID del paquete (codigoTracking): ");
         String codigoTracking = scanner.nextLine();
@@ -65,7 +71,7 @@ public class main_Incidente {
                     break;
                 case 2:
                     // Actualizar estado de un paquete existente
-                    actualizarEstadoPaquete(scanner, inventario, codigoTracking);
+                    actualizarEstadoPaquete(scanner,archivo,codigoTracking);
                     break;
                 case 3:
                     // Mostrar los incidentes registrados en el archivo
@@ -141,27 +147,53 @@ public class main_Incidente {
         }
     }
 
-    public static void actualizarEstadoPaquete(Scanner scanner, Inventario inventario, String idPaquete) {
-        Paquete paquete = inventario.buscarPaquetePorId(idPaquete);
+    public static void actualizarEstadoPaquete(Scanner scanner, String archivo, String idPaquete) {
+        List<String> lineas = new ArrayList<>();
+        boolean paqueteEncontrado = false;
 
-        if (paquete == null) {
+        try (BufferedReader reader = new BufferedReader(new FileReader(archivo))) {
+            String linea;
+            while ((linea = reader.readLine()) != null) {
+                if (linea.contains("ID Paquete: " + idPaquete)) {
+                    paqueteEncontrado = true;
+
+                    System.out.println("Paquete encontrado:");
+                    while (!(linea = reader.readLine()).equals("------------------------------")) {
+                        System.out.println(linea);
+                        lineas.add(linea);
+                    }
+
+                    System.out.print("Ingrese el nuevo estado del paquete (Perdido/Rechazado): ");
+                    String nuevoEstado = scanner.next();
+                    scanner.nextLine(); // Limpiar el buffer
+
+                    if (nuevoEstado.equalsIgnoreCase("Rechazado")) {
+                        System.out.print("Ingrese la razón del rechazo: ");
+                        String razon = scanner.nextLine();
+                        System.out.println("Razón de rechazo registrada: " + razon);
+                    }
+
+                    lineas.add("Estado: " + nuevoEstado);
+                    System.out.println("Estado actualizado correctamente.");
+                } else {
+                    lineas.add(linea);
+                }
+            }
+        } catch (IOException e) {
+            System.err.println("Error al leer el archivo: " + e.getMessage());
+        }
+
+        if (!paqueteEncontrado) {
             System.out.println("No se encontró un paquete con el ID proporcionado.");
         } else {
-            System.out.println("Paquete encontrado:");
-            System.out.println(paquete);
-
-            System.out.print("Ingrese el nuevo estado del paquete (Perdido/Rechazado): ");
-            String nuevoEstado = scanner.next();
-            scanner.nextLine(); // Limpiar el buffer
-
-            if (nuevoEstado.equalsIgnoreCase("Rechazado")) {
-                System.out.print("Ingrese la razón del rechazo: ");
-                String razon = scanner.nextLine();
-                System.out.println("Razón de rechazo registrada: " + razon);
+            try (BufferedWriter writer = new BufferedWriter(new FileWriter(archivo))) {
+                for (String linea : lineas) {
+                    writer.write(linea);
+                    writer.newLine();
+                }
+            } catch (IOException e) {
+                System.err.println("Error al escribir en el archivo: " + e.getMessage());
             }
-
-            paquete.setEstado(nuevoEstado);
-            System.out.println("Estado actualizado correctamente.");
         }
     }
 }

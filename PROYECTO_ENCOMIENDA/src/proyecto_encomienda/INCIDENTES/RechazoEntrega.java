@@ -1,10 +1,8 @@
 package proyecto_encomienda.INCIDENTES;
 
 import java.io.BufferedWriter;
-import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -18,7 +16,6 @@ public class RechazoEntrega extends Incidente {
         // Lógica específica para Rechazo de Entrega
         System.out.println("Actuando sobre rechazo de entrega: " + getIdPaquete());
     }
-<<<<<<< HEAD
 
     @Override
     public void guardarEnArchivo() {
@@ -54,6 +51,5 @@ public class RechazoEntrega extends Incidente {
         // Lógica específica para registrar un incidente de Rechazo de Entrega
         System.out.println("Incidente registrado (Rechazo de Entrega): " + getDescripcion());
     }
-=======
->>>>>>> main
+
 }

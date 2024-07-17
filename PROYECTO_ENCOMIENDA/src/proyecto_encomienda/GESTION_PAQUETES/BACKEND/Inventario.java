@@ -10,7 +10,7 @@ import java.util.ArrayList;
 public class Inventario {
     private ArrayList<Paquete> paquetes;
     private static final String ARCHIVO_INVENTARIO = "inventario.txt";
-    public Inventario() throws IOException {
+    public Inventario(){
         paquetes = new ArrayList<>();
         //cargarInventarioDesdeArchivo(); // Cargar el inventario al inicializar
     }
