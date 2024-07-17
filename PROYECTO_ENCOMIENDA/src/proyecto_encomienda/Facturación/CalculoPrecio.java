@@ -10,4 +10,8 @@ package proyecto_encomienda.Facturación;
  */
 public interface CalculoPrecio {
     
+    public void calcularValor();
+    public void actualizarParametro();
+    
+    
 }

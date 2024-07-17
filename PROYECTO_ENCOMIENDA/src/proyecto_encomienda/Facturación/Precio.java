@@ -8,31 +8,55 @@ package proyecto_encomienda.Facturación;
 public class Precio {
     
     private double precioFinal;
-    private String inventario;
-   
-    public Precio(String inventario) {
-        this.inventario = inventario;
-        this.precioFinal = agregarPrecioFinal(inventario);
-    }
-   
-    public double agregarPrecioFinal(String inventario) {
-        double total = 0.0;
-        // Aquí iría la lógica para calcular el precio total basado en el inventario
+    private double precioInicial;//
+ 
+    
+    //////
+    private PrecioDistancia precioDistancia;
+    private PrecioPaquete precioPaquete;
+    private Impuesto impuesto;
+
+
+    public Precio(double precioFinal,double peso, double dimension, double distancia) {
+        this.precioFinal = precioFinal;
+        this.precioDistancia = new PrecioDistancia();
        
-        return total;
+        this.impuesto = new Impuesto();
+       
+    }
+    
+ 
+
+    public void setPrecioFinal(double precioFinal) {
+        this.precioFinal = precioFinal;
     }
 
-    public double getPrecioFinal() {
-        return precioFinal;
+    public PrecioDistancia getPrecioDistancia() {
+        return precioDistancia;
     }
 
-    public void setInventario(String inventario) {
-        this.inventario = inventario;
-        this.precioFinal = agregarPrecioFinal(inventario); // Recalcula el precio final al cambiar el inventario
+    public void setPrecioDistancia(PrecioDistancia precioDistancia) {
+        this.precioDistancia = precioDistancia;
     }
 
-    public String getInventario() {
-        return inventario;
+    public PrecioPaquete getPrecioPaquete() {
+        return precioPaquete;
     }
+
+    public void setPrecioPaquete(PrecioPaquete precioPaquete) {
+        this.precioPaquete = precioPaquete;
+    }
+
+    public Impuesto getImpuesto() {
+        return impuesto;
+    }
+
+    public void setImpuesto(Impuesto impuesto) {
+        this.impuesto = impuesto;
+    }
+    
+    
+ 
 }
+ 
 

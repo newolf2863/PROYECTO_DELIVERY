@@ -10,50 +10,19 @@ package proyecto_encomienda.Facturación;
  */
 public class PrecioPaquete implements CalculoPrecio{
      private double precioPorDimension;
-    private double precioPorPeso;
+    private double precioPorKg;
     
-    
+    //Constructor
 
-    
-
-    public PrecioPaquete(double precioFinal, double precioPorDimension, double precioPorPeso) {
-        this.precioPorDimension = precioPorDimension;
-        this.precioPorPeso = precioPorPeso;
+    @Override
+    public void calcularValor() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
-    public void precioAtributo(){
-        
+    @Override
+    public void actualizarParametro() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
-    public void calcularValor(double precioPorDimension, double precioPorPeso){
-        
-    }
-    public void actualizarParametros(double precioPorDimension, double precioPorPeso){
-        
-    }
-
-
-
-    public double getPrecioPorDimension() {
-        return precioPorDimension;
-    }
-
-
-
-    public void setPrecioPorDimension(double precioPorDimension) {
-        this.precioPorDimension = precioPorDimension;
-    }
-
-
-
-    public double getPrecioPorPeso() {
-        return precioPorPeso;
-    }
-
-
-
-    public void setPrecioPorPeso(double precioPorPeso) {
-        this.precioPorPeso = precioPorPeso;
-    } 
     
 }
