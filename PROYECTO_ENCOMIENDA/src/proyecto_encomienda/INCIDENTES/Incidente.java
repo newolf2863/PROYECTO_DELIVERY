@@ -11,19 +11,18 @@ import java.time.LocalDateTime;
  * @author Issac
  */
 abstract class Incidente {
+    private String descripcion;
+    private LocalDateTime fecha;
+    private String idPaquete;
 
     public abstract void actuar();
 
     public void guardarPaquete() {
         // Lógica para guardar el paquete
         System.out.println("Estado de paquete guardado.");
-
     }
-    private String descripcion;
-    private LocalDateTime fecha;
-    private String idPaquete;
 
-// Getters y setters
+    // Getters y setters
     public String getDescripcion() {
         return descripcion;
     }
@@ -57,5 +56,4 @@ abstract class Incidente {
         // Lógica para notificar al cliente sobre el incidente
         System.out.println("Cliente notificado sobre el incidente del paquete: " + idPaquete);
     }
-
 }
