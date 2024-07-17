@@ -21,4 +21,14 @@ public class ErrorDireccion extends Incidente {
         // Lógica para corregir la dirección
         System.out.println("Corrigiendo dirección del paquete: " + getIdPaquete());
     }
+
+    @Override
+    public void guardarEnArchivo() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void registrarIncidente() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }
