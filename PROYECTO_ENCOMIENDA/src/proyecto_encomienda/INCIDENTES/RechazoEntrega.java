@@ -14,4 +14,14 @@ public class RechazoEntrega extends Incidente{
         // Lógica específica para Rechazo de Entrega
         System.out.println("Actuando sobre rechazo de entrega.");
     }
+
+    @Override
+    public void guardarEnArchivo() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void registrarIncidente() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }

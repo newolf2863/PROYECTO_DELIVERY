@@ -1,0 +1,11 @@
+ID Paquete: 12345
+Descripción: El paquete se perdió durante el tránsito
+Fecha: 2024-07-16T22:03:16.138810200
+Estado: Perdido
+------------------------------
+
+ID Paquete: 12345
+Descripción: El paquete se perdió durante el tránsito
+Fecha: 2024-07-16T22:18:00.157283900
+Estado: Perdido
+------------------------------
