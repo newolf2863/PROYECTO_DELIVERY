@@ -21,7 +21,7 @@ public class TipoUsuarioGUI extends JFrame {
         JButton btnRemitente = new JButton("Registrar Remitente");
 
         btnRecepcionista.addActionListener(new TipoUsuarioActionListener("Recepcionista"));
-        btnConductor.addActionListener(new TipoUsuarioActionListener("Condcutor"));
+        btnConductor.addActionListener(new TipoUsuarioActionListener("Conductor"));
         btnRemitente.addActionListener(new TipoUsuarioActionListener("Remitente"));
 
         panel.add(btnRecepcionista);
@@ -41,9 +41,8 @@ public class TipoUsuarioGUI extends JFrame {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            // Ocultar la ventana de selección y mostrar la ventana de registro
             TipoUsuarioGUI.this.dispose();
-            GUI gui = new GUI(tipoUsuario);
+            RegistroGUI gui = new RegistroGUI(tipoUsuario);
             gui.setVisible(true);
         }
     }

@@ -10,7 +10,6 @@ public abstract class Perfil {
     private String telefono;
     private String email;
 
-
     public Perfil(String nombre, String RUC, String direccion, String telefono, String email) {
         this.nombre = nombre;
         this.direccion = direccion;
@@ -22,6 +21,7 @@ public abstract class Perfil {
     public abstract void editarPerfil(List<String> datos);
 
     public abstract List<String> obtenerDatos();
+    public abstract void guardarDatos(String filePath);
 
     public String getDireccion() {
         return direccion;

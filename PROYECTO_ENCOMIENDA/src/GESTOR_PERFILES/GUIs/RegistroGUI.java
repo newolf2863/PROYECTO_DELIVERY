@@ -1,18 +1,24 @@
 package GESTOR_PERFILES.GUIs;
 
+import GESTOR_PERFILES.Conductor;
+import GESTOR_PERFILES.Recepcionista;
+import GESTOR_PERFILES.Remitente;
+
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class GUI extends JFrame {
+public class RegistroGUI extends JFrame {
 
     private JPanel panelCampos;
     private JButton btnRegistrar;
     private JButton btnRegresar;
     private List<JTextField> camposTexto;
+    private String tipoUsuario;
 
-    public GUI(String tipoUsuario) {
+    public RegistroGUI(String tipoUsuario) {
+        this.tipoUsuario = tipoUsuario;
         setTitle("Registro - " + tipoUsuario);
         setSize(1000, 600);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -29,15 +35,12 @@ public class GUI extends JFrame {
         agregarCampo("Teléfono");
         agregarCampo("Email");
 
-        switch (tipoUsuario) {
-            /*
-            case "Recepcionista":
-                agregarCamposRecepcionista();
-            case "Conductor":
-                agregarCamposConductor();
-             */
-            case "Remitente":
-                agregarCamposRemitente();
+        if(tipoUsuario.equals("Recepcionista")){
+
+        } else if (tipoUsuario.equals("Conductor")) {
+            agregarCamposConductor();
+        } else if (tipoUsuario.equals("Remitente")) {
+            agregarCamposRemitente();
         }
 
         btnRegistrar = new JButton("Registrar");
@@ -60,13 +63,12 @@ public class GUI extends JFrame {
     }
     */
 
-    /*
     private void agregarCamposConductor() {
-
+        agregarCampo("Licencia:");
     }
-     */
+
     private void agregarCamposRemitente() {
-        agregarCampo("Nombre de la Empresa");
+        agregarCampo("Nombre de la Empresa:");
     }
 
     private void agregarCampo(String titulo) {
@@ -78,13 +80,11 @@ public class GUI extends JFrame {
         JTextField nuevoCampo = new JTextField(10);
         nuevoCampo.setPreferredSize(new Dimension(200, 25));
 
-        // Añadir el título al layout
         gbc.gridx = 0;
         gbc.gridy = panelCampos.getComponentCount() / 2;
         gbc.gridwidth = 1;
         panelCampos.add(nuevoTitulo, gbc);
 
-        // Añadir el campo de texto al layout
         gbc.gridx = 1;
         panelCampos.add(nuevoCampo, gbc);
 
@@ -94,9 +94,21 @@ public class GUI extends JFrame {
     }
 
     private void registrar() {
-        // Lógica para registrar los datos
-        for (JTextField campo : camposTexto) {
-            System.out.println(campo.getText());
+
+        if(tipoUsuario.equals("Recepcionista")){
+            new Recepcionista(camposTexto.get(0).getText(), camposTexto.get(1).getText(),
+                    camposTexto.get(2).getText(), camposTexto.get(3).getText(),
+                    camposTexto.get(4).getText()).guardarDatos("PROYECTO_ENCOMIENDA/src/GESTOR_PERFILES/datos/recepcionistas.txt");
+        } else if (tipoUsuario.equals("Conductor")) {
+            new Conductor(camposTexto.get(0).getText(), camposTexto.get(1).getText(),
+                    camposTexto.get(2).getText(), camposTexto.get(3).getText(),
+                    camposTexto.get(4).getText(),
+                    camposTexto.get(5).getText()).guardarDatos("PROYECTO_ENCOMIENDA/src/GESTOR_PERFILES/datos/conductores.txt");
+        } else if (tipoUsuario.equals("Remitente")) {
+            new Remitente(camposTexto.get(0).toString(), camposTexto.get(1).getText(),
+                    camposTexto.get(2).getText(), camposTexto.get(3).getText(),
+                    camposTexto.get(4).getText(),
+                    camposTexto.get(5).getText()).guardarDatos("PROYECTO_ENCOMIENDA/src/GESTOR_PERFILES/datos/remitentes.txt");
         }
         System.out.println("Datos registrados");
     }

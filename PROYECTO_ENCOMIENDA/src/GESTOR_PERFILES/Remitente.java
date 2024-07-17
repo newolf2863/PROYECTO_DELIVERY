@@ -1,17 +1,18 @@
 package GESTOR_PERFILES;
 
+import java.io.*;
 import java.util.Arrays;
 import java.util.List;
 
 public class Remitente extends Perfil{
 
-    private String empresa;
     private String nombreEmpresa;
+    private int id = 0;
 
-    public Remitente(String nombre, String RUC, String direccion, String telefono, String email, String empresa, String nombreEmpresa) {
+    public Remitente(String nombre, String RUC, String direccion, String telefono, String email, String nombreEmpresa) {
         super(nombre, RUC, direccion, telefono, email);
-        this.empresa = empresa;
         this.nombreEmpresa = nombreEmpresa;
+        this.id++;
     }
 
 
@@ -20,21 +21,38 @@ public class Remitente extends Perfil{
         setDireccion(datos.get(0));
         setTelefono(datos.get(1));
         setEmail(datos.get(2));
-        setEmpresa(datos.get(3));
-        setNombreEmpresa(datos.get(4));
+        setNombreEmpresa(datos.get(3));
     }
 
     @Override
     public List<String> obtenerDatos() {
-        return Arrays.asList(getNombre(), getCI_RUC(), getDireccion(), getTelefono(), getEmail(), getEmpresa(), getNombreEmpresa());
+        return Arrays.asList(getNombre(), getCI_RUC(), getDireccion(), getTelefono(), getEmail(), getNombreEmpresa());
     }
 
-    public String getEmpresa() {
-        return empresa;
-    }
+    @Override
+    public void guardarDatos(String filePath) {
 
-    public void setEmpresa(String empresa) {
-        this.empresa = empresa;
+        StringBuilder stringBuilder = new StringBuilder();
+
+        try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                stringBuilder.append(line).append(System.lineSeparator());
+            }
+        } catch (IOException e) {
+
+        }
+
+        String datosRecepcionista = String.format("ID: %s, Nombre: %s, Dirección: %s, Teléfono: %s, Email: %s, Nombre Empresa: %s",
+                getCI_RUC(), getNombre(), getDireccion(), getTelefono(), getEmail(), getNombreEmpresa());
+
+        stringBuilder.append(datosRecepcionista).append(System.lineSeparator());
+
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) {
+            writer.write(stringBuilder.toString());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public String getNombreEmpresa() {
