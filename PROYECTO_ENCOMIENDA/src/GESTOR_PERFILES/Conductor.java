@@ -42,8 +42,7 @@ public class Conductor extends Perfil {
 
         }
 
-        String datosRecepcionista = String.format("ID: %s, Nombre: %s, " +
-                        "Dirección: %s, Teléfono: %s, Email: %s, Licencia: %s",
+        String datosRecepcionista = String.format("ID: %s, Nombre: %s, Dirección: %s, Teléfono: %s, Email: %s, Licencia: %s",
                 getCI_RUC(), getNombre(), getDireccion(), getTelefono(), getEmail(), getLicencia());
 
         stringBuilder.append(datosRecepcionista).append(System.lineSeparator());
