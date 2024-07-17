@@ -9,6 +9,10 @@ package proyecto_encomienda.GESTION_PAQUETES.BACKEND;
  * @author Juguitos
  */
 public abstract class EstadoDelPaquete {
+
+    static EstadoDelPaquete valueOf(String toUpperCase) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
     protected Paquete paquete;
     
     public EstadoDelPaquete(Paquete paquete) {
