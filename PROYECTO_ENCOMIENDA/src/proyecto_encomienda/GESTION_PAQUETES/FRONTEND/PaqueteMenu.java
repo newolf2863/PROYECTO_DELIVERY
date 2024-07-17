@@ -83,6 +83,7 @@ public class PaqueteMenu extends javax.swing.JFrame {
         jPControl.setBackground(new java.awt.Color(51, 51, 51));
         jPControl.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jLSelectH.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLSelectH.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLSelectHMouseClicked(evt);
@@ -108,6 +109,7 @@ public class PaqueteMenu extends javax.swing.JFrame {
         jLLineaH.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto_encomienda/GESTION_PAQUETES/FRONTEND/imagenes/line2.png"))); // NOI18N
         jPControl.add(jLLineaH, new org.netbeans.lib.awtextra.AbsoluteConstraints(-30, 85, 220, 20));
 
+        jLSelectA.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLSelectA.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLSelectAMouseClicked(evt);
@@ -124,6 +126,7 @@ public class PaqueteMenu extends javax.swing.JFrame {
         jLLineaA.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto_encomienda/GESTION_PAQUETES/FRONTEND/imagenes/line2.png"))); // NOI18N
         jPControl.add(jLLineaA, new org.netbeans.lib.awtextra.AbsoluteConstraints(-30, 142, 220, 20));
 
+        jLSelectP.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLSelectP.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLSelectPMouseClicked(evt);
@@ -140,6 +143,7 @@ public class PaqueteMenu extends javax.swing.JFrame {
         jLLineaP.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto_encomienda/GESTION_PAQUETES/FRONTEND/imagenes/line2.png"))); // NOI18N
         jPControl.add(jLLineaP, new org.netbeans.lib.awtextra.AbsoluteConstraints(-30, 197, 220, 20));
 
+        jLSelectF.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLSelectF.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLSelectFMouseClicked(evt);
@@ -156,6 +160,7 @@ public class PaqueteMenu extends javax.swing.JFrame {
         jLLineaF.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto_encomienda/GESTION_PAQUETES/FRONTEND/imagenes/line2.png"))); // NOI18N
         jPControl.add(jLLineaF, new org.netbeans.lib.awtextra.AbsoluteConstraints(-30, 255, 220, 20));
 
+        jLSelectI.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLSelectI.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLSelectIMouseClicked(evt);
@@ -172,6 +177,7 @@ public class PaqueteMenu extends javax.swing.JFrame {
         jLLineaI.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto_encomienda/GESTION_PAQUETES/FRONTEND/imagenes/line2.png"))); // NOI18N
         jPControl.add(jLLineaI, new org.netbeans.lib.awtextra.AbsoluteConstraints(-30, 312, 220, 20));
 
+        jLSelectT.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLSelectT.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLSelectTMouseClicked(evt);
@@ -201,7 +207,7 @@ public class PaqueteMenu extends javax.swing.JFrame {
                 jButton1MouseClicked(evt);
             }
         });
-        jPControl.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 440, 40, 40));
+        jPControl.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(185, 440, 40, 40));
 
         btnAdm.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         btnAdm.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto_encomienda/GESTION_PAQUETES/FRONTEND/imagenes/administracion.png"))); // NOI18N
@@ -231,7 +237,7 @@ public class PaqueteMenu extends javax.swing.JFrame {
         jMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto_encomienda/GESTION_PAQUETES/FRONTEND/imagenes/PANEL.png"))); // NOI18N
         jPControl.add(jMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 230, 497));
 
-        getContentPane().add(jPControl, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 2, 230, 497));
+        getContentPane().add(jPControl, new org.netbeans.lib.awtextra.AbsoluteConstraints(-180, 2, 230, 497));
 
         jPBackground.setPreferredSize(new java.awt.Dimension(700, 500));
         jPBackground.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -300,6 +306,7 @@ public class PaqueteMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1MouseClicked
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        this.mover.startAnimation(jPControl, 180);
         jLLineaH.setVisible(true);
         jLLineaA.setVisible(false);
         jLLineaP.setVisible(false);
@@ -310,6 +317,7 @@ public class PaqueteMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowOpened
 
     private void jLSelectHMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLSelectHMouseClicked
+        this.mover.setBandera(true);
         jLLineaH.setVisible(true);
         jLLineaA.setVisible(false);
         jLLineaP.setVisible(false);
@@ -319,6 +327,7 @@ public class PaqueteMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_jLSelectHMouseClicked
 
     private void jLSelectAMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLSelectAMouseClicked
+        this.mover.setBandera(true);
         jLLineaH.setVisible(false);
         jLLineaA.setVisible(true);
         jLLineaP.setVisible(false);
@@ -328,6 +337,7 @@ public class PaqueteMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_jLSelectAMouseClicked
 
     private void jLSelectPMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLSelectPMouseClicked
+        this.mover.setBandera(true);
         jLLineaH.setVisible(false);
         jLLineaA.setVisible(false);
         jLLineaP.setVisible(true);
@@ -338,6 +348,7 @@ public class PaqueteMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_jLSelectPMouseClicked
 
     private void jLSelectFMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLSelectFMouseClicked
+        this.mover.setBandera(true);
         jLLineaH.setVisible(false);
         jLLineaA.setVisible(false);
         jLLineaP.setVisible(false);
@@ -348,6 +359,7 @@ public class PaqueteMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_jLSelectFMouseClicked
 
     private void jLSelectIMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLSelectIMouseClicked
+        this.mover.setBandera(true);
         jLLineaH.setVisible(false);
         jLLineaA.setVisible(false);
         jLLineaP.setVisible(false);
@@ -358,6 +370,7 @@ public class PaqueteMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_jLSelectIMouseClicked
 
     private void jLSelectTMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLSelectTMouseClicked
+        this.mover.setBandera(true);
         jLLineaH.setVisible(false);
         jLLineaA.setVisible(false);
         jLLineaP.setVisible(false);
