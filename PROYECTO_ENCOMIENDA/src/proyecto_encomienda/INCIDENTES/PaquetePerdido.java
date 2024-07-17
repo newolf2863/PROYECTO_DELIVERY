@@ -39,8 +39,8 @@ public class PaquetePerdido extends Incidente {
             writer.write("Fecha: " + getFecha().toString() + "\n");
             writer.write("Estado: " + estadoActual + "\n");
             writer.write("------------------------------\n");
-            System.out.println("Información del incidente guardada en archivo: " + new File(archivo).getAbsolutePath());
-            System.out.println("idPaquete"+idPaquete);
+            //System.out.println("Información del incidente guardada en archivo: " + new File(archivo).getAbsolutePath());
+            //System.out.println("idPaquete"+idPaquete);
             // Actualizar el último estado registrado para este paquete
             ultimoEstadoPorPaquete.put(idPaquete, estadoActual);
         } catch (IOException e) {
