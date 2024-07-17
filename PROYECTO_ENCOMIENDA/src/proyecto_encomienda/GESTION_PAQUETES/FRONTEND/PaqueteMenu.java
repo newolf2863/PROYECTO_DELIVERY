@@ -36,6 +36,8 @@ public class PaqueteMenu extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        btnMinimizar = new javax.swing.JLabel();
+        btnCerrar = new javax.swing.JLabel();
         jPControl = new javax.swing.JPanel();
         jLSelectH = new javax.swing.JLabel();
         jMinimizarMenu = new javax.swing.JLabel();
@@ -64,9 +66,17 @@ public class PaqueteMenu extends javax.swing.JFrame {
         btnTran = new javax.swing.JLabel();
         btnHom = new javax.swing.JLabel();
         jMenu = new javax.swing.JLabel();
+        jPAdministracion = new javax.swing.JPanel();
+        jLabel5 = new javax.swing.JLabel();
+        jPIncidentes = new javax.swing.JPanel();
+        jLabel4 = new javax.swing.JLabel();
+        jPFactura = new javax.swing.JPanel();
+        jLabel3 = new javax.swing.JLabel();
+        jPTransporte = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
+        jPPaqueteria = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
         jPBackground = new javax.swing.JPanel();
-        btnMinimizar = new javax.swing.JLabel();
-        btnCerrar = new javax.swing.JLabel();
         jLabelFondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -79,6 +89,25 @@ public class PaqueteMenu extends javax.swing.JFrame {
             }
         });
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        btnMinimizar.setForeground(new java.awt.Color(255, 255, 255));
+        btnMinimizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto_encomienda/GESTION_PAQUETES/FRONTEND/imagenes/icons8_Expand_Arrow_32px.png"))); // NOI18N
+        btnMinimizar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnMinimizar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnMinimizarMouseClicked(evt);
+            }
+        });
+        getContentPane().add(btnMinimizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 0, 32, 50));
+
+        btnCerrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto_encomienda/GESTION_PAQUETES/FRONTEND/imagenes/icons8_Delete_32px.png"))); // NOI18N
+        btnCerrar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnCerrar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnCerrarMouseClicked(evt);
+            }
+        });
+        getContentPane().add(btnCerrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 0, 32, 50));
 
         jPControl.setBackground(new java.awt.Color(51, 51, 51));
         jPControl.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -239,27 +268,58 @@ public class PaqueteMenu extends javax.swing.JFrame {
 
         getContentPane().add(jPControl, new org.netbeans.lib.awtextra.AbsoluteConstraints(-180, 2, 230, 497));
 
+        jPAdministracion.setOpaque(false);
+        jPAdministracion.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel5.setFont(new java.awt.Font("Eras Demi ITC", 0, 18)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel5.setText("Administración");
+        jPAdministracion.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 310, -1));
+
+        getContentPane().add(jPAdministracion, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 0, 950, 500));
+
+        jPIncidentes.setOpaque(false);
+        jPIncidentes.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel4.setFont(new java.awt.Font("Eras Demi ITC", 0, 18)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel4.setText("Incidentes");
+        jPIncidentes.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 310, -1));
+
+        getContentPane().add(jPIncidentes, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 0, 950, 500));
+
+        jPFactura.setOpaque(false);
+        jPFactura.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel3.setFont(new java.awt.Font("Eras Demi ITC", 0, 18)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel3.setText("Factura");
+        jPFactura.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 310, -1));
+
+        getContentPane().add(jPFactura, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 0, 950, 500));
+
+        jPTransporte.setOpaque(false);
+        jPTransporte.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel2.setFont(new java.awt.Font("Eras Demi ITC", 0, 18)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel2.setText("Transporte");
+        jPTransporte.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 310, -1));
+
+        getContentPane().add(jPTransporte, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 0, 950, 500));
+
+        jPPaqueteria.setOpaque(false);
+        jPPaqueteria.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel1.setFont(new java.awt.Font("Eras Demi ITC", 0, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel1.setText("Gestión Integral de Paquetes");
+        jPPaqueteria.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 310, -1));
+
+        getContentPane().add(jPPaqueteria, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 0, 950, 500));
+
         jPBackground.setPreferredSize(new java.awt.Dimension(700, 500));
         jPBackground.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        btnMinimizar.setForeground(new java.awt.Color(255, 255, 255));
-        btnMinimizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto_encomienda/GESTION_PAQUETES/FRONTEND/imagenes/icons8_Expand_Arrow_32px.png"))); // NOI18N
-        btnMinimizar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnMinimizar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnMinimizarMouseClicked(evt);
-            }
-        });
-        jPBackground.add(btnMinimizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 0, 32, 50));
-
-        btnCerrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto_encomienda/GESTION_PAQUETES/FRONTEND/imagenes/icons8_Delete_32px.png"))); // NOI18N
-        btnCerrar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnCerrar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnCerrarMouseClicked(evt);
-            }
-        });
-        jPBackground.add(btnCerrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 0, 32, 50));
 
         jLabelFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto_encomienda/GESTION_PAQUETES/FRONTEND/imagenes/Login.png"))); // NOI18N
         jPBackground.add(jLabelFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1000, 500));
@@ -314,6 +374,13 @@ public class PaqueteMenu extends javax.swing.JFrame {
         jLLineaI.setVisible(false);
         jLLineaT.setVisible(false);
         
+        jPPaqueteria.setVisible(false);
+        jPPaqueteria.setVisible(false);
+        jPAdministracion.setVisible(false);
+        jPFactura.setVisible(false);
+        jPTransporte.setVisible(false);
+        jPIncidentes.setVisible(false);
+        
     }//GEN-LAST:event_formWindowOpened
 
     private void jLSelectHMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLSelectHMouseClicked
@@ -324,6 +391,14 @@ public class PaqueteMenu extends javax.swing.JFrame {
         jLLineaF.setVisible(false);
         jLLineaI.setVisible(false);
         jLLineaT.setVisible(false);
+        
+
+        jPPaqueteria.setVisible(false);
+        jPPaqueteria.setVisible(false);
+        jPAdministracion.setVisible(false);
+        jPFactura.setVisible(false);
+        jPTransporte.setVisible(false);
+        jPIncidentes.setVisible(false);
     }//GEN-LAST:event_jLSelectHMouseClicked
 
     private void jLSelectAMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLSelectAMouseClicked
@@ -334,6 +409,12 @@ public class PaqueteMenu extends javax.swing.JFrame {
         jLLineaF.setVisible(false);
         jLLineaI.setVisible(false);
         jLLineaT.setVisible(false);
+        
+        jPPaqueteria.setVisible(false);
+        jPAdministracion.setVisible(true);
+        jPFactura.setVisible(false);
+        jPTransporte.setVisible(false);
+        jPIncidentes.setVisible(false);
     }//GEN-LAST:event_jLSelectAMouseClicked
 
     private void jLSelectPMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLSelectPMouseClicked
@@ -344,6 +425,12 @@ public class PaqueteMenu extends javax.swing.JFrame {
         jLLineaF.setVisible(false);
         jLLineaI.setVisible(false);
         jLLineaT.setVisible(false);
+        
+        jPPaqueteria.setVisible(true);
+        jPAdministracion.setVisible(false);
+        jPFactura.setVisible(false);
+        jPTransporte.setVisible(false);
+        jPIncidentes.setVisible(false);
         
     }//GEN-LAST:event_jLSelectPMouseClicked
 
@@ -356,6 +443,12 @@ public class PaqueteMenu extends javax.swing.JFrame {
         jLLineaI.setVisible(false);
         jLLineaT.setVisible(false);
         
+        jPPaqueteria.setVisible(false);
+        jPPaqueteria.setVisible(false);
+        jPAdministracion.setVisible(false);
+        jPFactura.setVisible(true);
+        jPTransporte.setVisible(false);
+        jPIncidentes.setVisible(false);
     }//GEN-LAST:event_jLSelectFMouseClicked
 
     private void jLSelectIMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLSelectIMouseClicked
@@ -366,6 +459,13 @@ public class PaqueteMenu extends javax.swing.JFrame {
         jLLineaF.setVisible(false);
         jLLineaI.setVisible(true);
         jLLineaT.setVisible(false);
+        
+        jPPaqueteria.setVisible(false);
+        jPPaqueteria.setVisible(false);
+        jPAdministracion.setVisible(false);
+        jPFactura.setVisible(false);
+        jPTransporte.setVisible(false);
+        jPIncidentes.setVisible(true);
         
     }//GEN-LAST:event_jLSelectIMouseClicked
 
@@ -378,6 +478,12 @@ public class PaqueteMenu extends javax.swing.JFrame {
         jLLineaI.setVisible(false);
         jLLineaT.setVisible(true);
         
+        jPPaqueteria.setVisible(false);
+        jPPaqueteria.setVisible(false);
+        jPAdministracion.setVisible(false);
+        jPFactura.setVisible(false);
+        jPTransporte.setVisible(true);
+        jPIncidentes.setVisible(false);
     }//GEN-LAST:event_jLSelectTMouseClicked
 
     
@@ -445,10 +551,20 @@ public class PaqueteMenu extends javax.swing.JFrame {
     private javax.swing.JLabel jLSelectP;
     private javax.swing.JLabel jLSelectT;
     private javax.swing.JLabel jLTransporte;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabelFondo;
     private javax.swing.JLabel jMenu;
     private javax.swing.JLabel jMinimizarMenu;
+    private javax.swing.JPanel jPAdministracion;
     private javax.swing.JPanel jPBackground;
     private javax.swing.JPanel jPControl;
+    private javax.swing.JPanel jPFactura;
+    private javax.swing.JPanel jPIncidentes;
+    private javax.swing.JPanel jPPaqueteria;
+    private javax.swing.JPanel jPTransporte;
     // End of variables declaration//GEN-END:variables
 }
