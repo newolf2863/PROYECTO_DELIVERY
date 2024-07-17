@@ -9,17 +9,21 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RegistroGUI extends JFrame {
+public class IngresoDatosGUI extends JFrame {
 
     private JPanel panelCampos;
     private JButton btnRegistrar;
     private JButton btnRegresar;
     private List<JTextField> camposTexto;
     private String tipoUsuario;
+    private String tipoAcción;
 
-    public RegistroGUI(String tipoUsuario) {
+    public IngresoDatosGUI(String tipoUsuario, String tipoAcción) {
+
         this.tipoUsuario = tipoUsuario;
-        setTitle("Registro - " + tipoUsuario);
+        this.tipoAcción = tipoAcción;
+
+        setTitle(tipoAcción + " - " + tipoUsuario);
         setSize(1000, 600);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
@@ -43,7 +47,7 @@ public class RegistroGUI extends JFrame {
             agregarCamposRemitente();
         }
 
-        btnRegistrar = new JButton("Registrar");
+        btnRegistrar = new JButton("Ingresar");
         btnRegresar = new JButton("Regresar");
         btnRegistrar.addActionListener(e -> registrar());
         btnRegresar.addActionListener(e -> regresar());
@@ -110,12 +114,15 @@ public class RegistroGUI extends JFrame {
                     camposTexto.get(4).getText(),
                     camposTexto.get(5).getText()).guardarDatos("PROYECTO_ENCOMIENDA/src/GESTOR_PERFILES/datos/remitentes.txt");
         }
-        System.out.println("Datos registrados");
+        JOptionPane.showMessageDialog(null, "¡Perfil ingresado con éxito!");
+        for(JTextField campo : camposTexto){
+            campo.setText("");
+        }
     }
 
     private void regresar() {
         this.dispose();
-        new TipoUsuarioGUI().setVisible(true);
+        new TipoUsuarioGUI(tipoAcción).setVisible(true);
     }
 
 }
