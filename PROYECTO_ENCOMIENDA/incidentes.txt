@@ -1,5 +1,4 @@
-ID Paquete: 5
-Descripción: Cliente rechazó la entrega debido a daños en el paquete
-Fecha: 2024-07-17T00:54:04.193847400
+Descripción: El paquete se perdió durante el tránsito
+Fecha: 2024-07-17T02:49:43.478677500
+Estado: Perdido
 Estado: Rechazado
-------------------------------
