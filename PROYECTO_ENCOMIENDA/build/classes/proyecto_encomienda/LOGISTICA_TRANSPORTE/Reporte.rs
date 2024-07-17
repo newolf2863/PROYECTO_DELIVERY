@@ -1,0 +1,2 @@
+Reporte
+Negocio.Reporte
