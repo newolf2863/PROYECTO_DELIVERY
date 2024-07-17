@@ -8,7 +8,7 @@ package proyecto_encomienda.Facturación;
  *
  * @author Xelan
  */
-public class PrecioPaquete extends CalculoPrecio{
+public class PrecioPaquete implements CalculoPrecio{
      private double precioPorDimension;
     private double precioPorPeso;
     

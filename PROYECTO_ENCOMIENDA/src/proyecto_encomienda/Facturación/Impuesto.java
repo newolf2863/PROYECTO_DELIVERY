@@ -8,6 +8,6 @@ package proyecto_encomienda.Facturación;
  *
  * @author Xelan
  */
-public class Impuesto {
+public class Impuesto implements CalculoPrecio{
     
 }

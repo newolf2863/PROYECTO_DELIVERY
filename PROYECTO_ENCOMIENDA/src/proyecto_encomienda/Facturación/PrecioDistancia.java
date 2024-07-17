@@ -8,6 +8,34 @@ package proyecto_encomienda.Facturación;
  *
  * @author Xelan
  */
-public class PrecioDistancia {
+public class PrecioDistancia implements CalculoPrecio {
+    private double precioPorKm = 1.0;
+
+    public PrecioDistancia() {
+    }
+
+    public double getPrecioPorKm() {
+        return precioPorKm;
+    }
+
+    public void setPrecioPorKm(double precioPorKm) {
+        this.precioPorKm = precioPorKm;
+    }
+    
+    //Funcionalidades
+    
+    public void PrecioDistancia(){
+    
+}
+    
+    
+
+    
+    
+    
+
+    
+    
+    
     
 }
