@@ -22,6 +22,7 @@ public class PrecioDistancia implements CalculoPrecio {
         // Suponiendo una distancia fija de 100 km para el ejemplo
         double distancia = 100; // km
         precio = distancia * precioPorKm;
+        System.out.println("Precio de envio: "+this.precio);
     }
 
     @Override

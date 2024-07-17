@@ -21,10 +21,12 @@ public class PrecioPaquete implements CalculoPrecio {
 
     public void calcularPorDimension(Paquete paquete) {
         precio += paquete.getDimension() * precioPorDimensión;
+        System.out.println("Precio por dimension: "+precio);
     }
 
     public void calcularPorKg(Paquete paquete) {
         precio += paquete.getPeso() * precioPorKg;
+        System.out.println("Precio por peso: "+precio);
     }
 
     @Override
