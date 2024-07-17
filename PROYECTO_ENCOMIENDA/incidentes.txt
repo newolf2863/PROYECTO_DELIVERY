@@ -9,3 +9,13 @@ Descripción: El paquete se perdió durante el tránsito
 Fecha: 2024-07-16T22:18:00.157283900
 Estado: Perdido
 ------------------------------
+ID Paquete: 5
+Descripción: El paquete se perdió durante el tránsito
+Fecha: 2024-07-16T22:41:54.262645400
+Estado: Perdido
+------------------------------
+ID Paquete: 4
+Descripción: El paquete se perdió durante el tránsito
+Fecha: 2024-07-16T22:47:31.221128
+Estado: Perdido
+------------------------------
