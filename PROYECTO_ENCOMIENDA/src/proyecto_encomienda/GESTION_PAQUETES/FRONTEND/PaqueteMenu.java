@@ -86,6 +86,9 @@ public class PaqueteMenu extends javax.swing.JFrame {
         jLTitulo = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         jSeparator2 = new javax.swing.JSeparator();
+        jPInventario = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jList1 = new javax.swing.JList<>();
         jPBackground = new javax.swing.JPanel();
         jLabelFondo = new javax.swing.JLabel();
 
@@ -318,7 +321,11 @@ public class PaqueteMenu extends javax.swing.JFrame {
 
         getContentPane().add(jPTransporte, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 0, 950, 500));
 
+        jPPaqueteria.setMaximumSize(new java.awt.Dimension(950, 500));
+        jPPaqueteria.setMinimumSize(new java.awt.Dimension(950, 500));
+        jPPaqueteria.setName(""); // NOI18N
         jPPaqueteria.setOpaque(false);
+        jPPaqueteria.setPreferredSize(new java.awt.Dimension(950, 500));
         jPPaqueteria.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLSelectInventario.setToolTipText("");
@@ -396,6 +403,20 @@ public class PaqueteMenu extends javax.swing.JFrame {
         jSeparator2.setForeground(new java.awt.Color(111, 174, 2));
         jPPaqueteria.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 290, 890, 20));
 
+        jPInventario.setOpaque(false);
+        jPInventario.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jList1.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+        jScrollPane1.setViewportView(jList1);
+
+        jPInventario.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 40, 610, 380));
+
+        jPPaqueteria.add(jPInventario, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 950, 500));
+
         getContentPane().add(jPPaqueteria, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 0, 950, 500));
 
         jPBackground.setPreferredSize(new java.awt.Dimension(700, 500));
@@ -460,6 +481,7 @@ public class PaqueteMenu extends javax.swing.JFrame {
         jPFactura.setVisible(false);
         jPTransporte.setVisible(false);
         jPIncidentes.setVisible(false);
+        jPInventario.setVisible(false);
         
     }//GEN-LAST:event_formWindowOpened
 
@@ -645,6 +667,7 @@ public class PaqueteMenu extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabelFondo;
+    private javax.swing.JList<String> jList1;
     private javax.swing.JLabel jMenu;
     private javax.swing.JLabel jMinimizarMenu;
     private javax.swing.JPanel jPAdministracion;
@@ -652,8 +675,10 @@ public class PaqueteMenu extends javax.swing.JFrame {
     private javax.swing.JPanel jPControl;
     private javax.swing.JPanel jPFactura;
     private javax.swing.JPanel jPIncidentes;
+    private javax.swing.JPanel jPInventario;
     private javax.swing.JPanel jPPaqueteria;
     private javax.swing.JPanel jPTransporte;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     // End of variables declaration//GEN-END:variables
