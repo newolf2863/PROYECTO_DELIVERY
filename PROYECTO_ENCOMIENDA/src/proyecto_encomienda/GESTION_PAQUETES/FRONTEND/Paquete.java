@@ -6,7 +6,6 @@ package proyecto_encomienda.GESTION_PAQUETES.FRONTEND;
 import AppPackage.AnimationClass;
 
 import javax.swing.JOptionPane;
-import proyecto_encomienda.INCIDENTES.GestorIncidentes;
 
 /**
  *

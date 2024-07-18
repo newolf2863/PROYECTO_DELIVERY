@@ -3,10 +3,8 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package proyecto_encomienda.GESTION_PAQUETES.FRONTEND;
-import AppPackage.AnimationClass;
 import proyecto_encomienda.GESTION_PAQUETES.FRONTEND.ClasesExtras.MovePanelWithAnimation;
 import javax.swing.JOptionPane;
-import proyecto_encomienda.INCIDENTES.GestorIncidentes;
 
 /**
  *
