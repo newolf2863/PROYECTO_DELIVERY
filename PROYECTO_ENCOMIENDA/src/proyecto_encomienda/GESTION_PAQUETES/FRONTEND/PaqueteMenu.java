@@ -78,9 +78,9 @@ public class PaqueteMenu extends javax.swing.JFrame {
         jLSelectEliminarPaq = new javax.swing.JLabel();
         jLSelectAct = new javax.swing.JLabel();
         jLImgInventario = new javax.swing.JLabel();
-        jLImgEstado = new javax.swing.JLabel();
-        jLImgEliminar = new javax.swing.JLabel();
         jLImgAgregar = new javax.swing.JLabel();
+        jLImgEliminar = new javax.swing.JLabel();
+        jLImgEstado = new javax.swing.JLabel();
         jLTitulo = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         jSeparator2 = new javax.swing.JSeparator();
@@ -347,7 +347,7 @@ public class PaqueteMenu extends javax.swing.JFrame {
         jLImgInventario.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         jLImgInventario.setForeground(new java.awt.Color(204, 204, 204));
         jLImgInventario.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLImgInventario.setIcon(new javax.swing.ImageIcon("C:\\Users\\migue\\Downloads\\gestion-de-materiales (1).png")); // NOI18N
+        jLImgInventario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto_encomienda/GESTION_PAQUETES/FRONTEND/imagenes/inventario.png"))); // NOI18N
         jLImgInventario.setText("Inventario");
         jLImgInventario.setToolTipText("");
         jLImgInventario.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -355,21 +355,21 @@ public class PaqueteMenu extends javax.swing.JFrame {
         jLImgInventario.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         jPPaqueteria.add(jLImgInventario, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 150, 100, -1));
 
-        jLImgEstado.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
-        jLImgEstado.setForeground(new java.awt.Color(204, 204, 204));
-        jLImgEstado.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLImgEstado.setIcon(new javax.swing.ImageIcon("C:\\Users\\migue\\Downloads\\estado.png")); // NOI18N
-        jLImgEstado.setText("Estado");
-        jLImgEstado.setToolTipText("");
-        jLImgEstado.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jLImgEstado.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jLImgEstado.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jPPaqueteria.add(jLImgEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 150, 100, -1));
+        jLImgAgregar.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        jLImgAgregar.setForeground(new java.awt.Color(204, 204, 204));
+        jLImgAgregar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLImgAgregar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto_encomienda/GESTION_PAQUETES/FRONTEND/imagenes/anadir.png"))); // NOI18N
+        jLImgAgregar.setText("Agregar");
+        jLImgAgregar.setToolTipText("");
+        jLImgAgregar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLImgAgregar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jLImgAgregar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jPPaqueteria.add(jLImgAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 150, 100, -1));
 
         jLImgEliminar.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         jLImgEliminar.setForeground(new java.awt.Color(204, 204, 204));
         jLImgEliminar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLImgEliminar.setIcon(new javax.swing.ImageIcon("C:\\Users\\migue\\Downloads\\eliminar.png")); // NOI18N
+        jLImgEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto_encomienda/GESTION_PAQUETES/FRONTEND/imagenes/eliminar.png"))); // NOI18N
         jLImgEliminar.setText("Eliminar");
         jLImgEliminar.setToolTipText("");
         jLImgEliminar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -377,16 +377,16 @@ public class PaqueteMenu extends javax.swing.JFrame {
         jLImgEliminar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         jPPaqueteria.add(jLImgEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 150, 100, -1));
 
-        jLImgAgregar.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
-        jLImgAgregar.setForeground(new java.awt.Color(204, 204, 204));
-        jLImgAgregar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLImgAgregar.setIcon(new javax.swing.ImageIcon("C:\\Users\\migue\\Downloads\\anadir.png")); // NOI18N
-        jLImgAgregar.setText("Agregar");
-        jLImgAgregar.setToolTipText("");
-        jLImgAgregar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jLImgAgregar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jLImgAgregar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jPPaqueteria.add(jLImgAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 150, 100, -1));
+        jLImgEstado.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        jLImgEstado.setForeground(new java.awt.Color(204, 204, 204));
+        jLImgEstado.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLImgEstado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto_encomienda/GESTION_PAQUETES/FRONTEND/imagenes/estado.png"))); // NOI18N
+        jLImgEstado.setText("Estado");
+        jLImgEstado.setToolTipText("");
+        jLImgEstado.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLImgEstado.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jLImgEstado.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jPPaqueteria.add(jLImgEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 150, 100, -1));
 
         jLTitulo.setFont(new java.awt.Font("Eras Demi ITC", 0, 18)); // NOI18N
         jLTitulo.setForeground(new java.awt.Color(204, 204, 204));
