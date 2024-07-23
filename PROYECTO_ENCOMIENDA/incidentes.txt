@@ -1,4 +1,1 @@
-Descripción: El paquete se perdió durante el tránsito
-Fecha: 2024-07-17T02:49:43.478677500
-Estado: Perdido
-Estado: Rechazado
+5,El paquete se perdió durante el tránsito,2024-07-23T11:38:58.435188,Perdido
