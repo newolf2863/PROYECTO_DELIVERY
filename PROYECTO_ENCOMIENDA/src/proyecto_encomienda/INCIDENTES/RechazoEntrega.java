@@ -46,3 +46,4 @@ public class RechazoEntrega extends Incidente {
         System.out.println("Incidente registrado (Rechazo de Entrega): " + getDescripcion());
     }
 }
+
