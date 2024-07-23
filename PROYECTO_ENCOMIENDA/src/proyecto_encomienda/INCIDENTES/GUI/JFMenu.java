@@ -200,9 +200,6 @@ public class JFMenu extends javax.swing.JFrame {
         jTFAdminClave.setToolTipText("Aquí puedes ingresar tu contraseña.");
         desvanecerP();
         placeHolder();
-        //AbstractDocument doc = (AbstractDocument) jTAncho.getDocument();
-        AbstractDocument doc1 = (AbstractDocument) jTFidItemDar.getDocument();
-        //doc.setDocumentFilter(new NumberOnlyFilter());
     }
 
     private void placeHolder() {
@@ -249,7 +246,7 @@ public class JFMenu extends javax.swing.JFrame {
         JLabel[] labels = {errorP1, errorP2, errorP3, errorP4,
             errorP5, errorP6, errorP7, errorP8, errorP9, errorP10, errorP11, errorP12, errorActualizarCliente1,
             errorActualizarCliente2, errorActualizarCliente3, errorInventario1, errorInventario2, errorInventario2,
-            errorInventario4, errorInventario5, errorInventario6, errorInventario7, errorActualizarCliente4,
+            errorInventario1,errorInventario2,errorInventario3,errorInventario8,errorActualizarCliente4,
             errorActualizarCliente5, errorActualizarCliente6, errorProveedores1,
             errorProveedores2, errorProveedores3, errorProveedores4, errorProveedores5, errorProveedores6, errorProveedores7,
             errorProveedores8,
@@ -270,8 +267,6 @@ public class JFMenu extends javax.swing.JFrame {
         Clicked4.setVisible(false);
         Clicked5.setVisible(false);
         Clicked6.setVisible(false);
-        jChBiDItem.setEnabled(false);
-        jChBiDItem.setSelected(true);
         //idItemFactura.setEnabled(false);
         jTextField25.setEnabled(false);
         jBAgregarProducto.setEnabled(false);
@@ -379,45 +374,22 @@ public class JFMenu extends javax.swing.JFrame {
         jTAncho = new javax.swing.JTextField();
         jPID = new javax.swing.JPanel();
         jPDarDeBajaInventario = new javax.swing.JPanel();
-        jPanel7 = new javax.swing.JPanel();
-        jLabel12 = new javax.swing.JLabel();
-        jTFidItemDar = new javax.swing.JTextField();
-        jBCambiarEstado = new javax.swing.JButton();
         jScrollPane10 = new javax.swing.JScrollPane();
         jTablaInventario3 = new javax.swing.JTable();
+        jLabel10 = new javax.swing.JLabel();
+        jPanel7 = new javax.swing.JPanel();
+        jLabel12 = new javax.swing.JLabel();
+        jTCodigoTInventario = new javax.swing.JTextField();
+        jLabel32 = new javax.swing.JLabel();
+        jTiDPaquete1 = new javax.swing.JTextField();
         jPIA = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
-        jPActualizarAtributos = new javax.swing.JPanel();
-        jTFiDItem = new javax.swing.JTextField();
-        jTFnombreItem = new javax.swing.JTextField();
-        jTFstock = new javax.swing.JTextField();
-        jChBiDItem = new javax.swing.JCheckBox();
-        jChBnombreItem = new javax.swing.JCheckBox();
-        jChBstock = new javax.swing.JCheckBox();
-        jChBprecio = new javax.swing.JCheckBox();
-        jTFPrecio = new javax.swing.JTextField();
-        errorInventario4 = new javax.swing.JLabel();
-        errorInventario5 = new javax.swing.JLabel();
-        errorInventario6 = new javax.swing.JLabel();
-        errorInventario7 = new javax.swing.JLabel();
-        jPanel10 = new javax.swing.JPanel();
-        jCBACSInventario = new javax.swing.JComboBox<>();
-        jTFIBuscador = new javax.swing.JTextField();
-        jBIActualizar = new javax.swing.JButton();
         jScrollPane7 = new javax.swing.JScrollPane();
         jTablaInventario1 = new javax.swing.JTable();
         jPanel5 = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
-        jCBIConsultar = new javax.swing.JComboBox<>();
-        jTFCInventario = new javax.swing.JTextField();
-        jBConsultarInventario = new javax.swing.JButton();
         jScrollPane9 = new javax.swing.JScrollPane();
         jTablaInventario2 = new javax.swing.JTable();
-        jPanel16 = new javax.swing.JPanel();
-        jCBIConsultar1 = new javax.swing.JComboBox<>();
-        jTFCInventario1 = new javax.swing.JTextField();
-        jBConsultarInventario4 = new javax.swing.JButton();
-        jLabel32 = new javax.swing.JLabel();
         JPClientes = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         jPClientes = new javax.swing.JTabbedPane();
@@ -1494,51 +1466,6 @@ public class JFMenu extends javax.swing.JFrame {
 
         jPID.setLayout(new java.awt.CardLayout());
 
-        jPanel7.setBorder(javax.swing.BorderFactory.createTitledBorder("Identificador el producto"));
-
-        jLabel12.setText("ID Ítem");
-
-        jTFidItemDar.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                jTFidItemDarKeyReleased(evt);
-            }
-        });
-
-        jBCambiarEstado.setText("Cambiar estado del producto");
-        jBCambiarEstado.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBCambiarEstadoActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
-        jPanel7.setLayout(jPanel7Layout);
-        jPanel7Layout.setHorizontalGroup(
-            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel7Layout.createSequentialGroup()
-                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel7Layout.createSequentialGroup()
-                        .addGap(20, 20, 20)
-                        .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jTFidItemDar, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel7Layout.createSequentialGroup()
-                        .addGap(31, 31, 31)
-                        .addComponent(jBCambiarEstado)))
-                .addContainerGap(36, Short.MAX_VALUE))
-        );
-        jPanel7Layout.setVerticalGroup(
-            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel7Layout.createSequentialGroup()
-                .addGap(45, 45, 45)
-                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel12)
-                    .addComponent(jTFidItemDar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(jBCambiarEstado)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
         jTablaInventario3.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -1552,248 +1479,85 @@ public class JFMenu extends javax.swing.JFrame {
         ));
         jScrollPane10.setViewportView(jTablaInventario3);
 
+        jLabel12.setText("Código Tracking");
+
+        jTCodigoTInventario.setEditable(false);
+        jTCodigoTInventario.setEnabled(false);
+
+        jLabel32.setText("ID Paquete");
+
+        jTiDPaquete1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTiDPaquete1KeyReleased(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
+        jPanel7.setLayout(jPanel7Layout);
+        jPanel7Layout.setHorizontalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel32, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jTCodigoTInventario, javax.swing.GroupLayout.DEFAULT_SIZE, 154, Short.MAX_VALUE)
+                    .addComponent(jTiDPaquete1))
+                .addContainerGap(562, Short.MAX_VALUE))
+        );
+        jPanel7Layout.setVerticalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addGap(15, 15, 15)
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel12)
+                    .addComponent(jTCodigoTInventario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel32)
+                    .addComponent(jTiDPaquete1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(175, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout jPDarDeBajaInventarioLayout = new javax.swing.GroupLayout(jPDarDeBajaInventario);
         jPDarDeBajaInventario.setLayout(jPDarDeBajaInventarioLayout);
         jPDarDeBajaInventarioLayout.setHorizontalGroup(
             jPDarDeBajaInventarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPDarDeBajaInventarioLayout.createSequentialGroup()
+                .addGap(61, 61, 61)
                 .addGroup(jPDarDeBajaInventarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPDarDeBajaInventarioLayout.createSequentialGroup()
-                        .addGap(61, 61, 61)
-                        .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, 920, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPDarDeBajaInventarioLayout.createSequentialGroup()
-                        .addGap(385, 385, 385)
-                        .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, 920, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(59, Short.MAX_VALUE))
         );
         jPDarDeBajaInventarioLayout.setVerticalGroup(
             jPDarDeBajaInventarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPDarDeBajaInventarioLayout.createSequentialGroup()
-                .addContainerGap(74, Short.MAX_VALUE)
-                .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(102, 102, 102)
+                .addGap(33, 33, 33)
+                .addComponent(jLabel10)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(43, 43, 43))
         );
 
         jPID.add(jPDarDeBajaInventario, "jPDarDeBajaInventario");
 
-        jPanel_General.addTab("Cambiar estado de un ítem", jPID);
-
-        jPActualizarAtributos.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Actualizar Atributos de un producto", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Times New Roman", 1, 16))); // NOI18N
-
-        jTFiDItem.setEditable(false);
-        jTFiDItem.setEnabled(false);
-
-        jTFnombreItem.setEnabled(false);
-        jTFnombreItem.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                jTFnombreItemFocusLost(evt);
-            }
-        });
-        jTFnombreItem.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                jTFnombreItemKeyReleased(evt);
-            }
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                jTFnombreItemKeyTyped(evt);
-            }
-        });
-
-        jTFstock.setEnabled(false);
-        jTFstock.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                jTFstockFocusLost(evt);
-            }
-        });
-        jTFstock.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                jTFstockKeyReleased(evt);
-            }
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                jTFstockKeyTyped(evt);
-            }
-        });
-
-        jChBiDItem.setSelected(true);
-        jChBiDItem.setText("ID Ítem");
-        jChBiDItem.setToolTipText("");
-        jChBiDItem.setEnabled(false);
-
-        jChBnombreItem.setText("Nombre del producto");
-        jChBnombreItem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jChBnombreItemActionPerformed(evt);
-            }
-        });
-
-        jChBstock.setText("Stock");
-        jChBstock.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jChBstockActionPerformed(evt);
-            }
-        });
-
-        jChBprecio.setText("Precio");
-        jChBprecio.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jChBprecioActionPerformed(evt);
-            }
-        });
-
-        jTFPrecio.setEnabled(false);
-        jTFPrecio.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                jTFPrecioFocusLost(evt);
-            }
-        });
-        jTFPrecio.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                jTFPrecioKeyReleased(evt);
-            }
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                jTFPrecioKeyTyped(evt);
-            }
-        });
-
-        errorInventario4.setForeground(new java.awt.Color(255, 0, 51));
-        errorInventario4.setText("Nombre del ítem no válido");
-
-        errorInventario5.setForeground(new java.awt.Color(255, 0, 51));
-        errorInventario5.setText("Stock no válido");
-
-        errorInventario6.setForeground(new java.awt.Color(255, 0, 51));
-        errorInventario6.setText("Precio no válido");
-
-        errorInventario7.setForeground(new java.awt.Color(255, 0, 51));
-        errorInventario7.setText("*Vacio");
-
-        javax.swing.GroupLayout jPActualizarAtributosLayout = new javax.swing.GroupLayout(jPActualizarAtributos);
-        jPActualizarAtributos.setLayout(jPActualizarAtributosLayout);
-        jPActualizarAtributosLayout.setHorizontalGroup(
-            jPActualizarAtributosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPActualizarAtributosLayout.createSequentialGroup()
-                .addGroup(jPActualizarAtributosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jChBiDItem)
-                    .addComponent(jChBstock)
-                    .addComponent(jChBnombreItem)
-                    .addComponent(jChBprecio, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPActualizarAtributosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTFiDItem, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTFnombreItem, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTFstock, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTFPrecio, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPActualizarAtributosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(errorInventario4)
-                    .addComponent(errorInventario5)
-                    .addComponent(errorInventario6)
-                    .addComponent(errorInventario7))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jPActualizarAtributosLayout.setVerticalGroup(
-            jPActualizarAtributosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPActualizarAtributosLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPActualizarAtributosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(errorInventario6)
-                    .addGroup(jPActualizarAtributosLayout.createSequentialGroup()
-                        .addGroup(jPActualizarAtributosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTFiDItem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jChBiDItem)
-                            .addComponent(errorInventario7))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPActualizarAtributosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTFnombreItem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jChBnombreItem)
-                            .addComponent(errorInventario4))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPActualizarAtributosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTFstock, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jChBstock)
-                            .addComponent(errorInventario5))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPActualizarAtributosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jChBprecio)
-                            .addComponent(jTFPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(143, 143, 143))
-        );
-
-        jPanel10.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Buscador  del producto a actualizar", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Times New Roman", 1, 12))); // NOI18N
-
-        jCBACSInventario.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecciona", "ID Ítem", "Nombre del ítem", "Stock", "Precio", " " }));
-        jCBACSInventario.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCBACSInventarioActionPerformed(evt);
-            }
-        });
-
-        jTFIBuscador.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                jTFIBuscadorKeyReleased(evt);
-            }
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                jTFIBuscadorKeyTyped(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
-        jPanel10.setLayout(jPanel10Layout);
-        jPanel10Layout.setHorizontalGroup(
-            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel10Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel10Layout.createSequentialGroup()
-                        .addComponent(jCBACSInventario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 256, Short.MAX_VALUE))
-                    .addComponent(jTFIBuscador))
-                .addContainerGap())
-        );
-        jPanel10Layout.setVerticalGroup(
-            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel10Layout.createSequentialGroup()
-                .addGap(6, 6, 6)
-                .addComponent(jCBACSInventario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTFIBuscador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
-        jBIActualizar.setText("Actualizar");
-        jBIActualizar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBIActualizarActionPerformed(evt);
-            }
-        });
+        jPanel_General.addTab("Registrar paquetes a un inventario", jPID);
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jPActualizarAtributos, javax.swing.GroupLayout.PREFERRED_SIZE, 557, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGap(177, 177, 177)
-                        .addComponent(jBIActualizar)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGap(0, 569, Short.MAX_VALUE)
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPActualizarAtributos, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jBIActualizar)
-                .addContainerGap(14, Short.MAX_VALUE))
+            .addGap(0, 317, Short.MAX_VALUE)
         );
 
         jTablaInventario1.setModel(new javax.swing.table.DefaultTableModel(
@@ -1807,11 +1571,6 @@ public class JFMenu extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jTablaInventario1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTablaInventario1MouseClicked(evt);
-            }
-        });
         jScrollPane7.setViewportView(jTablaInventario1);
 
         javax.swing.GroupLayout jPIALayout = new javax.swing.GroupLayout(jPIA);
@@ -1841,52 +1600,15 @@ public class JFMenu extends javax.swing.JFrame {
 
         jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder("Consultar Inventario"));
 
-        jCBIConsultar.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecciona", "ID Ítem", "Nombre del ítem", "Stock", "Precio", "Estado" }));
-        jCBIConsultar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCBIConsultarActionPerformed(evt);
-            }
-        });
-
-        jTFCInventario.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                jTFCInventarioKeyTyped(evt);
-            }
-        });
-
-        jBConsultarInventario.setText("Consultar");
-        jBConsultarInventario.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBConsultarInventarioActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel6Layout.createSequentialGroup()
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addGap(56, 56, 56)
-                        .addComponent(jBConsultarInventario))
-                    .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addGap(14, 14, 14)
-                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jCBIConsultar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTFCInventario, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(12, Short.MAX_VALUE))
+            .addGap(0, 204, Short.MAX_VALUE)
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel6Layout.createSequentialGroup()
-                .addGap(14, 14, 14)
-                .addComponent(jCBIConsultar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jTFCInventario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jBConsultarInventario)
-                .addContainerGap(37, Short.MAX_VALUE))
+            .addGap(0, 148, Short.MAX_VALUE)
         );
 
         jTablaInventario2.setModel(new javax.swing.table.DefaultTableModel(
@@ -1902,85 +1624,26 @@ public class JFMenu extends javax.swing.JFrame {
         ));
         jScrollPane9.setViewportView(jTablaInventario2);
 
-        jPanel16.setBorder(javax.swing.BorderFactory.createTitledBorder("Consultar Inventario por ID\n"));
-
-        jCBIConsultar1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecciona el atributo", "nombreItem", "stock", "precio", "estado" }));
-        jCBIConsultar1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCBIConsultar1ActionPerformed(evt);
-            }
-        });
-
-        jTFCInventario1.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                jTFCInventario1KeyTyped(evt);
-            }
-        });
-
-        jBConsultarInventario4.setText("Consultar Inventario");
-        jBConsultarInventario4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBConsultarInventario4ActionPerformed(evt);
-            }
-        });
-
-        jLabel32.setText("ID del Item");
-
-        javax.swing.GroupLayout jPanel16Layout = new javax.swing.GroupLayout(jPanel16);
-        jPanel16.setLayout(jPanel16Layout);
-        jPanel16Layout.setHorizontalGroup(
-            jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel16Layout.createSequentialGroup()
-                .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jBConsultarInventario4)
-                    .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addGroup(jPanel16Layout.createSequentialGroup()
-                            .addGap(12, 12, 12)
-                            .addComponent(jLabel32)
-                            .addGap(18, 18, 18)
-                            .addComponent(jTFCInventario1, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel16Layout.createSequentialGroup()
-                            .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jCBIConsultar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(33, Short.MAX_VALUE))
-        );
-        jPanel16Layout.setVerticalGroup(
-            jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel16Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jCBIConsultar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTFCInventario1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel32))
-                .addGap(33, 33, 33)
-                .addComponent(jBConsultarInventario4)
-                .addContainerGap(30, Short.MAX_VALUE))
-        );
-
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
-                .addGap(195, 195, 195)
-                .addComponent(jPanel16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(206, 206, 206))
-            .addGroup(jPanel5Layout.createSequentialGroup()
-                .addGap(66, 66, 66)
-                .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, 896, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addGap(66, 66, 66)
+                        .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, 896, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addGap(364, 364, 364)
+                        .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(78, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
-                .addContainerGap(78, Short.MAX_VALUE)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel16, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(48, 48, 48)
+                .addGap(51, 51, 51)
+                .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 71, Short.MAX_VALUE)
                 .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(40, 40, 40))
         );
@@ -6923,31 +6586,6 @@ public class JFMenu extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btnHelpActionPerformed
 
-    private void jTFIBuscadorKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFIBuscadorKeyReleased
-        String campo = (String) jCBACSInventario.getSelectedItem();
-        String valor = jTFIBuscador.getText();
-        if (valor.isEmpty()) {
-            return;
-        }
-
-        switch (campo) {
-            case "ID Ítem" -> {
-                campo = "idItem";
-            }
-            case "Nombre del ítem" -> {
-                campo = "nombreItem";
-            }
-            case "Stock" -> {
-                campo = "stock";
-            }
-            case "Precio" -> {
-                campo = "precio";
-            }
-        }
-        DefaultTableModel modelo = ConsultarBD.consultarInventario(cnx, campo, valor);
-        jTablaInventario1.setModel(modelo);
-    }//GEN-LAST:event_jTFIBuscadorKeyReleased
-
     private void jPanel_GeneralMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel_GeneralMouseClicked
         int selectedTabIndex = jPanel_General.getSelectedIndex();
         switch (selectedTabIndex) {
@@ -6989,309 +6627,6 @@ public class JFMenu extends javax.swing.JFrame {
         }
 
     }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void jBIActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBIActualizarActionPerformed
-        JTextField[] camposItem = {jTFnombreItem, jTFstock, jTFPrecio};
-        JLabel[] labelsItem = {errorInventario4, errorInventario5, errorInventario6};
-        List<String> camposInvalidos = new ArrayList<>();
-        List<String> atributos = new ArrayList<>();
-        ActualizarInventario actualizar = new ActualizarInventario();
-        String atributoActualizar = "idItem";
-        String condicion = "'" + this.jTFiDItem.getText() + "'";
-        String tabla = "item";
-
-        if (this.jChBiDItem.isSelected()) {
-            if (!validadorCheck.validarCampoNoVacio(jTFiDItem, "ID del ítem")) {
-                camposInvalidos.add("ID del ítem");
-            }
-        }
-
-        if (this.jChBnombreItem.isSelected()) {
-            if (!validadorCheck.validarCampoNoVacio(jTFnombreItem, "Nombre del Item")) {
-                camposInvalidos.add("Nombre del Item");
-            }
-            atributos.add("nombreItem='" + jTFnombreItem.getText() + "'");
-        }
-        if (this.jChBstock.isSelected()) {
-            if (!validadorCheck.validarCampoNoVacio(jTFstock, "Stock")) {
-                camposInvalidos.add("Stock");
-            }
-            atributos.add("stock=" + jTFstock.getText());
-        }
-        if (this.jChBprecio.isSelected()) {
-            if (!validadorCheck.validarCampoNoVacio(jTFPrecio, "Precio")) {
-                camposInvalidos.add("Precio");
-            }
-            atributos.add("precio=" + jTFPrecio.getText());
-        }
-        if (atributos.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Seleccione al menos un atributo", "Error", JOptionPane.ERROR_MESSAGE);
-            return; // Detiene el registro si no se selecciona ningún atributo
-        }
-        if (!camposInvalidos.isEmpty()) {
-            String camposInvalidosStr = String.join(", ", camposInvalidos);
-            JOptionPane.showMessageDialog(this, "Los siguientes campos están vacíos: " + camposInvalidosStr, "Error", JOptionPane.ERROR_MESSAGE);
-
-            // Pinta de rojo los campos vacíos de forma parametrizada
-            for (String campoInvalido : camposInvalidos) {
-                switch (campoInvalido) {
-                    case "ID del ítem":
-                        validadorCheck.setColorFondoCampo(jTFnombreItem, new Color(255, 204, 204), errorInventario7);
-                        break;
-                    case "Nombre del Item":
-                        validadorCheck.setColorFondoCampo(jTFnombreItem, new Color(255, 204, 204), errorInventario4);
-                        break;
-                    case "Stock":
-                        validadorCheck.setColorFondoCampo(jTFstock, new Color(255, 204, 204), errorInventario5);
-                        break;
-                    case "Precio":
-                        validadorCheck.setColorFondoCampo(jTFPrecio, new Color(255, 204, 204), errorInventario6);
-                        break;
-                    // Puedes agregar más casos aquí para otros campos si es necesario
-                }
-            }
-            return; // Detiene el registro si hay campos inválidos
-        }
-        String atributosActualizacion = String.join(", ", atributos);
-        if (!stockValidar1 && !nombreItemValidar1 && !precioUValidar1) {
-            JOptionPane.showMessageDialog(this, "Ha ocurrido un error al intentar actualizar. "
-                    + "\nPor favor, verifica los campos e inténtalo nuevamente.", "Error en el registro", JOptionPane.ERROR_MESSAGE);
-        } else {
-            actualizar.actualizarDatosF(this.cnx, atributoActualizar, condicion, tabla, atributosActualizacion);
-            setTablaPaquetes();
-        }
-    }//GEN-LAST:event_jBIActualizarActionPerformed
-
-    private void jBConsultarInventarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBConsultarInventarioActionPerformed
-        String campo = (String) jCBIConsultar.getSelectedItem();
-        String valor = jTFCInventario.getText();
-        if (campo.equals("Selecciona")) {
-            JOptionPane.showMessageDialog(this, "Selecciona el campo por el \ncual vas a relizar la busqueda", "Error", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-        if (valor.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Ingresa un valor", "Error", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-        switch (campo) {
-            case "ID Ítem" -> {
-                campo = "idItem";
-            }
-            case "Nombre del ítem" -> {
-                campo = "nombreItem";
-            }
-            case "Stock" -> {
-                campo = "stock";
-            }
-            case "Precio" -> {
-                campo = "precio";
-            }
-            case "Estado" -> {
-                campo = "estado";
-            }
-        }
-        DefaultTableModel modelo = ConsultarBD.consultarInventario(cnx, campo, valor);
-        jTablaInventario2.setModel(modelo);
-
-    }//GEN-LAST:event_jBConsultarInventarioActionPerformed
-
-    private void jBCambiarEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBCambiarEstadoActionPerformed
-        String idItemStr = jTFidItemDar.getText();
-
-        if (idItemStr.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Ingresa un ID de elemento para cambiar su estado.");
-            return;
-        }
-
-        int idItem;
-        try {
-            idItem = Integer.parseInt(idItemStr);
-        } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(this, "ID de elemento no válido.");
-            return;
-        }
-
-        String estadoActual = obtenerEstadoElementoDesdeBD(idItem);
-        int respuesta;
-        if ("Retirado".equals(estadoActual)) {
-            respuesta = JOptionPane.showConfirmDialog(this, "¿Deseas cambiar el estado a 'Activo'?", "Confirmar Cambio de Estado", JOptionPane.YES_NO_OPTION);
-            if (respuesta == JOptionPane.YES_OPTION) {
-                ActualizarInventario.darDeAltaElemento(cnx, idItem);
-                DefaultTableModel modelo = ConsultarBD.buscarElementoPorId(cnx, idItemStr);
-                jTablaInventario3.setModel(modelo);
-            }
-        } else if ("Activo".equals(estadoActual)) {
-            respuesta = JOptionPane.showConfirmDialog(this, "¿Deseas cambiar el estado a 'Retirado'?", "Confirmar Cambio de Estado", JOptionPane.YES_NO_OPTION);
-            if (respuesta == JOptionPane.YES_OPTION) {
-                ActualizarInventario.darDeBajaElemento(cnx, idItem);
-                DefaultTableModel modelo = ConsultarBD.buscarElementoPorId(cnx, idItemStr);
-                jTablaInventario3.setModel(modelo);
-            }
-        } else {
-            JOptionPane.showMessageDialog(this, "Producto no registrado.");
-        }
-    }//GEN-LAST:event_jBCambiarEstadoActionPerformed
-
-    private void jTFidItemDarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFidItemDarKeyReleased
-        String idItemStr = jTFidItemDar.getText();
-        // Limpia la tabla si el campo de texto está vacío
-        if (idItemStr.isEmpty()) {
-            setTablaPaquetes();
-            return;
-        }
-        // Realiza la búsqueda y actualiza la tabla
-        DefaultTableModel modelo = ConsultarBD.buscarElementoPorId(cnx, idItemStr);
-        jTablaInventario3.setModel(modelo);
-    }//GEN-LAST:event_jTFidItemDarKeyReleased
-
-    private void jTablaInventario1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTablaInventario1MouseClicked
-        int filaSeleccionada = jTablaInventario1.getSelectedRow();
-        if (filaSeleccionada != -1) {
-            DefaultTableModel modelo = (DefaultTableModel) jTablaInventario1.getModel();
-            String idItem = modelo.getValueAt(filaSeleccionada, 0).toString();
-            String nombreItem = modelo.getValueAt(filaSeleccionada, 1).toString();
-            String stock = modelo.getValueAt(filaSeleccionada, 2).toString();
-            String precio = modelo.getValueAt(filaSeleccionada, 3).toString();
-            jTFiDItem.setText(idItem);
-            jTFiDItem.setBackground(Color.white);
-            errorInventario7.setVisible(false);
-            validadorCheck.actualizarCampoSeleccionado(jChBnombreItem, nombreItem, jTFnombreItem, errorInventario4);
-            validadorCheck.actualizarCampoSeleccionado(jChBstock, stock, jTFstock, errorInventario5);
-            validadorCheck.actualizarCampoSeleccionado(jChBprecio, precio, jTFPrecio, errorInventario6);
-            Boolean[] valoresItem = {nombreItemValidar1, stockValidar1, precioUValidar1};
-            valoresItem = validadorCheck.cambiarValoresVerdadFinal(valoresItem);
-            nombreItemValidar1 = valoresItem[0];
-            stockValidar1 = valoresItem[1];
-            precioUValidar1 = valoresItem[2];
-        }
-    }//GEN-LAST:event_jTablaInventario1MouseClicked
-
-    private void jTFCInventarioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFCInventarioKeyTyped
-        String campo = (String) jCBIConsultar.getSelectedItem();
-        char c = evt.getKeyChar();
-        // Verificar si el carácter es la tecla Backspace (\b)
-        if (c == '\b') {
-            return; // Permitir el evento si es la tecla Backspace
-        }
-        switch (campo) {
-            case "idItem", "stock" -> {
-                if (!Character.isDigit(c)) {
-                    evt.consume(); // Cancelar el evento si no es un número
-                    JOptionPane.showMessageDialog(null, "Ingresa solo números enteros en este campo.");
-                }
-            }
-            case "nombreItem", "estado" -> {
-                if (!Character.isLetter(c) && c != KeyEvent.VK_SPACE) {
-                    evt.consume(); // Cancelar el evento si no es una letra o un espacio
-                    JOptionPane.showMessageDialog(null, "Ingresa solo letras en este campo.");
-                }
-            }
-            case "precio" -> {
-                if (!Character.isDigit(c) && c != KeyEvent.VK_PERIOD) {
-                    evt.consume(); // Cancelar el evento si no es un número
-                    JOptionPane.showMessageDialog(null, "Ingresa solo números.");
-                } else {
-                    String nuevoTexto = jTFCInventario.getText() + c;
-                    if (c == KeyEvent.VK_PERIOD && nuevoTexto.indexOf('.') != nuevoTexto.lastIndexOf('.')) {
-                        evt.consume(); // Cancelar el evento si se ingresan múltiples puntos decimales
-                    } else if (!validarRegistroF.validarMaximoDosDecimales(nuevoTexto)) {
-                        evt.consume(); // Cancelar el evento si se ingresan más de dos decimales
-                        JOptionPane.showMessageDialog(null, "El valor solo puede tener hasta dos decimales.");
-                    }
-                }
-            }
-            default -> {
-            }
-        }
-    }//GEN-LAST:event_jTFCInventarioKeyTyped
-
-    private void jCBIConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCBIConsultarActionPerformed
-        jTFCInventario.setText("");
-    }//GEN-LAST:event_jCBIConsultarActionPerformed
-
-    private void jCBACSInventarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCBACSInventarioActionPerformed
-        jTFIBuscador.setText("");
-    }//GEN-LAST:event_jCBACSInventarioActionPerformed
-
-    private void jTFIBuscadorKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFIBuscadorKeyTyped
-        String campo = (String) jCBACSInventario.getSelectedItem();
-        char c = evt.getKeyChar();
-
-        // Verificar si el carácter es la tecla Backspace (\b)
-        if (c == '\b') {
-            return; // Permitir el evento si es la tecla Backspace
-        }
-
-        switch (campo) {
-            case "ID Ítem", "Stock" -> {
-                if (!Character.isDigit(c)) {
-                    evt.consume(); // Cancelar el evento si no es un número
-                    JOptionPane.showMessageDialog(null, "Ingresa solo números enteros en este campo.");
-                }
-            }
-            case "Nombre del ítem" -> {
-                if (!Character.isLetter(c) && c != KeyEvent.VK_SPACE) {
-                    evt.consume(); // Cancelar el evento si no es una letra o un espacio
-                    JOptionPane.showMessageDialog(null, "Ingresa solo letras en este campo.");
-                }
-            }
-            case "Precio" -> {
-                if (!Character.isDigit(c) && c != KeyEvent.VK_PERIOD) {
-                    evt.consume(); // Cancelar el evento si no es un número
-                    JOptionPane.showMessageDialog(null, "Ingresa solo números.");
-                } else {
-                    String nuevoTexto = jTFIBuscador.getText() + c;
-                    if (c == KeyEvent.VK_PERIOD && nuevoTexto.indexOf('.') != nuevoTexto.lastIndexOf('.')) {
-                        evt.consume(); // Cancelar el evento si se ingresan múltiples puntos decimales
-                    } else if (!validarRegistroF.validarMaximoDosDecimales(nuevoTexto)) {
-                        evt.consume(); // Cancelar el evento si se ingresan más de dos decimales
-                        JOptionPane.showMessageDialog(null, "El valor solo puede tener hasta dos decimales.");
-                    }
-                }
-            }
-            default -> {
-                evt.consume();
-            }
-        }
-    }//GEN-LAST:event_jTFIBuscadorKeyTyped
-
-    private void jTFnombreItemKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFnombreItemKeyTyped
-        char c = evt.getKeyChar();
-        if (Character.isDigit(c)) {
-            evt.consume();
-            JOptionPane.showMessageDialog(this, "No se permiten valores numéricos en el campo Nombre.");
-            jTFnombreItem.requestFocus();
-        }
-    }//GEN-LAST:event_jTFnombreItemKeyTyped
-
-    private void jTFstockKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFstockKeyTyped
-        //String campo = jTFstock.getText();
-        char c = evt.getKeyChar();
-        if (c == '\b') {
-            return; // Permitir el evento si es la tecla Backspace
-        }
-        if (!Character.isDigit(c)) {
-            evt.consume(); // Cancelar el evento si no es un número
-            JOptionPane.showMessageDialog(null, "Ingresa solo números enteros en este campo.");
-        }
-    }//GEN-LAST:event_jTFstockKeyTyped
-
-    private void jTFPrecioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFPrecioKeyTyped
-        char c = evt.getKeyChar();
-        if (c == '\b') {
-            return; // Permitir el evento si es la tecla Backspace
-        }
-        String nuevoTexto = jTFPrecio.getText() + c;
-        if (!Character.isDigit(c) && c != KeyEvent.VK_PERIOD) {
-            evt.consume(); // Cancelar el evento si no es un número
-            JOptionPane.showMessageDialog(null, "Ingresa solo números.");
-        } else if (c == KeyEvent.VK_PERIOD && nuevoTexto.indexOf('.') != nuevoTexto.lastIndexOf('.')) {
-            evt.consume(); // Cancelar el evento si se ingresan múltiples puntos decimales
-        } else if (!validarRegistroF.validarMaximoDosDecimales(nuevoTexto)) {
-            evt.consume(); // Cancelar el evento si se ingresan más de dos decimales
-            JOptionPane.showMessageDialog(null, "El valor solo puede tener hasta dos decimales.");
-        }
-    }//GEN-LAST:event_jTFPrecioKeyTyped
 
     private void limpiarCamposProve1() {
         JTextField[] campos = {jTRUCAct, jTNombreEmpresaAct, jTCedulaDespachadorAct, jTNombreDespachadorAct,
@@ -8421,35 +7756,6 @@ public class JFMenu extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_jBGenerarFacturaActionPerformed
-
-    private void jCBIConsultar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCBIConsultar1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jCBIConsultar1ActionPerformed
-
-    private void jTFCInventario1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFCInventario1KeyTyped
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTFCInventario1KeyTyped
-
-    private void jBConsultarInventario4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBConsultarInventario4ActionPerformed
-        String campo = (String) jCBIConsultar1.getSelectedItem();
-        if (campo.equals("Selecciona el atributo")) {
-            JOptionPane.showMessageDialog(null, "Por favor, selecciona un campo válido.");
-            return; // Detener la ejecución si no se ha seleccionado un campo válido
-        }
-        String valor = jTFCInventario1.getText();
-        if (valor.isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Por favor, ingresa un valor");
-            return; // Detener la ejecución si el campo de valor está vacío
-        }
-        DefaultTableModel modelo = ConsultarBD.buscarAtributoPorId(cnx, campo, valor);
-        if (modelo.getRowCount() == 0) {
-            // No se encontraron resultados, mostrar un mensaje de error
-            JOptionPane.showMessageDialog(null, "Ítem no encontrado", "Error", JOptionPane.ERROR_MESSAGE);
-        } else {
-            // Se encontraron resultados, asignar el modelo a la tabla
-            jTablaInventario2.setModel(modelo);
-        }
-    }//GEN-LAST:event_jBConsultarInventario4ActionPerformed
 
     private void correoCliFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_correoCliFocusLost
         correoElectronico = validarRegistroF.camposDeRegistros(correoCli, jError12, "c");
@@ -9623,14 +8929,6 @@ public class JFMenu extends javax.swing.JFrame {
     private void jTPesoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTPesoFocusLost
         pesoValidar = validarRegistroF.camposDeRegistros(jTPeso, errorInventario2, "precio");
     }//GEN-LAST:event_jTPesoFocusLost
-
-    private void jTFnombreItemFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTFnombreItemFocusLost
-        nombreItemValidar1 = validarRegistroF.camposDeRegistros(jTFnombreItem, errorInventario4, "d");
-    }//GEN-LAST:event_jTFnombreItemFocusLost
-
-    private void jTFstockFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTFstockFocusLost
-        stockValidar1 = validarRegistroF.camposDeRegistros(jTFstock, errorInventario5, "v");
-    }//GEN-LAST:event_jTFstockFocusLost
     public void cambiarValoresNego() {
         nombreNegocioValido = true;
         estadoPagoP = true;
@@ -10618,34 +9916,6 @@ public class JFMenu extends javax.swing.JFrame {
         telfCliente2 = validarRegistroF.camposCliente(jTTelefonoCliente1, errorP10, tipoCliente, "Ninguno", "b");
     }//GEN-LAST:event_jTTelefonoCliente1KeyReleased
 
-    private void jChBnombreItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jChBnombreItemActionPerformed
-        validadorCheck.actualizarCampo(jChBnombreItem, jTFnombreItem, nombreItemValidar1, errorInventario4);
-    }//GEN-LAST:event_jChBnombreItemActionPerformed
-
-    private void jChBstockActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jChBstockActionPerformed
-        validadorCheck.actualizarCampo(jChBstock, jTFstock, stockValidar1, errorInventario5);
-    }//GEN-LAST:event_jChBstockActionPerformed
-
-    private void jChBprecioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jChBprecioActionPerformed
-        validadorCheck.actualizarCampo(jChBprecio, jTFPrecio, precioUValidar1, errorInventario6);
-    }//GEN-LAST:event_jChBprecioActionPerformed
-
-    private void jTFnombreItemKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFnombreItemKeyReleased
-        nombreItemValidar1 = validarRegistroF.camposDeRegistros(jTFnombreItem, errorInventario4, "d");
-    }//GEN-LAST:event_jTFnombreItemKeyReleased
-
-    private void jTFPrecioKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFPrecioKeyReleased
-        pesoValidar = validarRegistroF.camposDeRegistros(jTPeso, errorInventario2, "precio");
-    }//GEN-LAST:event_jTFPrecioKeyReleased
-
-    private void jTFstockKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFstockKeyReleased
-        stockValidar1 = validarRegistroF.camposDeRegistros(jTFstock, errorInventario5, "v");
-    }//GEN-LAST:event_jTFstockKeyReleased
-
-    private void jTFPrecioFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTFPrecioFocusLost
-        precioUValidar1 = validarRegistroF.camposDeRegistros(jTFPrecio, errorInventario6, "precio");
-    }//GEN-LAST:event_jTFPrecioFocusLost
-
     private void jTFNombresRKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFNombresRKeyReleased
         nombreCliente = validarRegistroF.camposDeRegistros(jTFNombresR, errorc2, "n");
     }//GEN-LAST:event_jTFNombresRKeyReleased
@@ -10723,6 +9993,18 @@ public class JFMenu extends javax.swing.JFrame {
     private void jTAnchoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTAnchoKeyReleased
         anchoValidar = validarRegistroF.camposDeRegistros(jTAncho, errorInventario1, "precio");
     }//GEN-LAST:event_jTAnchoKeyReleased
+
+    private void jTiDPaquete1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTiDPaquete1KeyReleased
+           String idPAquete = jTiDPaquete1.getText();
+        // Limpia la tabla si el campo de texto está vacío
+        if (idPAquete.isEmpty()) {
+            setTablaPaquetes();
+            return;
+        }
+        // Realiza la búsqueda y actualiza la tabla
+        DefaultTableModel modelo = ConsultarBD.buscarPaquetePorId(cnx, idPAquete);
+        jTablaInventario3.setModel(modelo);
+    }//GEN-LAST:event_jTiDPaquete1KeyReleased
 
     private void validarClave(JTextField textField, String esClaveUsuario) {
         String password = textField.getText();
@@ -11165,10 +10447,6 @@ public class JFMenu extends javax.swing.JFrame {
     private javax.swing.JLabel errorInventario1;
     private javax.swing.JLabel errorInventario2;
     private javax.swing.JLabel errorInventario3;
-    private javax.swing.JLabel errorInventario4;
-    private javax.swing.JLabel errorInventario5;
-    private javax.swing.JLabel errorInventario6;
-    private javax.swing.JLabel errorInventario7;
     private javax.swing.JLabel errorInventario8;
     private javax.swing.JLabel errorP1;
     private javax.swing.JLabel errorP10;
@@ -11202,18 +10480,14 @@ public class JFMenu extends javax.swing.JFrame {
     private javax.swing.JButton jBAgregarProducto1;
     private javax.swing.JButton jBAgregarProductoProveedores;
     private javax.swing.JButton jBAgregarProductoProveedores1;
-    private javax.swing.JButton jBCambiarEstado;
     private javax.swing.JButton jBCambiarEstadoProveedor;
     private javax.swing.JButton jBCambiarEstadoProveedor1;
     private javax.swing.JButton jBCambiarEstadoProveedor2;
-    private javax.swing.JButton jBConsultarInventario;
     private javax.swing.JButton jBConsultarInventario1;
     private javax.swing.JButton jBConsultarInventario2;
     private javax.swing.JButton jBConsultarInventario3;
-    private javax.swing.JButton jBConsultarInventario4;
     private javax.swing.JButton jBGenerarFactura;
     private javax.swing.JButton jBGenerarFactura1;
-    private javax.swing.JButton jBIActualizar;
     private javax.swing.JButton jBIActualizarAct;
     private javax.swing.JButton jBIActualizarAct1;
     private javax.swing.JButton jBIActualizarAct2;
@@ -11235,11 +10509,8 @@ public class JFMenu extends javax.swing.JFrame {
     private javax.swing.JButton jButton8;
     private javax.swing.JButton jButton9;
     private javax.swing.JCheckBox jCApellidoActualizar;
-    private javax.swing.JComboBox<String> jCBACSInventario;
     private javax.swing.JComboBox<String> jCBEstadoPago;
     private javax.swing.JComboBox<String> jCBEstadoPago1;
-    private javax.swing.JComboBox<String> jCBIConsultar;
-    private javax.swing.JComboBox<String> jCBIConsultar1;
     private javax.swing.JComboBox<String> jCBJuridicoNatural1;
     private javax.swing.JComboBox<String> jCBNacionalExtranjero;
     private javax.swing.JComboBox<String> jCBNacionalExtranjero1;
@@ -11262,10 +10533,6 @@ public class JFMenu extends javax.swing.JFrame {
     private javax.swing.JCheckBox jCSexoActualizar;
     private javax.swing.JCheckBox jCTelefonoCActualizar;
     private javax.swing.JCheckBox jCTelefonoPActualizar;
-    private javax.swing.JCheckBox jChBiDItem;
-    private javax.swing.JCheckBox jChBnombreItem;
-    private javax.swing.JCheckBox jChBprecio;
-    private javax.swing.JCheckBox jChBstock;
     private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JCheckBox jCheckBox14;
     private javax.swing.JCheckBox jCheckBox15;
@@ -11308,6 +10575,7 @@ public class JFMenu extends javax.swing.JFrame {
     private javax.swing.JLabel jLErrorEmpleado9;
     private javax.swing.JLabel jLTipoCli;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel100;
     private javax.swing.JLabel jLabel101;
     private javax.swing.JLabel jLabel102;
@@ -11421,7 +10689,6 @@ public class JFMenu extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel98;
     private javax.swing.JLabel jLabel99;
     private javax.swing.JPanel jPAE;
-    private javax.swing.JPanel jPActualizarAtributos;
     private javax.swing.JPanel jPActualizarClientes;
     private javax.swing.JPanel jPActualizarProovedores;
     private javax.swing.JPanel jPCE;
@@ -11459,13 +10726,11 @@ public class JFMenu extends javax.swing.JFrame {
     private javax.swing.JPanel jPProvedoresActualizar;
     private javax.swing.JPanel jPRE;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel12;
     private javax.swing.JPanel jPanel13;
     private javax.swing.JPanel jPanel14;
     private javax.swing.JPanel jPanel15;
-    private javax.swing.JPanel jPanel16;
     private javax.swing.JPanel jPanel17;
     private javax.swing.JPanel jPanel18;
     private javax.swing.JPanel jPanel19;
@@ -11546,6 +10811,7 @@ public class JFMenu extends javax.swing.JFrame {
     private javax.swing.JTextField jTCedulaDespachadorCE1;
     private javax.swing.JTextField jTCodigoProducto;
     private javax.swing.JTextField jTCodigoProducto1;
+    private javax.swing.JTextField jTCodigoTInventario;
     private javax.swing.JTextField jTContenidoPaquete;
     private javax.swing.JTextField jTDestino;
     private javax.swing.JTextField jTDireccionCliente;
@@ -11559,13 +10825,10 @@ public class JFMenu extends javax.swing.JFrame {
     private javax.swing.JTextField jTFApellidosR;
     private javax.swing.JTextField jTFAtributoC;
     private javax.swing.JTextField jTFCIRegistrarC;
-    private javax.swing.JTextField jTFCInventario;
-    private javax.swing.JTextField jTFCInventario1;
     private javax.swing.JTextField jTFDirNegocio;
     private javax.swing.JTextField jTFDirNegocio1;
     private javax.swing.JTextField jTFDireccionR;
     private javax.swing.JTextField jTFEliminarUser;
-    private javax.swing.JTextField jTFIBuscador;
     private javax.swing.JTextField jTFIBuscadorAct1;
     private javax.swing.JTextField jTFIBuscadorAct2;
     private javax.swing.JTextField jTFIBuscadorAct5;
@@ -11575,7 +10838,6 @@ public class JFMenu extends javax.swing.JFrame {
     private javax.swing.JTextField jTFNombreNegocio1;
     private javax.swing.JTextField jTFNombreUser;
     private javax.swing.JTextField jTFNombresR;
-    private javax.swing.JTextField jTFPrecio;
     private javax.swing.JTextField jTFRUCNegocio;
     private javax.swing.JTextField jTFRUCNegocio1;
     private javax.swing.JTextField jTFSubtotal;
@@ -11585,13 +10847,9 @@ public class JFMenu extends javax.swing.JFrame {
     private javax.swing.JTextField jTFTelefonoProvedor;
     private javax.swing.JTextField jTFTelefonoR;
     private javax.swing.JTextField jTFTotal;
-    private javax.swing.JTextField jTFiDItem;
-    private javax.swing.JTextField jTFidItemDar;
-    private javax.swing.JTextField jTFnombreItem;
     private javax.swing.JTextField jTFnombreUser;
     private javax.swing.JTextField jTFnumerofactura;
     private javax.swing.JTextField jTFnumerofactura1;
-    private javax.swing.JTextField jTFstock;
     private javax.swing.JTextField jTLargo;
     private javax.swing.JTextField jTNombreCliente;
     private javax.swing.JTextField jTNombreCliente1;
@@ -11641,6 +10899,7 @@ public class JFMenu extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField25;
     private javax.swing.JTextField jTextField5;
     private javax.swing.JTextField jTiDPaquete;
+    private javax.swing.JTextField jTiDPaquete1;
     private javax.swing.JLabel menuAdministracion;
     private javax.swing.JLabel menuClientes;
     private javax.swing.JLabel menuEmpleados;

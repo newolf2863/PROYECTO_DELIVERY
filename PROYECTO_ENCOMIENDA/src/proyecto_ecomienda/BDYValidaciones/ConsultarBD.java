@@ -256,6 +256,39 @@ public class ConsultarBD {
         return new DefaultTableModel();
     }
 }
+  
+  
+  public static DefaultTableModel buscarPaquetePorId(Connection cnx, String idPaqueteStr) {
+    DefaultTableModel modelo = new DefaultTableModel(null, new String[]{
+        "IDPaquete", "peso", "ancho", "largo", "contenido", "remitente", 
+        "direccion-Destino", "estado", "Fecha de Envio"
+    });
+
+    String sql = "SELECT * FROM Paquete WHERE IDPaquete = " + idPaqueteStr + 
+                 " OR CAST(IDPaquete AS TEXT) LIKE '%" + idPaqueteStr + "%'";
+
+    try (Statement stmt = cnx.createStatement(); ResultSet rs = stmt.executeQuery(sql)) {
+        while (rs.next()) {
+            Object[] fila = {
+                rs.getInt("IDPaquete"),
+                rs.getBigDecimal("peso"),
+                rs.getBigDecimal("ancho"),
+                rs.getBigDecimal("largo"),
+                rs.getString("contenido"),
+                rs.getString("remitente"),
+                rs.getString("direccionDestino"),
+                rs.getString("estado"),
+                rs.getTimestamp("fechaEnvio")
+            };
+            modelo.addRow(fila);
+        }
+    } catch (SQLException e) {
+        JOptionPane.showMessageDialog(null, "Error al buscar el paquete por ID.");
+    }
+
+    return modelo;
+}
+
 
 }
   
