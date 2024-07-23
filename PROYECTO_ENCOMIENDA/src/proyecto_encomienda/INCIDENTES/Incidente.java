@@ -64,4 +64,3 @@ abstract class Incidente {
         System.out.println("Cliente notificado sobre el incidente del paquete: " + idPaquete);
     }
 }
-

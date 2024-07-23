@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package proyecto_encomienda.GESTION_PAQUETES.FRONTEND;
+import AppPackage.AnimationClass;
 
 import javax.swing.JOptionPane;
 import proyecto_encomienda.INCIDENTES.GestorIncidentes;
@@ -31,6 +32,13 @@ public class Paquete extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
+        btnAnterior = new javax.swing.JLabel();
+        btnSiguiente = new javax.swing.JLabel();
+        jPublic1 = new javax.swing.JLabel();
+        jPublic2 = new javax.swing.JLabel();
+        jPublic3 = new javax.swing.JLabel();
+        jLineaS = new javax.swing.JLabel();
+        jLineaI = new javax.swing.JLabel();
         btnMinimizar = new javax.swing.JLabel();
         btnCerrar = new javax.swing.JLabel();
         jLabelFondo = new javax.swing.JLabel();
@@ -39,11 +47,46 @@ public class Paquete extends javax.swing.JFrame {
         setMinimumSize(new java.awt.Dimension(1000, 500));
         setName("Login"); // NOI18N
         setUndecorated(true);
-        setPreferredSize(new java.awt.Dimension(1000, 500));
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setPreferredSize(new java.awt.Dimension(700, 500));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        btnAnterior.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto_encomienda/GESTION_PAQUETES/FRONTEND/imagenes/NEXT.png"))); // NOI18N
+        btnAnterior.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnAnteriorMouseClicked(evt);
+            }
+        });
+        jPanel1.add(btnAnterior, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 440, -1, 30));
+
+        btnSiguiente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto_encomienda/GESTION_PAQUETES/FRONTEND/imagenes/BACK.png"))); // NOI18N
+        btnSiguiente.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnSiguienteMouseClicked(evt);
+            }
+        });
+        jPanel1.add(btnSiguiente, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 440, -1, 30));
+
+        jPublic1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto_encomienda/GESTION_PAQUETES/FRONTEND/imagenes/paquete1.jpg"))); // NOI18N
+        jPanel1.add(jPublic1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 100, 1000, 320));
+
+        jPublic2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto_encomienda/GESTION_PAQUETES/FRONTEND/imagenes/paquete2.jpg"))); // NOI18N
+        jPanel1.add(jPublic2, new org.netbeans.lib.awtextra.AbsoluteConstraints(1000, 100, 1000, 320));
+
+        jPublic3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto_encomienda/GESTION_PAQUETES/FRONTEND/imagenes/DigClase.png"))); // NOI18N
+        jPanel1.add(jPublic3, new org.netbeans.lib.awtextra.AbsoluteConstraints(2000, 100, 1000, 320));
+
+        jLineaS.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto_encomienda/GESTION_PAQUETES/FRONTEND/imagenes/paloPublic.png"))); // NOI18N
+        jPanel1.add(jLineaS, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 418, 1000, 10));
+
+        jLineaI.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto_encomienda/GESTION_PAQUETES/FRONTEND/imagenes/paloPublic.png"))); // NOI18N
+        jPanel1.add(jLineaI, new org.netbeans.lib.awtextra.AbsoluteConstraints(2, 94, 1000, 10));
 
         btnMinimizar.setForeground(new java.awt.Color(255, 255, 255));
         btnMinimizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto_encomienda/GESTION_PAQUETES/FRONTEND/imagenes/icons8_Expand_Arrow_32px.png"))); // NOI18N
@@ -63,7 +106,7 @@ public class Paquete extends javax.swing.JFrame {
         jPanel1.add(btnCerrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 0, 32, 50));
 
         jLabelFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto_encomienda/GESTION_PAQUETES/FRONTEND/imagenes/Login.png"))); // NOI18N
-        jPanel1.add(jLabelFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 1000, 500));
+        jPanel1.add(jLabelFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1000, 500));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1000, 500));
 
@@ -86,6 +129,39 @@ public class Paquete extends javax.swing.JFrame {
     private void btnMinimizarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMinimizarMouseClicked
         this.setState(proyecto_encomienda.GESTION_PAQUETES.FRONTEND.Paquete.ICONIFIED);
     }//GEN-LAST:event_btnMinimizarMouseClicked
+
+    private void btnAnteriorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAnteriorMouseClicked
+        AnimationClass ac = new AnimationClass();
+        ac.jLabelXRight(-2000, 0, 25, 5, jPublic1);
+        
+        AnimationClass acc = new AnimationClass();
+        acc.jLabelXRight(-1000, 1000, 25, 5, jPublic2);
+        
+        AnimationClass accc = new AnimationClass();
+        accc.jLabelXRight(0, 2000, 25, 5, jPublic3);
+    }//GEN-LAST:event_btnAnteriorMouseClicked
+
+    private void btnSiguienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSiguienteMouseClicked
+        AnimationClass ac = new AnimationClass();
+        ac.jLabelXLeft(0, -2000, 25, 5, jPublic1);
+        
+        AnimationClass acc = new AnimationClass();
+        acc.jLabelXLeft(1000, -1000, 25, 5, jPublic2);
+                
+        AnimationClass accc = new AnimationClass();
+        accc.jLabelXLeft(2000, 0, 25, 5, jPublic3);
+    }//GEN-LAST:event_btnSiguienteMouseClicked
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        AnimationClass ac = new AnimationClass();
+        ac.jLabelXLeft(0, -2000, 25, 5, jPublic1);
+        
+        AnimationClass acc = new AnimationClass();
+        acc.jLabelXLeft(1000, -1000, 25, 5, jPublic2);
+                
+        AnimationClass accc = new AnimationClass();
+        accc.jLabelXLeft(2000, 0, 25, 5, jPublic3);
+    }//GEN-LAST:event_formWindowOpened
 
     /**
      * @param args the command line arguments
@@ -123,9 +199,16 @@ public class Paquete extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel btnAnterior;
     private javax.swing.JLabel btnCerrar;
     private javax.swing.JLabel btnMinimizar;
+    private javax.swing.JLabel btnSiguiente;
     private javax.swing.JLabel jLabelFondo;
+    private javax.swing.JLabel jLineaI;
+    private javax.swing.JLabel jLineaS;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel jPublic1;
+    private javax.swing.JLabel jPublic2;
+    private javax.swing.JLabel jPublic3;
     // End of variables declaration//GEN-END:variables
 }
