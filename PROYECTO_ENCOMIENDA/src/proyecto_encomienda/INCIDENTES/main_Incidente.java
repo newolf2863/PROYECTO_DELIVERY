@@ -1,33 +1,34 @@
 package proyecto_encomienda.INCIDENTES;
 
-
 import proyecto_encomienda.GESTION_PAQUETES.BACKEND.Paquete;
-import proyecto_encomienda.INCIDENTES.GestorIncidentes;
-import proyecto_encomienda.INCIDENTES.PaquetePerdido;
-import proyecto_encomienda.INCIDENTES.RechazoEntrega;
+import proyecto_encomienda.GESTION_PAQUETES.BACKEND.Inventario;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.nio.charset.StandardCharsets;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-import proyecto_encomienda.GESTION_PAQUETES.BACKEND.Inventario;
 
 public class main_Incidente {
 
-    public static void main(String[] args){
-        Inventario inventario=new Inventario();
+    public static void main(String[] args) {
+        Inventario inventario = new Inventario();
         Scanner scanner = new Scanner(System.in);
-        String archivo = "incidentes.txt";
+        String archivo = "incidentes.csv";
 
         System.out.print("Ingrese el ID del paquete (codigoTracking): ");
         String codigoTracking = scanner.nextLine();
 
-        // Verificar si el paquete ya existe en el archivo de incidentes
+        // Verificar si el paquete ya existe en el inventario
         if (!paqueteExisteEnArchivo("inventario.txt", codigoTracking)) {
             System.out.print("Ingrese el ancho del paquete: ");
             double ancho = scanner.nextDouble();
@@ -66,19 +67,15 @@ public class main_Incidente {
 
             switch (opcion) {
                 case 1:
-                    // Registrar un incidente para el paquete seleccionado
                     registrarIncidente(scanner, gestorIncidentes, codigoTracking);
                     break;
                 case 2:
-                    // Actualizar estado de un paquete existente
-                    actualizarEstadoPaquete(scanner,archivo,codigoTracking);
+                    actualizarEstadoPaquete(scanner, archivo, codigoTracking);
                     break;
                 case 3:
-                    // Mostrar los incidentes registrados en el archivo
-                    mostrarContenidoArchivo("incidentes.txt");
+                    mostrarContenidoArchivo(archivo);
                     break;
                 case 4:
-                    // Salir del programa
                     salir = true;
                     break;
                 default:
@@ -94,8 +91,7 @@ public class main_Incidente {
         try (BufferedReader reader = new BufferedReader(new FileReader(archivo))) {
             String linea;
             while ((linea = reader.readLine()) != null) {
-                // Aquí asumo que cada línea del archivo tiene el formato "Paquete{codigoTracking='valor', ..."
-                if (linea.contains("Paquete{codigoTracking='" + codigoTracking + "'")) {
+                if (linea.contains("Paquete{codigoTracking='" + codigoTracking)) {
                     return true;
                 }
             }
@@ -106,10 +102,18 @@ public class main_Incidente {
     }
 
     public static void mostrarContenidoArchivo(String archivo) {
-        try (BufferedReader reader = new BufferedReader(new FileReader(archivo))) {
+        try (BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream("incidentes.csv"), StandardCharsets.UTF_8))) {
             String linea;
             while ((linea = reader.readLine()) != null) {
-                System.out.println(linea);
+                String[] partes = linea.split(",");
+                if (partes.length == 5) { // Ajustado para incluir el ID del incidente
+                    System.out.println("ID Incidente: " + partes[0]);
+                    System.out.println("ID Paquete: " + partes[1]);
+                    System.out.println("Descripción: " + partes[2]);
+                    System.out.println("Fecha: " + partes[3]);
+                    System.out.println("Estado: " + partes[4]);
+                    System.out.println("------------------------------");
+                }
             }
         } catch (IOException e) {
             System.err.println("Error al leer el archivo: " + e.getMessage());
@@ -135,7 +139,10 @@ public class main_Incidente {
                 break;
             case 2:
                 RechazoEntrega incidenteRechazo = new RechazoEntrega();
-                incidenteRechazo.setDescripcion("Cliente rechazó la entrega debido a daños en el paquete");
+                System.out.print("Ingrese la razón del rechazo: ");
+                String razon = scanner.nextLine();
+
+                incidenteRechazo.setDescripcion(razon);
                 incidenteRechazo.setFecha(LocalDateTime.now());
                 incidenteRechazo.setEstado("Rechazado");
 
@@ -151,29 +158,39 @@ public class main_Incidente {
         List<String> lineas = new ArrayList<>();
         boolean paqueteEncontrado = false;
 
-        try (BufferedReader reader = new BufferedReader(new FileReader(archivo))) {
+        // Leer el archivo en UTF-8
+        try (BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(archivo), StandardCharsets.UTF_8))) {
             String linea;
             while ((linea = reader.readLine()) != null) {
-                if (linea.contains("ID Paquete: " + idPaquete)) {
+                String[] partes = linea.split(",");
+                if (partes.length > 1 && partes[1].equals(idPaquete)) {  // Verificar en la segunda columna
                     paqueteEncontrado = true;
-
                     System.out.println("Paquete encontrado:");
-                    while (!(linea = reader.readLine()).equals("------------------------------")) {
-                        System.out.println(linea);
-                        lineas.add(linea);
-                    }
+                    System.out.println("ID Incidente: " + partes[0]);
+                    System.out.println("ID Paquete: " + partes[1]);
+                    System.out.println("Descripción: " + partes[2]);
+                    System.out.println("Fecha: " + partes[3]);
+                    System.out.println("Estado: " + partes[4]);
 
-                    System.out.print("Ingrese el nuevo estado del paquete (Perdido/Rechazado): ");
-                    String nuevoEstado = scanner.next();
+                    System.out.println("Seleccione el nuevo estado del paquete:");
+                    System.out.println("1. Perdido");
+                    System.out.println("2. Rechazado");
+
+                    // Leer la opción ingresada
+                    System.out.print("Ingrese el número correspondiente a la opción: ");
+                    int opcion = scanner.nextInt();
                     scanner.nextLine(); // Limpiar el buffer
 
-                    if (nuevoEstado.equalsIgnoreCase("Rechazado")) {
+                    String nuevoEstado = opcion == 1 ? "Perdido" : "Rechazado";
+
+                    if (opcion == 2) {
                         System.out.print("Ingrese la razón del rechazo: ");
                         String razon = scanner.nextLine();
-                        System.out.println("Razón de rechazo registrada: " + razon);
+                        partes[2] = " Razón de rechazo: " + razon;
                     }
 
-                    lineas.add("Estado: " + nuevoEstado);
+                    partes[4] = nuevoEstado;
+                    lineas.add(String.join(",", partes));
                     System.out.println("Estado actualizado correctamente.");
                 } else {
                     lineas.add(linea);
@@ -186,7 +203,8 @@ public class main_Incidente {
         if (!paqueteEncontrado) {
             System.out.println("No se encontró un paquete con el ID proporcionado.");
         } else {
-            try (BufferedWriter writer = new BufferedWriter(new FileWriter(archivo))) {
+            // Escribir el archivo en UTF-8
+            try (BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(archivo), StandardCharsets.UTF_8))) {
                 for (String linea : lineas) {
                     writer.write(linea);
                     writer.newLine();
@@ -196,4 +214,5 @@ public class main_Incidente {
             }
         }
     }
+
 }

@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package proyecto_encomienda.INCIDENTES;
 
 import java.time.LocalDateTime;
@@ -11,6 +7,7 @@ abstract class Incidente {
     private LocalDateTime fecha;
     private String idPaquete;
     private String estado;
+    private String idIncidente; // Agregar idIncidente
 
     public abstract void actuar();
     public abstract void guardarEnArchivo();
@@ -54,10 +51,16 @@ abstract class Incidente {
         this.estado = estado;
     }
 
+    public String getIdIncidente() {
+        return idIncidente; // Getter para idIncidente
+    }
+
+    public void setIdIncidente(String idIncidente) {
+        this.idIncidente = idIncidente; // Setter para idIncidente
+    }
+
     public void notificarCliente() {
         // Lógica para notificar al cliente sobre el incidente
         System.out.println("Cliente notificado sobre el incidente del paquete: " + idPaquete);
     }
 }
-
-
