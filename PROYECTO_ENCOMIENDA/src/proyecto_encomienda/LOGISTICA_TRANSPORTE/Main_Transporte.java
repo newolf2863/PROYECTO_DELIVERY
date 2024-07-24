@@ -16,7 +16,7 @@ import  proyecto_encomienda.LOGISTICA_TRANSPORTE.Reporte;
 import  proyecto_encomienda.LOGISTICA_TRANSPORTE.Ubicacion;
 import  proyecto_encomienda.LOGISTICA_TRANSPORTE.Vehiculo;
 import proyecto_encomienda.GESTION_PAQUETES.BACKEND.Paquete;
-import proyecto_encomienda.GESTOR_PERFILES.Conductor;
+import GESTOR_PERFILES.Conductor;
 
 import java.util.ArrayList;
 import java.util.List;

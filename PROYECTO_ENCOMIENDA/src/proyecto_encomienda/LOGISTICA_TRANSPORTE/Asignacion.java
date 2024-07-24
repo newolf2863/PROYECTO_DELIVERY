@@ -13,7 +13,7 @@ import java.util.Map;
 import proyecto_encomienda.GESTION_PAQUETES.BACKEND.EstadoDelPaquete;
 import proyecto_encomienda.GESTION_PAQUETES.BACKEND.Inventario;
 import proyecto_encomienda.GESTION_PAQUETES.BACKEND.Paquete;
-import proyecto_encomienda.GESTOR_PERFILES.Conductor;
+import GESTOR_PERFILES.Conductor;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -60,7 +60,7 @@ public class Asignacion {
             return null;
         }
         for (Paquete paquete : paquetesAsignados.values().stream().flatMap(List::stream).toList()) {
-            String codigo = paquete.obtenerCodigo();
+            String codigo = paquete.getCodigoTracking();
             if (codigo != null && codigo.equals(codigoTracking)) {
                 return paquete.obtenerEstado();
             }
@@ -125,7 +125,7 @@ public class Asignacion {
             if (paquetes != null && !paquetes.isEmpty()) {
                 System.out.println("  Paquetes asignados:");
                 for (Paquete paquete : paquetes) {
-                    System.out.println("    Número de Tracking: " + paquete.obtenerCodigo());
+                    System.out.println("    Número de Tracking: " + paquete.getCodigoTracking());
                 }
             } else {
                 System.out.println("  No hay paquetes asignados a este conductor.");

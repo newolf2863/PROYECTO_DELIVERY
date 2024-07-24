@@ -1,30 +1,8 @@
-
-package Negocio;
-
-/**
- *
- * @author juand_jus2zd
- */
-public class Reporte {
-    public boolean estado;
-    public String descripcion;
-    
-    public int actualizarEstadoPaquete(){
-        return 0;
-    }
-    
-    public String generarReporte(){
-        return "Reporte{" + "estado=" + estado + ", descripcion=" + descripcion + '}';
-    }
-
-    
-}
-
-
-
 package proyecto_encomienda.LOGISTICA_TRANSPORTE;
+
 import java.util.Date;
 import java.util.List;
+
 /**
  *
  * @author ediso
@@ -48,7 +26,7 @@ public class Reporte {
     //ARREGLAR
     public void generarReporte() {
         if (!envio.getPaquetes().isEmpty()) {
-            System.out.println("Número de Tracking del paquete: " + envio.getPaquetes().get(0).obtenerCodigo());
+            System.out.println("Número de Tracking del paquete: " + envio.getPaquetes().get(0).getCodigoTracking());
         }
         //¿A QUE SE REFIERE LA DESCRIPCIÓN DEL PAQUETE?
         System.out.println("Descripción del paquete: " + envio.getDescripcion());
