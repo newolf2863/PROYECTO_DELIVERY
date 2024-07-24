@@ -59,39 +59,5 @@ public class Inventario {
         }
     }
     
-     /*private void cargarInventarioDesdeArchivo() throws IOException {
-        try (BufferedReader reader = new BufferedReader(new FileReader(ARCHIVO_INVENTARIO))) {
-            String linea;
-            while ((linea = reader.readLine()) != null) {
-                Paquete paquete = parsearLineaComoPaquete(linea);
-                if (paquete != null) {
-                    paquetes.add(paquete);
-                }
-            }
-        }    }
-
-    private Paquete parsearLineaComoPaquete(String linea) {
-    String[] partes = linea.split(",");
-
-    // Verificar que haya suficientes partes para crear un Paquete válido
-    if (partes.length >= 5) {
-        try {
-            String codigoTracking = partes[0].trim();
-            double ancho = Double.parseDouble(partes[1].trim().split("=")[1]); // Ejemplo de cómo extraer el valor numérico
-            double largo = Double.parseDouble(partes[2].trim().split("=")[1]);
-            String contenido = partes[3].trim().split("=")[1];
-            String destino = partes[4].trim().split("=")[1];
-
-            // Crear y devolver un nuevo objeto Paquete
-            return new Paquete(codigoTracking, ancho, largo, contenido, destino);
-        } catch (NumberFormatException | ArrayIndexOutOfBoundsException e) {
-            System.err.println("Error al parsear la línea como un Paquete: " + e.getMessage());
-            return null;
-        }
-    } else {
-        System.err.println("Error: La línea no contiene suficientes datos para crear un Paquete.");
-        return null;
-    }
-}*/
 
 }

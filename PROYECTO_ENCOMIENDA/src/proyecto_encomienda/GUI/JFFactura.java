@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package proyecto_encomienda.INCIDENTES.GUI;
+package proyecto_encomienda.GUI;
 
 import java.sql.Connection;
 import java.awt.Graphics;

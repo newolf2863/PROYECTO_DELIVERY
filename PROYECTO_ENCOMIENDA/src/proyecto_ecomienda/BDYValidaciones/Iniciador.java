@@ -3,7 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
  */
 package proyecto_ecomienda.BDYValidaciones;
-import proyecto_encomienda.INCIDENTES.GUI.JFIngresar;
+import proyecto_encomienda.GUI.JFIngresar;
 
 
 

@@ -6,10 +6,6 @@ package proyecto_encomienda.GESTION_PAQUETES.BACKEND;
 
 import java.util.ArrayList;
 
-/**
- *
- * @author Juguitos
- */
 public class Seguimiento {
     private EstadoDelPaquete estadoActual;
     private ArrayList<String> estadosAnteriores;
@@ -20,15 +16,15 @@ public class Seguimiento {
     }
 
     public void notificar(EstadoDelPaquete estado) {
-        estadosAnteriores.add(estadoActual.toString());
-        this.estadoActual = estado;
+        estadosAnteriores.add(estadoActual.toString()); // Agrega el estado actual anterior
+        this.estadoActual = estado; // Actualiza al nuevo estado
     }
     
     public boolean verificarEntregaPendiente() {
-        return estadoActual instanceof Pendiente;
+        return estadoActual instanceof Pendiente; // Verifica si el estado actual es Pendiente
     }
     
     public ArrayList<String> obtenerEstadosAnteriores() {
-        return estadosAnteriores;
+        return estadosAnteriores; // Retorna la lista de estados anteriores
     } 
 }

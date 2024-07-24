@@ -1,24 +1,27 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
-package proyecto_encomienda.GESTION_PAQUETES.BACKEND;
-
 /**
  *
  * @author Juguitos
  */
-public abstract class EstadoDelPaquete {
+package proyecto_encomienda.GESTION_PAQUETES.BACKEND;
 
-    static EstadoDelPaquete valueOf(String toUpperCase) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
+public abstract class EstadoDelPaquete {
     protected Paquete paquete;
-    
+    protected String estado;
+
     public EstadoDelPaquete(Paquete paquete) {
         this.paquete = paquete;
+    }
+
+    public String getEstado() {
+        return estado;
+    }
+    
+    void setEstado(String nuevoEstado) {
+      this.estado = estado;
     }
     
     public abstract void iniciarEnvio();
     public abstract void completarEnvio();
+
+    
 }
