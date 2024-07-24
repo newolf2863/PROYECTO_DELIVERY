@@ -2,15 +2,22 @@ package proyecto_encomienda.INCIDENTES;
 
 import java.time.LocalDateTime;
 
-abstract class Incidente {
+public abstract class Incidente {
     private String descripcion;
     private LocalDateTime fecha;
-    private String idPaquete;
+    private int idPaquete;
     private String estado;
-    private String idIncidente; // Agregar idIncidente
+    private int idIncidente;
+
+    public Incidente(String descripcion, int idPaquete, int idIncidente) {
+        this.descripcion = descripcion;
+        this.fecha = LocalDateTime.now();
+        this.idPaquete = idPaquete;
+        this.idIncidente = idIncidente;
+        this.estado = "Registrado";
+    }
 
     public abstract void actuar();
-    public abstract void guardarEnArchivo();
     public abstract void registrarIncidente();
 
     public void guardarPaquete() {
@@ -35,11 +42,11 @@ abstract class Incidente {
         this.fecha = fecha;
     }
 
-    public String getIdPaquete() {
+    public int getIdPaquete() {
         return idPaquete;
     }
 
-    public void setIdPaquete(String idPaquete) {
+    public void setIdPaquete(int idPaquete) {
         this.idPaquete = idPaquete;
     }
 
@@ -51,12 +58,12 @@ abstract class Incidente {
         this.estado = estado;
     }
 
-    public String getIdIncidente() {
-        return idIncidente; // Getter para idIncidente
+    public int getIdIncidente() {
+        return idIncidente;
     }
 
-    public void setIdIncidente(String idIncidente) {
-        this.idIncidente = idIncidente; // Setter para idIncidente
+    public void setIdIncidente(int idIncidente) {
+        this.idIncidente = idIncidente;
     }
 
     public void notificarCliente() {
@@ -64,3 +71,5 @@ abstract class Incidente {
         System.out.println("Cliente notificado sobre el incidente del paquete: " + idPaquete);
     }
 }
+
+

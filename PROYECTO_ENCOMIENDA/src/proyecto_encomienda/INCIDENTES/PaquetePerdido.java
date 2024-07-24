@@ -1,49 +1,49 @@
 package proyecto_encomienda.INCIDENTES;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.FileOutputStream;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.OutputStreamWriter;
-import java.nio.charset.StandardCharsets;
-import java.util.HashMap;
-import java.util.Map;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 
 public class PaquetePerdido extends Incidente {
+    private Connection cnx;
 
-    private static Map<String, String> ultimoEstadoPorPaquete = new HashMap<>();
+    public PaquetePerdido(String descripcion, int idPaquete, int idIncidente, Connection cnx) {
+        super(descripcion, idPaquete, idIncidente);
+        this.cnx = cnx;
+    }
 
     @Override
     public void actuar() {
-        // Lógica específica para Paquete Perdido
-        System.out.println("Actuando sobre paquete perdido: " + getIdPaquete());
+        // Implementar la lógica específica para actuar en caso de daño en el paquete
     }
 
-    @Override
-    public void guardarEnArchivo() {
-        String archivo = "incidentes.csv";
-        String estadoActual = getEstado();
-        String idPaquete = getIdPaquete();
-
-        String ultimoEstado = ultimoEstadoPorPaquete.getOrDefault(idPaquete, null);
-
-        if (ultimoEstado != null && estadoActual.equals(ultimoEstado)) {
-            System.out.println("No se puede guardar el mismo estado para el mismo paquete de manera consecutiva: " + estadoActual);
-            return;
-        }
-
-        try (BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(archivo, true), StandardCharsets.UTF_8))) {
-            writer.write(getIdIncidente() + "," + idPaquete + "," + getDescripcion() + "," + getFecha().toString() + "," + estadoActual + "\n");
-            ultimoEstadoPorPaquete.put(idPaquete, estadoActual);
-        } catch (IOException e) {
-            System.err.println("Error al guardar en archivo: " + e.getMessage());
-        }
-    }
-
-    @Override
+     @Override
     public void registrarIncidente() {
-        System.out.println("Incidente registrado (Paquete Perdido): " + getDescripcion());
+        PreparedStatement stmt = null;
+        
+        try {
+            String sql = "INSERT INTO Incidente (IDPaquete, tipoIncidente, descripcion) VALUES (?, ?, ?)";
+            stmt = cnx.prepareStatement(sql);
+            stmt.setInt(1, getIdPaquete());
+            stmt.setString(2, "Paquete Perdido");
+            stmt.setString(3, getDescripcion());
+            
+            stmt.executeUpdate();
+              javax.swing.JOptionPane.showMessageDialog(null, 
+                      "Incidente registrado con éxito.", "Paquete Perdido",
+                      javax.swing.JOptionPane.INFORMATION_MESSAGE);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            javax.swing.JOptionPane.showMessageDialog(null, 
+                      "Error al registrar incidente.", "Incidente no Registrado",
+                      javax.swing.JOptionPane.ERROR_MESSAGE);
+        } finally {
+            try {
+                if (stmt != null) stmt.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
     }
 }
+
