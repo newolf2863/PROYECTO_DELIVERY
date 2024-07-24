@@ -29,14 +29,14 @@ public DefaultTableModel mostrarTablaPaquetes(Connection c) {
         while (rs.next()) {
             Object[] fila = {
                 rs.getInt("IDPaquete"),
-                rs.getDouble("peso"),
-                rs.getDouble("ancho"),
-                rs.getDouble("largo"),
+                rs.getBigDecimal("peso"),
+                rs.getBigDecimal("ancho"),
+                rs.getBigDecimal("largo"),
                 rs.getString("contenido"),
                 rs.getString("remitente"),
                 rs.getString("direccionDestino"),
                 rs.getString("estado"),
-                rs.getTimestamp("fechaEnvio") 
+                rs.getTimestamp("fechaEnvio")
             };
             modelo.addRow(fila);
         }

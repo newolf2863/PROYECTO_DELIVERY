@@ -90,9 +90,9 @@ public class JFIngresar extends javax.swing.JFrame {
         this.setVisible(false);
         menu.setVisible(true);
         }else{
-        JFMenuVend menuVendedor = new JFMenuVend(userRole, connection, username);
-        this.setVisible(false);
-        menuVendedor.setVisible(true);    
+        //JFMenuVend menuVendedor = new JFMenuVend(userRole, connection, username);
+        //this.setVisible(false);
+        //menuVendedor.setVisible(true);    
         }      
     }
 
