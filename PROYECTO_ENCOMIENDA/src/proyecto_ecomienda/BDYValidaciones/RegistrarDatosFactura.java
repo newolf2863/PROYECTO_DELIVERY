@@ -63,7 +63,7 @@ public class RegistrarDatosFactura {
     }
 }
 
-
+/*
     public static int obtenerNuevoNumeroFactura(Connection cnx) {
         int nuevoNumeroFactura = 0;
         try {
@@ -81,7 +81,7 @@ public class RegistrarDatosFactura {
         }
         return nuevoNumeroFactura;
     }
-
+*/
     public static void insertarFactura(Connection connection, int idFactura, String fechaEmision, String rucNegocio,
             String idCliente, String estadoPago, double porcentajeIVA) {
         try {

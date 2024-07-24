@@ -207,8 +207,8 @@ public class JFMenu extends javax.swing.JFrame {
         editor.setEditable(false);
         editor2.setEditable(false);
         desvanecer();
-        int nuevoNumeroFactura = RegistrarDatosFactura.obtenerNuevoNumeroFactura(cnx);
-        jTFnumerofactura.setText(String.valueOf(nuevoNumeroFactura));
+        //int nuevoNumeroFactura = RegistrarDatosFactura.obtenerNuevoNumeroFactura(cnx);
+        //jTFnumerofactura.setText(String.valueOf(nuevoNumeroFactura));
         jTFAdminClave.setToolTipText("Aquí puedes ingresar tu contraseña.");
         desvanecerP();
         placeHolder();
@@ -6725,8 +6725,8 @@ public class JFMenu extends javax.swing.JFrame {
                 facturaFrame.setVisible(true);
                 limpiarYCambiarCampos();
                 cambiarSesion = true;
-                int nuevoNumeroFactura = RegistrarDatosFactura.obtenerNuevoNumeroFactura(cnx);
-                jTFnumerofactura.setText(String.valueOf(nuevoNumeroFactura));
+                //int nuevoNumeroFactura = RegistrarDatosFactura.obtenerNuevoNumeroFactura(cnx);
+                //jTFnumerofactura.setText(String.valueOf(nuevoNumeroFactura));
             }
         }
     }//GEN-LAST:event_jBGenerarFacturaActionPerformed
