@@ -3,7 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 
-package proyecto_encomienda.INCIDENTES.GUI;
+package proyecto_encomienda.GUI;
 
 /**
  *

@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package proyecto_encomienda.INCIDENTES.GUI;
+package proyecto_encomienda.GUI;
 
 import proyecto_ecomienda.BDYValidaciones.ConexionBD;
 import java.awt.Color;
@@ -125,7 +125,7 @@ public class JFRecuperar extends javax.swing.JFrame {
         );
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel2.setText("Recuperador de contraseñas");
+        jLabel2.setText("Recuperar contraseña");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -148,8 +148,8 @@ public class JFRecuperar extends javax.swing.JFrame {
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 490, -1));
 
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/explosion.png"))); // NOI18N
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 510, 120));
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/gestionDePaquetes.png"))); // NOI18N
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 490, 120));
 
         jTFCedula.setFont(new java.awt.Font("Roboto Medium", 0, 12)); // NOI18N
         jTFCedula.setForeground(new java.awt.Color(204, 204, 204));

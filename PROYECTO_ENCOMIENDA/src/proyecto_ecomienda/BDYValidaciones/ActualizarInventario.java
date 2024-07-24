@@ -16,58 +16,6 @@ public class ActualizarInventario {
     public void addAtributo(String atributo) {
         this.atributosActualizar.add(atributo);
     }
-
-    public static void darDeBajaElemento(Connection cnx, int idItem) {
-        String sqlUpdate = "UPDATE item SET estado = 'Retirado' WHERE idItem = ?";
-
-        try (PreparedStatement pst = cnx.prepareStatement(sqlUpdate)) {
-            pst.setInt(1, idItem);
-            int rowsAffected = pst.executeUpdate();
-            if (rowsAffected > 0) {
-                JOptionPane.showMessageDialog(null, "Ítem retirado exitosamente.");
-            } else {
-                JOptionPane.showMessageDialog(null, "No se pudo retirar el elemento.");
-            }
-        } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Error al dar de baja el elemento.");
-        }
-    }
-    
-
-    public static void darDeAltaElemento(Connection cnx, int idItem) {
-        String sqlUpdate = "UPDATE item SET estado = 'Activo' WHERE idItem = ?";
-
-        try (PreparedStatement pst = cnx.prepareStatement(sqlUpdate)) {
-            pst.setInt(1, idItem);
-            int rowsAffected = pst.executeUpdate();
-            if (rowsAffected > 0) {
-                JOptionPane.showMessageDialog(null, "Ítem activado exitosamente.");
-            } else {
-                JOptionPane.showMessageDialog(null, "No se pudo activar el elemento.");
-            }
-        } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Error al activar el elemento.");
-        }
-    }
-
-    public static void actualizarIdItem(Connection cnx, int idItem, int nuevoIdItem) {
-        String sqlUpdate = "UPDATE item SET idItem = ? WHERE idItem = ?";
-
-        try (PreparedStatement pst = cnx.prepareStatement(sqlUpdate)) {
-            pst.setInt(1, nuevoIdItem);
-            pst.setInt(2, idItem);
-
-            int rowsAffected = pst.executeUpdate();
-            if (rowsAffected > 0) {
-                JOptionPane.showMessageDialog(null, "ID del elemento actualizado exitosamente.");
-            } else {
-                JOptionPane.showMessageDialog(null, "No se pudo actualizar el ID del elemento.");
-            }
-        } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Error al actualizar el ID del elemento.");
-        }
-    }
-
     public void actualizarDatos(Connection cnx, String atributoActualizar, String condicion, String tabla) {
         StringBuilder consultaBuilder = new StringBuilder();
         Iterator<String> i = this.atributosActualizar.iterator();

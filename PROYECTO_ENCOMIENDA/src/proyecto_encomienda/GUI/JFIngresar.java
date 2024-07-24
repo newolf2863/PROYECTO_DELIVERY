@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package proyecto_encomienda.INCIDENTES.GUI;
+package proyecto_encomienda.GUI;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -38,7 +38,7 @@ public class JFIngresar extends javax.swing.JFrame {
     public JFIngresar() {
 
         initComponents();
-        setIconImage(new ImageIcon(getClass().getResource("/Iconos/AjustesBest.png")).getImage());
+        setIconImage(new ImageIcon(getClass().getResource("/proyecto_ecomienda/iconos/AjustesBest.png")).getImage());
         this.setLocationRelativeTo(null);
         setTitle("Login Form");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -284,7 +284,7 @@ public class JFIngresar extends javax.swing.JFrame {
         });
         bg.add(olvidasteContra, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 310, -1, -1));
 
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/explosion.png"))); // NOI18N
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto_ecomienda/img/gestionDePaquetes.png"))); // NOI18N
         bg.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 20, 460, 120));
 
         jLabel4.setFont(new java.awt.Font("Roboto Medium", 1, 24)); // NOI18N
