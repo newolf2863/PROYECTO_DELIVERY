@@ -53,6 +53,13 @@ import proyecto_ecomienda.BDYValidaciones.NumberOnlyFilter;
 import proyecto_ecomienda.BDYValidaciones.TextPrompt;
 import proyecto_ecomienda.BDYValidaciones.ValidadorDeSwings;
 import proyecto_ecomienda.BDYValidaciones.ValidadorDeRegistros;
+import proyecto_encomienda.GESTION_PAQUETES.BACKEND.Inventario;
+import proyecto_encomienda.INCIDENTES.DanioPaquete;
+import proyecto_encomienda.INCIDENTES.ErrorDireccion;
+import proyecto_encomienda.INCIDENTES.GestorIncidentes;
+import proyecto_encomienda.INCIDENTES.Incidente;
+import proyecto_encomienda.INCIDENTES.PaquetePerdido;
+import proyecto_encomienda.INCIDENTES.RechazoEntrega;
 
 /**
  *
@@ -190,6 +197,7 @@ public class JFMenu extends javax.swing.JFrame {
         clickedPanels[6] = Clicked7;
         contadorProductos();
         contadorInventario();
+        contadorIncidentes();
         contador1();
         java.util.Date fechaActual = new java.util.Date();
         // Configura el JDateChooser
@@ -248,7 +256,7 @@ public class JFMenu extends javax.swing.JFrame {
             // Maneja cualquier error de conexión o consulta aquí
         }
     }
-
+    
     public void contadorInventario() {
         try {
             // Consulta para obtener el máximo ID de Paquete
@@ -261,6 +269,25 @@ public class JFMenu extends javax.swing.JFrame {
                 // Si maxId es 0 (no hay paquetes), establece el siguiente ID como 1
                 int siguienteId = (maxId == 0) ? 1 : maxId + 1;
                 jTFCodigoInventario.setText(String.valueOf(siguienteId));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            // Maneja cualquier error de conexión o consulta aquí
+        }
+    }
+
+    public void contadorIncidentes() {
+        try {
+            // Consulta para obtener el máximo ID de Paquete
+            String consulta = "SELECT COALESCE(MAX(IDIncidente), 0) AS max_id FROM Incidente";
+            PreparedStatement stmt = cnx.prepareStatement(consulta);
+            ResultSet rs = stmt.executeQuery();
+
+            if (rs.next()) {
+                int maxId = rs.getInt("max_id");
+                // Si maxId es 0 (no hay paquetes), establece el siguiente ID como 1
+                int siguienteId = (maxId == 0) ? 1 : maxId + 1;
+                IDIncidentesTF.setText(String.valueOf(siguienteId));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -864,7 +891,7 @@ public class JFMenu extends javax.swing.JFrame {
         jLabel26 = new javax.swing.JLabel();
         JPIncidentes = new javax.swing.JPanel();
         jLabel117 = new javax.swing.JLabel();
-        jPEmpleadosTab1 = new javax.swing.JPanel();
+        jPIncidentes = new javax.swing.JPanel();
         jTPEmpleados1 = new javax.swing.JTabbedPane();
         jPRE1 = new javax.swing.JPanel();
         jPanel10 = new javax.swing.JPanel();
@@ -5979,6 +6006,12 @@ public class JFMenu extends javax.swing.JFrame {
 
         jLabel134.setText("Código único del paquete");
 
+        IDPIncidentesTF.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                IDPIncidentesTFKeyReleased(evt);
+            }
+        });
+
         jLabel135.setText("Descripción");
 
         RazonIncidentesTA.setColumns(20);
@@ -5986,6 +6019,11 @@ public class JFMenu extends javax.swing.JFrame {
         jScrollPane4.setViewportView(RazonIncidentesTA);
 
         RegistrarIncidentesButton.setText("Registrar");
+        RegistrarIncidentesButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RegistrarIncidentesButtonActionPerformed(evt);
+            }
+        });
 
         jLabel136.setText("Código único del incidente");
 
@@ -6108,23 +6146,23 @@ public class JFMenu extends javax.swing.JFrame {
 
         jTPEmpleados1.addTab("Cambiar de estado", jPEE1);
 
-        javax.swing.GroupLayout jPEmpleadosTab1Layout = new javax.swing.GroupLayout(jPEmpleadosTab1);
-        jPEmpleadosTab1.setLayout(jPEmpleadosTab1Layout);
-        jPEmpleadosTab1Layout.setHorizontalGroup(
-            jPEmpleadosTab1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPEmpleadosTab1Layout.createSequentialGroup()
-                .addGap(42, 42, 42)
+        javax.swing.GroupLayout jPIncidentesLayout = new javax.swing.GroupLayout(jPIncidentes);
+        jPIncidentes.setLayout(jPIncidentesLayout);
+        jPIncidentesLayout.setHorizontalGroup(
+            jPIncidentesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPIncidentesLayout.createSequentialGroup()
+                .addGap(36, 36, 36)
                 .addComponent(jTPEmpleados1, javax.swing.GroupLayout.PREFERRED_SIZE, 965, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(73, Short.MAX_VALUE))
+                .addContainerGap(79, Short.MAX_VALUE))
         );
-        jPEmpleadosTab1Layout.setVerticalGroup(
-            jPEmpleadosTab1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPEmpleadosTab1Layout.createSequentialGroup()
+        jPIncidentesLayout.setVerticalGroup(
+            jPIncidentesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPIncidentesLayout.createSequentialGroup()
                 .addGap(0, 39, Short.MAX_VALUE)
                 .addComponent(jTPEmpleados1, javax.swing.GroupLayout.PREFERRED_SIZE, 601, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        JPIncidentes.add(jPEmpleadosTab1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 1080, 640));
+        JPIncidentes.add(jPIncidentes, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 1080, 640));
 
         jLabel132.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
         jLabel132.setForeground(new java.awt.Color(102, 102, 102));
@@ -10455,7 +10493,7 @@ public class JFMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_menuIncidentesMouseExited
 
     private void jTPEmpleados1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTPEmpleados1MouseClicked
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_jTPEmpleados1MouseClicked
 
     private void SeleccionIncidentesCBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SeleccionIncidentesCBActionPerformed
@@ -10465,6 +10503,46 @@ public class JFMenu extends javax.swing.JFrame {
     private void IDIncidentesTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_IDIncidentesTFActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_IDIncidentesTFActionPerformed
+
+    private void IDPIncidentesTFKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_IDPIncidentesTFKeyReleased
+    String idPaqueteStr = IDPIncidentesTF.getText().trim();
+    DefaultTableModel modelo = new CreadorTablas().mostrarVistaDatosPaquete(cnx, idPaqueteStr);
+    jTIncidentes.setModel(modelo);
+    }//GEN-LAST:event_IDPIncidentesTFKeyReleased
+
+    private void RegistrarIncidentesButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegistrarIncidentesButtonActionPerformed
+    int idIncidente = Integer.parseInt(IDIncidentesTF.getText());
+    int idPaquete = Integer.parseInt(IDPIncidentesTF.getText());
+    String tipoIncidente = SeleccionIncidentesCB.getSelectedItem().toString();
+    String descripcion = RazonIncidentesTA.getText();
+
+    // Crear instancia de GestorIncidentes
+    Inventario inventario = new Inventario(); // Asegúrate de tener una instancia de Inventario
+    GestorIncidentes gestorIncidentes = new GestorIncidentes(inventario, cnx);
+
+    // Crear el incidente según el tipo
+    Incidente incidente = null;
+    switch (tipoIncidente) {
+        case "Daño en el Paquete":
+            incidente = new DanioPaquete(descripcion, idPaquete, idIncidente, cnx);
+            break;
+        case "Error de Dirección":
+            incidente=new ErrorDireccion(descripcion, idPaquete, idIncidente, cnx);
+            break;
+        case "Paquete Perdido":
+            incidente = new PaquetePerdido(descripcion, idPaquete, idIncidente, cnx);
+            break;
+        case "Rechazo Entrega":
+            incidente = new RechazoEntrega(descripcion, idPaquete, idIncidente, cnx);
+            break;
+        default:
+            throw new IllegalArgumentException("Tipo de incidente desconocido: " + tipoIncidente);
+    }
+
+    // Registrar el incidente
+    gestorIncidentes.crearIncidente(incidente, idPaquete);
+    contadorIncidentes();
+    }//GEN-LAST:event_RegistrarIncidentesButtonActionPerformed
 
     private void limpiarTabla(JTable tabla) {
         DefaultTableModel modelo = (DefaultTableModel) tabla.getModel();
@@ -11180,11 +11258,11 @@ public class JFMenu extends javax.swing.JFrame {
     private javax.swing.JPanel jPEE;
     private javax.swing.JPanel jPEE1;
     private javax.swing.JPanel jPEmpleadosTab;
-    private javax.swing.JPanel jPEmpleadosTab1;
     private javax.swing.JTabbedPane jPGP;
     private javax.swing.JPanel jPIA;
     private javax.swing.JPanel jPID;
     private javax.swing.JPanel jPIR;
+    private javax.swing.JPanel jPIncidentes;
     private javax.swing.JPanel jPPA;
     private javax.swing.JPanel jPPA1;
     private javax.swing.JPanel jPPA2;

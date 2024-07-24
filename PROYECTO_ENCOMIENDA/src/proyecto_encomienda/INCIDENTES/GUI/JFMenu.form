@@ -7948,7 +7948,7 @@
                         </Constraint>
                       </Constraints>
                     </Component>
-                    <Container class="javax.swing.JPanel" name="jPEmpleadosTab1">
+                    <Container class="javax.swing.JPanel" name="jPIncidentes">
                       <Constraints>
                         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
                           <AbsoluteConstraints x="10" y="40" width="1080" height="640"/>
@@ -7959,9 +7959,9 @@
                         <DimensionLayout dim="0">
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
-                                  <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
                                   <Component id="jTPEmpleados1" min="-2" pref="965" max="-2" attributes="0"/>
-                                  <EmptySpace pref="73" max="32767" attributes="0"/>
+                                  <EmptySpace pref="79" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                         </DimensionLayout>
@@ -8119,6 +8119,9 @@
                                       </Properties>
                                     </Component>
                                     <Component class="javax.swing.JTextField" name="IDPIncidentesTF">
+                                      <Events>
+                                        <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="IDPIncidentesTFKeyReleased"/>
+                                      </Events>
                                     </Component>
                                     <Component class="javax.swing.JLabel" name="jLabel135">
                                       <Properties>
@@ -8144,6 +8147,9 @@
                                       <Properties>
                                         <Property name="text" type="java.lang.String" value="Registrar"/>
                                       </Properties>
+                                      <Events>
+                                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="RegistrarIncidentesButtonActionPerformed"/>
+                                      </Events>
                                     </Component>
                                     <Component class="javax.swing.JLabel" name="jLabel136">
                                       <Properties>

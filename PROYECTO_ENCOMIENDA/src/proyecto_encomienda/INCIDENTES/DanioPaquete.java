@@ -4,17 +4,17 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-public class ErrorDireccion extends Incidente {
+public class DanioPaquete extends Incidente {
     private Connection cnx;
 
-     public ErrorDireccion(String descripcion, int idPaquete, int idIncidente, Connection cnx) {
+    public DanioPaquete(String descripcion, int idPaquete, int idIncidente, Connection cnx) {
         super(descripcion, idPaquete, idIncidente);
         this.cnx = cnx;
     }
 
     @Override
     public void actuar() {
-        // Implementar la lógica específica para actuar en caso de error de dirección
+        // Implementar la lógica específica para actuar en caso de daño en el paquete
     }
 
     @Override
@@ -25,12 +25,12 @@ public class ErrorDireccion extends Incidente {
             String sql = "INSERT INTO Incidente (IDPaquete, tipoIncidente, descripcion) VALUES (?, ?, ?)";
             stmt = cnx.prepareStatement(sql);
             stmt.setInt(1, getIdPaquete());
-            stmt.setString(2, "Error de Dirección");
+            stmt.setString(2, "Daño en el paquete");
             stmt.setString(3, getDescripcion());
             
             stmt.executeUpdate();
               javax.swing.JOptionPane.showMessageDialog(null, 
-                      "Incidente registrado con éxito.", "Error en la dirección",
+                      "Incidente registrado con éxito.", "Daño en el paquete",
                       javax.swing.JOptionPane.INFORMATION_MESSAGE);
         } catch (SQLException e) {
             e.printStackTrace();
