@@ -176,13 +176,11 @@ public class ConsultarBD {
         return modelo;
     }
 
-    
     public static DefaultTableModel buscarAtributoPorId(Connection connection, String campo, String valor) {
         DefaultTableModel modelo = new DefaultTableModel();
         modelo.addColumn("ID");
 
         // Renombrar la columna según el valor de campo
-        
         if (campo.equals("nombreItem")) {
             modelo.addColumn("Nombre del ítem");
         } else if (campo.equals("stock")) {
@@ -218,77 +216,99 @@ public class ConsultarBD {
         return modelo;
     }
 
-  public static DefaultTableModel consultarUser(Connection cnx, String campo, String valor) {
-    // Consulta SQL parametrizada para buscar en la tabla usuarios utilizando LIKE
-    String consulta = "SELECT * FROM usuarios WHERE " + campo + " LIKE ?";
-    
-    try {
-        PreparedStatement ps = cnx.prepareStatement(consulta);
-        // Agregamos los símbolos '%' alrededor del valor para buscar coincidencias parciales
-        ps.setString(1, "%" + valor + "%");
-        
-        ResultSet rs = ps.executeQuery();
-        
-        // Creamos un DefaultTableModel para mostrar los resultados en una tabla
-        DefaultTableModel modelo = new DefaultTableModel();
-        
-        // Añadimos las columnas al modelo (ajusta esto según tus necesidades)
-        modelo.addColumn("ID");
-        modelo.addColumn("Nombre de usuario");
-        modelo.addColumn("CI");
-        modelo.addColumn("Rol");
-        modelo.addColumn("Estado");
-        
-        // Iteramos a través de los resultados y añadimos filas al modelo
-        while (rs.next()) {
-            modelo.addRow(new Object[] {
-                rs.getInt("idUsuario"),
-                rs.getString("nombreUser"),
-                rs.getString("CI"),
-                rs.getString("rol"),
-                rs.getString("estado")
-            });
-        }       
-        return modelo;
-    } catch (SQLException e) {
-        JOptionPane.showMessageDialog(null, "Error al consultar la base de datos: " + e.getMessage());
-        // En caso de error, devolvemos un modelo vacío en lugar de null
-        return new DefaultTableModel();
-    }
-}
-  
-  
-  public static DefaultTableModel buscarPaquetePorId(Connection cnx, String idPaqueteStr) {
-    DefaultTableModel modelo = new DefaultTableModel(null, new String[]{
-        "IDPaquete", "peso", "ancho", "largo", "contenido", "remitente", 
-        "direccion-Destino", "estado", "Fecha de Envio"
-    });
+    public static DefaultTableModel consultarUser(Connection cnx, String campo, String valor) {
+        // Consulta SQL parametrizada para buscar en la tabla usuarios utilizando LIKE
+        String consulta = "SELECT * FROM usuarios WHERE " + campo + " LIKE ?";
 
-    String sql = "SELECT * FROM Paquete WHERE IDPaquete = " + idPaqueteStr + 
-                 " OR CAST(IDPaquete AS TEXT) LIKE '%" + idPaqueteStr + "%'";
+        try {
+            PreparedStatement ps = cnx.prepareStatement(consulta);
+            // Agregamos los símbolos '%' alrededor del valor para buscar coincidencias parciales
+            ps.setString(1, "%" + valor + "%");
 
-    try (Statement stmt = cnx.createStatement(); ResultSet rs = stmt.executeQuery(sql)) {
-        while (rs.next()) {
-            Object[] fila = {
-                rs.getInt("IDPaquete"),
-                rs.getBigDecimal("peso"),
-                rs.getBigDecimal("ancho"),
-                rs.getBigDecimal("largo"),
-                rs.getString("contenido"),
-                rs.getString("remitente"),
-                rs.getString("direccionDestino"),
-                rs.getString("estado"),
-                rs.getTimestamp("fechaEnvio")
-            };
-            modelo.addRow(fila);
+            ResultSet rs = ps.executeQuery();
+
+            // Creamos un DefaultTableModel para mostrar los resultados en una tabla
+            DefaultTableModel modelo = new DefaultTableModel();
+
+            // Añadimos las columnas al modelo (ajusta esto según tus necesidades)
+            modelo.addColumn("ID");
+            modelo.addColumn("Nombre de usuario");
+            modelo.addColumn("CI");
+            modelo.addColumn("Rol");
+            modelo.addColumn("Estado");
+
+            // Iteramos a través de los resultados y añadimos filas al modelo
+            while (rs.next()) {
+                modelo.addRow(new Object[]{
+                    rs.getInt("idUsuario"),
+                    rs.getString("nombreUser"),
+                    rs.getString("CI"),
+                    rs.getString("rol"),
+                    rs.getString("estado")
+                });
+            }
+            return modelo;
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error al consultar la base de datos: " + e.getMessage());
+            // En caso de error, devolvemos un modelo vacío en lugar de null
+            return new DefaultTableModel();
         }
-    } catch (SQLException e) {
-        JOptionPane.showMessageDialog(null, "Error al buscar el paquete por ID.");
     }
 
-    return modelo;
-}
+    public static DefaultTableModel buscarPaquetePorId(Connection conexion, int idPaquete) {
+        DefaultTableModel modelo = new DefaultTableModel();
+        modelo.addColumn("IDPaquete");
+        modelo.addColumn("Peso");
+        modelo.addColumn("Ancho");
+        modelo.addColumn("Largo");
+        modelo.addColumn("Contenido");
+        modelo.addColumn("Remitente");
+        modelo.addColumn("DireccionDestino");
+        modelo.addColumn("Estado");
+        modelo.addColumn("FechaEnvio");
 
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        try {
+            // Consulta usando ILIKE para búsqueda parcial
+            String sql = "SELECT * FROM Paquete WHERE CAST(IDPaquete AS TEXT) ILIKE ?";
+            ps = conexion.prepareStatement(sql);
+            ps.setString(1, "%" + idPaquete + "%");
+
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                Object[] fila = new Object[9];
+                fila[0] = rs.getInt("IDPaquete");
+                fila[1] = rs.getBigDecimal("peso");
+                fila[2] = rs.getBigDecimal("ancho");
+                fila[3] = rs.getBigDecimal("largo");
+                fila[4] = rs.getString("contenido");
+                fila[5] = rs.getString("remitente");
+                fila[6] = rs.getString("direccionDestino");
+                fila[7] = rs.getString("estado");
+                fila[8] = rs.getTimestamp("fechaEnvio");
+
+                modelo.addRow(fila);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            // Cerrar recursos
+            try {
+                if (rs != null) {
+                    rs.close();
+                }
+                if (ps != null) {
+                    ps.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+
+        return modelo;
+    }
 
 }
-  
