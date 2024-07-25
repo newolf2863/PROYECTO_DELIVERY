@@ -11,6 +11,7 @@ import java.util.List;
 import proyecto_encomienda.GESTION_PAQUETES.BACKEND.Paquete;
 import GESTOR_PERFILES.Conductor;
 
+
 public class Envio {
     private String descripcion;
     private Conductor conductor;
@@ -81,7 +82,10 @@ public class Envio {
             System.out.println("Paquetes enviados:");
             System.out.println("CÓDIGO TRANCKING DEL PAQUETE ----- DIRECCION DE ENTREGA");
             for (Paquete paquete : paquetes) {
+                System.out.println(paquete.getCodigoTracking()+ "  -----  " + paquete.getDireccionDestino());
+
                 System.out.println(paquete.getCodigoTracking() + "  -----  " + paquete.getDireccionDestino());
+
             }
         }
         System.out.println();

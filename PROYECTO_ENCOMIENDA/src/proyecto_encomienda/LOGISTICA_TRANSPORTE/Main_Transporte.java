@@ -1,18 +1,7 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
-package proyecto_encomienda.LOGISTICA_TRANSPORTE;
 
-/**
- *
- * @author ediso
- */
+package proyecto_encomienda.LOGISTICA_TRANSPORTE;
 import proyecto_encomienda.LOGISTICA_TRANSPORTE.Asignacion;
 import  proyecto_encomienda.LOGISTICA_TRANSPORTE.Camion;
-import  proyecto_encomienda.LOGISTICA_TRANSPORTE.Carro;
-import  proyecto_encomienda.LOGISTICA_TRANSPORTE.Envio;
-import  proyecto_encomienda.LOGISTICA_TRANSPORTE.Reporte;
 import  proyecto_encomienda.LOGISTICA_TRANSPORTE.Ubicacion;
 import  proyecto_encomienda.LOGISTICA_TRANSPORTE.Vehiculo;
 import proyecto_encomienda.GESTION_PAQUETES.BACKEND.Paquete;

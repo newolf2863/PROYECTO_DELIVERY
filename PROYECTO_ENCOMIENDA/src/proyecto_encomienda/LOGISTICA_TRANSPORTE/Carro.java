@@ -6,7 +6,7 @@ package proyecto_encomienda.LOGISTICA_TRANSPORTE;
 
 /**
  *
- * @author ediso
+ * @author USUARIO
  */
 public class Carro extends Vehiculo {
 
