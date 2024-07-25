@@ -122,9 +122,9 @@ public class JPSalir extends javax.swing.JPanel {
     private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
         getToolkit().beep();
         int dialogButton = JOptionPane.YES_NO_OPTION;
-        int dialogResult = JOptionPane.showConfirmDialog(null, "Estas seguro de cerrar la aplicacion?", "Warning", dialogButton);
+        int dialogResult = JOptionPane.showConfirmDialog(null, "Estas seguro de quieres cerrar la ventana?", "Warning", dialogButton);
         if (dialogResult == JOptionPane.YES_OPTION) {
-            System.exit(0);
+            //this.dispose();
         }
     }//GEN-LAST:event_btnExitActionPerformed
 

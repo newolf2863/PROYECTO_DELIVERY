@@ -45,7 +45,7 @@ public class JFInventario extends javax.swing.JFrame {
     private boolean remitenteValidar = false;
     Connection cnx;
     
-    //
+    //Mouse
     int xMouse, yMouse; 
     /**
      * Creates new form JFInventario
@@ -161,6 +161,10 @@ public void contadorProductos() {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel3 = new javax.swing.JPanel();
+        jLabel69 = new javax.swing.JLabel();
+        btnExit = new javax.swing.JButton();
+        jPrincipal = new javax.swing.JPanel();
         jPanel_General = new javax.swing.JTabbedPane();
         jPIR = new javax.swing.JPanel();
         jScrollPane8 = new javax.swing.JScrollPane();
@@ -189,10 +193,6 @@ public void contadorProductos() {
         jTDestino = new javax.swing.JTextField();
         jTAncho = new javax.swing.JTextField();
         jPID = new javax.swing.JPanel();
-        jPDarDeBajaInventario = new javax.swing.JPanel();
-        jScrollPane10 = new javax.swing.JScrollPane();
-        jTablaInventario3 = new javax.swing.JTable();
-        jLabel10 = new javax.swing.JLabel();
         jPanel7 = new javax.swing.JPanel();
         jLabel12 = new javax.swing.JLabel();
         jTCodigoTraking = new javax.swing.JTextField();
@@ -205,6 +205,8 @@ public void contadorProductos() {
         jTFDescripcionInventario = new javax.swing.JTextField();
         jTFCodigoInventario = new javax.swing.JTextField();
         jLabel116 = new javax.swing.JLabel();
+        jScrollPane10 = new javax.swing.JScrollPane();
+        jTablaInventario3 = new javax.swing.JTable();
         jPIA = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         jScrollPane7 = new javax.swing.JScrollPane();
@@ -213,16 +215,66 @@ public void contadorProductos() {
         jPanel6 = new javax.swing.JPanel();
         jScrollPane9 = new javax.swing.JScrollPane();
         jTablaInventario2 = new javax.swing.JTable();
-        jPanel3 = new javax.swing.JPanel();
-        jLabel69 = new javax.swing.JLabel();
-        btnExit = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Paqueteria");
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setIconImages(null);
+        setUndecorated(true);
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jPanel3.setBackground(new java.awt.Color(146, 10, 48));
+        jPanel3.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                jPanel3MouseDragged(evt);
+            }
+        });
+        jPanel3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jPanel3MousePressed(evt);
+            }
+        });
+
+        jLabel69.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel69.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel69.setText("Gestion de Envios");
+
+        btnExit.setForeground(new java.awt.Color(255, 255, 255));
+        btnExit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto_ecomienda/iconos/power_24dp.png"))); // NOI18N
+        btnExit.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        btnExit.setContentAreaFilled(false);
+        btnExit.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnExit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExitActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel69)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 910, Short.MAX_VALUE)
+                .addComponent(btnExit, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel69)
+                    .addComponent(btnExit, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+
+        getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1050, 30));
+
+        jPrincipal.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jPIR.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jTPaquetes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -236,6 +288,8 @@ public void contadorProductos() {
             }
         ));
         jScrollPane8.setViewportView(jTPaquetes);
+
+        jPIR.add(jScrollPane8, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 380, 961, 153));
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Datos del paquete"));
 
@@ -449,50 +503,11 @@ public void contadorProductos() {
                 .addGap(18, 18, 18))
         );
 
-        javax.swing.GroupLayout jPIRLayout = new javax.swing.GroupLayout(jPIR);
-        jPIR.setLayout(jPIRLayout);
-        jPIRLayout.setHorizontalGroup(
-            jPIRLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPIRLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPIRLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(jPIRLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 961, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(33, 33, 33))
-        );
-        jPIRLayout.setVerticalGroup(
-            jPIRLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPIRLayout.createSequentialGroup()
-                .addGap(18, 18, 18)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26))
-        );
+        jPIR.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 18, 991, -1));
 
         jPanel_General.addTab("Registrar", jPIR);
 
-        jPID.setLayout(new java.awt.CardLayout());
-
-        jTablaInventario3.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        jTablaInventario3.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTablaInventario3MouseClicked(evt);
-            }
-        });
-        jScrollPane10.setViewportView(jTablaInventario3);
+        jPID.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel7.setBorder(javax.swing.BorderFactory.createTitledBorder("Agregar paquetes a un inventario"));
 
@@ -547,7 +562,7 @@ public void contadorProductos() {
         jPanel7Layout.setHorizontalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
-                .addGap(20, 20, 20)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jBRegistrarPAInventario)
                     .addGroup(jPanel7Layout.createSequentialGroup()
@@ -563,8 +578,8 @@ public void contadorProductos() {
                             .addComponent(jTiDPaquete1)
                             .addComponent(jTFDescripcionInventario))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane15, javax.swing.GroupLayout.DEFAULT_SIZE, 676, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jScrollPane15, javax.swing.GroupLayout.PREFERRED_SIZE, 637, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(17, 17, 17))
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -577,7 +592,7 @@ public void contadorProductos() {
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTFCodigoInventario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel116))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel32)
                     .addComponent(jTiDPaquete1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -585,57 +600,52 @@ public void contadorProductos() {
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel115)
                     .addComponent(jTFDescripcionInventario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(31, 31, 31)
+                .addGap(51, 51, 51)
                 .addComponent(jBRegistrarPAInventario)
-                .addGap(40, 40, 40))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(20, 20, 20))
+            .addGroup(jPanel7Layout.createSequentialGroup()
                 .addComponent(jScrollPane15, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
-        javax.swing.GroupLayout jPDarDeBajaInventarioLayout = new javax.swing.GroupLayout(jPDarDeBajaInventario);
-        jPDarDeBajaInventario.setLayout(jPDarDeBajaInventarioLayout);
-        jPDarDeBajaInventarioLayout.setHorizontalGroup(
-            jPDarDeBajaInventarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPDarDeBajaInventarioLayout.createSequentialGroup()
-                .addGroup(jPDarDeBajaInventarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPDarDeBajaInventarioLayout.createSequentialGroup()
-                        .addGap(61, 61, 61)
-                        .addGroup(jPDarDeBajaInventarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, 920, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPDarDeBajaInventarioLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jPDarDeBajaInventarioLayout.setVerticalGroup(
-            jPDarDeBajaInventarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPDarDeBajaInventarioLayout.createSequentialGroup()
-                .addGap(33, 33, 33)
-                .addComponent(jLabel10)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, 252, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(43, 43, 43))
-        );
+        jPID.add(jPanel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 980, -1));
 
-        jPID.add(jPDarDeBajaInventario, "jPDarDeBajaInventario");
+        jTablaInventario3.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jTablaInventario3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTablaInventario3MouseClicked(evt);
+            }
+        });
+        jScrollPane10.setViewportView(jTablaInventario3);
+
+        jPID.add(jScrollPane10, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 310, 920, 233));
 
         jPanel_General.addTab("Registrar paquetes a un inventario", jPID);
+
+        jPIA.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 569, Short.MAX_VALUE)
+            .addGap(0, 903, Short.MAX_VALUE)
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 317, Short.MAX_VALUE)
+            .addGap(0, 474, Short.MAX_VALUE)
         );
+
+        jPIA.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(982, 0, -1, -1));
 
         jTablaInventario1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -650,30 +660,11 @@ public void contadorProductos() {
         ));
         jScrollPane7.setViewportView(jTablaInventario1);
 
-        javax.swing.GroupLayout jPIALayout = new javax.swing.GroupLayout(jPIA);
-        jPIA.setLayout(jPIALayout);
-        jPIALayout.setHorizontalGroup(
-            jPIALayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPIALayout.createSequentialGroup()
-                .addGroup(jPIALayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPIALayout.createSequentialGroup()
-                        .addGap(284, 284, 284)
-                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPIALayout.createSequentialGroup()
-                        .addGap(75, 75, 75)
-                        .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 891, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jPIALayout.setVerticalGroup(
-            jPIALayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPIALayout.createSequentialGroup()
-                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
+        jPIA.add(jScrollPane7, new org.netbeans.lib.awtextra.AbsoluteConstraints(48, 256, 891, 237));
 
         jPanel_General.addTab("Actualizar", jPIA);
+
+        jPanel5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder("Consultar Inventario"));
 
@@ -688,6 +679,8 @@ public void contadorProductos() {
             .addGap(0, 148, Short.MAX_VALUE)
         );
 
+        jPanel5.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(364, 51, -1, -1));
+
         jTablaInventario2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -701,81 +694,13 @@ public void contadorProductos() {
         ));
         jScrollPane9.setViewportView(jTablaInventario2);
 
-        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
-        jPanel5.setLayout(jPanel5Layout);
-        jPanel5Layout.setHorizontalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addGap(66, 66, 66)
-                        .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, 896, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addGap(364, 364, 364)
-                        .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jPanel5Layout.setVerticalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
-                .addGap(51, 51, 51)
-                .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(40, 40, 40))
-        );
+        jPanel5.add(jScrollPane9, new org.netbeans.lib.awtextra.AbsoluteConstraints(66, 243, 896, 252));
 
         jPanel_General.addTab("Consultar", jPanel5);
 
-        getContentPane().add(jPanel_General, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 80, 930, 500));
+        jPrincipal.add(jPanel_General, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 1030, 610));
 
-        jPanel3.setBackground(new java.awt.Color(146, 10, 48));
-        jPanel3.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
-            public void mouseDragged(java.awt.event.MouseEvent evt) {
-                jPanel3MouseDragged(evt);
-            }
-        });
-        jPanel3.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                jPanel3MousePressed(evt);
-            }
-        });
-
-        jLabel69.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel69.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel69.setText("Gestion de Envios");
-
-        btnExit.setForeground(new java.awt.Color(255, 255, 255));
-        btnExit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto_ecomienda/iconos/power_24dp.png"))); // NOI18N
-        btnExit.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        btnExit.setContentAreaFilled(false);
-        btnExit.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnExit.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnExitActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel69)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 870, Short.MAX_VALUE)
-                .addComponent(btnExit, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel69)
-                    .addComponent(btnExit, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
-
-        getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1010, 30));
+        getContentPane().add(jPrincipal, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 30, 1010, 590));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -1018,7 +943,6 @@ public void contadorProductos() {
     private javax.swing.JLabel errorInventario8;
     private javax.swing.JButton jBRegistrarPAInventario;
     private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel115;
     private javax.swing.JLabel jLabel116;
@@ -1034,7 +958,6 @@ public void contadorProductos() {
     private javax.swing.JLabel jLabel62;
     private javax.swing.JLabel jLabel63;
     private javax.swing.JLabel jLabel69;
-    private javax.swing.JPanel jPDarDeBajaInventario;
     private javax.swing.JPanel jPIA;
     private javax.swing.JPanel jPID;
     private javax.swing.JPanel jPIR;
@@ -1045,6 +968,7 @@ public void contadorProductos() {
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JTabbedPane jPanel_General;
+    private javax.swing.JPanel jPrincipal;
     private javax.swing.JScrollPane jScrollPane10;
     private javax.swing.JScrollPane jScrollPane15;
     private javax.swing.JScrollPane jScrollPane7;
