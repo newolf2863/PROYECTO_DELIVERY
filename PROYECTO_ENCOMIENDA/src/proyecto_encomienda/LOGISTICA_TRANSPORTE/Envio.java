@@ -1,53 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
-package Negocio;
-
-/**
- *
- * @author juand_jus2zd
- */
-public class Envio {
-    private int IdEnvio;
-    public String descripcion;
-
-    public Envio(int IdEnvio, String descripcion) {
-        this.IdEnvio = IdEnvio;
-        this.descripcion = descripcion;
-    }
-    
-    public int verificarEstadoEnvio(){
-        return 0;
-    }
-    
-    public boolean notificar(){
-        return false;
-    }
-
-    public int getIdEnvio() {
-        return IdEnvio;
-    }
-    public String getDescripcion() {
-        return descripcion;
-    }
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
-    }
-
-    @Override
-    public String toString() {
-        return "Envio{" + "IdEnvio=" + IdEnvio + ", descripcion=" + descripcion + '}';
-    }
-    
-    
-}
-
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
-
 package proyecto_encomienda.LOGISTICA_TRANSPORTE;
 /**
  *
@@ -58,7 +8,7 @@ package proyecto_encomienda.LOGISTICA_TRANSPORTE;
 import java.util.Date;
 import java.util.List;
 import proyecto_encomienda.GESTION_PAQUETES.BACKEND.Paquete;
-import proyecto_encomienda.GESTOR_PERFILES.Conductor;
+import GESTOR_PERFILES.Conductor;
 
 public class Envio {
     private String descripcion;
@@ -130,7 +80,7 @@ public class Envio {
             System.out.println("Paquetes enviados:");
             System.out.println("CÓDIGO TRANCKING DEL PAQUETE ----- DIRECCION DE ENTREGA");
             for (Paquete paquete : paquetes) {
-                System.out.println(paquete.obtenerCodigo() + "  -----  " + paquete.obtenerDireccionDestino());
+                System.out.println(paquete.getCodigoTracking()+ "  -----  " + paquete.getDireccionDestino());
             }
         }
         System.out.println();

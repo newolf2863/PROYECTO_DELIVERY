@@ -1,9 +1,7 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
-package Negocio;
 
+package proyecto_encomienda.LOGISTICA_TRANSPORTE;
+
+import GESTOR_PERFILES.Conductor;
 import java.util.ArrayList;
 
 /**
@@ -11,7 +9,6 @@ import java.util.ArrayList;
  * @author juand_jus2zd
  */
 public class AsignacionConductorVehiculo {
-    
     private ArrayList <Conductor> listaConductores;
     private ArrayList <Vehiculo> listaVehiculos;
     
