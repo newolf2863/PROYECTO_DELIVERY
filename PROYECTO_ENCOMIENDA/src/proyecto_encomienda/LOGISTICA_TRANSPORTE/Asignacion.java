@@ -1,20 +1,11 @@
 package proyecto_encomienda.LOGISTICA_TRANSPORTE;
 
-import GESTOR_PERFILES.Conductor;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
-/**
- *
- * @author ediso
- */
 import proyecto_encomienda.GESTION_PAQUETES.BACKEND.EstadoDelPaquete;
 import proyecto_encomienda.GESTION_PAQUETES.BACKEND.Inventario;
 import proyecto_encomienda.GESTION_PAQUETES.BACKEND.Paquete;
 
+import GESTOR_PERFILES.Conductor;
 
 import java.util.ArrayList;
 import java.util.Date;

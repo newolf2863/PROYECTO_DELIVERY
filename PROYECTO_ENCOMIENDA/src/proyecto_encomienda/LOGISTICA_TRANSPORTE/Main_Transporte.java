@@ -1,20 +1,11 @@
 
 package proyecto_encomienda.LOGISTICA_TRANSPORTE;
-
-/**
- *
- * @author ediso
- */
-import GESTOR_PERFILES.Conductor;
 import proyecto_encomienda.LOGISTICA_TRANSPORTE.Asignacion;
 import  proyecto_encomienda.LOGISTICA_TRANSPORTE.Camion;
-import  proyecto_encomienda.LOGISTICA_TRANSPORTE.Carro;
-import  proyecto_encomienda.LOGISTICA_TRANSPORTE.Envio;
-import  proyecto_encomienda.LOGISTICA_TRANSPORTE.Reporte;
 import  proyecto_encomienda.LOGISTICA_TRANSPORTE.Ubicacion;
 import  proyecto_encomienda.LOGISTICA_TRANSPORTE.Vehiculo;
 import proyecto_encomienda.GESTION_PAQUETES.BACKEND.Paquete;
-
+import GESTOR_PERFILES.Conductor;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,7 +1,8 @@
-
 package proyecto_encomienda.LOGISTICA_TRANSPORTE;
+
 import java.util.Date;
 import java.util.List;
+
 /**
  *
  * @author ediso
