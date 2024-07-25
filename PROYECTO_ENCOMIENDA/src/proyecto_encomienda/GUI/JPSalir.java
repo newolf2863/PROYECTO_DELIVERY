@@ -8,9 +8,9 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import proyecto_ecomienda.BDYValidaciones.ConsultarBD;
-import proyecto_ecomienda.BDYValidaciones.CreadorTablas;
-import proyecto_ecomienda.BDYValidaciones.IngresadorDeDatos;
+import proyecto_encomienda.BDYValidaciones.ConsultarBD;
+import proyecto_encomienda.BDYValidaciones.CreadorTablas;
+import proyecto_encomienda.BDYValidaciones.IngresadorDeDatos;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
@@ -21,8 +21,8 @@ import javax.swing.JTable;
 import javax.swing.RowSorter;
 import javax.swing.SortOrder;
 import javax.swing.table.TableRowSorter;
-import proyecto_ecomienda.BDYValidaciones.ValidadorDeSwings;
-import proyecto_ecomienda.BDYValidaciones.ValidadorDeRegistros;
+import proyecto_encomienda.BDYValidaciones.ValidadorDeSwings;
+import proyecto_encomienda.BDYValidaciones.ValidadorDeRegistros;
 import proyecto_encomienda.GESTION_PAQUETES.BACKEND.Paquete;
 
 

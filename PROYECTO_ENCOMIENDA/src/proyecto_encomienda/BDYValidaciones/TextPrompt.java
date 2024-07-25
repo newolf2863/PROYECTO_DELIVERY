@@ -1,4 +1,4 @@
-package proyecto_ecomienda.BDYValidaciones;
+package proyecto_encomienda.BDYValidaciones;
 
 /*
  * To change this license header, choose License Headers in Project Properties.

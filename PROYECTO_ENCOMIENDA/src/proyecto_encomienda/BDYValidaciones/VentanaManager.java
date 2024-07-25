@@ -1,5 +1,5 @@
 
-package proyecto_ecomienda.BDYValidaciones;
+package proyecto_encomienda.BDYValidaciones;
 
 import javax.swing.*;
 import java.util.HashMap;

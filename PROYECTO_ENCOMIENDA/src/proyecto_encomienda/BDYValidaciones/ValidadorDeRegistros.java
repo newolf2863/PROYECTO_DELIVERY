@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package proyecto_ecomienda.BDYValidaciones;
+package proyecto_encomienda.BDYValidaciones;
 
 import java.awt.Color;
 import java.awt.Toolkit;
@@ -11,7 +11,7 @@ import java.awt.datatransfer.DataFlavor;
 import java.awt.datatransfer.Transferable;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
-import static proyecto_ecomienda.BDYValidaciones.ValidarTelefono.validarTelefonoClienteFactura;
+import static proyecto_encomienda.BDYValidaciones.ValidarTelefono.validarTelefonoClienteFactura;
 
 /**
  *

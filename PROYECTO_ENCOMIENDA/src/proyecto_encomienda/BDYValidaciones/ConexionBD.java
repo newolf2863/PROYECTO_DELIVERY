@@ -1,4 +1,4 @@
-package proyecto_ecomienda.BDYValidaciones;
+package proyecto_encomienda.BDYValidaciones;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

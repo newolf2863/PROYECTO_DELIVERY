@@ -12,15 +12,15 @@ import javax.swing.JRootPane;
 import java.sql.Connection;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import proyecto_ecomienda.BDYValidaciones.ActualizarInventario;
-import proyecto_ecomienda.BDYValidaciones.Empleados;
+import proyecto_encomienda.BDYValidaciones.ActualizarInventario;
+import proyecto_encomienda.BDYValidaciones.Empleados;
 import javax.swing.ImageIcon;
 import javax.swing.JTextField;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JLabel;
-import proyecto_ecomienda.BDYValidaciones.ValidadorDeSwings;
-import proyecto_ecomienda.BDYValidaciones.ValidadorDeRegistros;
+import proyecto_encomienda.BDYValidaciones.ValidadorDeSwings;
+import proyecto_encomienda.BDYValidaciones.ValidadorDeRegistros;
 
 /**
  *
