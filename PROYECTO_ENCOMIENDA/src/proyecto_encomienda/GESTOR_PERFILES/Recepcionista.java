@@ -1,4 +1,5 @@
-package GESTOR_PERFILES;
+package proyecto_encomienda.GESTOR_PERFILES;
+
 
 import java.io.*;
 import java.util.Arrays;

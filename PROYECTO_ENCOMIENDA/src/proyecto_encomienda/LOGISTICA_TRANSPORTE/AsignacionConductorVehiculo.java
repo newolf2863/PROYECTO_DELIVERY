@@ -1,7 +1,7 @@
 
 package proyecto_encomienda.LOGISTICA_TRANSPORTE;
 
-import GESTOR_PERFILES.Conductor;
+import proyecto_encomienda.GESTOR_PERFILES.Conductor;
 import java.util.ArrayList;
 
 /**

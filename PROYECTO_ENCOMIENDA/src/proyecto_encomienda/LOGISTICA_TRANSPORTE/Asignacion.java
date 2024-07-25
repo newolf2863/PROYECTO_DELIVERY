@@ -5,7 +5,7 @@ import proyecto_encomienda.GESTION_PAQUETES.BACKEND.EstadoDelPaquete;
 import proyecto_encomienda.GESTION_PAQUETES.BACKEND.Inventario;
 import proyecto_encomienda.GESTION_PAQUETES.BACKEND.Paquete;
 
-import GESTOR_PERFILES.Conductor;
+import proyecto_encomienda.GESTOR_PERFILES.Conductor;
 
 import java.util.ArrayList;
 import java.util.Date;
