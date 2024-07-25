@@ -26,6 +26,7 @@ import javax.swing.JTable;
 import javax.swing.RowSorter;
 import javax.swing.SortOrder;
 import javax.swing.table.TableRowSorter;
+import proyecto_ecomienda.BDYValidaciones.TextPrompt;
 import proyecto_ecomienda.BDYValidaciones.ValidadorDeSwings;
 import proyecto_ecomienda.BDYValidaciones.ValidadorDeRegistros;
 import proyecto_encomienda.GESTION_PAQUETES.BACKEND.Paquete;
@@ -60,10 +61,20 @@ public class JFInventario extends javax.swing.JFrame {
         contadorInventario();
         desvanecerP();
         setLocationRelativeTo(null);
+        placeHolder();
     }
     public JFInventario() {      
         initComponents();
     }
+ private void placeHolder() {
+        TextPrompt texto1 = new TextPrompt("Obligatorio", jTContenidoPaquete);
+        TextPrompt texto2 = new TextPrompt("Obligatorio", jTAncho);
+        TextPrompt texto3 = new TextPrompt("Obligatorio", jTPeso);
+        TextPrompt texto = new TextPrompt("Obligatorio", jTRemitente);
+        TextPrompt texto4 = new TextPrompt("Obligatorio", jTLargo);
+        TextPrompt texto5 = new TextPrompt("Obligatorio", jTDestino);
+    }    
+    
 public void contadorProductos() {
         try {
             // Consulta para obtener el máximo ID de Paquete
@@ -735,7 +746,7 @@ public void contadorProductos() {
         jLabel69.setText("Gestion de Envios");
 
         btnExit.setForeground(new java.awt.Color(255, 255, 255));
-        btnExit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto_encomienda/GESTION_PAQUETES/FRONTEND/imagenes/icons8_Delete_32px.png"))); // NOI18N
+        btnExit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto_ecomienda/iconos/power_24dp.png"))); // NOI18N
         btnExit.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         btnExit.setContentAreaFilled(false);
         btnExit.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -752,17 +763,16 @@ public void contadorProductos() {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel69)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 871, Short.MAX_VALUE)
-                .addComponent(btnExit))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 870, Short.MAX_VALUE)
+                .addComponent(btnExit, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addComponent(jLabel69)
-                .addGap(0, 19, Short.MAX_VALUE))
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addComponent(btnExit, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel69)
+                    .addComponent(btnExit, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1010, 30));
@@ -945,14 +955,10 @@ public void contadorProductos() {
         contadorTrakings();
     }//GEN-LAST:event_jBRegistrarPAInventarioActionPerformed
 
-    private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
-        getToolkit().beep();
-        int dialogButton = JOptionPane.YES_NO_OPTION;
-        int dialogResult = JOptionPane.showConfirmDialog(null, "Estas seguro de cerrar esta ventanta?", "Warning", dialogButton);
-        if (dialogResult == JOptionPane.YES_OPTION) {
-         this.dispose();
-        }
-    }//GEN-LAST:event_btnExitActionPerformed
+    private void jPanel3MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel3MousePressed
+        xMouse = evt.getX();
+        yMouse = evt.getY();
+    }//GEN-LAST:event_jPanel3MousePressed
 
     private void jPanel3MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel3MouseDragged
         int x = evt.getXOnScreen();
@@ -960,10 +966,14 @@ public void contadorProductos() {
         this.setLocation(x - xMouse, y - yMouse);
     }//GEN-LAST:event_jPanel3MouseDragged
 
-    private void jPanel3MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel3MousePressed
-        xMouse = evt.getX();
-        yMouse = evt.getY();
-    }//GEN-LAST:event_jPanel3MousePressed
+    private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
+        getToolkit().beep();
+        int dialogButton = JOptionPane.YES_NO_OPTION;
+        int dialogResult = JOptionPane.showConfirmDialog(null, "Estas seguro de cerrar esta ventana?", "Warning", dialogButton);
+        if (dialogResult == JOptionPane.YES_OPTION) {
+            this.dispose();
+        }
+    }//GEN-LAST:event_btnExitActionPerformed
 
     /**
      * @param args the command line arguments
