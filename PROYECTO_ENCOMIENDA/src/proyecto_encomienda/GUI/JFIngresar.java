@@ -38,7 +38,8 @@ public class JFIngresar extends javax.swing.JFrame {
     public JFIngresar() {
 
         initComponents();
-        setIconImage(new ImageIcon(getClass().getResource("/proyecto_ecomienda/iconos/AjustesBest.png")).getImage());
+        setIconImage(new ImageIcon(getClass().
+                getResource("/proyecto_encomienda/GESTION_PAQUETES/FRONTEND/imagenes/AjustesBest.png")).getImage());
         this.setLocationRelativeTo(null);
         setTitle("Login Form");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -284,7 +285,7 @@ public class JFIngresar extends javax.swing.JFrame {
         });
         bg.add(olvidasteContra, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 310, -1, -1));
 
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto_ecomienda/img/gestionDePaquetes.png"))); // NOI18N
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto_encomienda/GESTION_PAQUETES/FRONTEND/imagenes/gestionDePaquetes.png"))); // NOI18N
         bg.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 20, 460, 120));
 
         jLabel4.setFont(new java.awt.Font("Roboto Medium", 1, 24)); // NOI18N

@@ -95,7 +95,8 @@ public class JFMenu extends javax.swing.JFrame {
 
     public JFMenu(String userRol, Connection cnx, String userName) {
         initComponents();
-        setIconImage(new ImageIcon(getClass().getResource("/proyecto_ecomienda/iconos/AjustesBest.png")).getImage());
+        setIconImage(new ImageIcon(getClass().
+                getResource("/proyecto_encomienda/GESTION_PAQUETES/FRONTEND/imagenes/AjustesBest.png")).getImage());
         this.nombreUsuario = userName;
         this.cnx = cnx;
         this.usuario = userRol;
@@ -188,7 +189,6 @@ public class JFMenu extends javax.swing.JFrame {
         menuIncidentes = new javax.swing.JLabel();
         Clicked6 = new javax.swing.JPanel();
         btnExit = new javax.swing.JButton();
-        btnHelp = new javax.swing.JButton();
         panelContent = new javax.swing.JPanel();
         JPGPaquetes = new javax.swing.JPanel();
         jLInicio = new javax.swing.JLabel();
@@ -547,7 +547,7 @@ public class JFMenu extends javax.swing.JFrame {
         jPanel13.setBackground(new java.awt.Color(146, 10, 48));
         jPanel13.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto_ecomienda/img/menu.png"))); // NOI18N
+        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto_encomienda/GESTION_PAQUETES/FRONTEND/imagenes/menu.png"))); // NOI18N
         jButton3.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         jButton3.setContentAreaFilled(false);
         jPanel13.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 80, 50));
@@ -605,7 +605,7 @@ public class JFMenu extends javax.swing.JFrame {
         PanelHome.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 220, 770));
 
         btnExit.setForeground(new java.awt.Color(255, 255, 255));
-        btnExit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto_ecomienda/iconos/power_24dp.png"))); // NOI18N
+        btnExit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto_encomienda/GESTION_PAQUETES/FRONTEND/imagenes/power_24dp.png"))); // NOI18N
         btnExit.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         btnExit.setContentAreaFilled(false);
         btnExit.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -615,18 +615,6 @@ public class JFMenu extends javax.swing.JFrame {
             }
         });
         PanelHome.add(btnExit, new org.netbeans.lib.awtextra.AbsoluteConstraints(1360, 20, 35, 35));
-
-        btnHelp.setForeground(new java.awt.Color(255, 255, 255));
-        btnHelp.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto_ecomienda/iconos/help_outline_black_24dp.png"))); // NOI18N
-        btnHelp.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        btnHelp.setContentAreaFilled(false);
-        btnHelp.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnHelp.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnHelpActionPerformed(evt);
-            }
-        });
-        PanelHome.add(btnHelp, new org.netbeans.lib.awtextra.AbsoluteConstraints(1300, 20, 40, 35));
 
         panelContent.setLayout(new java.awt.CardLayout());
 
@@ -1500,11 +1488,6 @@ public class JFMenu extends javax.swing.JFrame {
         menuLogout.setOpaque(true);
     }//GEN-LAST:event_menuLogoutMouseExited
 
-    private void btnHelpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHelpActionPerformed
-        JOptionPane.showMessageDialog(null, "Muy pronto", "Advertencia", JOptionPane.WARNING_MESSAGE);
-
-    }//GEN-LAST:event_btnHelpActionPerformed
-
     
 
 
@@ -2079,7 +2062,6 @@ public class JFMenu extends javax.swing.JFrame {
     private javax.swing.JPanel JPRemitente;
     private javax.swing.JPanel PanelHome;
     private javax.swing.JButton btnExit;
-    private javax.swing.JButton btnHelp;
     private javax.swing.JTextField campoRespuesta;
     private javax.swing.JCheckBox claveUsuariocheck;
     private javax.swing.JButton jBConsultarInventario3;
