@@ -9,7 +9,7 @@ package proyecto_encomienda.LOGISTICA_TRANSPORTE;
 import java.util.Date;
 import java.util.List;
 import proyecto_encomienda.GESTION_PAQUETES.BACKEND.Paquete;
-import GESTOR_PERFILES.Conductor;
+import proyecto_encomienda.GESTOR_PERFILES.Conductor;
 
 
 public class Envio {

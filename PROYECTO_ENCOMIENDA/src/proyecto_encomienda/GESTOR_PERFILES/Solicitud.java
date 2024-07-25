@@ -1,5 +1,4 @@
-package GESTOR_PERFILES;
-
+package proyecto_encomienda.GESTOR_PERFILES;
 public class Solicitud {
     Perfil perfil;
 }

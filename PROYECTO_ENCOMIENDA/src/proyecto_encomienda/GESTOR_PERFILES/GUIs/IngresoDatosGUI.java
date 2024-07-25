@@ -1,8 +1,8 @@
-package GESTOR_PERFILES.GUIs;
+package proyecto_encomienda.GESTOR_PERFILES.GUIs;
 
-import GESTOR_PERFILES.Conductor;
-import GESTOR_PERFILES.Recepcionista;
-import GESTOR_PERFILES.Remitente;
+import proyecto_encomienda.GESTOR_PERFILES.Conductor;
+import proyecto_encomienda.GESTOR_PERFILES.Recepcionista;
+import proyecto_encomienda.GESTOR_PERFILES.Remitente;
 
 import javax.swing.*;
 import java.awt.*;

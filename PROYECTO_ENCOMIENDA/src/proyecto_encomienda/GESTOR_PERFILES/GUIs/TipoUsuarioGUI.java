@@ -1,4 +1,4 @@
-package GESTOR_PERFILES.GUIs;
+package proyecto_encomienda.GESTOR_PERFILES.GUIs;
 
 import javax.swing.*;
 import java.awt.*;
