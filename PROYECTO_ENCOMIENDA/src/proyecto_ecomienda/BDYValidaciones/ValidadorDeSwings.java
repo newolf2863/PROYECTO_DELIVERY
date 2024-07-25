@@ -19,23 +19,31 @@ public class ValidadorDeSwings {
 
 public List<String> validarCamposLista(JTextField[] campos, Boolean[] valores, JLabel[] labels, String[] nombresCampos) {
     List<String> errores = new ArrayList<>();
+
     for (int i = 0; i < campos.length; i++) {
         JTextField campo = campos[i];
-        boolean valor = valores[i];
+        Boolean valor = valores[i]; // Cambié `boolean` a `Boolean` para permitir valores nulos
         JLabel label = labels[i];
         String nombreCampo = nombresCampos[i];
-        if (!campo.getText().isEmpty() && !valor) {
+
+        // Validar campos vacíos
+        if (campo.getText().isEmpty()) {
+            errores.add("El campo " + nombreCampo + " no puede estar vacío.");
             label.setVisible(true);
             campo.setBackground(new Color(255, 204, 204));
-            String mensajeError = "Error en el campo " + nombreCampo + ": El campo es inválido";
-            errores.add(mensajeError);
+        } else if (!valor) { // Valida con el estado booleano pasado
+            errores.add("Error en el campo " + nombreCampo + ": El campo es inválido");
+            label.setVisible(true);
+            campo.setBackground(new Color(255, 204, 204));
         } else {
             campo.setBackground(Color.WHITE);
             label.setVisible(false);
         }
     }
+
     return errores;
 }
+
 
 
 public List<String> validarCamposVaciosLista(JTextField[] campos, Boolean[] valores, JLabel[] labels,String[] nombresCampos) {

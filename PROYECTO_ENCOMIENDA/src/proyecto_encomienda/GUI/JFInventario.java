@@ -37,7 +37,7 @@ import proyecto_encomienda.GESTION_PAQUETES.BACKEND.Paquete;
  * @author USUARIO
  */
 public class JFInventario extends javax.swing.JFrame {
-   ValidadorDeRegistros validarRegistroF = new ValidadorDeRegistros();
+    ValidadorDeRegistros validarRegistroF = new ValidadorDeRegistros();
     ValidadorDeSwings validadorCheck = new ValidadorDeSwings();
     private boolean anchoValidar = false;
     private boolean largoValidar = false;

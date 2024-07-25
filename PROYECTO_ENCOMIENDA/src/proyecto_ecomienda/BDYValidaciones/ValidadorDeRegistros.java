@@ -4,7 +4,6 @@
  */
 package proyecto_ecomienda.BDYValidaciones;
 
-
 import java.awt.Color;
 import java.awt.Toolkit;
 import java.awt.datatransfer.Clipboard;
@@ -48,6 +47,8 @@ public class ValidadorDeRegistros {
                 valor = validarMaximoDosDecimales(texto);
             case "v" ->
                 valor = !texto.isEmpty();
+            case "i" ->
+                valor = texto.matches("^\\d+$");
         }
         if (valor) {
             textField.setBackground(new Color(255, 255, 255));
