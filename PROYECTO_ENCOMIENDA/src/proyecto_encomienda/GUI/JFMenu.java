@@ -1,7 +1,7 @@
 package proyecto_encomienda.GUI;
 
-import proyecto_ecomienda.BDYValidaciones.UsuarioManager;
-import proyecto_ecomienda.BDYValidaciones.ModuloUsuarios;
+import proyecto_encomienda.BDYValidaciones.UsuarioManager;
+import proyecto_encomienda.BDYValidaciones.ModuloUsuarios;
 import com.toedter.calendar.JDateChooser;
 import java.awt.CardLayout;
 import java.awt.Color;
@@ -21,14 +21,14 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import proyecto_ecomienda.BDYValidaciones.ActualizarInventario;
-import proyecto_ecomienda.BDYValidaciones.ConsultarBD;
-import proyecto_ecomienda.BDYValidaciones.CreadorTablas;
+import proyecto_encomienda.BDYValidaciones.ActualizarInventario;
+import proyecto_encomienda.BDYValidaciones.ConsultarBD;
+import proyecto_encomienda.BDYValidaciones.CreadorTablas;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import proyecto_ecomienda.BDYValidaciones.Empleados;
-import proyecto_ecomienda.BDYValidaciones.RegistradoraDeUsuarios;
-import proyecto_ecomienda.BDYValidaciones.ValidadorCedulas;
+import proyecto_encomienda.BDYValidaciones.Empleados;
+import proyecto_encomienda.BDYValidaciones.RegistradoraDeUsuarios;
+import proyecto_encomienda.BDYValidaciones.ValidadorCedulas;
 import javax.swing.ImageIcon;
 import javax.swing.JTextField;
 import com.toedter.calendar.JTextFieldDateEditor;
@@ -36,10 +36,10 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JLabel;
 import javax.swing.JTable;
-import proyecto_ecomienda.BDYValidaciones.SessionManager;
-import proyecto_ecomienda.BDYValidaciones.ValidadorDeSwings;
-import proyecto_ecomienda.BDYValidaciones.ValidadorDeRegistros;
-import proyecto_ecomienda.BDYValidaciones.VentanaManager;
+import proyecto_encomienda.BDYValidaciones.SessionManager;
+import proyecto_encomienda.BDYValidaciones.ValidadorDeSwings;
+import proyecto_encomienda.BDYValidaciones.ValidadorDeRegistros;
+import proyecto_encomienda.BDYValidaciones.VentanaManager;
 
 /**
  *

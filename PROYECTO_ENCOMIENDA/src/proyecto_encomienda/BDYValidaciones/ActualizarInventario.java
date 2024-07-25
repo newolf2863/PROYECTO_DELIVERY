@@ -1,4 +1,4 @@
-package proyecto_ecomienda.BDYValidaciones;
+package proyecto_encomienda.BDYValidaciones;
 
 import java.math.BigDecimal;
 import java.sql.Connection;

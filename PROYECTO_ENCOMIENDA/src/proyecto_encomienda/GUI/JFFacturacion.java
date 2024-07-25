@@ -12,20 +12,20 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import proyecto_ecomienda.BDYValidaciones.ConsultarBD;
-import proyecto_ecomienda.BDYValidaciones.CreadorTablas;
+import proyecto_encomienda.BDYValidaciones.ConsultarBD;
+import proyecto_encomienda.BDYValidaciones.CreadorTablas;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import proyecto_ecomienda.BDYValidaciones.ActualizarEstadoFactura;
-import proyecto_ecomienda.BDYValidaciones.RegistrarDatosFactura;
+import proyecto_encomienda.BDYValidaciones.ActualizarEstadoFactura;
+import proyecto_encomienda.BDYValidaciones.RegistrarDatosFactura;
 import javax.swing.ImageIcon;
 import javax.swing.JTextField;
 import com.toedter.calendar.JTextFieldDateEditor;
 import java.util.List;
 import javax.swing.JLabel;
-import proyecto_ecomienda.BDYValidaciones.ValidadorDeSwings;
-import proyecto_ecomienda.BDYValidaciones.ValidadorDeRegistros;
-import proyecto_ecomienda.BDYValidaciones.VisibilidadManager;
+import proyecto_encomienda.BDYValidaciones.ValidadorDeSwings;
+import proyecto_encomienda.BDYValidaciones.ValidadorDeRegistros;
+import proyecto_encomienda.BDYValidaciones.VisibilidadManager;
 /**
  *
  * @author USUARIO
