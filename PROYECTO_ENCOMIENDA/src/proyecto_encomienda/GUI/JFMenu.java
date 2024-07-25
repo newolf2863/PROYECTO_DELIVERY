@@ -37,6 +37,8 @@ import proyecto_ecomienda.BDYValidaciones.ValidadorCedulas;
 import javax.swing.ImageIcon;
 import javax.swing.JTextField;
 import com.toedter.calendar.JTextFieldDateEditor;
+import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JLabel;
@@ -62,8 +64,9 @@ import proyecto_encomienda.INCIDENTES.RechazoEntrega;
  * @author Moises
  */
 public class JFMenu extends javax.swing.JFrame {
-//Clases
+//Vistas
 
+//Clases   
     ValidadorDeRegistros validarRegistroF = new ValidadorDeRegistros();
     ValidadorDeSwings validadorCheck = new ValidadorDeSwings();
 //RegistrarDatosFactura facturaRegistrar = new RegistrarDatosFactura();
@@ -163,7 +166,6 @@ public class JFMenu extends javax.swing.JFrame {
 
     public JFMenu(String userRol, Connection cnx, String userName) {
         initComponents();
-        // Limpia jTablaInventario4
         setIconImage(new ImageIcon(getClass().getResource("/proyecto_ecomienda/iconos/AjustesBest.png")).getImage());
         this.nombreUsuario = userName;
         this.cnx = cnx;
@@ -194,7 +196,7 @@ public class JFMenu extends javax.swing.JFrame {
         contadorProductos();
         contadorInventario();
         contadorIncidentes();
-        contador1();
+        contadorTrakings();
         java.util.Date fechaActual = new java.util.Date();
         // Configura el JDateChooser
         jDateChooserFecha.setMaxSelectableDate(fechaActual); // Fecha máxima permitida
@@ -212,6 +214,7 @@ public class JFMenu extends javax.swing.JFrame {
         jTFAdminClave.setToolTipText("Aquí puedes ingresar tu contraseña.");
         desvanecerP();
         placeHolder();
+        
     }
 
     private void placeHolder() {
@@ -252,7 +255,7 @@ public class JFMenu extends javax.swing.JFrame {
             // Maneja cualquier error de conexión o consulta aquí
         }
     }
-    
+
     public void contadorInventario() {
         try {
             // Consulta para obtener el máximo ID de Paquete
@@ -291,7 +294,7 @@ public class JFMenu extends javax.swing.JFrame {
         }
     }
 
-    public void contador1() {
+    public void contadorTrakings() {
         try {
             // Consulta para obtener el máximo ID de Paquete
             String consulta = "SELECT COALESCE(MAX(codigoTraking), 0) AS max_id FROM Inventario_Paquete";
@@ -846,7 +849,6 @@ public class JFMenu extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("SistemaBestColor");
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        setUndecorated(true);
         setResizable(false);
 
         Home.setLayout(new java.awt.CardLayout());
@@ -1374,7 +1376,7 @@ public class JFMenu extends javax.swing.JFrame {
                                                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                                                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                                         .addComponent(jTContenidoPaquete, javax.swing.GroupLayout.Alignment.LEADING)
-                                                        .addComponent(jTLargo, javax.swing.GroupLayout.DEFAULT_SIZE, 258, Short.MAX_VALUE))
+                                                        .addComponent(jTLargo))
                                                     .addGap(18, 18, 18)
                                                     .addComponent(jLabel62))
                                                 .addGroup(jPanel2Layout.createSequentialGroup()
@@ -1454,16 +1456,16 @@ public class JFMenu extends javax.swing.JFrame {
                 .addGroup(jPIRLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPIRLayout.createSequentialGroup()
-                        .addGap(0, 40, Short.MAX_VALUE)
+                        .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 961, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(33, 33, 33))
         );
         jPIRLayout.setVerticalGroup(
             jPIRLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPIRLayout.createSequentialGroup()
-                .addGap(18, 18, 18)
+                .addGap(21, 21, 21)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(26, 26, 26))
         );
@@ -1605,7 +1607,7 @@ public class JFMenu extends javax.swing.JFrame {
                     .addGroup(jPDarDeBajaInventarioLayout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(18, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPDarDeBajaInventarioLayout.setVerticalGroup(
             jPDarDeBajaInventarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1659,7 +1661,7 @@ public class JFMenu extends javax.swing.JFrame {
                     .addGroup(jPIALayout.createSequentialGroup()
                         .addGap(75, 75, 75)
                         .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 891, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(74, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPIALayout.setVerticalGroup(
             jPIALayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1667,7 +1669,7 @@ public class JFMenu extends javax.swing.JFrame {
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 29, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         jPanel_General.addTab("Actualizar", jPIA);
@@ -1710,21 +1712,21 @@ public class JFMenu extends javax.swing.JFrame {
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addGap(364, 364, 364)
                         .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(78, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
                 .addGap(51, 51, 51)
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 71, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(40, 40, 40))
         );
 
         jPanel_General.addTab("Consultar", jPanel5);
 
-        JPGPaquetes.add(jPanel_General, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 50, 1040, 620));
+        JPGPaquetes.add(jPanel_General, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, 1140, 610));
 
         panelContent.add(JPGPaquetes, "card1");
 
@@ -5595,9 +5597,11 @@ public class JFMenu extends javax.swing.JFrame {
         contenido.show(panelContent, "card1");
         cambiarSeccionMenu(0);
         menuinventario.setBackground(Color.decode("#494848"));
-
+        JFInventario inventario=new JFInventario(cnx);
+        inventario.setVisible(true);
     }//GEN-LAST:event_menuinventarioMouseClicked
 
+    
     private void menuProveedoresMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuProveedoresMouseClicked
         contenido.show(panelContent, "card3");
         cambiarSeccionMenu(2);
@@ -5699,52 +5703,52 @@ public class JFMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_btnHelpActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-       JTextField[] campos = {jTAncho, jTLargo, jTPeso, jTRemitente};
-    Boolean[] booleanItem = {anchoValidar, largoValidar, pesoValidar, remitenteValidar};
-    JLabel[] labels = {errorInventario1, errorInventario2, errorInventario3, errorInventario8};
-    String[] nombresCampos = {"Ancho", "Largo", "Peso", "Remitente"};
-    List<String> errores = validadorCheck.validarCamposLista(campos, booleanItem, labels, nombresCampos);
-    errores.addAll(validadorCheck.validarCamposVaciosLista(campos, booleanItem, labels, nombresCampos));
-    String estado = "Pendiente";
-    
-    if (!errores.isEmpty()) {
-        StringBuilder mensajeError = new StringBuilder("Se encontraron los siguientes errores:\n");
-        for (String error : errores) {
-            mensajeError.append("- ").append(error).append("\n");
-        }
-        JOptionPane.showMessageDialog(null, mensajeError.toString(), "Errores", JOptionPane.ERROR_MESSAGE);
-    } else {
-        try {
-            int idPaquete = Integer.parseInt(jTiDPaquete.getText());
-            String contenidoPaquete = jTContenidoPaquete.getText();
-            double ancho = Double.parseDouble(jTAncho.getText());
-            double peso = Double.parseDouble(jTPeso.getText());
-            double largo = Double.parseDouble(jTLargo.getText());
-            String remitente = jTRemitente.getText();
-            String destino = jTDestino.getText();
-            
-            Paquete paquete = new Paquete(idPaquete, ancho, peso, largo, contenidoPaquete, remitente, destino);
-            Paquete.ingresarPaquete(cnx, paquete);
-            paquete.setEstado(estado);
+        JTextField[] campos = {jTAncho, jTLargo, jTPeso, jTRemitente};
+        Boolean[] booleanItem = {anchoValidar, largoValidar, pesoValidar, remitenteValidar};
+        JLabel[] labels = {errorInventario1, errorInventario2, errorInventario3, errorInventario8};
+        String[] nombresCampos = {"Ancho", "Largo", "Peso", "Remitente"};
+        List<String> errores = validadorCheck.validarCamposLista(campos, booleanItem, labels, nombresCampos);
+        errores.addAll(validadorCheck.validarCamposVaciosLista(campos, booleanItem, labels, nombresCampos));
+        String estado = "Pendiente";
 
-            // Llamar a iniciarEnvio después de registrar el paquete
-            paquete.iniciarEnvio();
-            
-            CreadorTablas cnn = new CreadorTablas();
-            DefaultTableModel modelo = cnn.mostrarTablaPaquetes(cnx);
-            
-            jTContenidoPaquete.setText("");
-            jTAncho.setText("");
-            jTPeso.setText("");
-            jTLargo.setText("");
-            jTRemitente.setText("");
-            jTDestino.setText("");         
-            contadorProductos();
-            this.jTPaquetes.setModel(modelo);
-        } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(null, "Error en los datos numéricos", "Error", JOptionPane.ERROR_MESSAGE);
+        if (!errores.isEmpty()) {
+            StringBuilder mensajeError = new StringBuilder("Se encontraron los siguientes errores:\n");
+            for (String error : errores) {
+                mensajeError.append("- ").append(error).append("\n");
+            }
+            JOptionPane.showMessageDialog(null, mensajeError.toString(), "Errores", JOptionPane.ERROR_MESSAGE);
+        } else {
+            try {
+                int idPaquete = Integer.parseInt(jTiDPaquete.getText());
+                String contenidoPaquete = jTContenidoPaquete.getText();
+                double ancho = Double.parseDouble(jTAncho.getText());
+                double peso = Double.parseDouble(jTPeso.getText());
+                double largo = Double.parseDouble(jTLargo.getText());
+                String remitente = jTRemitente.getText();
+                String destino = jTDestino.getText();
+
+                Paquete paquete = new Paquete(idPaquete, ancho, peso, largo, contenidoPaquete, remitente, destino);
+                Paquete.ingresarPaquete(cnx, paquete);
+                paquete.setEstado(estado);
+
+                // Llamar a iniciarEnvio después de registrar el paquete
+                paquete.iniciarEnvio();
+
+                CreadorTablas cnn = new CreadorTablas();
+                DefaultTableModel modelo = cnn.mostrarTablaPaquetes(cnx);
+
+                jTContenidoPaquete.setText("");
+                jTAncho.setText("");
+                jTPeso.setText("");
+                jTLargo.setText("");
+                jTRemitente.setText("");
+                jTDestino.setText("");
+                contadorProductos();
+                this.jTPaquetes.setModel(modelo);
+            } catch (NumberFormatException e) {
+                JOptionPane.showMessageDialog(null, "Error en los datos numéricos", "Error", JOptionPane.ERROR_MESSAGE);
+            }
         }
-    }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void limpiarCamposProve1() {
@@ -6616,8 +6620,6 @@ public class JFMenu extends javax.swing.JFrame {
         return colIndex != -1 ? model.getValueAt(selectedRow, colIndex).toString() : "";
     }
 
-
-
     private void fillBusinessFields(String ruc, String nombre, String direccion, String telefono) {
         jTFRUCNegocio.setText(ruc);
         jTFNombreNegocio.setText(nombre);
@@ -6629,8 +6631,6 @@ public class JFMenu extends javax.swing.JFrame {
         idItemFactura.setText(idtems);
         nombreProducto.setText(nombreproducto);
     }
-
-   
 
     private void fillClientFields(String id, String nombre, String apellido, String telefono, String direccion, String esExtranjero, String tipo, String correo) {
 
@@ -8191,7 +8191,7 @@ public class JFMenu extends javax.swing.JFrame {
         // Limpiar la tabla y otros elementos
         limpiarTabla(jTablaInventario4);
         contadorInventario();
-        contador1();
+        contadorTrakings();
 
     }//GEN-LAST:event_jBRegistrarPAInventarioActionPerformed
 
@@ -8233,7 +8233,7 @@ public class JFMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_menuIncidentesMouseExited
 
     private void jTPEmpleados1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTPEmpleados1MouseClicked
-        
+
     }//GEN-LAST:event_jTPEmpleados1MouseClicked
 
     private void SeleccionIncidentesCBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SeleccionIncidentesCBActionPerformed
@@ -8245,43 +8245,43 @@ public class JFMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_IDIncidentesTFActionPerformed
 
     private void IDPIncidentesTFKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_IDPIncidentesTFKeyReleased
-    String idPaqueteStr = IDPIncidentesTF.getText().trim();
-    DefaultTableModel modelo = new CreadorTablas().mostrarVistaDatosPaquete(cnx, idPaqueteStr);
-    jTIncidentes.setModel(modelo);
+        String idPaqueteStr = IDPIncidentesTF.getText().trim();
+        DefaultTableModel modelo = new CreadorTablas().mostrarVistaDatosPaquete(cnx, idPaqueteStr);
+        jTIncidentes.setModel(modelo);
     }//GEN-LAST:event_IDPIncidentesTFKeyReleased
 
     private void RegistrarIncidentesButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegistrarIncidentesButtonActionPerformed
-    int idIncidente = Integer.parseInt(IDIncidentesTF.getText());
-    int idPaquete = Integer.parseInt(IDPIncidentesTF.getText());
-    String tipoIncidente = SeleccionIncidentesCB.getSelectedItem().toString();
-    String descripcion = RazonIncidentesTA.getText();
+        int idIncidente = Integer.parseInt(IDIncidentesTF.getText());
+        int idPaquete = Integer.parseInt(IDPIncidentesTF.getText());
+        String tipoIncidente = SeleccionIncidentesCB.getSelectedItem().toString();
+        String descripcion = RazonIncidentesTA.getText();
 
-    // Crear instancia de GestorIncidentes
-    Inventario inventario = new Inventario(); // Asegúrate de tener una instancia de Inventario
-    GestorIncidentes gestorIncidentes = new GestorIncidentes(inventario, cnx);
+        // Crear instancia de GestorIncidentes
+        Inventario inventario = new Inventario(); // Asegúrate de tener una instancia de Inventario
+        GestorIncidentes gestorIncidentes = new GestorIncidentes(inventario, cnx);
 
-    // Crear el incidente según el tipo
-    Incidente incidente = null;
-    switch (tipoIncidente) {
-        case "Daño en el Paquete":
-            incidente = new DanioPaquete(descripcion, idPaquete, idIncidente, cnx);
-            break;
-        case "Error de Dirección":
-            incidente=new ErrorDireccion(descripcion, idPaquete, idIncidente, cnx);
-            break;
-        case "Paquete Perdido":
-            incidente = new PaquetePerdido(descripcion, idPaquete, idIncidente, cnx);
-            break;
-        case "Rechazo Entrega":
-            incidente = new RechazoEntrega(descripcion, idPaquete, idIncidente, cnx);
-            break;
-        default:
-            throw new IllegalArgumentException("Tipo de incidente desconocido: " + tipoIncidente);
-    }
+        // Crear el incidente según el tipo
+        Incidente incidente = null;
+        switch (tipoIncidente) {
+            case "Daño en el Paquete":
+                incidente = new DanioPaquete(descripcion, idPaquete, idIncidente, cnx);
+                break;
+            case "Error de Dirección":
+                incidente = new ErrorDireccion(descripcion, idPaquete, idIncidente, cnx);
+                break;
+            case "Paquete Perdido":
+                incidente = new PaquetePerdido(descripcion, idPaquete, idIncidente, cnx);
+                break;
+            case "Rechazo Entrega":
+                incidente = new RechazoEntrega(descripcion, idPaquete, idIncidente, cnx);
+                break;
+            default:
+                throw new IllegalArgumentException("Tipo de incidente desconocido: " + tipoIncidente);
+        }
 
-    // Registrar el incidente
-    gestorIncidentes.crearIncidente(incidente, idPaquete);
-    contadorIncidentes();
+        // Registrar el incidente
+        gestorIncidentes.crearIncidente(incidente, idPaquete);
+        contadorIncidentes();
     }//GEN-LAST:event_RegistrarIncidentesButtonActionPerformed
 
     private void jCJuridicoNatural1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCJuridicoNatural1ActionPerformed
@@ -8424,13 +8424,11 @@ public class JFMenu extends javax.swing.JFrame {
         return fechaString;
     }
 
-
     private void actualizarTablaComprasClienteID(int idFactura) {
         CreadorTablas creadorTablas = new CreadorTablas();
         DefaultTableModel modelo = creadorTablas.mostrarItemsID(cnx, idFactura);
         jTablaRegistrarFactura.setModel(modelo); // Actualizar la tabla con el nuevo modelo
     }
-
 
     private void deshabilitarCampos() {
         // Deshabilitar los componentes
