@@ -255,7 +255,7 @@ public class ConsultarBD {
         }
     }
 
-    public static DefaultTableModel buscarPaquetePorId(Connection conexion, int idPaquete) {
+    public static DefaultTableModel buscarPaquetePorId(Connection conexion, String idPaquete) {
         DefaultTableModel modelo = new DefaultTableModel();
         modelo.addColumn("IDPaquete");
         modelo.addColumn("Peso");
@@ -271,10 +271,18 @@ public class ConsultarBD {
         ResultSet rs = null;
 
         try {
-            // Consulta usando ILIKE para búsqueda parcial
-            String sql = "SELECT * FROM Paquete WHERE CAST(IDPaquete AS TEXT) ILIKE ?";
+            String sql;
+            
+             if (idPaquete == null || idPaquete.isEmpty()) {
+            // Si idpaquete está vacío, mostrar los primeros 10 registros de la vista
+            sql = "SELECT * FROM Paquete LIMIT 10";
+            ps = conexion.prepareStatement(sql);
+        } else {
+            // Si idpaquete tiene valor, filtrar por ese valor
+            sql = "SELECT * FROM Paquete WHERE CAST(IDPaquete AS TEXT) ILIKE ?";
             ps = conexion.prepareStatement(sql);
             ps.setString(1, "%" + idPaquete + "%");
+        }
 
             rs = ps.executeQuery();
 
