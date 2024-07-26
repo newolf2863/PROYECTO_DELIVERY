@@ -15,6 +15,7 @@ import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 import proyecto_encomienda.BDYValidaciones.CreadorTablas;
 import proyecto_encomienda.BDYValidaciones.ContadorDeIDs;
+import proyecto_encomienda.BDYValidaciones.IncidentesBaseDeDatos;
 import proyecto_encomienda.BDYValidaciones.TextPrompt;
 import proyecto_encomienda.BDYValidaciones.ValidadorDeRegistros;
 import proyecto_encomienda.BDYValidaciones.ValidadorDeSwings;
@@ -52,9 +53,11 @@ public class JFIncidente extends javax.swing.JFrame {
     private boolean descriptionValidar = false;
     private boolean seleccionValidar = false;
 
-    public JFIncidente(Connection cnx) {
+    
+    
+    public JFIncidente(Connection conexion) {
         initComponents();
-        this.cnx = cnx;
+        this.cnx = conexion;
         setIconImage(new ImageIcon(getClass().getResource("/proyecto_encomienda/GESTION_PAQUETES/FRONTEND/imagenes/exclamacion.png")).getImage());
         // Inicializa el campo IDIncidentesTF con el siguiente ID
         JFrame frame = new JFrame();
@@ -163,11 +166,6 @@ public class JFIncidente extends javax.swing.JFrame {
 
         IDIncidentesTF.setEditable(false);
         IDIncidentesTF.setEnabled(false);
-        IDIncidentesTF.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                IDIncidentesTFActionPerformed(evt);
-            }
-        });
 
         errorIncidente1.setForeground(new java.awt.Color(255, 0, 51));
         errorIncidente1.setText("Código único inválido");
@@ -402,7 +400,7 @@ public class JFIncidente extends javax.swing.JFrame {
     }//GEN-LAST:event_TFIDPIncidentesKeyReleased
 
     private void RegistrarIncidentesButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegistrarIncidentesButtonActionPerformed
-
+        int idPaquete = Integer.parseInt(TFIDPIncidentes.getText());
         String tipoIncidente = SeleccionIncidentesCB.getSelectedItem().toString();
         JTextField[] campos = {TFIDPIncidentes, TFRazonIncidentes};
         Boolean[] booleanItem = {idIncidenteValidar, descriptionValidar};
@@ -415,6 +413,11 @@ public class JFIncidente extends javax.swing.JFrame {
         } else {
             seleccionValidar = true;
         }
+        
+        if (!IncidentesBaseDeDatos.verificarCodigoTracking(cnx, idPaquete)) {
+        errores.add("El paquete con ID " + idPaquete + " no tiene un código de seguimiento válido."
+                + "codigoTraking");
+    }
 
         if (!errores.isEmpty() || !seleccionValidar) {
             StringBuilder mensajeError = new StringBuilder("Se encontraron los siguientes errores:\n");
@@ -425,7 +428,7 @@ public class JFIncidente extends javax.swing.JFrame {
         } else {
             String descripcion = TFRazonIncidentes.getText();
             int idIncidente = Integer.parseInt(IDIncidentesTF.getText());
-            int idPaquete = Integer.parseInt(TFIDPIncidentes.getText());
+            
             
             Inventario inventario = new Inventario(); // Asegúrate de tener una instancia de Inventario
             GestorIncidentes gestorIncidentes = new GestorIncidentes(inventario, cnx);
@@ -453,12 +456,7 @@ public class JFIncidente extends javax.swing.JFrame {
             int siguienteId = contadorDeIDs.obtenerSiguienteIdIncidente(cnx);
             IDIncidentesTF.setText(String.valueOf(siguienteId));
         }
-
     }//GEN-LAST:event_RegistrarIncidentesButtonActionPerformed
-
-    private void IDIncidentesTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_IDIncidentesTFActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_IDIncidentesTFActionPerformed
 
     private void jTPEmpleados1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTPEmpleados1MouseClicked
 

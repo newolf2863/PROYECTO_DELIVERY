@@ -6,6 +6,7 @@ import com.toedter.calendar.JDateChooser;
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Desktop;
+import java.awt.Window;
 import java.awt.event.KeyEvent;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -21,19 +22,14 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import proyecto_encomienda.BDYValidaciones.ActualizarInventario;
 import proyecto_encomienda.BDYValidaciones.ConsultarBD;
 import proyecto_encomienda.BDYValidaciones.CreadorTablas;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import proyecto_encomienda.BDYValidaciones.Empleados;
 import proyecto_encomienda.BDYValidaciones.RegistradoraDeUsuarios;
 import proyecto_encomienda.BDYValidaciones.ValidadorCedulas;
 import javax.swing.ImageIcon;
 import javax.swing.JTextField;
-import com.toedter.calendar.JTextFieldDateEditor;
-import java.util.ArrayList;
-import java.util.List;
 import javax.swing.JLabel;
 import javax.swing.JTable;
 import proyecto_encomienda.BDYValidaciones.SessionManager;
@@ -50,10 +46,10 @@ public class JFMenu extends javax.swing.JFrame {
 
     private JFInventario inventario = null;
     private JFRemitente remitente = null;
-    private JFIncidente incidente=null;
-    private JFConductores conductor=null;
-    private JFFactura factura1=null;
-    private  JFRecepcionista recepcionista=null;
+    private JFIncidente incidente = null;
+    private JFConductores conductor = null;
+    private JFFactura factura1 = null;
+    private JFRecepcionista recepcionista = null;
 
 //Clases   
     ValidadorDeRegistros validarRegistroF = new ValidadorDeRegistros();
@@ -78,7 +74,6 @@ public class JFMenu extends javax.swing.JFrame {
     private boolean claveUsuario = false;
     //Actualizar usuarios
     private boolean claveUsuario2 = false;
-
 
 //Mouses
     int xMouse, yMouse;
@@ -105,7 +100,7 @@ public class JFMenu extends javax.swing.JFrame {
         Locale localM = null;
         String resultado;
         Date fechaYHora = new Date();
-        
+
         resultado = mostrarFechaHora(fechaYHora, fecha, localM);
         //jDateChooserFecha.setText(resultado);
         txtID.setText("Usuario     :" + userRol);
@@ -129,10 +124,6 @@ public class JFMenu extends javax.swing.JFrame {
         jTFAdminClave.setToolTipText("Aquí puedes ingresar tu contraseña.");
         jLInicio.setText("Bienvenido/a");
     }
-
-  
-
-  
 
     public void desvanecer() {
         Clicked1.setVisible(true);
@@ -1393,7 +1384,7 @@ public class JFMenu extends javax.swing.JFrame {
         contenido.show(panelContent, "card3");
         cambiarSeccionMenu(2);
         menuProveedores.setBackground(Color.decode("#494848"));
-        JFrame ventanaConductor=new JFConductores(cnx);
+        JFrame ventanaConductor = new JFConductores(cnx);
         VentanaManager.getInstance().mostrarVentana("conductor", ventanaConductor);
     }//GEN-LAST:event_menuProveedoresMouseClicked
 
@@ -1411,7 +1402,7 @@ public class JFMenu extends javax.swing.JFrame {
         contenido.show(panelContent, "card5");
         cambiarSeccionMenu(4);
         menuEmpleados.setBackground(Color.decode("#494848"));
-        JFrame ventanaRecepcionista=new JFRecepcionista(cnx);
+        JFrame ventanaRecepcionista = new JFRecepcionista(cnx);
         VentanaManager.getInstance().mostrarVentana("recepcionista", ventanaRecepcionista);
     }//GEN-LAST:event_menuEmpleadosMouseClicked
 
@@ -1447,7 +1438,7 @@ public class JFMenu extends javax.swing.JFrame {
         contenido.show(panelContent, "card4");
         cambiarSeccionMenu(3);
         menuFacturacionYVenta.setBackground(Color.decode("#494848"));
-        JFrame ventantaFactura=new JFFacturacion(cnx);
+        JFrame ventantaFactura = new JFFacturacion(cnx);
         VentanaManager.getInstance().mostrarVentana("factura1", ventantaFactura);
     }//GEN-LAST:event_menuFacturacionYVentaMouseClicked
 
@@ -1462,20 +1453,29 @@ public class JFMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_menuFacturacionYVentaMouseExited
 
     private void menuLogoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuLogoutMouseClicked
-         getToolkit().beep();
-    int dialogButton = JOptionPane.YES_NO_OPTION;
-    if (SessionManager.getInstance().isCambiarSesion()) {  // Accede a cambiarSesion a través del Singleton
-        int dialogResult = JOptionPane.showConfirmDialog(null, "¿Estás seguro/a que quieres salir de esta cuenta?", "Warning", dialogButton);
-        if (dialogResult == JOptionPane.YES_OPTION) {
-            JFIngresar ingresarFrame = new JFIngresar(); // Crea una instancia del JFIngresar
-            ingresarFrame.setVisible(true); // Muestra el JFIngresar
-            dispose();  // Cierra el JFrame actual
+        getToolkit().beep();
+        int dialogButton = JOptionPane.YES_NO_OPTION;
+        if (SessionManager.getInstance().isCambiarSesion()) {  // Accede a cambiarSesion a través del Singleton
+            int dialogResult = JOptionPane.showConfirmDialog(null, "¿Estás seguro/a que quieres salir de esta cuenta?", "Warning", dialogButton);
+            if (dialogResult == JOptionPane.YES_OPTION) {
+                // Crea una instancia del JFIngresar
+                JFIngresar ingresarFrame = new JFIngresar();
+                ingresarFrame.setVisible(true); // Muestra el JFIngresar
+
+                // Cierra todas las ventanas abiertas, excepto la nueva ventana ingresarFrame
+                Window[] windows = Window.getWindows(); // Obtiene todas las ventanas abiertas
+                for (Window window : windows) {
+                    if (window != ingresarFrame) { // Cierra todas las ventanas menos la nueva
+                        window.dispose();
+                    }
+                }
+                dispose();  // Cierra el JFrame actual si es necesario (es opcional si ya has cerrado todas las demás ventanas)
+            }
+        } else {
+            String mensaje = "Tienes una factura pendiente.";
+            String titulo = "¡Aviso Crítico!";
+            JOptionPane.showMessageDialog(null, mensaje, titulo, JOptionPane.ERROR_MESSAGE);
         }
-    } else {
-        String mensaje = "Tienes una factura pendiente.";
-        String titulo = "¡Aviso Crítico!";
-        JOptionPane.showMessageDialog(null, mensaje, titulo, JOptionPane.ERROR_MESSAGE);
-    }
     }//GEN-LAST:event_menuLogoutMouseClicked
 
     private void menuLogoutMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuLogoutMouseEntered
@@ -1487,8 +1487,6 @@ public class JFMenu extends javax.swing.JFrame {
         menuLogout.setBackground(Color.decode("#292728"));
         menuLogout.setOpaque(true);
     }//GEN-LAST:event_menuLogoutMouseExited
-
-    
 
 
     private void menuAdministracionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuAdministracionMouseClicked
@@ -1663,14 +1661,12 @@ public class JFMenu extends javax.swing.JFrame {
             label.setVisible(false);
             return true;
         }
-    }    
+    }
 
     private String getValueAtSelectedRow(DefaultTableModel model, int selectedRow, String columnName) {
         int colIndex = model.findColumn(columnName);
         return colIndex != -1 ? model.getValueAt(selectedRow, colIndex).toString() : "";
     }
-
-
 
 
     private void jBRegistarUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBRegistarUserActionPerformed
@@ -1780,7 +1776,6 @@ public class JFMenu extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Ingrese solo números");
         }
     }//GEN-LAST:event_jTFIDemployeKeyTyped
-  
 
 
     private void jTFAdminClaveKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFAdminClaveKeyTyped
@@ -1855,7 +1850,7 @@ public class JFMenu extends javax.swing.JFrame {
         menuIncidentes.setBackground(Color.decode("#494848"));
         JFrame ventanaIncidentes = new JFIncidente(cnx);
         VentanaManager.getInstance().mostrarVentana("inventario", ventanaIncidentes);
-        
+
     }//GEN-LAST:event_menuIncidentesMouseClicked
 
     private void menuIncidentesMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuIncidentesMouseEntered
@@ -1972,6 +1967,7 @@ public class JFMenu extends javax.swing.JFrame {
         fechaString = formateador.format(fechaYHora);
         return fechaString;
     }
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">

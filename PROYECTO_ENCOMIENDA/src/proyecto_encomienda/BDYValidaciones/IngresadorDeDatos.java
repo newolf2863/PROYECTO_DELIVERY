@@ -94,7 +94,7 @@ public class IngresadorDeDatos {
                 // Obtener valores de la tabla jTablaInventario4
                 String valorComoString = jTablaInventario4.getValueAt(i, 0).toString();
                 int idPaquete = Integer.parseInt(valorComoString);
-                String valorTraking = jTablaInventario4.getValueAt(i, 2).toString();
+                String valorTraking = jTablaInventario4.getValueAt(i, 1).toString();
                 int codigoTraking = Integer.parseInt(valorTraking);
 
                 // Asignar los valores a la declaración preparada de Inventario_Paquete
