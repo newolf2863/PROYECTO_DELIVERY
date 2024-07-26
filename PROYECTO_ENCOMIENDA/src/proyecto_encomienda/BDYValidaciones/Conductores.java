@@ -15,8 +15,8 @@ import javax.swing.JOptionPane;
  *
  * @author USUARIO
  */
-public class Proveedores {
-
+public class Conductores {
+    //Ejemplos para inserccion de datos
     public void ingresarDatoProveedor(Connection cnx, String ruc, String nombre_empresa) {
         try {
             // Verificar si el proveedor ya existe
@@ -89,7 +89,7 @@ public class Proveedores {
         }
     }
 
-    public boolean existeDespachador(Connection cnx, String ci_despachador) {
+    public boolean existeConductor(Connection cnx, String ci_despachador) {
         try {
             String sql = "SELECT COUNT(*) FROM despachadores WHERE ci_despachador = ?";
             try (PreparedStatement preparedStatement = cnx.prepareStatement(sql)) {
@@ -361,59 +361,7 @@ public class Proveedores {
     }
 }
 
-//   public String cambiarEstadoProveedor(Connection cnx, String rucProveedor) {
-//    try {
-//        // Iniciar una transacción
-//        cnx.setAutoCommit(false);
-//
-//        // Obtener el estado actual del proveedor
-//        String estadoActual = obtenerEstadoProveedor(cnx, rucProveedor);
-//
-//        // Determinar el nuevo estado
-//        String nuevoEstado = (estadoActual.equals("Activo")) ? "Dado de baja" : "Activo";
-//
-//        // Cambiar el estado del proveedor
-//        String updateProveedorSQL = "UPDATE proveedores SET estado_empresa = ? WHERE ruc = ?";
-//        PreparedStatement updateProveedorStmt = cnx.prepareStatement(updateProveedorSQL);
-//        updateProveedorStmt.setString(1, nuevoEstado);
-//        updateProveedorStmt.setString(2, rucProveedor);
-//        int rowsUpdatedProveedor = updateProveedorStmt.executeUpdate();
-//
-//        if (rowsUpdatedProveedor > 0) {
-//            // Cambiar el estado de los despachadores relacionados al proveedor
-//            String updateDespachadoresSQL = "UPDATE despachadores SET estado_despachador = ? WHERE idProveedor = ?";
-//            PreparedStatement updateDespachadoresStmt = cnx.prepareStatement(updateDespachadoresSQL);
-//            updateDespachadoresStmt.setString(1, nuevoEstado);
-//            updateDespachadoresStmt.setString(2, rucProveedor);
-//            int rowsUpdatedDespachadores = updateDespachadoresStmt.executeUpdate();
-//
-//            if (rowsUpdatedDespachadores > 0) {
-//                // Confirmar la transacción
-//                cnx.commit();
-//
-//                // Restaurar el modo de autoconfirmación
-//                cnx.setAutoCommit(true);
-//
-//                return "El estado del proveedor ha cambiado a: " + nuevoEstado;
-//            } else {
-//                throw new SQLException("Error al cambiar el estado de los despachadores.");
-//            }
-//        } else {
-//            throw new SQLException("Error al cambiar el estado del proveedor.");
-//        }
-//
-//    } catch (SQLException e) {
-//        try {
-//            // Realizar rollback en caso de error
-//            cnx.rollback();
-//            cnx.setAutoCommit(true);
-//        } catch (SQLException ex) {
-//            // Manejar errores de rollback
-//        }
-//        return "Error: " + e.getMessage();
-//    }
-//}
-
+// 
     
    public void cambiarEstadoDespachador(Connection cnx, String ciDespachador) {
     try {
