@@ -3,12 +3,16 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Issac/Documents/GitHub/PROYECTO_DELIVERY/PROYECTO_ENCOMIENDA/src/proyecto_encomienda/GESTOR_PERFILES/Perfil.java</file>
-            <file>file:/C:/Users/Issac/Documents/GitHub/PROYECTO_DELIVERY/PROYECTO_ENCOMIENDA/src/proyecto_encomienda/GESTION_PAQUETES/BACKEND/Paquete.java</file>
-            <file>file:/C:/Users/Issac/Documents/GitHub/PROYECTO_DELIVERY/PROYECTO_ENCOMIENDA/src/proyecto_encomienda/GESTION_PAQUETES/BACKEND/EnCurso.java</file>
-            <file>file:/C:/Users/Issac/Documents/GitHub/PROYECTO_DELIVERY/PROYECTO_ENCOMIENDA/src/proyecto_encomienda/GESTION_PAQUETES/BACKEND/Entregado.java</file>
-            <file>file:/C:/Users/Issac/Documents/GitHub/PROYECTO_DELIVERY/PROYECTO_ENCOMIENDA/src/proyecto_encomienda/GESTION_PAQUETES/BACKEND/Seguimiento.java</file>
-            <file>file:/C:/Users/Issac/Documents/GitHub/PROYECTO_DELIVERY/PROYECTO_ENCOMIENDA/src/proyecto_encomienda/PROYECTO_ENCOMIENDA.java</file>
+            <file>file:/C:/Users/migue/Documents/GitHub/PROYECTO_DELIVERY/PROYECTO_ENCOMIENDA/src/proyecto_encomienda/GESTION_PAQUETES/FRONTEND/PaqueteMenu.java</file>
+            <file>file:/C:/Users/migue/Documents/GitHub/PROYECTO_DELIVERY/PROYECTO_ENCOMIENDA/src/proyecto_encomienda/GESTION_PAQUETES/FRONTEND/Paquete.java</file>
+            <file>file:/C:/Users/migue/Documents/GitHub/PROYECTO_DELIVERY/PROYECTO_ENCOMIENDA/src/proyecto_encomienda/GESTION_PAQUETES/BACKEND/mainpaqueteria.java</file>
+            <file>file:/C:/Users/migue/Documents/GitHub/PROYECTO_DELIVERY/PROYECTO_ENCOMIENDA/src/proyecto_encomienda/LOGISTICA_TRANSPORTE/Conductor.java</file>
+            <file>file:/C:/Users/migue/Documents/GitHub/PROYECTO_DELIVERY/PROYECTO_ENCOMIENDA/src/proyecto_encomienda/GESTION_PAQUETES/BACKEND/EstadoDelPaquete.java</file>
+            <file>file:/C:/Users/migue/Documents/GitHub/PROYECTO_DELIVERY/PROYECTO_ENCOMIENDA/src/proyecto_encomienda/GESTION_PAQUETES/FRONTEND/ClasesExtras/MovePanelWithAnimation.java</file>
+            <file>file:/C:/Users/migue/Documents/GitHub/PROYECTO_DELIVERY/PROYECTO_ENCOMIENDA/src/proyecto_encomienda/GESTOR_PERFILES/Perfil.java</file>
+            <file>file:/C:/Users/migue/Documents/GitHub/PROYECTO_DELIVERY/PROYECTO_ENCOMIENDA/src/proyecto_encomienda/PROYECTO_ENCOMIENDA.java</file>
+            <file>file:/C:/Users/migue/Documents/GitHub/PROYECTO_DELIVERY/PROYECTO_ENCOMIENDA/src/proyecto_encomienda/LOGISTICA_TRANSPORTE/AsignacionConductorVehiculo.java</file>
+
         </group>
     </open-files>
 </project-private>
