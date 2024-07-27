@@ -1,0 +1,1 @@
+Paquete{codigoTracking='4', ancho=2.0, largo=5.0, contenido='Ropa', direccionDestino='San juan', estado=Pendiente}
