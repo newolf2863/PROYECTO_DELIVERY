@@ -135,8 +135,41 @@ public class JFMenu extends javax.swing.JFrame {
         Clicked7.setVisible(false);
     }
 
-    private JFMenu() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public JFMenu() {
+         initComponents();
+        setIconImage(new ImageIcon(getClass().
+                getResource("/proyecto_encomienda/GESTION_PAQUETES/FRONTEND/imagenes/AjustesBest.png")).getImage());
+        //this.nombreUsuario = userName;
+        //this.cnx = cnx;
+        //this.usuario = userRol;
+        setLocationRelativeTo(null);
+        String fecha = "dd-MM-yyyy";
+        Locale localM = null;
+        String resultado;
+        Date fechaYHora = new Date();
+
+        resultado = mostrarFechaHora(fechaYHora, fecha, localM);
+        //jDateChooserFecha.setText(resultado);
+        txtID.setText("Usuario     :" + "Adminsitrador");
+        txtDateLog.setText("Fecha      : " + resultado);
+        JFrame frame = new JFrame();
+        frame.getRootPane().setWindowDecorationStyle(JRootPane.NONE);
+        contenido = (CardLayout) (panelContent.getLayout());
+        contenido.show(panelContent, "card1");
+        clickedPanels[0] = Clicked1;
+        clickedPanels[1] = Clicked2;
+        clickedPanels[2] = Clicked3;
+        clickedPanels[3] = Clicked4;
+        clickedPanels[4] = Clicked5;
+        clickedPanels[5] = Clicked6;
+        clickedPanels[6] = Clicked7;
+        java.util.Date fechaActual = new java.util.Date();
+        // Configura el JDateChooser
+        desvanecer();
+        //int nuevoNumeroFactura = RegistrarDatosFactura.obtenerNuevoNumeroFactura(cnx);
+        //jTFnumerofactura.setText(String.valueOf(nuevoNumeroFactura));
+        jTFAdminClave.setToolTipText("Aquí puedes ingresar tu contraseña.");
+        jLInicio.setText("Bienvenido/a");
     }
 
     private void cambiarSeccionMenu(int seccionIndex) {
