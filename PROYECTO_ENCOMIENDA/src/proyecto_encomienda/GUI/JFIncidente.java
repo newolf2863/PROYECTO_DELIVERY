@@ -109,6 +109,10 @@ public class JFIncidente extends javax.swing.JFrame {
         jScrollPane28 = new javax.swing.JScrollPane();
         jTIncidentes = new javax.swing.JTable();
         jPAE1 = new javax.swing.JPanel();
+        jScrollPane29 = new javax.swing.JScrollPane();
+        jTIncidentes1 = new javax.swing.JTable();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
         jPEE1 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jLabel69 = new javax.swing.JLabel();
@@ -145,6 +149,11 @@ public class JFIncidente extends javax.swing.JFrame {
         TFIDPIncidentes.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 TFIDPIncidentesFocusLost(evt);
+            }
+        });
+        TFIDPIncidentes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TFIDPIncidentesActionPerformed(evt);
             }
         });
         TFIDPIncidentes.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -208,9 +217,9 @@ public class JFIncidente extends javax.swing.JFrame {
                         .addComponent(SeleccionIncidentesCB, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(TFIDPIncidentes)
                         .addComponent(IDIncidentesTF)
-                        .addComponent(errorIncidente1)
-                        .addComponent(TFRazonIncidentes)))
-                .addContainerGap(220, Short.MAX_VALUE))
+                        .addComponent(errorIncidente1))
+                    .addComponent(TFRazonIncidentes, javax.swing.GroupLayout.PREFERRED_SIZE, 331, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(25, Short.MAX_VALUE))
         );
         jPanel10Layout.setVerticalGroup(
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -231,13 +240,16 @@ public class JFIncidente extends javax.swing.JFrame {
                     .addComponent(SeleccionIncidentesCB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(errorIncidente3)
-                .addGap(11, 11, 11)
-                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel135)
-                    .addComponent(TFRazonIncidentes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel10Layout.createSequentialGroup()
+                        .addGap(14, 14, 14)
+                        .addComponent(jLabel135))
+                    .addGroup(jPanel10Layout.createSequentialGroup()
+                        .addGap(11, 11, 11)
+                        .addComponent(TFRazonIncidentes, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(errorIncidente2)
-                .addGap(56, 56, 56)
+                .addGap(18, 18, 18)
                 .addComponent(RegistrarIncidentesButton)
                 .addContainerGap(65, Short.MAX_VALUE))
         );
@@ -250,9 +262,17 @@ public class JFIncidente extends javax.swing.JFrame {
                 {null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Cod. Incidente", "Cod. Paquete", "Tipo Incidente", "Descripcion"
             }
-        ));
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
         jScrollPane28.setViewportView(jTIncidentes);
 
         javax.swing.GroupLayout jPRE1Layout = new javax.swing.GroupLayout(jPRE1);
@@ -260,36 +280,85 @@ public class JFIncidente extends javax.swing.JFrame {
         jPRE1Layout.setHorizontalGroup(
             jPRE1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPRE1Layout.createSequentialGroup()
-                .addGroup(jPRE1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPRE1Layout.createSequentialGroup()
-                        .addGap(38, 38, 38)
-                        .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPRE1Layout.createSequentialGroup()
-                        .addGap(15, 15, 15)
-                        .addComponent(jScrollPane28, javax.swing.GroupLayout.PREFERRED_SIZE, 734, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(216, Short.MAX_VALUE))
+                .addGap(38, 38, 38)
+                .addGroup(jPRE1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jPanel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jScrollPane28))
+                .addContainerGap(264, Short.MAX_VALUE))
         );
         jPRE1Layout.setVerticalGroup(
             jPRE1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPRE1Layout.createSequentialGroup()
                 .addGap(24, 24, 24)
                 .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane28, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(24, Short.MAX_VALUE))
+                .addContainerGap(36, Short.MAX_VALUE))
         );
 
         jTPEmpleados1.addTab("Registrar Incidente", jPRE1);
+
+        jTIncidentes1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Cod. Incidente", "Cod. Paquete", "Tipo Incidente", "Descripcion"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        jScrollPane29.setViewportView(jTIncidentes1);
+
+        jButton1.setText("Editar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        jButton2.setText("Editar");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPAE1Layout = new javax.swing.GroupLayout(jPAE1);
         jPAE1.setLayout(jPAE1Layout);
         jPAE1Layout.setHorizontalGroup(
             jPAE1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 965, Short.MAX_VALUE)
+            .addGroup(jPAE1Layout.createSequentialGroup()
+                .addGap(58, 58, 58)
+                .addComponent(jScrollPane29, javax.swing.GroupLayout.DEFAULT_SIZE, 666, Short.MAX_VALUE)
+                .addGap(83, 83, 83)
+                .addGroup(jPAE1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton1)
+                    .addComponent(jButton2))
+                .addGap(86, 86, 86))
         );
         jPAE1Layout.setVerticalGroup(
             jPAE1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 566, Short.MAX_VALUE)
+            .addGroup(jPAE1Layout.createSequentialGroup()
+                .addGroup(jPAE1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPAE1Layout.createSequentialGroup()
+                        .addGap(21, 21, 21)
+                        .addComponent(jScrollPane29, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPAE1Layout.createSequentialGroup()
+                        .addGap(38, 38, 38)
+                        .addComponent(jButton1)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton2)))
+                .addContainerGap(392, Short.MAX_VALUE))
         );
 
         jTPEmpleados1.addTab("Actualizar", jPAE1);
@@ -494,6 +563,18 @@ public class JFIncidente extends javax.swing.JFrame {
         descriptionValidar = validarRegistroF.camposDeRegistros(TFRazonIncidentes, errorIncidente2, "d");
     }//GEN-LAST:event_TFRazonIncidentesKeyReleased
 
+    private void TFIDPIncidentesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TFIDPIncidentesActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TFIDPIncidentesActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -540,6 +621,8 @@ public class JFIncidente extends javax.swing.JFrame {
     private javax.swing.JLabel errorIncidente1;
     private javax.swing.JLabel errorIncidente2;
     private javax.swing.JLabel errorIncidente3;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel133;
     private javax.swing.JLabel jLabel134;
     private javax.swing.JLabel jLabel135;
@@ -552,7 +635,9 @@ public class JFIncidente extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane28;
+    private javax.swing.JScrollPane jScrollPane29;
     private javax.swing.JTable jTIncidentes;
+    private javax.swing.JTable jTIncidentes1;
     private javax.swing.JTabbedPane jTPEmpleados1;
     // End of variables declaration//GEN-END:variables
 }
