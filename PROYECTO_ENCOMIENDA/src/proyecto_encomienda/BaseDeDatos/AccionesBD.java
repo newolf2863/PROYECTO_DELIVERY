@@ -12,47 +12,48 @@ import javax.swing.table.DefaultTableModel;
 public class AccionesBD {
 
     // Método para realizar consultas parametrizadas
-    public DefaultTableModel buscarPorId(Connection c, String idincidente) {
-    DefaultTableModel modelo = new DefaultTableModel();
-    modelo.addColumn("ID Incidnete");
-    modelo.addColumn("ID Paquete");
-    modelo.addColumn("Tipo de Incidente");
-    modelo.addColumn("Descripción");
-    
-    try {
-        String sql;
-        PreparedStatement ps;
+    public DefaultTableModel buscarPorId(Connection c, String id, String tabla, String[] columnasVisibles, String[] columnasBD, String columnaB) {
+        DefaultTableModel modelo = new DefaultTableModel();
 
-        if (idincidente == null || idincidente.isEmpty()) {
-            // Si idpaquete está vacío, mostrar los primeros 10 registros de la vista
-            sql = "SELECT * FROM incidente LIMIT 10";
-            ps = c.prepareStatement(sql);
-        } else {
-            // Si idpaquete tiene valor, filtrar por ese valor
-            sql = "SELECT * FROM incidente WHERE CAST(idincidente AS TEXT) ILIKE ?";
-            ps = c.prepareStatement(sql);
-            ps.setString(1, "%" + idincidente + "%");
+        // Agrega las columnas visibles al modelo
+        for (String columna : columnasVisibles) {
+            modelo.addColumn(columna);
         }
 
-        ResultSet rs = ps.executeQuery();
+        try {
+            String sql;
+            PreparedStatement ps;
 
-        while (rs.next()) {
-            Object[] fila = new Object[7];  // 7 columnas según el SELECT en la vista
-            fila[0] = rs.getInt("idincidente");
-            fila[1] = rs.getString("idpaquete");
-            fila[2] = rs.getString("tipoincidente");
-            fila[3] = rs.getString("descripcion");
-            modelo.addRow(fila);
+            if (id == null || id.isEmpty()) {
+                // Si el id está vacío, mostrar los primeros 10 registros de la tabla
+                sql = "SELECT * FROM " + tabla + " LIMIT 10";
+                ps = c.prepareStatement(sql);
+            } else {
+                // Si el id tiene valor, filtrar por ese valor
+                sql = "SELECT * FROM " + tabla + " WHERE CAST(" + columnaB + " AS TEXT) ILIKE ?";
+                ps = c.prepareStatement(sql);
+                ps.setString(1, "%" + id + "%");
+            }
+
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                Object[] fila = new Object[columnasBD.length];
+                for (int i = 0; i < columnasBD.length; i++) {
+                    fila[i] = rs.getObject(columnasBD[i]);
+                }
+                modelo.addRow(fila);
+            }
+
+            rs.close();
+            ps.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
 
-        rs.close();
-        ps.close();
-    } catch (SQLException e) {
-        e.printStackTrace();
+        return modelo;
     }
 
-    return modelo;
-}
 
     // Método para realizar actualizaciones parametrizadas
     public static boolean actualizarPorId(Connection conexion, String tabla, String columnaId, String id, String[] columnas, Object[] valores) {
