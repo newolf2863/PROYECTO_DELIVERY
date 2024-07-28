@@ -8,15 +8,28 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class Inventario {
+    private static Inventario instancia;
     private ArrayList<Paquete> paquetes;
     private static final String ARCHIVO_INVENTARIO = "inventario.txt";
-    public Inventario(){
+    private Inventario(){
         paquetes = new ArrayList<>();
         //cargarInventarioDesdeArchivo(); // Cargar el inventario al inicializar
     }
     
+    public static Inventario obtenerInstancia() {
+        if (instancia == null) {
+            instancia = new Inventario();
+        }
+        return instancia;
+    }
+    
     public void agregarPaquete(Paquete paquete) {
         paquetes.add(paquete);
+        guardarInventarioEnArchivo();
+    }
+    
+    public void eliminarPaquete(Paquete paquete) {
+        paquetes.remove(paquete);
         guardarInventarioEnArchivo();
     }
     
@@ -45,6 +58,20 @@ public class Inventario {
             }
         }
         return null;
+    }
+    
+    public ArrayList<Paquete> obtenerPaquetesPendientes() {
+        ArrayList<Paquete> paquetesPendientes = new ArrayList<>();
+        for (Paquete paquete : paquetes) {
+            if (paquete.obtenerEstado() instanceof Pendiente) {
+                paquetesPendientes.add(paquete);
+            }
+        }
+        return paquetesPendientes;
+    }
+    
+    public ArrayList<Paquete> obtenerPaquetes() {
+        return paquetes;
     }
     
     // Método para guardar todo el inventario en el archivo
