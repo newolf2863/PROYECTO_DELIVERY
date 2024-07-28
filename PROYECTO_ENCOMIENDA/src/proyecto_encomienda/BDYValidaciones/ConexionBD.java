@@ -9,8 +9,8 @@ public class ConexionBD {
     private final String HOST = "localhost";
     private final String PUERTO = "5432";
     private final String DB = "envios";
-    private final String USER = "postgres";
-    private final String PASSWORD = "1234";
+    private final String USER = "administrador";
+    private final String PASSWORD = "123";
     
     public Connection getConexion(){
         Connection conexion = null;
