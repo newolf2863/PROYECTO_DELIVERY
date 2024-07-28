@@ -3,12 +3,15 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Issac/Documents/GitHub/PROYECTO_DELIVERY/PROYECTO_ENCOMIENDA/src/proyecto_encomienda/GESTOR_PERFILES/Perfil.java</file>
-            <file>file:/C:/Users/Issac/Documents/GitHub/PROYECTO_DELIVERY/PROYECTO_ENCOMIENDA/src/proyecto_encomienda/GESTION_PAQUETES/BACKEND/Paquete.java</file>
-            <file>file:/C:/Users/Issac/Documents/GitHub/PROYECTO_DELIVERY/PROYECTO_ENCOMIENDA/src/proyecto_encomienda/GESTION_PAQUETES/BACKEND/EnCurso.java</file>
-            <file>file:/C:/Users/Issac/Documents/GitHub/PROYECTO_DELIVERY/PROYECTO_ENCOMIENDA/src/proyecto_encomienda/GESTION_PAQUETES/BACKEND/Entregado.java</file>
-            <file>file:/C:/Users/Issac/Documents/GitHub/PROYECTO_DELIVERY/PROYECTO_ENCOMIENDA/src/proyecto_encomienda/GESTION_PAQUETES/BACKEND/Seguimiento.java</file>
-            <file>file:/C:/Users/Issac/Documents/GitHub/PROYECTO_DELIVERY/PROYECTO_ENCOMIENDA/src/proyecto_encomienda/PROYECTO_ENCOMIENDA.java</file>
+            <file>file:/C:/Users/USUARIO/GitHub/PROYECTO_DELIVERY/PROYECTO_ENCOMIENDA/src/proyecto_encomienda/INCIDENTES/DanioPaquete.java</file>
+            <file>file:/C:/Users/USUARIO/GitHub/PROYECTO_DELIVERY/PROYECTO_ENCOMIENDA/src/proyecto_encomienda/INCIDENTES/RechazoEntrega.java</file>
+            <file>file:/C:/Users/USUARIO/GitHub/PROYECTO_DELIVERY/PROYECTO_ENCOMIENDA/src/proyecto_encomienda/BaseDeDatos/AccionesBD.java</file>
+            <file>file:/C:/Users/USUARIO/GitHub/PROYECTO_DELIVERY/PROYECTO_ENCOMIENDA/src/proyecto_encomienda/INCIDENTES/ErrorDireccion.java</file>
+            <file>file:/C:/Users/USUARIO/GitHub/PROYECTO_DELIVERY/PROYECTO_ENCOMIENDA/src/proyecto_encomienda/GUI/JFIncidente.java</file>
+            <file>file:/C:/Users/USUARIO/GitHub/PROYECTO_DELIVERY/PROYECTO_ENCOMIENDA/src/proyecto_encomienda/INCIDENTES/Incidente.java</file>
+            <file>file:/C:/Users/USUARIO/GitHub/PROYECTO_DELIVERY/PROYECTO_ENCOMIENDA/src/proyecto_encomienda/INCIDENTES/PaquetePerdido.java</file>
+            <file>file:/C:/Users/USUARIO/GitHub/PROYECTO_DELIVERY/PROYECTO_ENCOMIENDA/src/proyecto_encomienda/BDYValidaciones/ActualizarInventario.java</file>
+            <file>file:/C:/Users/USUARIO/GitHub/PROYECTO_DELIVERY/PROYECTO_ENCOMIENDA/src/proyecto_encomienda/INCIDENTES/GestorIncidentes.java</file>
         </group>
     </open-files>
 </project-private>
