@@ -34,7 +34,7 @@ import proyecto_encomienda.GESTION_PAQUETES.BACKEND.Paquete;
  *
  * @author USUARIO
  */
-public class JFInventario extends javax.swing.JFrame {
+public class JFGestionPaquetes extends javax.swing.JFrame {
     ValidadorDeRegistros validarRegistroF = new ValidadorDeRegistros();
     ValidadorDeSwings validadorCheck = new ValidadorDeSwings();
     private boolean anchoValidar = false;
@@ -47,7 +47,8 @@ public class JFInventario extends javax.swing.JFrame {
     
     //Mouse
     int xMouse, yMouse; 
-    public JFInventario(Connection conexion) {      
+   
+    public JFGestionPaquetes(Connection conexion) {      
         initComponents();
         setIconImage(new ImageIcon(getClass().getResource("/proyecto_encomienda/GESTION_PAQUETES/FRONTEND/imagenes/caja.png")).getImage());
         this.cnx=conexion;
@@ -60,10 +61,14 @@ public class JFInventario extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         placeHolder();
     }
-    public JFInventario() {      
+ 
+
+    
+    public JFGestionPaquetes(){      
         initComponents();
     }
- private void placeHolder() {
+    
+    private void placeHolder() {
         TextPrompt texto1 = new TextPrompt("Obligatorio", jTContenidoPaquete);
         TextPrompt texto2 = new TextPrompt("Obligatorio", jTAncho);
         TextPrompt texto3 = new TextPrompt("Obligatorio", jTPeso);
@@ -71,6 +76,7 @@ public class JFInventario extends javax.swing.JFrame {
         TextPrompt texto4 = new TextPrompt("Obligatorio", jTLargo);
         TextPrompt texto5 = new TextPrompt("Obligatorio", jTDestino);
     }    
+
     
 public void contadorProductos() {
         try {
@@ -951,20 +957,21 @@ public void contadorProductos() {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(JFInventario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JFGestionPaquetes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(JFInventario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JFGestionPaquetes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(JFInventario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JFGestionPaquetes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(JFInventario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JFGestionPaquetes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new JFInventario().setVisible(true);
+                new JFGestionPaquetes().setVisible(true);
             }
         });
     }

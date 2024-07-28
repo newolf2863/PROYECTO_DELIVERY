@@ -44,7 +44,7 @@ import proyecto_encomienda.BDYValidaciones.VentanaManager;
 public class JFMenu extends javax.swing.JFrame {
 //Vistas
 
-    private JFInventario inventario = null;
+    private JFGestionPaquetes inventario = null;
     private JFRemitente remitente = null;
     private JFIncidente incidente = null;
     private JFConductores conductor = null;
@@ -1407,7 +1407,8 @@ public class JFMenu extends javax.swing.JFrame {
         contenido.show(panelContent, "card1");
         cambiarSeccionMenu(0);
         menuinventario.setBackground(Color.decode("#494848"));
-        JFrame ventanaInventario = new JFInventario(cnx);
+        //JFrame ventanaInventario = new JFGestionPaquetes(cnx);
+        JFrame ventanaInventario = new JFGestionPaquetes();
         VentanaManager.getInstance().mostrarVentana("inventario", ventanaInventario);
         jLInicio.setText("Paquetes");
     }//GEN-LAST:event_menuinventarioMouseClicked
