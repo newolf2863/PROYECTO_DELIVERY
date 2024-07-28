@@ -1303,7 +1303,7 @@ public class JFRecepcionista extends javax.swing.JFrame {
             String atributosActualizacion = String.join(", ", atributos);
             if (direccionEmpleadoValidar1 && correoEmpleadoValidar1 && telefonoEmpleadoValiar1
                 && telefonoConvenValidar1 && cargoEmpleadoValidar1) {
-                actualizar.actualizarDatosF(this.cnx, atributoActualizar, condicion, tabla, atributosActualizacion);
+                actualizar.actualizarDatos(this.cnx, atributoActualizar, condicion, tabla, atributosActualizacion);
                 Empleados empleados = new Empleados(cnx);
                 DefaultTableModel modelo = empleados.obtenerModeloTablaEmpleados(TFNCedulaActualizado.getText());
                 jTableEmpleadosAcutalizar1.setModel(modelo);

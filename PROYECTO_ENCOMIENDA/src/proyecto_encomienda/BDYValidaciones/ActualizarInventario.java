@@ -38,7 +38,7 @@ public class ActualizarInventario {
         }
     }
     
-    public void actualizarDatosF(Connection cnx, String atributoActualizar, String condicion, String tabla, String atributosActualizacion) {
+    public void actualizarDatos(Connection cnx, String atributoActualizar, String condicion, String tabla, String atributosActualizacion) {
         try {
             // Construye la consulta SQL para actualizar los datos
             String sql = "UPDATE " + tabla + " SET " + atributosActualizacion + " WHERE " + atributoActualizar + " = " + condicion;
