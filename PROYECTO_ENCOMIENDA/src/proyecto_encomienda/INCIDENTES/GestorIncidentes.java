@@ -18,6 +18,11 @@ public class GestorIncidentes {
         incidente.registrarIncidente();
         incidente.guardarPaquete();
         incidente.notificarCliente();
+        
+    }
+    
+    public void actualizarIncidente(Incidente incidente, int idPaquete){
+        //incidente.actualizarIncidente();
     }
 }
 

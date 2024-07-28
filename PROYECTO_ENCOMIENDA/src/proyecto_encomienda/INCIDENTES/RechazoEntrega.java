@@ -6,10 +6,12 @@ import java.sql.SQLException;
 
 public class RechazoEntrega extends Incidente {
     private Connection cnx;
+    private String estado="";
 
-    public RechazoEntrega(String descripcion, int idPaquete, int idIncidente, Connection cnx) {
-        super(descripcion, idPaquete, idIncidente);
+    public RechazoEntrega(String descripcion, int idPaquete, int idIncidente, Connection cnx,String est) {
+        super(descripcion, idPaquete, idIncidente,est);
         this.cnx = cnx;
+        this.estado=est;
     }
 
     @Override
@@ -25,7 +27,7 @@ public class RechazoEntrega extends Incidente {
             String sql = "INSERT INTO Incidente (IDPaquete, tipoIncidente, descripcion) VALUES (?, ?, ?)";
             stmt = cnx.prepareStatement(sql);
             stmt.setInt(1, getIdPaquete());
-            stmt.setString(2, "Rechazo Entrega");
+            stmt.setString(2, estado);
             stmt.setString(3, getDescripcion());
             
             stmt.executeUpdate();
@@ -45,4 +47,13 @@ public class RechazoEntrega extends Incidente {
             }
         }
     }
+
+    @Override
+    public void actualizarIncidente(String tabla, String columnaId, String id, String[] columnas, Object[] valores) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+  
+    
+    
 }

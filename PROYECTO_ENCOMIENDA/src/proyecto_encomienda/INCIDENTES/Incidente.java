@@ -9,16 +9,18 @@ public abstract class Incidente {
     private String estado;
     private int idIncidente;
 
-    public Incidente(String descripcion, int idPaquete, int idIncidente) {
+    public Incidente(String descripcion, int idPaquete, int idIncidente,String est) {
         this.descripcion = descripcion;
         this.fecha = LocalDateTime.now();
         this.idPaquete = idPaquete;
         this.idIncidente = idIncidente;
-        this.estado = "Registrado";
+        this.estado = est;
     }
 
     public abstract void actuar();
     public abstract void registrarIncidente();
+    public abstract void actualizarIncidente(String tabla,
+            String columnaId, String id, String[] columnas, Object[] valores);
 
     public void guardarPaquete() {
         // Lógica para guardar el paquete
