@@ -4,7 +4,9 @@
  */
 package proyecto_encomienda.GUI;
 
+import java.awt.Color;
 import java.sql.Connection;
+import java.util.ArrayList;
 import java.util.List;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -13,6 +15,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JRootPane;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
+import proyecto_encomienda.BDYValidaciones.ActualizarInventario;
 import proyecto_encomienda.BDYValidaciones.CreadorTablas;
 import proyecto_encomienda.BDYValidaciones.ContadorDeIDs;
 import proyecto_encomienda.BDYValidaciones.IncidentesBaseDeDatos;
@@ -20,6 +23,7 @@ import proyecto_encomienda.BDYValidaciones.TextPrompt;
 import proyecto_encomienda.BDYValidaciones.ValidadorDeRegistros;
 import proyecto_encomienda.BDYValidaciones.ValidadorDeSwings;
 import proyecto_encomienda.BDYValidaciones.VisibilidadManager;
+import proyecto_encomienda.BaseDeDatos.AccionesBD;
 import proyecto_encomienda.GESTION_PAQUETES.BACKEND.Inventario;
 import proyecto_encomienda.INCIDENTES.DanioPaquete;
 import proyecto_encomienda.INCIDENTES.ErrorDireccion;
@@ -49,12 +53,15 @@ public class JFIncidente extends javax.swing.JFrame {
     int xMouse, yMouse;
 
     //Incidentes
-    private boolean idIncidenteValidar = false;
+    private boolean idPaqueteValidar = false;
     private boolean descriptionValidar = false;
     private boolean seleccionValidar = false;
 
-    
-    
+    private boolean idPaqueteValidar1 = false;
+    private boolean descriptionValidar1 = false;
+    private boolean seleccionValidar1 = false;
+    private boolean idIncidenteValidar1 = false;
+
     public JFIncidente(Connection conexion) {
         initComponents();
         this.cnx = conexion;
@@ -85,6 +92,67 @@ public class JFIncidente extends javax.swing.JFrame {
         visibilidadManager.desvanecerLabels(labels);
     }
 
+    private boolean validarCampos(List<String> camposInvalidos, List<String> atributos) {
+        boolean validacionExitosa = true;
+        String tipoIncidente = SeleccionIncidentesCB1.getSelectedItem().toString();
+
+        if (this.jCIDIncidente.isSelected() && !validadorCheck.validarCampoNoVacio(jTFIDIncidenteActualizar, "ID del Incidente")) {
+            camposInvalidos.add("ID del Incidente");
+            validacionExitosa = false;
+        }
+
+        if (this.jCIDPaquete.isSelected()) {
+            if (!validadorCheck.validarCampoNoVacio(jTFIDIPaqueteActualizar, "ID del Paquete")) {
+                camposInvalidos.add("ID del Paquete");
+                validacionExitosa = false;
+            } else {
+                atributos.add("idpaquete=" + jTFIDIPaqueteActualizar.getText());
+            }
+        }
+
+        if (this.jCIncidente.isSelected()) {
+            if ("Selecciona".equals(tipoIncidente)) {
+                camposInvalidos.add("Tipo de incidente");
+                validacionExitosa = false;
+            } else {
+                atributos.add("tipoIncidente='" + tipoIncidente + "'");
+            }
+        }
+
+        if (this.jCDescripcion.isSelected()) {
+            if (!validadorCheck.validarCampoNoVacio(jTFDescripcionActualizar, "Descripcion")) {
+                camposInvalidos.add("Descripcion");
+                validacionExitosa = false;
+            } else {
+                atributos.add("descripcion='" + jTFDescripcionActualizar.getText() + "'");
+            }
+        }
+
+        return validacionExitosa;
+    }
+
+    private void mostrarErrores(List<String> camposInvalidos) {
+        String camposInvalidosStr = String.join("\n", camposInvalidos);
+        JOptionPane.showMessageDialog(this, "Error en los siguientes campos: " + camposInvalidosStr, "Error", JOptionPane.ERROR_MESSAGE);
+
+        for (String campoInvalido : camposInvalidos) {
+            switch (campoInvalido) {
+                case "ID del Incidente":
+                    validadorCheck.setColorFondoCampo(jTFIDIncidenteActualizar, new Color(255, 204, 204), errorActualizar1);
+                    break;
+                case "ID del Paquete":
+                    validadorCheck.setColorFondoCampo(jTFIDIPaqueteActualizar, new Color(255, 204, 204), errorActualizar2);
+                    break;
+                case "Tipo de incidente":
+                    // Handle as needed
+                    break;
+                case "Descripcion":
+                    validadorCheck.setColorFondoCampo(jTFDescripcionActualizar, new Color(255, 204, 204), errorActualizar4);
+                    break;
+            }
+        }
+    }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -111,8 +179,20 @@ public class JFIncidente extends javax.swing.JFrame {
         jPAE1 = new javax.swing.JPanel();
         jScrollPane29 = new javax.swing.JScrollPane();
         jTIncidentes1 = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        jPActualizarAtributos = new javax.swing.JPanel();
+        jTFIDIncidenteActualizar = new javax.swing.JTextField();
+        jTFIDIPaqueteActualizar = new javax.swing.JTextField();
+        jCIDIncidente = new javax.swing.JCheckBox();
+        jCIDPaquete = new javax.swing.JCheckBox();
+        jCIncidente = new javax.swing.JCheckBox();
+        jCDescripcion = new javax.swing.JCheckBox();
+        jTFDescripcionActualizar = new javax.swing.JTextField();
+        errorActualizar2 = new javax.swing.JLabel();
+        errorActualizar3 = new javax.swing.JLabel();
+        errorActualizar1 = new javax.swing.JLabel();
+        SeleccionIncidentesCB1 = new javax.swing.JComboBox<>();
+        errorActualizar4 = new javax.swing.JLabel();
         jPEE1 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jLabel69 = new javax.swing.JLabel();
@@ -151,11 +231,6 @@ public class JFIncidente extends javax.swing.JFrame {
                 TFIDPIncidentesFocusLost(evt);
             }
         });
-        TFIDPIncidentes.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                TFIDPIncidentesActionPerformed(evt);
-            }
-        });
         TFIDPIncidentes.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 TFIDPIncidentesKeyReleased(evt);
@@ -180,7 +255,7 @@ public class JFIncidente extends javax.swing.JFrame {
         errorIncidente1.setText("Código único inválido");
 
         errorIncidente2.setForeground(new java.awt.Color(255, 0, 51));
-        errorIncidente2.setText("Ingrese una descripción");
+        errorIncidente2.setText("Descripción incorrecta");
 
         TFRazonIncidentes.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
@@ -319,49 +394,191 @@ public class JFIncidente extends javax.swing.JFrame {
         });
         jScrollPane29.setViewportView(jTIncidentes1);
 
-        jButton1.setText("Editar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-
-        jButton2.setText("Editar");
+        jButton2.setText("Actualizar");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
         });
 
+        jPActualizarAtributos.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Editar Incidentes", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Times New Roman", 1, 16))); // NOI18N
+
+        jTFIDIncidenteActualizar.setEnabled(false);
+        jTFIDIncidenteActualizar.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jTFIDIncidenteActualizarFocusLost(evt);
+            }
+        });
+        jTFIDIncidenteActualizar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTFIDIncidenteActualizarKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTFIDIncidenteActualizarKeyTyped(evt);
+            }
+        });
+
+        jTFIDIPaqueteActualizar.setEnabled(false);
+        jTFIDIPaqueteActualizar.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jTFIDIPaqueteActualizarFocusLost(evt);
+            }
+        });
+        jTFIDIPaqueteActualizar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTFIDIPaqueteActualizarKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTFIDIPaqueteActualizarKeyTyped(evt);
+            }
+        });
+
+        jCIDIncidente.setText("ID Incidente");
+        jCIDIncidente.setToolTipText("");
+        jCIDIncidente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCIDIncidenteActionPerformed(evt);
+            }
+        });
+
+        jCIDPaquete.setText("ID Producto");
+        jCIDPaquete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCIDPaqueteActionPerformed(evt);
+            }
+        });
+
+        jCIncidente.setText("Incidente");
+        jCIncidente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCIncidenteActionPerformed(evt);
+            }
+        });
+
+        jCDescripcion.setText("Descripción del Incidente");
+        jCDescripcion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCDescripcionActionPerformed(evt);
+            }
+        });
+
+        jTFDescripcionActualizar.setEnabled(false);
+        jTFDescripcionActualizar.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jTFDescripcionActualizarFocusLost(evt);
+            }
+        });
+        jTFDescripcionActualizar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTFDescripcionActualizarKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTFDescripcionActualizarKeyTyped(evt);
+            }
+        });
+
+        errorActualizar2.setForeground(new java.awt.Color(255, 0, 51));
+        errorActualizar2.setText("ID Producto Inválido");
+
+        errorActualizar3.setForeground(new java.awt.Color(255, 0, 51));
+        errorActualizar3.setText("Incidente Inválido");
+
+        errorActualizar1.setForeground(new java.awt.Color(255, 0, 51));
+        errorActualizar1.setText("ID Incidente Inválido");
+
+        SeleccionIncidentesCB1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecciona", "Daño en el Paquete", "Error de Dirección", "Paquete Perdido", "Rechazo Entrega" }));
+        SeleccionIncidentesCB1.setEnabled(false);
+        SeleccionIncidentesCB1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SeleccionIncidentesCB1ActionPerformed(evt);
+            }
+        });
+
+        errorActualizar4.setForeground(new java.awt.Color(255, 0, 51));
+        errorActualizar4.setText("Descripción incorrecta");
+
+        javax.swing.GroupLayout jPActualizarAtributosLayout = new javax.swing.GroupLayout(jPActualizarAtributos);
+        jPActualizarAtributos.setLayout(jPActualizarAtributosLayout);
+        jPActualizarAtributosLayout.setHorizontalGroup(
+            jPActualizarAtributosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPActualizarAtributosLayout.createSequentialGroup()
+                .addGroup(jPActualizarAtributosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jCIDIncidente)
+                    .addComponent(jCIncidente)
+                    .addComponent(jCIDPaquete)
+                    .addComponent(jCDescripcion))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
+                .addGroup(jPActualizarAtributosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPActualizarAtributosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jTFIDIncidenteActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jTFIDIPaqueteActualizar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jTFDescripcionActualizar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(SeleccionIncidentesCB1, 0, 244, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPActualizarAtributosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(errorActualizar2)
+                    .addComponent(errorActualizar3)
+                    .addComponent(errorActualizar1)
+                    .addComponent(errorActualizar4))
+                .addGap(39, 39, 39))
+        );
+        jPActualizarAtributosLayout.setVerticalGroup(
+            jPActualizarAtributosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPActualizarAtributosLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPActualizarAtributosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTFIDIncidenteActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jCIDIncidente)
+                    .addComponent(errorActualizar1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPActualizarAtributosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTFIDIPaqueteActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jCIDPaquete)
+                    .addComponent(errorActualizar2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPActualizarAtributosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jCIncidente)
+                    .addComponent(errorActualizar3)
+                    .addComponent(SeleccionIncidentesCB1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(7, 7, 7)
+                .addGroup(jPActualizarAtributosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jCDescripcion)
+                    .addComponent(jTFDescripcionActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(errorActualizar4))
+                .addGap(143, 143, 143))
+        );
+
         javax.swing.GroupLayout jPAE1Layout = new javax.swing.GroupLayout(jPAE1);
         jPAE1.setLayout(jPAE1Layout);
         jPAE1Layout.setHorizontalGroup(
             jPAE1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPAE1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane29, javax.swing.GroupLayout.DEFAULT_SIZE, 934, Short.MAX_VALUE)
+                .addGap(25, 25, 25))
             .addGroup(jPAE1Layout.createSequentialGroup()
-                .addGap(58, 58, 58)
-                .addComponent(jScrollPane29, javax.swing.GroupLayout.DEFAULT_SIZE, 666, Short.MAX_VALUE)
-                .addGap(83, 83, 83)
                 .addGroup(jPAE1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
-                .addGap(86, 86, 86))
+                    .addGroup(jPAE1Layout.createSequentialGroup()
+                        .addGap(342, 342, 342)
+                        .addComponent(jButton2))
+                    .addGroup(jPAE1Layout.createSequentialGroup()
+                        .addGap(94, 94, 94)
+                        .addComponent(jPActualizarAtributos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPAE1Layout.setVerticalGroup(
             jPAE1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPAE1Layout.createSequentialGroup()
-                .addGroup(jPAE1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPAE1Layout.createSequentialGroup()
-                        .addGap(21, 21, 21)
-                        .addComponent(jScrollPane29, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPAE1Layout.createSequentialGroup()
-                        .addGap(38, 38, 38)
-                        .addComponent(jButton1)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton2)))
-                .addContainerGap(392, Short.MAX_VALUE))
+                .addGap(43, 43, 43)
+                .addComponent(jPActualizarAtributos, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 113, Short.MAX_VALUE)
+                .addComponent(jButton2)
+                .addGap(33, 33, 33)
+                .addComponent(jScrollPane29, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(41, 41, 41))
         );
 
-        jTPEmpleados1.addTab("Actualizar", jPAE1);
+        jTPEmpleados1.addTab("Editar Incidentes", jPAE1);
 
         javax.swing.GroupLayout jPEE1Layout = new javax.swing.GroupLayout(jPEE1);
         jPEE1.setLayout(jPEE1Layout);
@@ -465,14 +682,14 @@ public class JFIncidente extends javax.swing.JFrame {
         String idPaqueteStr = TFIDPIncidentes.getText().trim();
         DefaultTableModel modelo = new CreadorTablas().mostrarVistaDatosPaquete(cnx, idPaqueteStr);
         jTIncidentes.setModel(modelo);
-        idIncidenteValidar = validarRegistroF.camposDeRegistros(TFIDPIncidentes, errorIncidente1, "i");
+        idPaqueteValidar = validarRegistroF.camposDeRegistros(TFIDPIncidentes, errorIncidente1, "i");
     }//GEN-LAST:event_TFIDPIncidentesKeyReleased
 
     private void RegistrarIncidentesButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegistrarIncidentesButtonActionPerformed
         int idPaquete = Integer.parseInt(TFIDPIncidentes.getText());
         String tipoIncidente = SeleccionIncidentesCB.getSelectedItem().toString();
         JTextField[] campos = {TFIDPIncidentes, TFRazonIncidentes};
-        Boolean[] booleanItem = {idIncidenteValidar, descriptionValidar};
+        Boolean[] booleanItem = {idPaqueteValidar, descriptionValidar};
         JLabel[] labels = {errorIncidente1, errorIncidente2};
         String[] nombresCampos = {"Código Único del Incidente", "descripción"};
         List<String> errores = validadorCheck.validarCamposLista(campos, booleanItem, labels, nombresCampos);
@@ -482,11 +699,11 @@ public class JFIncidente extends javax.swing.JFrame {
         } else {
             seleccionValidar = true;
         }
-        
+
         if (!IncidentesBaseDeDatos.verificarCodigoTracking(cnx, idPaquete)) {
-        errores.add("El paquete con ID " + idPaquete + " no tiene un código de seguimiento válido."
-                + "codigoTraking");
-    }
+            errores.add("El paquete con ID " + idPaquete + " no tiene un código de seguimiento válido."
+                    + "codigoTraking");
+        }
 
         if (!errores.isEmpty() || !seleccionValidar) {
             StringBuilder mensajeError = new StringBuilder("Se encontraron los siguientes errores:\n");
@@ -497,8 +714,7 @@ public class JFIncidente extends javax.swing.JFrame {
         } else {
             String descripcion = TFRazonIncidentes.getText();
             int idIncidente = Integer.parseInt(IDIncidentesTF.getText());
-            
-            
+
             Inventario inventario = new Inventario(); // Asegúrate de tener una instancia de Inventario
             GestorIncidentes gestorIncidentes = new GestorIncidentes(inventario, cnx);
 
@@ -552,7 +768,7 @@ public class JFIncidente extends javax.swing.JFrame {
     }//GEN-LAST:event_jPanel3MousePressed
 
     private void TFIDPIncidentesFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_TFIDPIncidentesFocusLost
-        idIncidenteValidar = validarRegistroF.camposDeRegistros(TFIDPIncidentes, errorIncidente1, "i");
+        idPaqueteValidar = validarRegistroF.camposDeRegistros(TFIDPIncidentes, errorIncidente1, "i");
     }//GEN-LAST:event_TFIDPIncidentesFocusLost
 
     private void TFRazonIncidentesFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_TFRazonIncidentesFocusLost
@@ -563,17 +779,125 @@ public class JFIncidente extends javax.swing.JFrame {
         descriptionValidar = validarRegistroF.camposDeRegistros(TFRazonIncidentes, errorIncidente2, "d");
     }//GEN-LAST:event_TFRazonIncidentesKeyReleased
 
-    private void TFIDPIncidentesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TFIDPIncidentesActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_TFIDPIncidentesActionPerformed
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
-
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
+        List<String> camposInvalidos = new ArrayList<>();
+        List<String> atributos = new ArrayList<>();
+        boolean validacionExitosa = validarCampos(camposInvalidos, atributos);
+        AccionesBD actualizar = new AccionesBD();
+        if (!validacionExitosa) {
+            mostrarErrores(camposInvalidos);
+            return;
+        }
+
+        // Construir la consulta SQL
+        String atributosActualizacion = String.join(", ", atributos);
+        String atributoActualizar = "idincidente";
+        String condicion = "'" + this.jTFIDIncidenteActualizar.getText() + "'";
+        String tabla = "incidente";
+
+        // Actualizar los datos
+        actualizar.actualizarDatos(cnx, atributoActualizar, condicion, tabla, atributosActualizacion);
+        AccionesBD table = new AccionesBD();
+        DefaultTableModel modelo = table.buscarPorId(cnx, jTFIDIncidenteActualizar.getText());
+        jTIncidentes1.setModel(modelo);
+        jTFIDIPaqueteActualizar.setText("");
+        jTFDescripcionActualizar.setText("");
+        jTFIDIncidenteActualizar.setText("");
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jTFIDIPaqueteActualizarFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTFIDIPaqueteActualizarFocusLost
+        idPaqueteValidar1 = validarRegistroF.camposDeRegistros(jTFIDIPaqueteActualizar, errorActualizar2, "i");
+    }//GEN-LAST:event_jTFIDIPaqueteActualizarFocusLost
+
+    private void jTFIDIPaqueteActualizarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFIDIPaqueteActualizarKeyReleased
+        idPaqueteValidar1 = validarRegistroF.camposDeRegistros(jTFIDIPaqueteActualizar, errorActualizar2, "i");
+    }//GEN-LAST:event_jTFIDIPaqueteActualizarKeyReleased
+
+    private void jTFIDIPaqueteActualizarKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFIDIPaqueteActualizarKeyTyped
+        char c = evt.getKeyChar();
+        if (!Character.isDigit(c)) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_jTFIDIPaqueteActualizarKeyTyped
+
+    private void jCIDPaqueteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCIDPaqueteActionPerformed
+        validadorCheck.actualizarCampo(jCIDPaquete, jTFIDIPaqueteActualizar, idPaqueteValidar1, errorActualizar2);
+    }//GEN-LAST:event_jCIDPaqueteActionPerformed
+
+    private void jCIncidenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCIncidenteActionPerformed
+        if (jCIncidente.isSelected()) {
+            SeleccionIncidentesCB1.setEnabled(true);
+        } else {
+            SeleccionIncidentesCB1.setEnabled(false);
+        }
+    }//GEN-LAST:event_jCIncidenteActionPerformed
+
+    private void jCDescripcionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCDescripcionActionPerformed
+        validadorCheck.actualizarCampo(jCDescripcion, jTFDescripcionActualizar, descriptionValidar1, errorActualizar4);
+    }//GEN-LAST:event_jCDescripcionActionPerformed
+
+    private void jTFDescripcionActualizarFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTFDescripcionActualizarFocusLost
+        descriptionValidar1 = validarRegistroF.camposDeRegistros(jTFDescripcionActualizar, errorActualizar4, "d");
+    }//GEN-LAST:event_jTFDescripcionActualizarFocusLost
+
+    private void jTFDescripcionActualizarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFDescripcionActualizarKeyReleased
+        descriptionValidar1 = validarRegistroF.camposDeRegistros(jTFDescripcionActualizar, errorActualizar4, "d");
+    }//GEN-LAST:event_jTFDescripcionActualizarKeyReleased
+
+    private void jTFDescripcionActualizarKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFDescripcionActualizarKeyTyped
+//        char c = evt.getKeyChar();
+//        if (c == '\b') {
+//            return; // Permitir el evento si es la tecla Backspace
+//        }
+//        String nuevoTexto = jTFPrecio.getText() + c;
+//        if (!Character.isDigit(c) && c != KeyEvent.VK_PERIOD) {
+//            evt.consume(); // Cancelar el evento si no es un número
+//            JOptionPane.showMessageDialog(null, "Ingresa solo números.");
+//        } else if (c == KeyEvent.VK_PERIOD && nuevoTexto.indexOf('.') != nuevoTexto.lastIndexOf('.')) {
+//            evt.consume(); // Cancelar el evento si se ingresan múltiples puntos decimales
+//        } else if (!validarRegistroF.validarMaximoDosDecimales(nuevoTexto)) {
+//            evt.consume(); // Cancelar el evento si se ingresan más de dos decimales
+//            JOptionPane.showMessageDialog(null, "El valor solo puede tener hasta dos decimales.");
+//        }
+    }//GEN-LAST:event_jTFDescripcionActualizarKeyTyped
+
+    private void SeleccionIncidentesCB1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SeleccionIncidentesCB1ActionPerformed
+        // Obtener el texto seleccionado del JComboBox
+        String tipoIncidente = (String) SeleccionIncidentesCB1.getSelectedItem();
+        // Comprobar si el texto seleccionado es "Selecciona"
+        if ("Selecciona".equals(tipoIncidente)) {
+            seleccionValidar1 = false;
+            errorActualizar3.setVisible(true);
+        } else {
+            seleccionValidar1 = true;
+            errorActualizar3.setVisible(false);
+        }
+    }//GEN-LAST:event_SeleccionIncidentesCB1ActionPerformed
+
+    private void jCIDIncidenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCIDIncidenteActionPerformed
+        validadorCheck.actualizarCampo(jCIDIncidente, jTFIDIncidenteActualizar, idIncidenteValidar1, errorActualizar1);
+    }//GEN-LAST:event_jCIDIncidenteActionPerformed
+
+    private void jTFIDIncidenteActualizarFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTFIDIncidenteActualizarFocusLost
+        idIncidenteValidar1 = validarRegistroF.camposDeRegistros(jTFIDIncidenteActualizar, errorActualizar1, "i");
+    }//GEN-LAST:event_jTFIDIncidenteActualizarFocusLost
+
+    private void jTFIDIncidenteActualizarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFIDIncidenteActualizarKeyReleased
+        idIncidenteValidar1 = validarRegistroF.camposDeRegistros(jTFIDIncidenteActualizar, errorActualizar1, "i");
+        String idPaqueteStr = jTFIDIncidenteActualizar.getText().trim();
+        String tabla = "incidente";
+        String columna = "idincidente";
+        AccionesBD table = new AccionesBD();
+        DefaultTableModel modelo = table.buscarPorId(cnx, idPaqueteStr);
+        jTIncidentes1.setModel(modelo);
+    }//GEN-LAST:event_jTFIDIncidenteActualizarKeyReleased
+
+    private void jTFIDIncidenteActualizarKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFIDIncidenteActualizarKeyTyped
+        char c = evt.getKeyChar();
+        if (!Character.isDigit(c)) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_jTFIDIncidenteActualizarKeyTyped
 
     /**
      * @param args the command line arguments
@@ -615,20 +939,29 @@ public class JFIncidente extends javax.swing.JFrame {
     private javax.swing.JPanel JPIncidentes;
     private javax.swing.JButton RegistrarIncidentesButton;
     private javax.swing.JComboBox<String> SeleccionIncidentesCB;
+    private javax.swing.JComboBox<String> SeleccionIncidentesCB1;
     private javax.swing.JTextField TFIDPIncidentes;
     private javax.swing.JTextField TFRazonIncidentes;
     private javax.swing.JButton btnExit;
+    private javax.swing.JLabel errorActualizar1;
+    private javax.swing.JLabel errorActualizar2;
+    private javax.swing.JLabel errorActualizar3;
+    private javax.swing.JLabel errorActualizar4;
     private javax.swing.JLabel errorIncidente1;
     private javax.swing.JLabel errorIncidente2;
     private javax.swing.JLabel errorIncidente3;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JCheckBox jCDescripcion;
+    private javax.swing.JCheckBox jCIDIncidente;
+    private javax.swing.JCheckBox jCIDPaquete;
+    private javax.swing.JCheckBox jCIncidente;
     private javax.swing.JLabel jLabel133;
     private javax.swing.JLabel jLabel134;
     private javax.swing.JLabel jLabel135;
     private javax.swing.JLabel jLabel136;
     private javax.swing.JLabel jLabel69;
     private javax.swing.JPanel jPAE1;
+    private javax.swing.JPanel jPActualizarAtributos;
     private javax.swing.JPanel jPEE1;
     private javax.swing.JPanel jPIncidentes;
     private javax.swing.JPanel jPRE1;
@@ -636,6 +969,9 @@ public class JFIncidente extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane28;
     private javax.swing.JScrollPane jScrollPane29;
+    private javax.swing.JTextField jTFDescripcionActualizar;
+    private javax.swing.JTextField jTFIDIPaqueteActualizar;
+    private javax.swing.JTextField jTFIDIncidenteActualizar;
     private javax.swing.JTable jTIncidentes;
     private javax.swing.JTable jTIncidentes1;
     private javax.swing.JTabbedPane jTPEmpleados1;

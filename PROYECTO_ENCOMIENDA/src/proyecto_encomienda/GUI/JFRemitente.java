@@ -1090,7 +1090,7 @@ public class JFRemitente extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Ha ocurrido un error al intentar actualizar. "
                     + "\nPor favor, verifica los campos e inténtalo nuevamente.", "Error en el registro", JOptionPane.ERROR_MESSAGE);
         } else {
-            actualizar.actualizarDatosF(this.cnx, atributoActualizar, condicion, tabla, atributosActualizacion);
+            actualizar.actualizarDatos(this.cnx, atributoActualizar, condicion, tabla, atributosActualizacion);
             String filtroIdCliente = jTFIBuscadorAct1.getText();
             CreadorTablas creadorTablas = new CreadorTablas();
             DefaultTableModel modelo = creadorTablas.mostrarClienteParametrizado(cnx, filtroIdCliente, "N");
