@@ -34,6 +34,7 @@ public class PaqueteMenu extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
         btnMinimizar = new javax.swing.JLabel();
         btnCerrar = new javax.swing.JLabel();
         jPControl = new javax.swing.JPanel();
@@ -411,7 +412,7 @@ public class PaqueteMenu extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(jList1);
 
-        jPInventario.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 40, 610, 380));
+        jPInventario.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 40, 610, 380));
 
         jPPaqueteria.add(jPInventario, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 950, 500));
 
@@ -632,6 +633,7 @@ public class PaqueteMenu extends javax.swing.JFrame {
     private javax.swing.JLabel btnMinimizar;
     private javax.swing.JLabel btnPac;
     private javax.swing.JLabel btnTran;
+    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLAdministracion;
     private javax.swing.JLabel jLFactura;

@@ -1,1 +1,1 @@
-Paquete{codigoTracking='4', ancho=2.0, largo=5.0, contenido='Ropa', direccionDestino='San juan', estado=Pendiente}
+Paquete{codigoTracking='237812', ancho=23.4, largo=12.5, contenido='Armas', direccionDestino='Guasmo sur', estado=proyecto_encomienda.GESTION_PAQUETES.BACKEND.Pendiente@1858a0f8}

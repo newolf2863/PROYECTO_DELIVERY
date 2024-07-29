@@ -27,7 +27,10 @@ import javax.swing.table.TableRowSorter;
 import proyecto_encomienda.BDYValidaciones.TextPrompt;
 import proyecto_encomienda.BDYValidaciones.ValidadorDeSwings;
 import proyecto_encomienda.BDYValidaciones.ValidadorDeRegistros;
+import proyecto_encomienda.GESTION_PAQUETES.BACKEND.Inventario;
 import proyecto_encomienda.GESTION_PAQUETES.BACKEND.Paquete;
+import proyecto_encomienda.GESTION_PAQUETES.BACKEND.Pendiente;
+import proyecto_encomienda.GESTOR_PERFILES.Perfil;
 
 
 /**
@@ -43,20 +46,20 @@ public class JFGestionPaquetes extends javax.swing.JFrame {
     private boolean remitenteValidar = false;
     private boolean destinoValidar = false;
     private boolean contenidoValidar=false;
-    Connection cnx;
+
     
     //Mouse
     int xMouse, yMouse; 
    
-    public JFGestionPaquetes(Connection conexion) {      
+    public JFGestionPaquetes() {      
         initComponents();
         setIconImage(new ImageIcon(getClass().getResource("/proyecto_encomienda/GESTION_PAQUETES/FRONTEND/imagenes/caja.png")).getImage());
-        this.cnx=conexion;
+      
         //All Files	C:\Users\USUARIO\GitHub\PROYECTO_DELIVERY\PROYECTO_ENCOMIENDA\src\proyecto_encomienda\GESTION_PAQUETES\FRONTEND\imagenes\caja.png
         JFrame frame = new JFrame();
         frame.getRootPane().setWindowDecorationStyle(JRootPane.NONE);
-        contadorProductos();
-        contadorTraking();
+
+
         desvanecerP();
         setLocationRelativeTo(null);
         placeHolder();
@@ -64,118 +67,31 @@ public class JFGestionPaquetes extends javax.swing.JFrame {
  
 
     
-    public JFGestionPaquetes(){      
-        initComponents();
-    }
-    
+ 
     private void placeHolder() {
         TextPrompt texto1 = new TextPrompt("Obligatorio", jTContenidoPaquete);
         TextPrompt texto2 = new TextPrompt("Obligatorio", jTAncho);
         TextPrompt texto3 = new TextPrompt("Obligatorio", jTPeso);
         TextPrompt texto = new TextPrompt("Obligatorio", jTRemitente);
-        TextPrompt texto4 = new TextPrompt("Obligatorio", jTLargo);
-        TextPrompt texto5 = new TextPrompt("Obligatorio", jTDestino);
+        TextPrompt texto4 = new TextPrompt("Obligatorio", jTProvinciaOrigen);
+        TextPrompt texto5 = new TextPrompt("Obligatorio", jTPeso);
     }    
 
     
-public void contadorProductos() {
-        try {
-            // Consulta para obtener el máximo ID de Paquete
-            String consulta = "SELECT COALESCE(MAX(IDPaquete), 0) AS max_id FROM Paquete";
-            PreparedStatement stmt = cnx.prepareStatement(consulta);
-            ResultSet rs = stmt.executeQuery();
 
-            if (rs.next()) {
-                int maxId = rs.getInt("max_id");
-                // Si maxId es 0 (no hay paquetes), establece el siguiente ID como 1
-                int siguienteId = (maxId == 0) ? 1 : maxId + 1;
-                jTiDPaquete.setText(String.valueOf(siguienteId));
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-            // Maneja cualquier error de conexión o consulta aquí
-        }
-    }
-    
-    public void contadorTraking() {
-        try {
-            // Consulta para obtener el máximo ID de Paquete
-            String consulta = "SELECT COALESCE(MAX(idInventario), 0) AS max_id FROM Inventario";
-            PreparedStatement stmt = cnx.prepareStatement(consulta);
-            ResultSet rs = stmt.executeQuery();
-
-            if (rs.next()) {
-                int maxId = rs.getInt("max_id");
-                // Si maxId es 0 (no hay paquetes), establece el siguiente ID como 1
-                int siguienteId = (maxId == 0) ? 1 : maxId + 1;
-                jTCodigoTraking.setText(String.valueOf(siguienteId));
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-            // Maneja cualquier error de conexión o consulta aquí
-        }
-    }
-    
-    public void contadorInventario() {
-        try {
-            // Consulta para obtener el máximo ID de Paquete
-            String consulta = "SELECT COALESCE(MAX(idInventario), 0) AS max_id FROM Inventario";
-            PreparedStatement stmt = cnx.prepareStatement(consulta);
-            ResultSet rs = stmt.executeQuery();
-
-            if (rs.next()) {
-                int maxId = rs.getInt("max_id");
-                // Si maxId es 0 (no hay paquetes), establece el siguiente ID como 1
-                int siguienteId = (maxId == 0) ? 1 : maxId + 1;
-                jTCodigoTraking.setText(String.valueOf(siguienteId));
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-            // Maneja cualquier error de conexión o consulta aquí
-        }
-    }
-    
-    
-
-     private void ordenarTablaPorCodigoTracking() {
-        DefaultTableModel modeloTabla4 = (DefaultTableModel) jTablaInventario4.getModel();
-        TableRowSorter<DefaultTableModel> ordenador = new TableRowSorter<>(modeloTabla4);
-        jTablaInventario4.setRowSorter(ordenador);
-
-        List<RowSorter.SortKey> sortKeys = new ArrayList<>();
-        sortKeys.add(new RowSorter.SortKey(0, SortOrder.ASCENDING)); // Suponiendo que el código de tracking está en la columna 1
-        ordenador.setSortKeys(sortKeys);
-        ordenador.sort();
-    }
      
      private void limpiarTabla(JTable tabla) {
         DefaultTableModel modelo = (DefaultTableModel) tabla.getModel();
         modelo.setRowCount(0); // Establece el número de filas a cero para vaciar la tabla
     }
      
-     public void contadorTrakings() {
-        try {
-            // Consulta para obtener el máximo ID de Paquete
-            String consulta = "SELECT COALESCE(MAX(codigoTraking), 0) AS max_id FROM Inventario_Paquete";
-            PreparedStatement stmt = cnx.prepareStatement(consulta);
-            ResultSet rs = stmt.executeQuery();
-
-            if (rs.next()) {
-                int maxId = rs.getInt("max_id");
-                // Si maxId es 0 (no hay paquetes), establece el siguiente ID como 1
-                int siguienteId = (maxId == 0) ? 1 : maxId + 1;
-                jTCodigoTraking.setText(String.valueOf(siguienteId));
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-            // Maneja cualquier error de conexión o consulta aquí
-        }
-    }
+     
      
       public void desvanecerP() {
         JLabel[] labels = {
-             errorInventario1, errorInventario2, errorInventario2,
-            errorInventario1, errorInventario2, errorInventario5, errorInventario4};
+             errorAncho, errorLargo, errorContenido,
+             errorEspesor, errorPeso, errorProvinciaDestino, 
+             errorProvinciaOrigen, errorRemitente, errorDireccionDestino};
         for (int i = 0; i < labels.length; i++) {
             JLabel label = labels[i % labels.length];
             label.setVisible(false);
@@ -195,29 +111,41 @@ public void contadorProductos() {
         jTPaquetes = new javax.swing.JTable();
         jPanel2 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
-        jTiDPaquete = new javax.swing.JTextField();
         jLabel13 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
-        jTPeso = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
         jLabel60 = new javax.swing.JLabel();
-        errorInventario2 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
-        errorInventario1 = new javax.swing.JLabel();
-        jLabel61 = new javax.swing.JLabel();
-        jTContenidoPaquete = new javax.swing.JTextField();
-        jLabel35 = new javax.swing.JLabel();
-        errorInventario5 = new javax.swing.JLabel();
-        jTLargo = new javax.swing.JTextField();
-        jLabel62 = new javax.swing.JLabel();
         jLabel53 = new javax.swing.JLabel();
-        jTRemitente = new javax.swing.JTextField();
-        errorInventario4 = new javax.swing.JLabel();
         jLabel63 = new javax.swing.JLabel();
-        jTDestino = new javax.swing.JTextField();
+        jLabel15 = new javax.swing.JLabel();
+        jLabel16 = new javax.swing.JLabel();
+        jLabel64 = new javax.swing.JLabel();
+        jLabel65 = new javax.swing.JLabel();
+        jLabel66 = new javax.swing.JLabel();
+        jLabel17 = new javax.swing.JLabel();
+        jLabel18 = new javax.swing.JLabel();
+        btnRegistrar = new javax.swing.JButton();
+        jTContenidoPaquete = new javax.swing.JTextField();
+        jTProvinciaOrigen = new javax.swing.JTextField();
+        jTPeso = new javax.swing.JTextField();
         jTAncho = new javax.swing.JTextField();
-        errorInventario3 = new javax.swing.JLabel();
-        errorInventario6 = new javax.swing.JLabel();
+        jTEspesor = new javax.swing.JTextField();
+        jTIdPaquete = new javax.swing.JTextField();
+        jTLargo = new javax.swing.JTextField();
+        jTRemitente = new javax.swing.JTextField();
+        jTProvinciaDestino = new javax.swing.JTextField();
+        errorPeso = new javax.swing.JLabel();
+        errorAncho = new javax.swing.JLabel();
+        errorProvinciaOrigen = new javax.swing.JLabel();
+        errorContenido = new javax.swing.JLabel();
+        errorEspesor = new javax.swing.JLabel();
+        errorLargo = new javax.swing.JLabel();
+        errorDireccionDestino = new javax.swing.JLabel();
+        errorProvinciaDestino = new javax.swing.JLabel();
+        jBtnBuscarRemitente = new javax.swing.JButton();
+        jLabel54 = new javax.swing.JLabel();
+        jTDireccionDestino = new javax.swing.JTextField();
+        errorRemitente = new javax.swing.JLabel();
         jPID = new javax.swing.JPanel();
         jPanel7 = new javax.swing.JPanel();
         jLabel12 = new javax.swing.JLabel();
@@ -263,10 +191,10 @@ public void contadorProductos() {
 
         jLabel69.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel69.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel69.setText("Gestion de Envios");
+        jLabel69.setText("Gestión de Envios");
 
         btnExit.setForeground(new java.awt.Color(255, 255, 255));
-        btnExit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto_encomienda/GESTION_PAQUETES/FRONTEND/imagenes/power_24dp.png"))); // NOI18N
+        btnExit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto_encomienda/GESTION_PAQUETES/FRONTEND/imagenes/icons8_Delete_32px.png"))); // NOI18N
         btnExit.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         btnExit.setContentAreaFilled(false);
         btnExit.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -282,17 +210,15 @@ public void contadorProductos() {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel69)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 910, Short.MAX_VALUE)
-                .addComponent(btnExit, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jLabel69, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 896, Short.MAX_VALUE)
+                .addComponent(btnExit, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel69)
-                    .addComponent(btnExit, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(btnExit, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+            .addComponent(jLabel69, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
         );
 
         getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1050, 30));
@@ -317,235 +243,128 @@ public void contadorProductos() {
         jPIR.add(jScrollPane8, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 380, 961, 153));
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Datos del paquete"));
+        jPanel2.setPreferredSize(new java.awt.Dimension(1020, 360));
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel4.setText("ID Paquete");
+        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, 89, -1));
 
-        jTiDPaquete.setEditable(false);
-
-        jLabel13.setText("contenido");
+        jLabel13.setText("Provincia Destino");
+        jPanel2.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 130, -1, -1));
 
         jLabel11.setText("Peso");
+        jPanel2.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 240, -1, -1));
 
-        jTPeso.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                jTPesoFocusLost(evt);
-            }
-        });
-        jTPeso.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                jTPesoKeyReleased(evt);
-            }
-        });
-
-        jButton1.setText("Registrar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-
-        jLabel60.setText("KG");
-
-        errorInventario2.setForeground(new java.awt.Color(255, 0, 51));
-        errorInventario2.setText("Peso no valido");
+        jLabel60.setText("cm");
+        jPanel2.add(jLabel60, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 80, -1, -1));
 
         jLabel14.setText("Ancho");
-
-        errorInventario1.setForeground(new java.awt.Color(255, 0, 51));
-        errorInventario1.setText("Ancho no valido");
-
-        jLabel61.setText("m");
-
-        jTContenidoPaquete.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                jTContenidoPaqueteFocusLost(evt);
-            }
-        });
-
-        jLabel35.setText("Largo");
-
-        errorInventario5.setForeground(new java.awt.Color(255, 0, 51));
-        errorInventario5.setText("Largo no valido");
-
-        jTLargo.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                jTLargoFocusLost(evt);
-            }
-        });
-        jTLargo.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                jTLargoKeyReleased(evt);
-            }
-        });
-
-        jLabel62.setText("m");
+        jPanel2.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, -1, -1));
 
         jLabel53.setText("Remitente");
+        jPanel2.add(jLabel53, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 230, -1, -1));
 
-        jTRemitente.addFocusListener(new java.awt.event.FocusAdapter() {
+        jLabel63.setText("Dirección destino");
+        jPanel2.add(jLabel63, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 180, -1, -1));
+
+        jLabel15.setText("Largo");
+        jPanel2.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 130, -1, -1));
+
+        jLabel16.setText("Espesor");
+        jPanel2.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 180, -1, -1));
+
+        jLabel64.setText("Kg");
+        jPanel2.add(jLabel64, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 230, -1, -1));
+
+        jLabel65.setText("cm");
+        jPanel2.add(jLabel65, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 180, -1, -1));
+
+        jLabel66.setText("cm");
+        jPanel2.add(jLabel66, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 130, -1, -1));
+
+        jLabel17.setText("Contenido");
+        jPanel2.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 30, -1, -1));
+
+        jLabel18.setText("Provincia Origen");
+        jPanel2.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 80, -1, -1));
+
+        btnRegistrar.setText("Registrar");
+        btnRegistrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegistrarActionPerformed(evt);
+            }
+        });
+        jPanel2.add(btnRegistrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(363, 314, 123, -1));
+        jPanel2.add(jTContenidoPaquete, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 30, 290, -1));
+        jPanel2.add(jTProvinciaOrigen, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 80, 290, -1));
+        jPanel2.add(jTPeso, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 230, 210, -1));
+        jPanel2.add(jTAncho, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 80, 210, -1));
+        jPanel2.add(jTEspesor, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 180, 210, -1));
+        jPanel2.add(jTIdPaquete, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 30, 210, -1));
+        jPanel2.add(jTLargo, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 130, 210, -1));
+        jPanel2.add(jTRemitente, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 230, 290, -1));
+        jPanel2.add(jTProvinciaDestino, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 130, 290, -1));
+
+        errorPeso.setForeground(new java.awt.Color(255, 0, 51));
+        errorPeso.setText("Peso no válido");
+        jPanel2.add(errorPeso, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 250, 90, 20));
+
+        errorAncho.setForeground(new java.awt.Color(255, 0, 51));
+        errorAncho.setText("Ancho no válido");
+        jPanel2.add(errorAncho, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 100, 110, 20));
+
+        errorProvinciaOrigen.setForeground(new java.awt.Color(255, 0, 51));
+        errorProvinciaOrigen.setText("Provincia origen no válido");
+        jPanel2.add(errorProvinciaOrigen, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 100, 170, 20));
+
+        errorContenido.setForeground(new java.awt.Color(255, 0, 51));
+        errorContenido.setText("Contenido no válido");
+        jPanel2.add(errorContenido, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 50, 140, 20));
+
+        errorEspesor.setForeground(new java.awt.Color(255, 0, 51));
+        errorEspesor.setText("Espesor no válido");
+        jPanel2.add(errorEspesor, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 200, 110, 20));
+
+        errorLargo.setForeground(new java.awt.Color(255, 0, 51));
+        errorLargo.setText("Largo no válido");
+        jPanel2.add(errorLargo, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 150, 100, 20));
+
+        errorDireccionDestino.setForeground(new java.awt.Color(255, 0, 51));
+        errorDireccionDestino.setText("Destino no válido");
+        jPanel2.add(errorDireccionDestino, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 200, 110, 20));
+
+        errorProvinciaDestino.setForeground(new java.awt.Color(255, 0, 51));
+        errorProvinciaDestino.setText("Provincia destino no válido");
+        jPanel2.add(errorProvinciaDestino, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 150, 170, 20));
+
+        jBtnBuscarRemitente.setText("Buscar");
+        jBtnBuscarRemitente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnBuscarRemitenteActionPerformed(evt);
+            }
+        });
+        jPanel2.add(jBtnBuscarRemitente, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 270, -1, -1));
+
+        jLabel54.setText("Remitente");
+        jPanel2.add(jLabel54, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 270, -1, -1));
+
+        jTDireccionDestino.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
-                jTRemitenteFocusLost(evt);
+                jTDireccionDestinoFocusLost(evt);
             }
         });
-        jTRemitente.addKeyListener(new java.awt.event.KeyAdapter() {
+        jTDireccionDestino.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
-                jTRemitenteKeyReleased(evt);
+                jTDireccionDestinoKeyReleased(evt);
             }
         });
+        jPanel2.add(jTDireccionDestino, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 180, 290, -1));
 
-        errorInventario4.setForeground(new java.awt.Color(255, 0, 51));
-        errorInventario4.setText("Remitente no valido");
+        errorRemitente.setForeground(new java.awt.Color(255, 0, 51));
+        errorRemitente.setText("Remitente no válido");
+        jPanel2.add(errorRemitente, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 250, 130, 20));
 
-        jLabel63.setText("Destino");
-
-        jTDestino.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                jTDestinoFocusLost(evt);
-            }
-        });
-        jTDestino.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                jTDestinoKeyReleased(evt);
-            }
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                jTDestinoKeyTyped(evt);
-            }
-        });
-
-        jTAncho.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                jTAnchoFocusLost(evt);
-            }
-        });
-        jTAncho.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                jTAnchoKeyReleased(evt);
-            }
-        });
-
-        errorInventario3.setForeground(new java.awt.Color(255, 0, 51));
-        errorInventario3.setText("Destino no válido");
-
-        errorInventario6.setForeground(new java.awt.Color(255, 0, 51));
-        errorInventario6.setText("contenido no valido");
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel11)
-                    .addComponent(jLabel14)
-                    .addComponent(jLabel63))
-                .addGap(41, 41, 41)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jTPeso, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jLabel60)
-                                .addGap(65, 65, 65)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel35)
-                                    .addComponent(jLabel13)
-                                    .addComponent(jLabel53))
-                                .addGap(21, 21, 21)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(jTContenidoPaquete, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 254, Short.MAX_VALUE)
-                                            .addComponent(jTLargo))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jLabel62)
-                                        .addGap(192, 192, 192))
-                                    .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(errorInventario4)
-                                            .addComponent(jTRemitente, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(errorInventario5)
-                                            .addComponent(errorInventario6))
-                                        .addGap(0, 0, Short.MAX_VALUE))))))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(errorInventario2)
-                            .addComponent(jTDestino, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jTiDPaquete, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jTAncho, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jLabel61)))
-                        .addContainerGap())
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(errorInventario1)
-                            .addComponent(errorInventario3))
-                        .addGap(0, 0, Short.MAX_VALUE))))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel4)
-                            .addComponent(jTiDPaquete, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(45, 45, 45)
-                                .addComponent(jLabel14))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jTAncho, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel61))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(errorInventario1)
-                        .addGap(27, 27, 27)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel11)
-                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jTPeso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel60))))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel53)
-                            .addComponent(jTRemitente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(errorInventario4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel62)
-                            .addComponent(jTLargo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel35))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(errorInventario5)
-                        .addGap(27, 27, 27)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel13)
-                            .addComponent(jTContenidoPaquete, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(errorInventario2)
-                    .addComponent(errorInventario6))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel63)
-                    .addComponent(jTDestino, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(errorInventario3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addGap(18, 18, 18))
-        );
-
-        jPIR.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 18, 991, -1));
+        jPIR.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 970, 360));
 
         jPanel_General.addTab("Registrar", jPIR);
 
@@ -742,99 +561,6 @@ public void contadorProductos() {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTPesoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTPesoFocusLost
-        pesoValidar = validarRegistroF.camposDeRegistros(jTPeso, errorInventario2, "precio");
-    }//GEN-LAST:event_jTPesoFocusLost
-
-    private void jTPesoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTPesoKeyReleased
-        pesoValidar = validarRegistroF.camposDeRegistros(jTPeso, errorInventario2, "precio");
-    }//GEN-LAST:event_jTPesoKeyReleased
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        JTextField[] campos = {jTAncho,jTPeso,jTDestino,jTRemitente, jTLargo, jTContenidoPaquete};
-        Boolean[] booleanItem = {anchoValidar,pesoValidar,destinoValidar,remitenteValidar, largoValidar, contenidoValidar};
-        JLabel[] labels = {errorInventario1, errorInventario2, errorInventario3, errorInventario4,errorInventario5,errorInventario6};
-        String[] nombresCampos = {"Ancho", "Peso", "Destino","Remitente", "Largo","Contenido del paquete"};
-        List<String> errores = validadorCheck.validarCamposLista(campos, booleanItem, labels, nombresCampos);
-        errores.addAll(validadorCheck.validarCamposVaciosLista(campos, booleanItem, labels, nombresCampos));
-        String estado = "Pendiente";
-
-        if (!errores.isEmpty()) {
-            StringBuilder mensajeError = new StringBuilder("Se encontraron los siguientes errores:\n");
-            for (String error : errores) {
-                mensajeError.append("- ").append(error).append("\n");
-            }
-            JOptionPane.showMessageDialog(null, mensajeError.toString(), "Errores", JOptionPane.ERROR_MESSAGE);
-        } else {
-            try {
-                int idPaquete = Integer.parseInt(jTiDPaquete.getText());
-                String contenidoPaquete = jTContenidoPaquete.getText();
-                double ancho = Double.parseDouble(jTAncho.getText());
-                double peso = Double.parseDouble(jTPeso.getText());
-                double largo = Double.parseDouble(jTLargo.getText());
-                String remitente = jTRemitente.getText();
-                String destino = jTDestino.getText();
-
-                Paquete paquete = new Paquete(idPaquete, ancho, peso, largo, contenidoPaquete, remitente, destino);
-                Paquete.ingresarPaquete(cnx, paquete);
-                paquete.setEstado(estado);
-
-                // Llamar a iniciarEnvio después de registrar el paquete
-                paquete.iniciarEnvio();
-
-                CreadorTablas cnn = new CreadorTablas();
-                DefaultTableModel modelo = cnn.mostrarTablaPaquetes(cnx);
-
-                jTContenidoPaquete.setText("");
-                jTAncho.setText("");
-                jTPeso.setText("");
-                jTLargo.setText("");
-                jTRemitente.setText("");
-                jTDestino.setText("");
-                contadorProductos();
-                this.jTPaquetes.setModel(modelo);
-            } catch (NumberFormatException e) {
-                JOptionPane.showMessageDialog(null, "Error en los datos numéricos", "Error", JOptionPane.ERROR_MESSAGE);
-            }
-        }
-    }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void jTLargoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTLargoFocusLost
-        largoValidar = validarRegistroF.camposDeRegistros(jTLargo, errorInventario5, "precio");
-    }//GEN-LAST:event_jTLargoFocusLost
-
-    private void jTLargoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTLargoKeyReleased
-        largoValidar = validarRegistroF.camposDeRegistros(jTLargo, errorInventario5, "precio");
-    }//GEN-LAST:event_jTLargoKeyReleased
-
-    private void jTRemitenteFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTRemitenteFocusLost
-        remitenteValidar = validarRegistroF.camposDeRegistros(jTRemitente, errorInventario4, "d");
-    }//GEN-LAST:event_jTRemitenteFocusLost
-
-    private void jTRemitenteKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTRemitenteKeyReleased
-        remitenteValidar = validarRegistroF.camposDeRegistros(jTRemitente, errorInventario4, "d");
-    }//GEN-LAST:event_jTRemitenteKeyReleased
-
-    private void jTDestinoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTDestinoFocusLost
-       destinoValidar = validarRegistroF.camposDeRegistros(jTDestino, errorInventario3, "d");
-    }//GEN-LAST:event_jTDestinoFocusLost
-
-    private void jTDestinoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTDestinoKeyReleased
-       destinoValidar = validarRegistroF.camposDeRegistros(jTDestino, errorInventario3, "d");
-    }//GEN-LAST:event_jTDestinoKeyReleased
-
-    private void jTDestinoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTDestinoKeyTyped
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTDestinoKeyTyped
-
-    private void jTAnchoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTAnchoFocusLost
-        anchoValidar = validarRegistroF.camposDeRegistros(jTAncho, errorInventario1, "precio");
-    }//GEN-LAST:event_jTAnchoFocusLost
-
-    private void jTAnchoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTAnchoKeyReleased
-        anchoValidar = validarRegistroF.camposDeRegistros(jTAncho, errorInventario1, "precio");
-    }//GEN-LAST:event_jTAnchoKeyReleased
-
     private void jTablaInventario3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTablaInventario3MouseClicked
         int filaSeleccionada = jTablaInventario3.getSelectedRow();
         if (filaSeleccionada >= 0) {
@@ -869,7 +595,7 @@ public void contadorProductos() {
                 modeloTabla4.addRow(fila);
 
                 // Ordenar automáticamente por el número de ID (columna 0) ascendente
-                ordenarTablaPorCodigoTracking();
+
 
                 // Eliminar la fila de jTablaInventario3
                 DefaultTableModel modeloTabla3 = (DefaultTableModel) jTablaInventario3.getModel();
@@ -884,9 +610,7 @@ public void contadorProductos() {
     }//GEN-LAST:event_jTablaInventario3MouseClicked
 
     private void jTiDPaquete1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTiDPaquete1KeyReleased
-        String idPaquete = jTiDPaquete1.getText();
-        DefaultTableModel modelo = ConsultarBD.buscarPaquetePorId(cnx, idPaquete);
-        jTablaInventario3.setModel(modelo);
+
     }//GEN-LAST:event_jTiDPaquete1KeyReleased
 
     private void jTablaInventario4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTablaInventario4MouseClicked
@@ -908,12 +632,7 @@ public void contadorProductos() {
     }//GEN-LAST:event_jTablaInventario4MouseClicked
 
     private void jBRegistrarPAInventarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBRegistrarPAInventarioActionPerformed
-        String descripcion = jTFDescripcionInventario.getText();
-        IngresadorDeDatos.registrarDatosInventario(cnx, jTablaInventario4, descripcion);
-        // Limpiar la tabla y otros elementos
-        limpiarTabla(jTablaInventario4);
-        contadorTraking();
-        contadorTrakings();
+
     }//GEN-LAST:event_jBRegistrarPAInventarioActionPerformed
 
     private void jPanel3MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel3MousePressed
@@ -936,9 +655,73 @@ public void contadorProductos() {
         }
     }//GEN-LAST:event_btnExitActionPerformed
 
-    private void jTContenidoPaqueteFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTContenidoPaqueteFocusLost
-       contenidoValidar = validarRegistroF.camposDeRegistros(jTContenidoPaquete, errorInventario6, "d");
-    }//GEN-LAST:event_jTContenidoPaqueteFocusLost
+    private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
+        JTextField[] campos = {jTAncho,jTPeso,jTPeso,jTRemitente, jTProvinciaOrigen, jTContenidoPaquete};
+        boolean campoVacio = false;
+        for (JTextField campo : campos) {
+            if (campo.getText().isEmpty()) {
+            campoVacio = true;
+            break; // Salir del bucle si se encuentra un campo vacío
+        }
+}
+
+        if (campoVacio) {
+            StringBuilder mensajeError = new StringBuilder("Se encontraron los siguientes errores:\n");
+            mensajeError.append("- ").append("Existe algun campo vacío").append("\n");
+
+            JOptionPane.showMessageDialog(null, mensajeError.toString(), "Errores", JOptionPane.ERROR_MESSAGE);
+        } else {
+            try {
+                String idPaquete = jTIdPaquete.getText();
+                String contenidoPaquete = jTContenidoPaquete.getText();
+                double ancho = Double.parseDouble(jTAncho.getText());
+                double largo = Double.parseDouble(jTLargo.getText());
+                double espesor = Double.parseDouble(jTEspesor.getText());
+                double peso = Double.parseDouble(jTPeso.getText());
+                String remitente = jTRemitente.getText();
+                String direccionDestino = jTDireccionDestino.getText();
+                String provinciaOrigen = jTProvinciaOrigen.getText();
+                String provinciaDestino = jTProvinciaDestino.getText();
+
+                Paquete paquete = new Paquete(idPaquete, ancho, largo, espesor, peso, contenidoPaquete, remitente, provinciaOrigen, provinciaDestino, direccionDestino);
+                //Paquete.ingresarPaquete(cnx, paquete);
+                paquete.setEstado("Pendiente");
+                
+                Inventario inventario = Inventario.obtenerInstancia();
+                inventario.agregarPaquete(paquete);
+                // Llamar a iniciarEnvio después de registrar el paquete
+
+
+
+
+                jTContenidoPaquete.setText("");
+                jTAncho.setText("");
+                jTPeso.setText("");
+                jTProvinciaOrigen.setText("");
+                jTRemitente.setText("");
+                jTPeso.setText("");
+                jTLargo.setText("");
+                jTProvinciaDestino.setText("");
+                jTDireccionDestino.setText("");
+
+
+            } catch (NumberFormatException e) {
+                JOptionPane.showMessageDialog(null, "Error en los datos numéricos", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+    }//GEN-LAST:event_btnRegistrarActionPerformed
+
+    private void jBtnBuscarRemitenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnBuscarRemitenteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jBtnBuscarRemitenteActionPerformed
+
+    private void jTDireccionDestinoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTDireccionDestinoFocusLost
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTDireccionDestinoFocusLost
+
+    private void jTDireccionDestinoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTDireccionDestinoKeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTDireccionDestinoKeyReleased
 
     /**
      * @param args the command line arguments
@@ -978,28 +761,37 @@ public void contadorProductos() {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnExit;
-    private javax.swing.JLabel errorInventario1;
-    private javax.swing.JLabel errorInventario2;
-    private javax.swing.JLabel errorInventario3;
-    private javax.swing.JLabel errorInventario4;
-    private javax.swing.JLabel errorInventario5;
-    private javax.swing.JLabel errorInventario6;
+    private javax.swing.JButton btnRegistrar;
+    private javax.swing.JLabel errorAncho;
+    private javax.swing.JLabel errorContenido;
+    private javax.swing.JLabel errorDireccionDestino;
+    private javax.swing.JLabel errorEspesor;
+    private javax.swing.JLabel errorLargo;
+    private javax.swing.JLabel errorPeso;
+    private javax.swing.JLabel errorProvinciaDestino;
+    private javax.swing.JLabel errorProvinciaOrigen;
+    private javax.swing.JLabel errorRemitente;
     private javax.swing.JLabel errorTraking1;
     private javax.swing.JButton jBRegistrarPAInventario;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jBtnBuscarRemitente;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel115;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel32;
-    private javax.swing.JLabel jLabel35;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel53;
+    private javax.swing.JLabel jLabel54;
     private javax.swing.JLabel jLabel60;
-    private javax.swing.JLabel jLabel61;
-    private javax.swing.JLabel jLabel62;
     private javax.swing.JLabel jLabel63;
+    private javax.swing.JLabel jLabel64;
+    private javax.swing.JLabel jLabel65;
+    private javax.swing.JLabel jLabel66;
     private javax.swing.JLabel jLabel69;
     private javax.swing.JPanel jPIA;
     private javax.swing.JPanel jPID;
@@ -1020,17 +812,20 @@ public void contadorProductos() {
     private javax.swing.JTextField jTAncho;
     private javax.swing.JTextField jTCodigoTraking;
     private javax.swing.JTextField jTContenidoPaquete;
-    private javax.swing.JTextField jTDestino;
+    private javax.swing.JTextField jTDireccionDestino;
+    private javax.swing.JTextField jTEspesor;
     private javax.swing.JTextField jTFDescripcionInventario;
+    private javax.swing.JTextField jTIdPaquete;
     private javax.swing.JTextField jTLargo;
     private javax.swing.JTable jTPaquetes;
     private javax.swing.JTextField jTPeso;
+    private javax.swing.JTextField jTProvinciaDestino;
+    private javax.swing.JTextField jTProvinciaOrigen;
     private javax.swing.JTextField jTRemitente;
     private javax.swing.JTable jTablaInventario1;
     private javax.swing.JTable jTablaInventario2;
     private javax.swing.JTable jTablaInventario3;
     private javax.swing.JTable jTablaInventario4;
-    private javax.swing.JTextField jTiDPaquete;
     private javax.swing.JTextField jTiDPaquete1;
     // End of variables declaration//GEN-END:variables
 }

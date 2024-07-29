@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import proyecto_encomienda.GESTOR_PERFILES.Perfil;
 
 public class Paquete {
 
@@ -14,10 +15,14 @@ public class Paquete {
     private double peso;
     private double ancho;
     private double largo;
+    private double espesor;
     private String contenido;
     private String direccionDestino;
+    private String provinciaOrigen;
+    private String provinciaDestino;
     private String remitente;
     private int idPaquete;
+    
 
     public Paquete(String codigoTracking, double ancho, double largo, String contenido, String destino) {
         this.estado = new Pendiente(this); // Asume que Pendiente es una subclase de EstadoDelPaquete
@@ -29,16 +34,19 @@ public class Paquete {
         this.direccionDestino = destino;
     }
 
-    public Paquete(int idPaquete, double ancho, double peso, double largo, String contenido, String remitente, String destino) {
+    public Paquete(String codigoTracking, double ancho, double largo, double espesor, double peso, String contenido, String remitente, String provinciaOrigen, String provinciaDestino, String direccionDestino) {
         this.estado = new Pendiente(this);
         this.seguimiento = new Seguimiento(estado);
-        this.idPaquete = idPaquete;
+        this.codigoTracking = codigoTracking;
         this.ancho = ancho;
         this.largo = largo;
+        this.espesor = espesor;
         this.peso = peso;
         this.contenido = contenido;
         this.remitente = remitente;
-        this.direccionDestino = destino;
+        this.provinciaOrigen = provinciaOrigen;
+        this.provinciaDestino = provinciaDestino;
+        this.direccionDestino = direccionDestino;
     }
 
     public void cambiarEstado(EstadoDelPaquete estado) {
@@ -53,8 +61,10 @@ public class Paquete {
     public EstadoDelPaquete obtenerEstado() {
         return estado;
     }
+      
     
-     public void iniciarEnvio() {
+    
+    public void iniciarEnvio() {
         estado.iniciarEnvio(); // Llama al método iniciarEnvio del estado actual
     }
      
@@ -96,20 +106,20 @@ public class Paquete {
         this.peso = peso;
     }
 
-    public double getAncho() {
-        return ancho;
+    public double[] getVolumen() {
+        return new double[]{ancho, largo, espesor};
     }
 
     public void setAncho(double ancho) {
         this.ancho = ancho;
     }
 
-    public double getLargo() {
-        return largo;
-    }
-
     public void setLargo(double largo) {
         this.largo = largo;
+    }
+    
+    public void setEspesor(double espesor) {
+        this.espesor = espesor;
     }
 
     public String getContenido() {
@@ -128,14 +138,15 @@ public class Paquete {
         this.direccionDestino = direccionDestino;
     }
 
-    public String getRemitente() {
+    /*
+    public Perfil getRemitente() {
         return remitente;
     }
 
-    public void setRemitente(String remitente) {
+    public void setRemitente(Perfil remitente) {
         this.remitente = remitente;
     }
-
+    */
     public int getIdPaquete() {
         return idPaquete;
     }
@@ -144,6 +155,7 @@ public class Paquete {
         this.idPaquete = idPaquete;
     }
 
+    /*
     public static void ingresarPaquete(Connection cnx, Paquete paquete) {
         String sql = "INSERT INTO Paquete (idPaquete, peso,"
                 + " ancho, largo, contenido, remitente, direccionDestino,estado)"
@@ -164,7 +176,7 @@ public class Paquete {
             e.printStackTrace();
         }
     }
-
+    */
     @Override
     public String toString() {
         return "Paquete{"
@@ -176,4 +188,5 @@ public class Paquete {
                 + ", estado=" + estado
                 + '}';
     }
+    
 }
