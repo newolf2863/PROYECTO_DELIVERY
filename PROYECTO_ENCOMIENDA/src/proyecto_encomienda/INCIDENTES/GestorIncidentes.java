@@ -1,21 +1,23 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package proyecto_encomienda.INCIDENTES;
 
-/**
- *
- * @author Issac
- */
-public class GestorIncidentes {
-    private Inventario inventario;
+import proyecto_encomienda.GESTION_PAQUETES.BACKEND.Inventario;
+import java.sql.Connection;
 
-    public GestorIncidentes(Inventario inventario) {
+public class GestorIncidentes {
+
+    private Inventario inventario;
+    private Connection cnx;
+
+    public GestorIncidentes(Inventario inventario, Connection cnx) {
         this.inventario = inventario;
+        this.cnx = cnx;
     }
 
-    public void guardarPaquete(Incidente incidente) {
+    public void crearIncidente(Incidente incidente, int idPaquete) {
+        // Lógica para crear y registrar el incidente
+        incidente.registrarIncidente();
         incidente.guardarPaquete();
+        incidente.notificarCliente();
     }
 }
+

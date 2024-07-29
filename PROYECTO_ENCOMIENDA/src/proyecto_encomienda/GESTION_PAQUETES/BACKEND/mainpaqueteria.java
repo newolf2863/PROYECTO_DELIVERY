@@ -10,7 +10,7 @@ package proyecto_encomienda.GESTION_PAQUETES.BACKEND;
  */
 public class mainpaqueteria {
     public static void main(String[] args) {
-        Inventario inventario = new Inventario();
+        Inventario inventario = Inventario.obtenerInstancia();
         Paquete paquete1 = new Paquete("123456789", 20.5, 30.2, "Libros", "Quito, Ecuador");
         Paquete paquete2 = new Paquete("987654321", 35.4, 15.8, "Juguetes", "Guayaquil, Ecuador");
         Paquete paquete3 = new Paquete("000000000", 42.1, 23.9, "Ropa", "Cuenca, Ecuador");

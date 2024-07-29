@@ -1,29 +1,31 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package proyecto_encomienda.INCIDENTES;
 
 import java.time.LocalDateTime;
 
-/**
- *
- * @author Issac
- */
-abstract class Incidente {
+public abstract class Incidente {
+    private String descripcion;
+    private LocalDateTime fecha;
+    private int idPaquete;
+    private String estado;
+    private int idIncidente;
+
+    public Incidente(String descripcion, int idPaquete, int idIncidente) {
+        this.descripcion = descripcion;
+        this.fecha = LocalDateTime.now();
+        this.idPaquete = idPaquete;
+        this.idIncidente = idIncidente;
+        this.estado = "Registrado";
+    }
 
     public abstract void actuar();
+    public abstract void registrarIncidente();
 
     public void guardarPaquete() {
         // Lógica para guardar el paquete
         System.out.println("Estado de paquete guardado.");
-
     }
-    private String descripcion;
-    private LocalDateTime fecha;
-    private String idPaquete;
 
-// Getters y setters
+    // Getters y setters
     public String getDescripcion() {
         return descripcion;
     }
@@ -40,22 +42,34 @@ abstract class Incidente {
         this.fecha = fecha;
     }
 
-    public String getIdPaquete() {
+    public int getIdPaquete() {
         return idPaquete;
     }
 
-    public void setIdPaquete(String idPaquete) {
+    public void setIdPaquete(int idPaquete) {
         this.idPaquete = idPaquete;
     }
 
-    public void registrarIncidente() {
-        // Lógica para registrar el incidente en la base de datos o sistema de seguimiento
-        System.out.println("Incidente registrado: " + descripcion);
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
+
+    public int getIdIncidente() {
+        return idIncidente;
+    }
+
+    public void setIdIncidente(int idIncidente) {
+        this.idIncidente = idIncidente;
     }
 
     public void notificarCliente() {
         // Lógica para notificar al cliente sobre el incidente
         System.out.println("Cliente notificado sobre el incidente del paquete: " + idPaquete);
     }
-
 }
+
+

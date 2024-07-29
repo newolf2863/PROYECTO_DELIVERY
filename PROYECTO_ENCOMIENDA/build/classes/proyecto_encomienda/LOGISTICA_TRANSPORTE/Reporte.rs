@@ -1,1 +1,2 @@
+Reporte
 Negocio.Reporte

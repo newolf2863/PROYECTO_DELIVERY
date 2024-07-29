@@ -1,1 +1,2 @@
 Negocio.Vehiculo
+Vehiculo
