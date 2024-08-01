@@ -163,6 +163,7 @@ public class JFConductores extends javax.swing.JFrame {
         btnExit = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
         getContentPane().setLayout(new java.awt.CardLayout());
 
         JPProovedores.setBackground(new java.awt.Color(245, 245, 245));

@@ -84,7 +84,7 @@ public class JFMenu extends javax.swing.JFrame {
     private String rol;
     Connection cnx;
     //Paneles   
-    private JPanel[] clickedPanels = new JPanel[8];
+    private JPanel[] clickedPanels = new JPanel[5];
     CardLayout contenido, contenido1;
     private boolean focusChanged = false;
     private String nombreUsuario;
@@ -115,9 +115,6 @@ public class JFMenu extends javax.swing.JFrame {
         clickedPanels[2] = Clicked3;
         clickedPanels[3] = Clicked4;
         clickedPanels[4] = Clicked5;
-        clickedPanels[5] = Clicked6;
-        clickedPanels[6] = Clicked7;
-        clickedPanels[7] = Clicked8;
         java.util.Date fechaActual = new java.util.Date();
         // Configura el JDateChooser
         desvanecer();
@@ -128,13 +125,11 @@ public class JFMenu extends javax.swing.JFrame {
     }
 
     public void desvanecer() {
-        Clicked1.setVisible(true);
+        Clicked1.setVisible(false);
         Clicked2.setVisible(false);
         Clicked3.setVisible(false);
         Clicked4.setVisible(false);
         Clicked5.setVisible(false);
-        Clicked6.setVisible(false);
-        Clicked7.setVisible(false);
     }
 
     public JFMenu() {
@@ -161,10 +156,10 @@ public class JFMenu extends javax.swing.JFrame {
         clickedPanels[0] = Clicked1;
         clickedPanels[1] = Clicked2;
         clickedPanels[2] = Clicked3;
-        clickedPanels[3] = Clicked4;
+        clickedPanels[3] = Clicked2;
         clickedPanels[4] = Clicked5;
-        clickedPanels[5] = Clicked6;
-        clickedPanels[6] = Clicked7;
+        clickedPanels[5] = Clicked3;
+        clickedPanels[6] = Clicked4;
         java.util.Date fechaActual = new java.util.Date();
         // Configura el JDateChooser
         desvanecer();
@@ -194,9 +189,6 @@ public class JFMenu extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         jLabel69 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
-        menuProveedores = new javax.swing.JLabel();
-        menuEmpleados = new javax.swing.JLabel();
-        menuClientes = new javax.swing.JLabel();
         menuinventario = new javax.swing.JLabel();
         menuFacturacionYVenta = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -204,30 +196,21 @@ public class JFMenu extends javax.swing.JFrame {
         menuAdministracion = new javax.swing.JLabel();
         Clicked1 = new javax.swing.JPanel();
         Clicked2 = new javax.swing.JPanel();
-        Clicked3 = new javax.swing.JPanel();
         Clicked4 = new javax.swing.JPanel();
-        Clicked5 = new javax.swing.JPanel();
-        Clicked7 = new javax.swing.JPanel();
         jPanel13 = new javax.swing.JPanel();
         jButton3 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         menuIncidentes = new javax.swing.JLabel();
-        Clicked6 = new javax.swing.JPanel();
-        Clicked8 = new javax.swing.JPanel();
+        Clicked3 = new javax.swing.JPanel();
+        Clicked5 = new javax.swing.JPanel();
         menuUsuarios = new javax.swing.JLabel();
         btnExit = new javax.swing.JButton();
         panelContent = new javax.swing.JPanel();
         JPGPaquetes = new javax.swing.JPanel();
         jLInicio = new javax.swing.JLabel();
-        JPRemitente = new javax.swing.JPanel();
-        jLabel5 = new javax.swing.JLabel();
-        JPConductores = new javax.swing.JPanel();
-        jLabel7 = new javax.swing.JLabel();
         JPFyV = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
-        JPRecepcionista = new javax.swing.JPanel();
-        jLabel9 = new javax.swing.JLabel();
         JPIncidentes = new javax.swing.JPanel();
         jLabel117 = new javax.swing.JLabel();
         JPUsuarios = new javax.swing.JPanel();
@@ -340,66 +323,6 @@ public class JFMenu extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(41, 39, 40));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        menuProveedores.setBackground(new java.awt.Color(41, 39, 40));
-        menuProveedores.setFont(new java.awt.Font("Leelawadee UI Semilight", 0, 16)); // NOI18N
-        menuProveedores.setForeground(new java.awt.Color(255, 255, 255));
-        menuProveedores.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto_encomienda/GESTION_PAQUETES/FRONTEND/imagenes/camion.png"))); // NOI18N
-        menuProveedores.setText("Conductores");
-        menuProveedores.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 10, 1, 1));
-        menuProveedores.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        menuProveedores.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                menuProveedoresMouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                menuProveedoresMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                menuProveedoresMouseExited(evt);
-            }
-        });
-        jPanel1.add(menuProveedores, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 190, 210, 50));
-
-        menuEmpleados.setBackground(new java.awt.Color(41, 39, 40));
-        menuEmpleados.setFont(new java.awt.Font("Leelawadee UI Semilight", 0, 16)); // NOI18N
-        menuEmpleados.setForeground(new java.awt.Color(255, 255, 255));
-        menuEmpleados.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto_encomienda/GESTION_PAQUETES/FRONTEND/imagenes/icons8_Monitor_32px.png"))); // NOI18N
-        menuEmpleados.setText("Registro de Empleados");
-        menuEmpleados.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 10, 1, 1));
-        menuEmpleados.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        menuEmpleados.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                menuEmpleadosMouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                menuEmpleadosMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                menuEmpleadosMouseExited(evt);
-            }
-        });
-        jPanel1.add(menuEmpleados, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 290, 210, 52));
-
-        menuClientes.setBackground(new java.awt.Color(41, 39, 40));
-        menuClientes.setFont(new java.awt.Font("Leelawadee UI Semilight", 0, 16)); // NOI18N
-        menuClientes.setForeground(new java.awt.Color(255, 255, 255));
-        menuClientes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto_encomienda/GESTION_PAQUETES/FRONTEND/imagenes/icons8_Home_32px.png"))); // NOI18N
-        menuClientes.setText("Remitente");
-        menuClientes.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 10, 1, 1));
-        menuClientes.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        menuClientes.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                menuClientesMouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                menuClientesMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                menuClientesMouseExited(evt);
-            }
-        });
-        jPanel1.add(menuClientes, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, 210, 52));
-
         menuinventario.setBackground(new java.awt.Color(41, 39, 40));
         menuinventario.setFont(new java.awt.Font("Leelawadee UI Semilight", 0, 16)); // NOI18N
         menuinventario.setForeground(new java.awt.Color(255, 255, 255));
@@ -418,7 +341,7 @@ public class JFMenu extends javax.swing.JFrame {
                 menuinventarioMouseExited(evt);
             }
         });
-        jPanel1.add(menuinventario, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, 210, 52));
+        jPanel1.add(menuinventario, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 210, 52));
 
         menuFacturacionYVenta.setBackground(new java.awt.Color(41, 39, 40));
         menuFacturacionYVenta.setFont(new java.awt.Font("Leelawadee UI Semilight", 0, 16)); // NOI18N
@@ -438,7 +361,7 @@ public class JFMenu extends javax.swing.JFrame {
                 menuFacturacionYVentaMouseExited(evt);
             }
         });
-        jPanel1.add(menuFacturacionYVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 240, 210, 52));
+        jPanel1.add(menuFacturacionYVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, 210, 52));
 
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Version 0.1");
@@ -462,7 +385,7 @@ public class JFMenu extends javax.swing.JFrame {
                 menuLogoutMouseExited(evt);
             }
         });
-        jPanel1.add(menuLogout, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 490, 210, 52));
+        jPanel1.add(menuLogout, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 330, 210, 52));
 
         menuAdministracion.setBackground(new java.awt.Color(41, 39, 40));
         menuAdministracion.setFont(new java.awt.Font("Leelawadee UI Semilight", 0, 16)); // NOI18N
@@ -482,7 +405,7 @@ public class JFMenu extends javax.swing.JFrame {
                 menuAdministracionMouseExited(evt);
             }
         });
-        jPanel1.add(menuAdministracion, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 570, 210, 52));
+        jPanel1.add(menuAdministracion, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 400, 210, 52));
 
         Clicked1.setBackground(new java.awt.Color(178, 8, 55));
 
@@ -497,7 +420,7 @@ public class JFMenu extends javax.swing.JFrame {
             .addGap(0, 52, Short.MAX_VALUE)
         );
 
-        jPanel1.add(Clicked1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 90, 10, 52));
+        jPanel1.add(Clicked1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 70, 10, 52));
 
         Clicked2.setBackground(new java.awt.Color(178, 8, 55));
 
@@ -512,22 +435,7 @@ public class JFMenu extends javax.swing.JFrame {
             .addGap(0, 52, Short.MAX_VALUE)
         );
 
-        jPanel1.add(Clicked2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 140, 10, 52));
-
-        Clicked3.setBackground(new java.awt.Color(178, 8, 55));
-
-        javax.swing.GroupLayout Clicked3Layout = new javax.swing.GroupLayout(Clicked3);
-        Clicked3.setLayout(Clicked3Layout);
-        Clicked3Layout.setHorizontalGroup(
-            Clicked3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 10, Short.MAX_VALUE)
-        );
-        Clicked3Layout.setVerticalGroup(
-            Clicked3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 52, Short.MAX_VALUE)
-        );
-
-        jPanel1.add(Clicked3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 190, 10, 52));
+        jPanel1.add(Clicked2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 120, 10, 52));
 
         Clicked4.setBackground(new java.awt.Color(178, 8, 55));
 
@@ -542,37 +450,7 @@ public class JFMenu extends javax.swing.JFrame {
             .addGap(0, 52, Short.MAX_VALUE)
         );
 
-        jPanel1.add(Clicked4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 240, 10, 52));
-
-        Clicked5.setBackground(new java.awt.Color(178, 8, 55));
-
-        javax.swing.GroupLayout Clicked5Layout = new javax.swing.GroupLayout(Clicked5);
-        Clicked5.setLayout(Clicked5Layout);
-        Clicked5Layout.setHorizontalGroup(
-            Clicked5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 10, Short.MAX_VALUE)
-        );
-        Clicked5Layout.setVerticalGroup(
-            Clicked5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 52, Short.MAX_VALUE)
-        );
-
-        jPanel1.add(Clicked5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 290, 10, 52));
-
-        Clicked7.setBackground(new java.awt.Color(178, 8, 55));
-
-        javax.swing.GroupLayout Clicked7Layout = new javax.swing.GroupLayout(Clicked7);
-        Clicked7.setLayout(Clicked7Layout);
-        Clicked7Layout.setHorizontalGroup(
-            Clicked7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 10, Short.MAX_VALUE)
-        );
-        Clicked7Layout.setVerticalGroup(
-            Clicked7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 52, Short.MAX_VALUE)
-        );
-
-        jPanel1.add(Clicked7, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 390, 10, 52));
+        jPanel1.add(Clicked4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 220, 10, 52));
 
         jPanel13.setBackground(new java.awt.Color(146, 10, 48));
         jPanel13.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -615,37 +493,37 @@ public class JFMenu extends javax.swing.JFrame {
                 menuIncidentesMouseExited(evt);
             }
         });
-        jPanel1.add(menuIncidentes, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 340, 210, 52));
+        jPanel1.add(menuIncidentes, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 170, 210, 52));
 
-        Clicked6.setBackground(new java.awt.Color(178, 8, 55));
+        Clicked3.setBackground(new java.awt.Color(178, 8, 55));
 
-        javax.swing.GroupLayout Clicked6Layout = new javax.swing.GroupLayout(Clicked6);
-        Clicked6.setLayout(Clicked6Layout);
-        Clicked6Layout.setHorizontalGroup(
-            Clicked6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout Clicked3Layout = new javax.swing.GroupLayout(Clicked3);
+        Clicked3.setLayout(Clicked3Layout);
+        Clicked3Layout.setHorizontalGroup(
+            Clicked3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 10, Short.MAX_VALUE)
         );
-        Clicked6Layout.setVerticalGroup(
-            Clicked6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        Clicked3Layout.setVerticalGroup(
+            Clicked3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 52, Short.MAX_VALUE)
         );
 
-        jPanel1.add(Clicked6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 340, 10, 52));
+        jPanel1.add(Clicked3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 170, 10, 52));
 
-        Clicked8.setBackground(new java.awt.Color(178, 8, 55));
+        Clicked5.setBackground(new java.awt.Color(178, 8, 55));
 
-        javax.swing.GroupLayout Clicked8Layout = new javax.swing.GroupLayout(Clicked8);
-        Clicked8.setLayout(Clicked8Layout);
-        Clicked8Layout.setHorizontalGroup(
-            Clicked8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout Clicked5Layout = new javax.swing.GroupLayout(Clicked5);
+        Clicked5.setLayout(Clicked5Layout);
+        Clicked5Layout.setHorizontalGroup(
+            Clicked5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 10, Short.MAX_VALUE)
         );
-        Clicked8Layout.setVerticalGroup(
-            Clicked8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        Clicked5Layout.setVerticalGroup(
+            Clicked5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 52, Short.MAX_VALUE)
         );
 
-        jPanel1.add(Clicked8, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 560, -1, -1));
+        jPanel1.add(Clicked5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 400, -1, -1));
 
         menuUsuarios.setBackground(new java.awt.Color(41, 39, 40));
         menuUsuarios.setFont(new java.awt.Font("Leelawadee UI Semilight", 0, 16)); // NOI18N
@@ -665,7 +543,7 @@ public class JFMenu extends javax.swing.JFrame {
                 menuUsuariosMouseExited(evt);
             }
         });
-        jPanel1.add(menuUsuarios, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 390, 210, 52));
+        jPanel1.add(menuUsuarios, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 220, 210, 52));
 
         PanelHome.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 220, 770));
 
@@ -693,27 +571,6 @@ public class JFMenu extends javax.swing.JFrame {
 
         panelContent.add(JPGPaquetes, "card1");
 
-        JPRemitente.setBackground(new java.awt.Color(245, 245, 245));
-        JPRemitente.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 62)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel5.setText("Remitente");
-        JPRemitente.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 310, -1, -1));
-
-        panelContent.add(JPRemitente, "card2");
-
-        JPConductores.setBackground(new java.awt.Color(245, 245, 245));
-        JPConductores.setMinimumSize(new java.awt.Dimension(810, 540));
-        JPConductores.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel7.setFont(new java.awt.Font("Tahoma", 0, 64)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel7.setText("Conductores");
-        JPConductores.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 270, -1, -1));
-
-        panelContent.add(JPConductores, "card3");
-
         JPFyV.setBackground(new java.awt.Color(245, 245, 245));
         JPFyV.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -722,17 +579,7 @@ public class JFMenu extends javax.swing.JFrame {
         jLabel8.setText("Facturación y Venta");
         JPFyV.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 330, -1, -1));
 
-        panelContent.add(JPFyV, "card4");
-
-        JPRecepcionista.setBackground(new java.awt.Color(245, 245, 245));
-        JPRecepcionista.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel9.setFont(new java.awt.Font("Tahoma", 0, 64)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel9.setText("Recepcionista");
-        JPRecepcionista.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 250, -1, -1));
-
-        panelContent.add(JPRecepcionista, "card5");
+        panelContent.add(JPFyV, "card2");
 
         JPIncidentes.setBackground(new java.awt.Color(245, 245, 245));
         JPIncidentes.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -742,7 +589,7 @@ public class JFMenu extends javax.swing.JFrame {
         jLabel117.setText("Incidentes");
         JPIncidentes.add(jLabel117, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 270, -1, -1));
 
-        panelContent.add(JPIncidentes, "card6");
+        panelContent.add(JPIncidentes, "card3");
 
         JPUsuarios.setBackground(new java.awt.Color(245, 245, 245));
         JPUsuarios.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -752,7 +599,7 @@ public class JFMenu extends javax.swing.JFrame {
         jLabel118.setText("Usuarios");
         JPUsuarios.add(jLabel118, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 270, -1, -1));
 
-        panelContent.add(JPUsuarios, "card7");
+        panelContent.add(JPUsuarios, "card4");
 
         JPAdministración.setBackground(new java.awt.Color(245, 245, 245));
         JPAdministración.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -1406,7 +1253,7 @@ public class JFMenu extends javax.swing.JFrame {
 
         JPAdministración.add(jTPAdmin, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 50, 970, 630));
 
-        panelContent.add(JPAdministración, "card8");
+        panelContent.add(JPAdministración, "card5");
 
         PanelHome.add(panelContent, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 80, 1180, 690));
 
@@ -1464,63 +1311,9 @@ public class JFMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_menuinventarioMouseClicked
 
 
-    private void menuProveedoresMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuProveedoresMouseClicked
-        contenido.show(panelContent, "card3");
-        cambiarSeccionMenu(2);
-        menuProveedores.setBackground(Color.decode("#494848"));
-        JFrame ventanaConductor = new JFConductores(cnx);
-        VentanaManager.getInstance().mostrarVentana("conductor", ventanaConductor);
-    }//GEN-LAST:event_menuProveedoresMouseClicked
-
-    private void menuProveedoresMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuProveedoresMouseEntered
-        menuProveedores.setBackground(Color.decode("#333333"));
-        menuProveedores.setOpaque(true);
-    }//GEN-LAST:event_menuProveedoresMouseEntered
-
-    private void menuProveedoresMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuProveedoresMouseExited
-        menuProveedores.setBackground(Color.decode("#292728"));
-        menuProveedores.setOpaque(true);
-    }//GEN-LAST:event_menuProveedoresMouseExited
-
-    private void menuEmpleadosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuEmpleadosMouseClicked
-        contenido.show(panelContent, "card5");
-        cambiarSeccionMenu(4);
-        menuEmpleados.setBackground(Color.decode("#494848"));
-        JFrame ventanaRecepcionista = new JFRecepcionista(cnx);
-        VentanaManager.getInstance().mostrarVentana("recepcionista", ventanaRecepcionista);
-    }//GEN-LAST:event_menuEmpleadosMouseClicked
-
-    private void menuEmpleadosMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuEmpleadosMouseEntered
-        menuEmpleados.setBackground(Color.decode("#333333"));
-        menuEmpleados.setOpaque(true);
-    }//GEN-LAST:event_menuEmpleadosMouseEntered
-
-    private void menuEmpleadosMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuEmpleadosMouseExited
-        menuEmpleados.setBackground(Color.decode("#292728"));
-        menuEmpleados.setOpaque(true);
-    }//GEN-LAST:event_menuEmpleadosMouseExited
-
-    private void menuClientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuClientesMouseClicked
-        contenido.show(panelContent, "card2");
-        cambiarSeccionMenu(1);
-        menuClientes.setBackground(Color.decode("#494848"));
-        JFrame remintente = new JFRemitente(cnx);
-        VentanaManager.getInstance().mostrarVentana("remintente", remintente);
-    }//GEN-LAST:event_menuClientesMouseClicked
-
-    private void menuClientesMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuClientesMouseEntered
-        menuClientes.setBackground(Color.decode("#333333"));
-        menuClientes.setOpaque(true);
-    }//GEN-LAST:event_menuClientesMouseEntered
-
-    private void menuClientesMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuClientesMouseExited
-        menuClientes.setBackground(Color.decode("#292728"));
-        menuClientes.setOpaque(true);
-    }//GEN-LAST:event_menuClientesMouseExited
-
     private void menuFacturacionYVentaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuFacturacionYVentaMouseClicked
         contenido.show(panelContent, "card4");
-        cambiarSeccionMenu(3);
+        cambiarSeccionMenu(1);
         menuFacturacionYVenta.setBackground(Color.decode("#494848"));
         JFrame ventantaFactura = new JFFacturacion(cnx);
         VentanaManager.getInstance().mostrarVentana("factura1", ventantaFactura);
@@ -1575,7 +1368,7 @@ public class JFMenu extends javax.swing.JFrame {
 
     private void menuAdministracionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuAdministracionMouseClicked
         contenido.show(panelContent, "card7");
-        cambiarSeccionMenu(6);
+        cambiarSeccionMenu(5);
         menuAdministracion.setBackground(Color.decode("#494848"));
     }//GEN-LAST:event_menuAdministracionMouseClicked
 
@@ -1930,11 +1723,10 @@ public class JFMenu extends javax.swing.JFrame {
 
     private void menuIncidentesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuIncidentesMouseClicked
         contenido.show(panelContent, "card6");
-        cambiarSeccionMenu(5);
+        cambiarSeccionMenu(2);
         menuIncidentes.setBackground(Color.decode("#494848"));
         JFrame ventanaIncidentes = new JFIncidente(cnx);
         VentanaManager.getInstance().mostrarVentana("incidentes", ventanaIncidentes);
-
     }//GEN-LAST:event_menuIncidentesMouseClicked
 
     private void menuIncidentesMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuIncidentesMouseEntered
@@ -1949,7 +1741,7 @@ public class JFMenu extends javax.swing.JFrame {
 
     private void menuUsuariosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuUsuariosMouseClicked
         contenido.show(panelContent, "card7");
-        cambiarSeccionMenu(6);
+        cambiarSeccionMenu(3);
         menuUsuarios.setBackground(Color.decode("#494848"));
         JFrame usuarios = new JFUsuarios(cnx);
         VentanaManager.getInstance().mostrarVentana("usuarios", usuarios);
@@ -2148,17 +1940,11 @@ public class JFMenu extends javax.swing.JFrame {
     private javax.swing.JPanel Clicked3;
     private javax.swing.JPanel Clicked4;
     private javax.swing.JPanel Clicked5;
-    private javax.swing.JPanel Clicked6;
-    private javax.swing.JPanel Clicked7;
-    private javax.swing.JPanel Clicked8;
     private javax.swing.JPanel Home;
     private javax.swing.JPanel JPAdministración;
-    private javax.swing.JPanel JPConductores;
     private javax.swing.JPanel JPFyV;
     private javax.swing.JPanel JPGPaquetes;
     private javax.swing.JPanel JPIncidentes;
-    private javax.swing.JPanel JPRecepcionista;
-    private javax.swing.JPanel JPRemitente;
     private javax.swing.JPanel JPUsuarios;
     private javax.swing.JPanel PanelHome;
     private javax.swing.JButton btnExit;
@@ -2182,19 +1968,16 @@ public class JFMenu extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel50;
     private javax.swing.JLabel jLabel51;
     private javax.swing.JLabel jLabel55;
     private javax.swing.JLabel jLabel58;
     private javax.swing.JLabel jLabel69;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel74;
     private javax.swing.JLabel jLabel75;
     private javax.swing.JLabel jLabel76;
     private javax.swing.JLabel jLabel77;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPPA2;
     private javax.swing.JPanel jPPC2;
     private javax.swing.JPanel jPPCE2;
@@ -2230,12 +2013,9 @@ public class JFMenu extends javax.swing.JFrame {
     private javax.swing.JTable jTablaAdmin2;
     private javax.swing.JTable jTablaAdmin3;
     private javax.swing.JLabel menuAdministracion;
-    private javax.swing.JLabel menuClientes;
-    private javax.swing.JLabel menuEmpleados;
     private javax.swing.JLabel menuFacturacionYVenta;
     private javax.swing.JLabel menuIncidentes;
     private javax.swing.JLabel menuLogout;
-    private javax.swing.JLabel menuProveedores;
     private javax.swing.JLabel menuUsuarios;
     private javax.swing.JLabel menuinventario;
     private javax.swing.JPanel panelContent;
