@@ -442,7 +442,7 @@ public class JFIncidente extends javax.swing.JFrame {
             }
         });
 
-        jCIDPaquete.setText("ID Producto");
+        jCIDPaquete.setText("ID Paquete");
         jCIDPaquete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jCIDPaqueteActionPerformed(evt);
@@ -783,7 +783,13 @@ public class JFIncidente extends javax.swing.JFrame {
             mostrarErrores(camposInvalidos);
             return;
         }
-
+//To do
+//if(jCIncidente.isSelected()){
+//   actualizarIncidente()  
+//}else{
+//    
+//}
+        
         // Construir la consulta SQL
         String atributosActualizacion = String.join(", ", atributos);
         String atributoActualizar = "idincidente";

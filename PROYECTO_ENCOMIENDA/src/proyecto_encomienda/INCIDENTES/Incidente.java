@@ -9,12 +9,12 @@ public abstract class Incidente {
     private String estado;
     private int idIncidente;
 
-    public Incidente(String descripcion, int idPaquete, int idIncidente,String est) {
+    public Incidente(String descripcion, int idPaquete, int idIncidente, String estado) {
         this.descripcion = descripcion;
         this.fecha = LocalDateTime.now();
         this.idPaquete = idPaquete;
         this.idIncidente = idIncidente;
-        this.estado = est;
+        this.estado = estado;
     }
 
     public abstract void actuar();
