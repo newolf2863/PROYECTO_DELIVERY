@@ -9,52 +9,39 @@ package proyecto_encomienda.Facturación;
  * @author Xelan
  */
 public class PrecioPaquete implements CalculoPrecio {
-    private double precioPorDimensión;
+    private double precioPorDimension;
     private double precioPorKg;
     private double precio;
 
     // Constructor
     public PrecioPaquete(double precioPorDimensión, double precioPorKg) {
-        this.precioPorDimensión = precioPorDimensión;
+        this.precioPorDimension = precioPorDimensión;
         this.precioPorKg = precioPorKg;
     }
 
-    public void calcularPorDimension(Paquete paquete) {
-        precio += paquete.getDimension() * precioPorDimensión;
-        System.out.println("Precio por dimension: "+precio);
+    public double calcularPorDimension(Paquete paquete) {
+        double dimension = paquete.getAncho()*paquete.getLargo();
+        return dimension* precioPorDimension;
     }
 
-    public void calcularPorKg(Paquete paquete) {
-        precio += paquete.getPeso() * precioPorKg;
-        System.out.println("Precio por peso: "+precio);
+    public double  calcularPorKg(Paquete paquete) {
+        return paquete.getPeso() * precioPorKg;
     }
 
     @Override
     public void calcularValor(Paquete paquete) {
-        calcularPorDimension(paquete);
-        calcularPorKg(paquete);
+        this.precio = calcularPorDimension(paquete)+calcularPorKg(paquete);
     }
 
-    @Override
-    public void actualizarParámetro(double parametro) {
-        // Implementación para actualizar parámetros si es necesario
-    }
 
     public double getPrecio() {
         return precio;
     }
 
     // Getters y setters
-    public double getPrecioPorDimensión() {
-        return precioPorDimensión;
-    }
 
-    public void setPrecioPorDimensión(double precioPorDimensión) {
-        this.precioPorDimensión = precioPorDimensión;
-    }
-
-    public double getPrecioPorKg() {
-        return precioPorKg;
+    public void setPrecioPorDimension(double precioPorDimensión) {
+        this.precioPorDimension = precioPorDimensión;
     }
 
     public void setPrecioPorKg(double precioPorKg) {

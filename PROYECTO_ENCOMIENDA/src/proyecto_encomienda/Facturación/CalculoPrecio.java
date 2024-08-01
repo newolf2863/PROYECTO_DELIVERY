@@ -10,5 +10,5 @@ package proyecto_encomienda.Facturación;
  */
 public interface CalculoPrecio {
     void calcularValor(Paquete paquete);
-    void actualizarParámetro(double parametro);
+
 }

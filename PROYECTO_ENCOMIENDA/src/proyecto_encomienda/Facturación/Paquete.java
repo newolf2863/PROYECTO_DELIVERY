@@ -1,30 +1,35 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package proyecto_encomienda.Facturación;
 
-/**
- *
- * @author USUARIO
- */
-public class Paquete {
-    private double peso;
-    private double dimension;
-    private String contenido;
-    private String remitente;
-    private String direccion;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
-    // Constructor
-    public Paquete(double peso, double dimension, String contenido, String remitente, String direccion) {
+public class Paquete {
+
+    private double peso;
+    private double ancho;
+    private double largo;
+    private String contenido;
+    private String direccionDestino;
+    private int idPaquete;
+
+
+    public Paquete(int idPaquete, double ancho, double peso, double largo, String contenido, String remitente, String destino) {
+
+        this.idPaquete = idPaquete;
+        this.ancho = ancho;
+        this.largo = largo;
         this.peso = peso;
-        this.dimension = dimension;
         this.contenido = contenido;
-        this.remitente = remitente;
-        this.direccion = direccion;
+        this.direccionDestino = destino;
     }
 
-    // Getters y setters
+
+
+
+
     public double getPeso() {
         return peso;
     }
@@ -33,12 +38,20 @@ public class Paquete {
         this.peso = peso;
     }
 
-    public double getDimension() {
-        return dimension;
+    public double getAncho() {
+        return ancho;
     }
 
-    public void setDimension(double dimension) {
-        this.dimension = dimension;
+    public void setAncho(double ancho) {
+        this.ancho = ancho;
+    }
+
+    public double getLargo() {
+        return largo;
+    }
+
+    public void setLargo(double largo) {
+        this.largo = largo;
     }
 
     public String getContenido() {
@@ -49,19 +62,43 @@ public class Paquete {
         this.contenido = contenido;
     }
 
-    public String getRemitente() {
-        return remitente;
+    public String getDireccionDestino() {
+        return direccionDestino;
     }
 
-    public void setRemitente(String remitente) {
-        this.remitente = remitente;
+    public void setDireccionDestino(String direccionDestino) {
+        this.direccionDestino = direccionDestino;
     }
 
-    public String getDireccion() {
-        return direccion;
+
+    public int getIdPaquete() {
+        return idPaquete;
     }
 
-    public void setDireccion(String direccion) {
-        this.direccion = direccion;
+    public void setIdPaquete(int idPaquete) {
+        this.idPaquete = idPaquete;
     }
+/*
+    public static void ingresarPaquete(Connection cnx, Paquete paquete) {
+        String sql = "INSERT INTO Paquete (idPaquete, peso,"
+                + " ancho, largo, contenido, remitente, direccionDestino,estado)"
+                + " VALUES (?, ?, ?, ?, ?, ?, ?,'Pendiente')";
+        try (PreparedStatement stmt = cnx.prepareStatement(sql)) {
+            stmt.setInt(1, paquete.getIdPaquete());
+            stmt.setDouble(2, paquete.getPeso());
+            stmt.setDouble(3, paquete.getAncho());
+            stmt.setDouble(4, paquete.getLargo());
+            stmt.setString(5, paquete.getContenido());
+            stmt.setString(6, paquete.getRemitente());
+            stmt.setString(7, paquete.getDireccionDestino());
+            stmt.executeUpdate();
+
+            // Mostrar mensaje de éxito en una ventana emergente
+            JOptionPane.showMessageDialog(null, "Registro exitoso", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+*/
 }

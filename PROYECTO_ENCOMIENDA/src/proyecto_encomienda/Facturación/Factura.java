@@ -6,18 +6,48 @@ import java.util.ArrayList;
 import java.util.Date;
 
 public class Factura {
+    
+    private  static int idFac;
     private int id;
-    private Paquete entrega;
-    private Usuario cliente;
+    private Paquete paquete;
+  
+    private String documento;
+    private String names;
+    private String lastnames;
+    private String telefono;
+    private String direction;
+    private String email;
+    private boolean natural;
+    private boolean country;
+    
+    private final String bussinessname;
+    private final String RUC;
+    private final String bussinessdirection;
+    private final String bussinesphone;
+    
+    
     private Date fechaEmision;
-    private double montoTotal;
+    private double subtotal;
+    private double total;
+    private double iva;
 
     // Constructor
-    public Factura(int id, Paquete entrega, Usuario cliente, Date fechaEmision) {
-        this.id = id;
-        this.entrega = entrega;
-        this.cliente = cliente;
-        this.fechaEmision = fechaEmision;
+    public Factura(Paquete entrega, String doc, String name, String lastname, String phone, String dir, String email, String nat, String country, Date fechaEmision) {
+        this.id = idFac++;
+        this.paquete = entrega;
+        this.documento= doc;
+        this.names = name;
+        this.lastnames= lastname;
+        this.telefono= phone;
+        this.direction= dir;
+        this.email = email;
+        this.natural= natural;
+        this.country= this.country;
+        
+        this.bussinessname="Envios SA.";
+        this.RUC="0403020100001";
+        this.bussinessdirection="Av. Monteverde y Paez";
+        this.bussinesphone="0987654321";
     }
 
     // Métodos

@@ -8,7 +8,7 @@ package proyecto_encomienda.Facturación;
  *
  * @author Xelan
  */
-public class Impuesto implements CalculoPrecio {
+public class Impuesto  {
     private double iva;
     private double precio;
 
@@ -17,15 +17,11 @@ public class Impuesto implements CalculoPrecio {
         this.iva = iva;
     }
 
-    @Override
-    public void calcularValor(Paquete paquete) {
-        precio = paquete.getDimension() * iva;
+
+    public void calcularValor(double subtotal) {
+        precio = subtotal * (iva+1);
     }
 
-    @Override
-    public void actualizarParámetro(double parametro) {
-        this.iva = parametro;
-    }
 
     public double getPrecio() {
         return precio;

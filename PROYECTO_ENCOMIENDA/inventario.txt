@@ -1,1 +1,3 @@
-Paquete{codigoTracking='4', ancho=2.0, largo=5.0, contenido='Ropa', direccionDestino='San juan', estado=Pendiente}
+Paquete{codigoTracking='123456789', ancho=20.5, largo=30.2, contenido='Libros', direccionDestino='Quito, Ecuador', estado=proyecto_encomienda.GESTION_PAQUETES.BACKEND.Pendiente@70177ecd}
+Paquete{codigoTracking='987654321', ancho=35.4, largo=15.8, contenido='Juguetes', direccionDestino='Guayaquil, Ecuador', estado=proyecto_encomienda.GESTION_PAQUETES.BACKEND.Pendiente@49c2faae}
+Paquete{codigoTracking='000000000', ancho=42.1, largo=23.9, contenido='Ropa', direccionDestino='Cuenca, Ecuador', estado=proyecto_encomienda.GESTION_PAQUETES.BACKEND.Pendiente@20ad9418}
