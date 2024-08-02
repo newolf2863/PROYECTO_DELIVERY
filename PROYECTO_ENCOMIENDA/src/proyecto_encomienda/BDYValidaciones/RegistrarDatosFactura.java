@@ -240,7 +240,7 @@ public class RegistrarDatosFactura {
     }
 
     public static void insertarDatosFactura(Connection connection, int idFactura, String fechaEmision,
-            String rucNegocio, String idCliente,
+             String idCliente,
             double porcentajeIVA) throws SQLException {
         String insertFacturaQuery = "INSERT INTO factura (idFactura, fechaEmision, estadoFactura, ruc_negocio, idCliente, estadoPago, porcentajeIVA) "
                 + "VALUES (?, ?, ?, ?, ?, ?, ?)";
@@ -248,7 +248,7 @@ public class RegistrarDatosFactura {
         insertFacturaStatement.setInt(1, idFactura);
         insertFacturaStatement.setString(2, fechaEmision);
         insertFacturaStatement.setString(3, "Activo"); // Estado de la factura
-        insertFacturaStatement.setString(4, rucNegocio);
+        
         insertFacturaStatement.setString(5, idCliente);
         insertFacturaStatement.setString(6, "Pendiente de Pago"); // Estado de pago variable
         insertFacturaStatement.setDouble(7, porcentajeIVA);

@@ -3,35 +3,9 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Xelan/OneDrive/Documentos/GitHub/PROYECTO_DELIVERY/PROYECTO_ENCOMIENDA/src/proyecto_encomienda/GESTION_PAQUETES/BACKEND/Paquete.java</file>
-            <file>file:/C:/Users/Xelan/OneDrive/Documentos/GitHub/PROYECTO_DELIVERY/PROYECTO_ENCOMIENDA/src/proyecto_encomienda/GESTION_PAQUETES/FRONTEND/Paquete.java</file>
-            <file>file:/C:/Users/Xelan/OneDrive/Documentos/GitHub/PROYECTO_DELIVERY/PROYECTO_ENCOMIENDA/src/proyecto_encomienda/GESTION_PAQUETES/FRONTEND/PaqueteMenu.java</file>
-            <file>file:/C:/Users/Xelan/OneDrive/Documentos/GitHub/PROYECTO_DELIVERY/PROYECTO_ENCOMIENDA/src/proyecto_encomienda/Facturación/Impuesto.java</file>
-            <file>file:/C:/Users/Xelan/OneDrive/Documentos/GitHub/PROYECTO_DELIVERY/PROYECTO_ENCOMIENDA/src/proyecto_encomienda/BDYValidaciones/RegistrarDatosFactura.java</file>
-            <file>file:/C:/Users/Xelan/OneDrive/Documentos/GitHub/PROYECTO_DELIVERY/PROYECTO_ENCOMIENDA/src/proyecto_encomienda/GUI/JFFactura.java</file>
-            <file>file:/C:/Users/Xelan/OneDrive/Documentos/GitHub/PROYECTO_DELIVERY/PROYECTO_ENCOMIENDA/src/proyecto_encomienda/GESTOR_PERFILES/GUIs/TipoUsuarioGUI.java</file>
-            <file>file:/C:/Users/Xelan/OneDrive/Documentos/GitHub/PROYECTO_DELIVERY/PROYECTO_ENCOMIENDA/src/proyecto_encomienda/GESTOR_PERFILES/Conductor.java</file>
-            <file>file:/C:/Users/Xelan/OneDrive/Documentos/GitHub/PROYECTO_DELIVERY/PROYECTO_ENCOMIENDA/src/proyecto_encomienda/GESTOR_PERFILES/GUIs/TipoAcciónGUI.java</file>
-            <file>file:/C:/Users/Xelan/OneDrive/Documentos/GitHub/PROYECTO_DELIVERY/PROYECTO_ENCOMIENDA/src/proyecto_encomienda/GESTION_PAQUETES/FRONTEND/imagenes/LOGIN_INGRESO.png</file>
-            <file>file:/C:/Users/Xelan/OneDrive/Documentos/GitHub/PROYECTO_DELIVERY/PROYECTO_ENCOMIENDA/src/proyecto_encomienda/Facturación/CalculoPrecio.java</file>
-            <file>file:/C:/Users/Xelan/OneDrive/Documentos/GitHub/PROYECTO_DELIVERY/PROYECTO_ENCOMIENDA/src/proyecto_encomienda/Facturación/Precio.java</file>
-            <file>file:/C:/Users/Xelan/OneDrive/Documentos/GitHub/PROYECTO_DELIVERY/PROYECTO_ENCOMIENDA/src/proyecto_encomienda/PROYECTO_ENCOMIENDA.java</file>
-            <file>file:/C:/Users/Xelan/OneDrive/Documentos/GitHub/PROYECTO_DELIVERY/PROYECTO_ENCOMIENDA/src/proyecto_encomienda/GESTION_PAQUETES/BACKEND/EstadoDelPaquete.java</file>
-            <file>file:/C:/Users/Xelan/OneDrive/Documentos/GitHub/PROYECTO_DELIVERY/PROYECTO_ENCOMIENDA/src/proyecto_encomienda/GESTION_PAQUETES/FRONTEND/imagenes/PANEL.png</file>
-            <file>file:/C:/Users/Xelan/OneDrive/Documentos/GitHub/PROYECTO_DELIVERY/PROYECTO_ENCOMIENDA/src/proyecto_encomienda/GUI/JFMenu.java</file>
-            <file>file:/C:/Users/Xelan/OneDrive/Documentos/GitHub/PROYECTO_DELIVERY/PROYECTO_ENCOMIENDA/src/proyecto_encomienda/Facturación/Factura.java</file>
-            <file>file:/C:/Users/Xelan/OneDrive/Documentos/GitHub/PROYECTO_DELIVERY/PROYECTO_ENCOMIENDA/src/proyecto_encomienda/Facturación/Paquete.java</file>
-            <file>file:/C:/Users/Xelan/OneDrive/Documentos/GitHub/PROYECTO_DELIVERY/PROYECTO_ENCOMIENDA/src/proyecto_encomienda/Facturación/PrecioPaquete.java</file>
-            <file>file:/C:/Users/Xelan/OneDrive/Documentos/GitHub/PROYECTO_DELIVERY/PROYECTO_ENCOMIENDA/src/proyecto_encomienda/GUI/JFIncidente.java</file>
-            <file>file:/C:/Users/Xelan/OneDrive/Documentos/GitHub/PROYECTO_DELIVERY/PROYECTO_ENCOMIENDA/src/proyecto_encomienda/GESTION_PAQUETES/BACKEND/mainpaqueteria.java</file>
-            <file>file:/C:/Users/Xelan/OneDrive/Documentos/GitHub/PROYECTO_DELIVERY/PROYECTO_ENCOMIENDA/src/proyecto_encomienda/RECEPCION_PAQUETES/FACTURA/Paquete.java</file>
-            <file>file:/C:/Users/Xelan/OneDrive/Documentos/GitHub/PROYECTO_DELIVERY/PROYECTO_ENCOMIENDA/src/proyecto_encomienda/GUI/JFConductores.java</file>
-            <file>file:/C:/Users/Xelan/OneDrive/Documentos/GitHub/PROYECTO_DELIVERY/PROYECTO_ENCOMIENDA/src/proyecto_encomienda/BaseDeDatos/AccionesBD.java</file>
-            <file>file:/C:/Users/Xelan/OneDrive/Documentos/GitHub/PROYECTO_DELIVERY/PROYECTO_ENCOMIENDA/src/proyecto_encomienda/GESTION_PAQUETES/BACKEND/Inventario.java</file>
-            <file>file:/C:/Users/Xelan/OneDrive/Documentos/GitHub/PROYECTO_DELIVERY/PROYECTO_ENCOMIENDA/src/proyecto_encomienda/Facturación/PrecioDistancia.java</file>
-            <file>file:/C:/Users/Xelan/OneDrive/Documentos/GitHub/PROYECTO_DELIVERY/PROYECTO_ENCOMIENDA/src/proyecto_encomienda/GUI/JFInventario.java</file>
-            <file>file:/C:/Users/Xelan/OneDrive/Documentos/GitHub/PROYECTO_DELIVERY/PROYECTO_ENCOMIENDA/src/proyecto_encomienda/Facturación/Main.java</file>
-            <file>file:/C:/Users/Xelan/OneDrive/Documentos/GitHub/PROYECTO_DELIVERY/PROYECTO_ENCOMIENDA/src/proyecto_encomienda/GESTOR_PERFILES/GUIs/IngresoDatosGUI.java</file>
+            <file>file:/D:/Documentos/GitHub/PROYECTO_DELIVERY/PROYECTO_ENCOMIENDA/src/proyecto_encomienda/Facturación/Usuario.java</file>
+            <file>file:/D:/Documentos/GitHub/PROYECTO_DELIVERY/PROYECTO_ENCOMIENDA/src/proyecto_encomienda/GESTION_PAQUETES/BACKEND/Entregado.java</file>
+            <file>file:/D:/Documentos/GitHub/PROYECTO_DELIVERY/PROYECTO_ENCOMIENDA/src/proyecto_encomienda/GESTION_PAQUETES/BACKEND/EnCurso.java</file>
         </group>
     </open-files>
 </project-private>

@@ -43,8 +43,7 @@ public class JFFactura extends javax.swing.JFrame implements Printable {
     private String correCliente;
 
     public JFFactura(double subtotal, double total,
-            String rucNegocio, String nombreNegocio,
-            String direccionNegocio, String telefonoNegocio, String idCliente,
+            String idCliente,
             String nombresCliente, String apellidosCliente, String telefonoCliente,
             String direccionCliente, String fechaEmision, String estadoPago,
             double porcentajeIVA, int idFactura, Connection cnx, String correo
@@ -55,10 +54,7 @@ public class JFFactura extends javax.swing.JFrame implements Printable {
         DecimalFormat decimalFormat = new DecimalFormat("#0.00");
         jTextSubTotal.setText(decimalFormat.format(subtotal) + " $");
         Total.setText(decimalFormat.format(total) + " $");
-        rucN.setText(rucNegocio);
-        nombreTienda.setText(nombreNegocio);
-        direccionT.setText(direccionNegocio);
-        telefonoNegocioN.setText(telefonoNegocio);
+        
         idClienteText.setText(idCliente);
         nombreC.setText(nombresCliente);
         jLabel3.setText(apellidosCliente);
