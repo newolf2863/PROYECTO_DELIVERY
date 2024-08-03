@@ -1,2 +1,0 @@
-AsignacionConductorVehiculo
-Negocio.AsignacionConductorVehiculo
