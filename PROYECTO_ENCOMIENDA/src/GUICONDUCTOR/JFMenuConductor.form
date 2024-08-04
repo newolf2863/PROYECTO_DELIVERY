@@ -1,19 +1,33 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
+<!-- Formulario de NetBeans que define una ventana JFrame -->
 <Form version="1.6" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
+  
+  <!-- Propiedades básicas del JFrame -->
   <Properties>
+    <!-- Define la operación de cierre por defecto (3 = EXIT_ON_CLOSE) -->
     <Property name="defaultCloseOperation" type="int" value="3"/>
+    <!-- Título de la ventana -->
     <Property name="title" type="java.lang.String" value="SistemaBestColor"/>
+    <!-- Configuración del cursor de la ventana -->
     <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
       <Color id="Default Cursor"/>
     </Property>
+    <!-- Define si la ventana debe ser decorada (false = sin borde ni botones) -->
     <Property name="undecorated" type="boolean" value="true"/>
+    <!-- Define si la ventana es redimensionable (false = no redimensionable) -->
     <Property name="resizable" type="boolean" value="false"/>
   </Properties>
+  
+  <!-- Propiedades sintéticas del formulario -->
   <SyntheticProperties>
+    <!-- Política de tamaño del formulario -->
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
+    <!-- Indica si el formulario debe centrarse al generarse -->
     <SyntheticProperty name="generateCenter" type="boolean" value="false"/>
   </SyntheticProperties>
+  
+  <!-- Valores auxiliares para la configuración del formulario -->
   <AuxValues>
     <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
     <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="false"/>
@@ -25,7 +39,8 @@
     <AuxValue name="FormSettings_variablesLocal" type="java.lang.Boolean" value="false"/>
     <AuxValue name="FormSettings_variablesModifier" type="java.lang.Integer" value="2"/>
   </AuxValues>
-
+  
+  <!-- Definición del layout del formulario -->
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
@@ -38,21 +53,27 @@
       </Group>
     </DimensionLayout>
   </Layout>
+  
+  <!-- Subcomponentes del formulario -->
   <SubComponents>
+    <!-- Panel principal de la aplicación -->
     <Container class="javax.swing.JPanel" name="Home">
-
       <Layout class="org.netbeans.modules.form.compat2.layouts.DesignCardLayout"/>
       <SubComponents>
+        <!-- Panel que representa la vista inicial (home) -->
         <Container class="javax.swing.JPanel" name="PanelHome">
           <Properties>
+            <!-- Color de fondo del panel -->
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="f5" green="f5" red="f5" type="rgb"/>
             </Property>
+            <!-- Configuración del cursor del panel -->
             <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
               <Color id="Default Cursor"/>
             </Property>
           </Properties>
           <Constraints>
+            <!-- Configuración del layout del panel -->
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
               <CardConstraints cardName="home"/>
             </Constraint>
@@ -62,17 +83,21 @@
             <Property name="useNullLayout" type="boolean" value="false"/>
           </Layout>
           <SubComponents>
+            <!-- Panel superior del diseño -->
             <Container class="javax.swing.JPanel" name="jPanel3">
               <Properties>
+                <!-- Color de fondo del panel -->
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="30" green="a" red="92" type="rgb"/>
                 </Property>
               </Properties>
               <Events>
+                <!-- Eventos de arrastre y clic del ratón -->
                 <EventHandler event="mouseDragged" listener="java.awt.event.MouseMotionListener" parameters="java.awt.event.MouseEvent" handler="jPanel3MouseDragged"/>
                 <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jPanel3MousePressed"/>
               </Events>
               <Constraints>
+                <!-- Configuración de la posición y tamaño del panel -->
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
                   <AbsoluteConstraints x="0" y="0" width="1400" height="20"/>
                 </Constraint>
@@ -98,26 +123,33 @@
                 </DimensionLayout>
               </Layout>
               <SubComponents>
+                <!-- Etiqueta dentro del panel superior -->
                 <Component class="javax.swing.JLabel" name="jLabel69">
                   <Properties>
+                    <!-- Configuración de la fuente de la etiqueta -->
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Segoe UI" size="12" style="1"/>
                     </Property>
+                    <!-- Color del texto de la etiqueta -->
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="ff" green="ff" red="ff" type="rgb"/>
                     </Property>
+                    <!-- Texto de la etiqueta -->
                     <Property name="text" type="java.lang.String" value="Gestion de Envios"/>
                   </Properties>
                 </Component>
               </SubComponents>
             </Container>
+            <!-- Panel lateral del diseño -->
             <Container class="javax.swing.JPanel" name="jPanel1">
               <Properties>
+                <!-- Color de fondo del panel -->
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="28" green="27" red="29" type="rgb"/>
                 </Property>
               </Properties>
               <Constraints>
+                <!-- Configuración de la posición y tamaño del panel -->
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
                   <AbsoluteConstraints x="0" y="0" width="220" height="770"/>
                 </Constraint>
@@ -127,96 +159,123 @@
                 <Property name="useNullLayout" type="boolean" value="false"/>
               </Layout>
               <SubComponents>
+                <!-- Componente de etiqueta para gestionar paquetes -->
                 <Component class="javax.swing.JLabel" name="menuinventario">
                   <Properties>
+                    <!-- Color de fondo del componente -->
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="28" green="27" red="29" type="rgb"/>
                     </Property>
+                    <!-- Configuración de la fuente del texto -->
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Leelawadee UI Semilight" size="16" style="0"/>
                     </Property>
+                    <!-- Color del texto del componente -->
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="ff" green="ff" red="ff" type="rgb"/>
                     </Property>
+                    <!-- Icono del componente -->
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                       <Image iconType="3" name="/iconos/caja.png"/>
                     </Property>
+                    <!-- Texto del componente -->
                     <Property name="text" type="java.lang.String" value="Gestion Paquetes"/>
+                    <!-- Borde del componente -->
                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                       <Border info="org.netbeans.modules.form.compat2.border.EmptyBorderInfo">
                         <EmptyBorder bottom="1" left="10" right="1" top="1"/>
                       </Border>
                     </Property>
+                    <!-- Configuración del cursor del componente -->
                     <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
                       <Color id="Default Cursor"/>
                     </Property>
                   </Properties>
                   <Events>
+                    <!-- Eventos de clic del ratón en el componente -->
                     <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="menuinventarioMouseClicked"/>
                     <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="menuinventarioMouseEntered"/>
                     <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="menuinventarioMouseExited"/>
                   </Events>
                   <Constraints>
+                    <!-- Configuración de la posición y tamaño del componente -->
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
                       <AbsoluteConstraints x="10" y="90" width="210" height="52"/>
                     </Constraint>
                   </Constraints>
                 </Component>
+                <!-- Componente de etiqueta para la versión del sistema -->
                 <Component class="javax.swing.JLabel" name="jLabel3">
                   <Properties>
+                    <!-- Color del texto del componente -->
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="ff" green="ff" red="ff" type="rgb"/>
                     </Property>
+                    <!-- Texto del componente -->
                     <Property name="text" type="java.lang.String" value="Version 0.1"/>
                   </Properties>
                   <Constraints>
+                    <!-- Configuración de la posición del componente -->
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
                       <AbsoluteConstraints x="80" y="740" width="-1" height="-1"/>
                     </Constraint>
                   </Constraints>
                 </Component>
+                <!-- Componente de etiqueta para cerrar sesión -->
                 <Component class="javax.swing.JLabel" name="menuLogout">
                   <Properties>
+                    <!-- Color de fondo del componente -->
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="28" green="27" red="29" type="rgb"/>
                     </Property>
+                    <!-- Configuración de la fuente del texto -->
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Leelawadee UI Semilight" size="16" style="0"/>
                     </Property>
+                    <!-- Color del texto del componente -->
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="ff" green="ff" red="ff" type="rgb"/>
                     </Property>
+                    <!-- Icono del componente -->
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                       <Image iconType="3" name="/iconos/icons8_Sign_Out_32px.png"/>
                     </Property>
+                    <!-- Texto del componente -->
                     <Property name="text" type="java.lang.String" value="     Cerrar sesi&#xf3;n"/>
+                    <!-- Borde del componente -->
                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                       <Border info="org.netbeans.modules.form.compat2.border.EmptyBorderInfo">
                         <EmptyBorder bottom="1" left="10" right="1" top="1"/>
                       </Border>
                     </Property>
+                    <!-- Configuración del cursor del componente -->
                     <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
                       <Color id="Default Cursor"/>
                     </Property>
                   </Properties>
                   <Events>
+                    <!-- Eventos de clic del ratón en el componente -->
                     <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="menuLogoutMouseClicked"/>
                     <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="menuLogoutMouseEntered"/>
                     <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="menuLogoutMouseExited"/>
                   </Events>
                   <Constraints>
+                    <!-- Configuración de la posición y tamaño del componente -->
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
                       <AbsoluteConstraints x="10" y="320" width="210" height="52"/>
                     </Constraint>
                   </Constraints>
                 </Component>
+                <!-- Panel indicador de clic en el primer menú -->
                 <Container class="javax.swing.JPanel" name="Clicked1">
                   <Properties>
+                    <!-- Color de fondo del panel -->
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="37" green="8" red="b2" type="rgb"/>
                     </Property>
                   </Properties>
                   <Constraints>
+                    <!-- Configuración de la posición y tamaño del panel -->
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
                       <AbsoluteConstraints x="0" y="90" width="10" height="52"/>
                     </Constraint>
@@ -235,13 +294,16 @@
                     </DimensionLayout>
                   </Layout>
                 </Container>
+                <!-- Panel indicador de clic en el segundo menú -->
                 <Container class="javax.swing.JPanel" name="Clicked2">
                   <Properties>
+                    <!-- Color de fondo del panel -->
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="37" green="8" red="b2" type="rgb"/>
                     </Property>
                   </Properties>
                   <Constraints>
+                    <!-- Configuración de la posición y tamaño del panel -->
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
                       <AbsoluteConstraints x="0" y="140" width="10" height="52"/>
                     </Constraint>
@@ -260,13 +322,16 @@
                     </DimensionLayout>
                   </Layout>
                 </Container>
+                <!-- Panel indicador de clic en el tercer menú -->
                 <Container class="javax.swing.JPanel" name="Clicked3">
                   <Properties>
+                    <!-- Color de fondo del panel -->
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="37" green="8" red="b2" type="rgb"/>
                     </Property>
                   </Properties>
                   <Constraints>
+                    <!-- Configuración de la posición y tamaño del panel -->
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
                       <AbsoluteConstraints x="0" y="190" width="10" height="52"/>
                     </Constraint>
@@ -285,13 +350,16 @@
                     </DimensionLayout>
                   </Layout>
                 </Container>
+                <!-- Panel indicador de clic en el cuarto menú -->
                 <Container class="javax.swing.JPanel" name="Clicked4">
                   <Properties>
+                    <!-- Color de fondo del panel -->
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="37" green="8" red="b2" type="rgb"/>
                     </Property>
                   </Properties>
                   <Constraints>
+                    <!-- Configuración de la posición y tamaño del panel -->
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
                       <AbsoluteConstraints x="0" y="240" width="10" height="52"/>
                     </Constraint>
@@ -310,13 +378,16 @@
                     </DimensionLayout>
                   </Layout>
                 </Container>
+                <!-- Panel indicador de clic en el quinto menú -->
                 <Container class="javax.swing.JPanel" name="Clicked5">
                   <Properties>
+                    <!-- Color de fondo del panel -->
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="37" green="8" red="b2" type="rgb"/>
                     </Property>
                   </Properties>
                   <Constraints>
+                    <!-- Configuración de la posición y tamaño del panel -->
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
                       <AbsoluteConstraints x="0" y="290" width="10" height="52"/>
                     </Constraint>
@@ -335,13 +406,16 @@
                     </DimensionLayout>
                   </Layout>
                 </Container>
+                <!-- Panel en el que se muestra el menú principal -->
                 <Container class="javax.swing.JPanel" name="jPanel13">
                   <Properties>
+                    <!-- Color de fondo del panel -->
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="30" green="a" red="92" type="rgb"/>
                     </Property>
                   </Properties>
                   <Constraints>
+                    <!-- Configuración de la posición y tamaño del panel -->
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
                       <AbsoluteConstraints x="0" y="10" width="220" height="60"/>
                     </Constraint>
@@ -351,58 +425,76 @@
                     <Property name="useNullLayout" type="boolean" value="false"/>
                   </Layout>
                   <SubComponents>
+                    <!-- Botón para abrir el menú -->
                     <Component class="javax.swing.JButton" name="jButton3">
                       <Properties>
+                        <!-- Icono del botón -->
                         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                           <Image iconType="3" name="/iconos/icons8_Menu_32px.png"/>
                         </Property>
+                        <!-- Borde del botón -->
                         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                           <Border info="org.netbeans.modules.form.compat2.border.EmptyBorderInfo">
                             <EmptyBorder/>
                           </Border>
                         </Property>
+                        <!-- Configuración del relleno del área de contenido -->
                         <Property name="contentAreaFilled" type="boolean" value="false"/>
                       </Properties>
                       <Constraints>
+                        <!-- Configuración de la posición y tamaño del botón -->
                         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
                           <AbsoluteConstraints x="0" y="10" width="80" height="50"/>
                         </Constraint>
                       </Constraints>
                     </Component>
+                    <!-- Etiqueta con el título del menú -->
                     <Component class="javax.swing.JLabel" name="jLabel1">
                       <Properties>
+                        <!-- Color de fondo de la etiqueta -->
                         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                           <Color blue="37" green="8" red="b2" type="rgb"/>
                         </Property>
+                        <!-- Configuración de la fuente del texto -->
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                           <Font name="Tahoma" size="27" style="0"/>
                         </Property>
+                        <!-- Color del texto de la etiqueta -->
                         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                           <Color blue="ff" green="ff" red="ff" type="rgb"/>
                         </Property>
+                        <!-- Texto de la etiqueta -->
                         <Property name="text" type="java.lang.String" value="Envios"/>
+                        <!-- Posición horizontal del texto -->
                         <Property name="horizontalTextPosition" type="int" value="0"/>
                       </Properties>
                       <Constraints>
+                        <!-- Configuración de la posición y tamaño de la etiqueta -->
                         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
                           <AbsoluteConstraints x="80" y="10" width="130" height="-1"/>
                         </Constraint>
                       </Constraints>
                     </Component>
+                    <!-- Etiqueta con el año de la aplicación -->
                     <Component class="javax.swing.JLabel" name="jLabel2">
                       <Properties>
+                        <!-- Color de fondo de la etiqueta -->
                         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                           <Color blue="37" green="8" red="b2" type="rgb"/>
                         </Property>
+                        <!-- Configuración de la fuente del texto -->
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                           <Font name="Tahoma" size="12" style="0"/>
                         </Property>
+                        <!-- Color del texto de la etiqueta -->
                         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                           <Color blue="ff" green="ff" red="ff" type="rgb"/>
                         </Property>
+                        <!-- Texto de la etiqueta -->
                         <Property name="text" type="java.lang.String" value="2024"/>
                       </Properties>
                       <Constraints>
+                        <!-- Configuración de la posición y tamaño de la etiqueta -->
                         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
                           <AbsoluteConstraints x="80" y="40" width="120" height="-1"/>
                         </Constraint>
@@ -410,48 +502,61 @@
                     </Component>
                   </SubComponents>
                 </Container>
+                <!-- Componente de etiqueta para el menú de incidentes -->
                 <Component class="javax.swing.JLabel" name="menuIncidentes">
                   <Properties>
+                    <!-- Color de fondo del componente -->
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="28" green="27" red="29" type="rgb"/>
                     </Property>
+                    <!-- Configuración de la fuente del texto -->
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Leelawadee UI Semilight" size="16" style="0"/>
                     </Property>
+                    <!-- Color del texto del componente -->
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="ff" green="ff" red="ff" type="rgb"/>
                     </Property>
+                    <!-- Icono del componente -->
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                       <Image iconType="3" name="/iconos/exclamacion.png"/>
                     </Property>
+                    <!-- Texto del componente -->
                     <Property name="text" type="java.lang.String" value="Incidentes"/>
+                    <!-- Borde del componente -->
                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                       <Border info="org.netbeans.modules.form.compat2.border.EmptyBorderInfo">
                         <EmptyBorder bottom="1" left="10" right="1" top="1"/>
                       </Border>
                     </Property>
+                    <!-- Configuración del cursor del componente -->
                     <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
                       <Color id="Default Cursor"/>
                     </Property>
                   </Properties>
                   <Events>
+                    <!-- Eventos de clic del ratón en el componente -->
                     <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="menuIncidentesMouseClicked"/>
                     <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="menuIncidentesMouseEntered"/>
                     <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="menuIncidentesMouseExited"/>
                   </Events>
                   <Constraints>
+                    <!-- Configuración de la posición y tamaño del componente -->
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
                       <AbsoluteConstraints x="10" y="150" width="210" height="52"/>
                     </Constraint>
                   </Constraints>
                 </Component>
+                <!-- Panel indicador de clic en el sexto menú -->
                 <Container class="javax.swing.JPanel" name="Clicked6">
                   <Properties>
+                    <!-- Color de fondo del panel -->
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="37" green="8" red="b2" type="rgb"/>
                     </Property>
                   </Properties>
                   <Constraints>
+                    <!-- Configuración de la posición y tamaño del panel -->
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
                       <AbsoluteConstraints x="0" y="340" width="10" height="52"/>
                     </Constraint>
@@ -472,35 +577,45 @@
                 </Container>
               </SubComponents>
             </Container>
+            <!-- Botón para salir de la aplicación -->
             <Component class="javax.swing.JButton" name="btnExit">
               <Properties>
+                <!-- Color del texto del botón -->
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
+                <!-- Icono del botón -->
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/iconos/power_24dp.png"/>
                 </Property>
+                <!-- Borde del botón -->
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                   <Border info="org.netbeans.modules.form.compat2.border.EmptyBorderInfo">
                     <EmptyBorder/>
                   </Border>
                 </Property>
+                <!-- Configuración del relleno del área de contenido -->
                 <Property name="contentAreaFilled" type="boolean" value="false"/>
+                <!-- Configuración del cursor del botón -->
                 <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
                   <Color id="Hand Cursor"/>
                 </Property>
               </Properties>
               <Events>
+                <!-- Evento de clic en el botón -->
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnExitActionPerformed"/>
               </Events>
               <Constraints>
+                <!-- Configuración de la posición y tamaño del botón -->
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
                   <AbsoluteConstraints x="1360" y="20" width="35" height="35"/>
                 </Constraint>
               </Constraints>
             </Component>
+            <!-- Panel principal de contenido -->
             <Container class="javax.swing.JPanel" name="panelContent">
               <Constraints>
+                <!-- Configuración de la posición y tamaño del panel -->
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
                   <AbsoluteConstraints x="220" y="80" width="1180" height="690"/>
                 </Constraint>
@@ -508,13 +623,16 @@
 
               <Layout class="org.netbeans.modules.form.compat2.layouts.DesignCardLayout"/>
               <SubComponents>
+                <!-- Panel de gestión de paquetes -->
                 <Container class="javax.swing.JPanel" name="JPGPaquetes">
                   <Properties>
+                    <!-- Color de fondo del panel -->
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="f5" green="f5" red="f5" type="rgb"/>
                     </Property>
                   </Properties>
                   <Constraints>
+                    <!-- Configuración del layout del panel -->
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
                       <CardConstraints cardName="card1"/>
                     </Constraint>
@@ -524,17 +642,22 @@
                     <Property name="useNullLayout" type="boolean" value="false"/>
                   </Layout>
                   <SubComponents>
+                    <!-- Etiqueta dentro del panel de gestión de paquetes -->
                     <Component class="javax.swing.JLabel" name="jLInicio">
                       <Properties>
+                        <!-- Configuración de la fuente del texto -->
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                           <Font name="Tahoma" size="64" style="0"/>
                         </Property>
+                        <!-- Color del texto de la etiqueta -->
                         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                           <Color blue="66" green="66" red="66" type="rgb"/>
                         </Property>
+                        <!-- Texto de la etiqueta -->
                         <Property name="text" type="java.lang.String" value="Gesti&#xf3;n de Paquetes"/>
                       </Properties>
                       <Constraints>
+                        <!-- Configuración de la posición y tamaño de la etiqueta -->
                         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
                           <AbsoluteConstraints x="200" y="90" width="620" height="250"/>
                         </Constraint>
@@ -542,13 +665,16 @@
                     </Component>
                   </SubComponents>
                 </Container>
+                <!-- Panel de remitentes -->
                 <Container class="javax.swing.JPanel" name="JPRemitente">
                   <Properties>
+                    <!-- Color de fondo del panel -->
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="f5" green="f5" red="f5" type="rgb"/>
                     </Property>
                   </Properties>
                   <Constraints>
+                    <!-- Configuración del layout del panel -->
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
                       <CardConstraints cardName="card2"/>
                     </Constraint>
@@ -558,17 +684,22 @@
                     <Property name="useNullLayout" type="boolean" value="false"/>
                   </Layout>
                   <SubComponents>
+                    <!-- Etiqueta dentro del panel de remitentes -->
                     <Component class="javax.swing.JLabel" name="jLabel5">
                       <Properties>
+                        <!-- Configuración de la fuente del texto -->
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                           <Font name="Tahoma" size="62" style="0"/>
                         </Property>
+                        <!-- Color del texto de la etiqueta -->
                         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                           <Color blue="66" green="66" red="66" type="rgb"/>
                         </Property>
+                        <!-- Texto de la etiqueta -->
                         <Property name="text" type="java.lang.String" value="Remitente"/>
                       </Properties>
                       <Constraints>
+                        <!-- Configuración de la posición y tamaño de la etiqueta -->
                         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
                           <AbsoluteConstraints x="410" y="310" width="-1" height="-1"/>
                         </Constraint>
@@ -576,16 +707,20 @@
                     </Component>
                   </SubComponents>
                 </Container>
+                <!-- Panel de conductores -->
                 <Container class="javax.swing.JPanel" name="JPConductores">
                   <Properties>
+                    <!-- Color de fondo del panel -->
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="f5" green="f5" red="f5" type="rgb"/>
                     </Property>
+                    <!-- Tamaño mínimo del panel -->
                     <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                       <Dimension value="[810, 540]"/>
                     </Property>
                   </Properties>
                   <Constraints>
+                    <!-- Configuración del layout del panel -->
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
                       <CardConstraints cardName="card3"/>
                     </Constraint>
@@ -595,17 +730,22 @@
                     <Property name="useNullLayout" type="boolean" value="false"/>
                   </Layout>
                   <SubComponents>
+                    <!-- Etiqueta dentro del panel de conductores -->
                     <Component class="javax.swing.JLabel" name="jLabel7">
                       <Properties>
+                        <!-- Configuración de la fuente del texto -->
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                           <Font name="Tahoma" size="64" style="0"/>
                         </Property>
+                        <!-- Color del texto de la etiqueta -->
                         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                           <Color blue="66" green="66" red="66" type="rgb"/>
                         </Property>
+                        <!-- Texto de la etiqueta -->
                         <Property name="text" type="java.lang.String" value="Conductores"/>
                       </Properties>
                       <Constraints>
+                        <!-- Configuración de la posición y tamaño de la etiqueta -->
                         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
                           <AbsoluteConstraints x="410" y="270" width="-1" height="-1"/>
                         </Constraint>
@@ -613,13 +753,16 @@
                     </Component>
                   </SubComponents>
                 </Container>
+                <!-- Panel de facturación y venta -->
                 <Container class="javax.swing.JPanel" name="JPFyV">
                   <Properties>
+                    <!-- Color de fondo del panel -->
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="f5" green="f5" red="f5" type="rgb"/>
                     </Property>
                   </Properties>
                   <Constraints>
+                    <!-- Configuración del layout del panel -->
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
                       <CardConstraints cardName="card4"/>
                     </Constraint>
@@ -629,17 +772,22 @@
                     <Property name="useNullLayout" type="boolean" value="false"/>
                   </Layout>
                   <SubComponents>
+                    <!-- Etiqueta dentro del panel de facturación y venta -->
                     <Component class="javax.swing.JLabel" name="jLabel8">
                       <Properties>
+                        <!-- Configuración de la fuente del texto -->
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                           <Font name="Tahoma" size="64" style="0"/>
                         </Property>
+                        <!-- Color del texto de la etiqueta -->
                         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                           <Color blue="66" green="66" red="66" type="rgb"/>
                         </Property>
+                        <!-- Texto de la etiqueta -->
                         <Property name="text" type="java.lang.String" value="Facturaci&#xf3;n y Venta"/>
                       </Properties>
                       <Constraints>
+                        <!-- Configuración de la posición y tamaño de la etiqueta -->
                         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
                           <AbsoluteConstraints x="350" y="330" width="-1" height="-1"/>
                         </Constraint>
@@ -647,13 +795,16 @@
                     </Component>
                   </SubComponents>
                 </Container>
+                <!-- Panel de recepcionista -->
                 <Container class="javax.swing.JPanel" name="JPRecepcionista">
                   <Properties>
+                    <!-- Color de fondo del panel -->
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="f5" green="f5" red="f5" type="rgb"/>
                     </Property>
                   </Properties>
                   <Constraints>
+                    <!-- Configuración del layout del panel -->
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
                       <CardConstraints cardName="card5"/>
                     </Constraint>
@@ -663,17 +814,22 @@
                     <Property name="useNullLayout" type="boolean" value="false"/>
                   </Layout>
                   <SubComponents>
+                    <!-- Etiqueta dentro del panel de recepcionista -->
                     <Component class="javax.swing.JLabel" name="jLabel9">
                       <Properties>
+                        <!-- Configuración de la fuente del texto -->
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                           <Font name="Tahoma" size="64" style="0"/>
                         </Property>
+                        <!-- Color del texto de la etiqueta -->
                         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                           <Color blue="66" green="66" red="66" type="rgb"/>
                         </Property>
+                        <!-- Texto de la etiqueta -->
                         <Property name="text" type="java.lang.String" value="Recepcionista"/>
                       </Properties>
                       <Constraints>
+                        <!-- Configuración de la posición y tamaño de la etiqueta -->
                         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
                           <AbsoluteConstraints x="360" y="250" width="-1" height="-1"/>
                         </Constraint>
@@ -681,13 +837,16 @@
                     </Component>
                   </SubComponents>
                 </Container>
+                <!-- Panel de incidentes -->
                 <Container class="javax.swing.JPanel" name="JPIncidentes">
                   <Properties>
+                    <!-- Color de fondo del panel -->
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="f5" green="f5" red="f5" type="rgb"/>
                     </Property>
                   </Properties>
                   <Constraints>
+                    <!-- Configuración del layout del panel -->
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
                       <CardConstraints cardName="card6"/>
                     </Constraint>
@@ -697,17 +856,22 @@
                     <Property name="useNullLayout" type="boolean" value="false"/>
                   </Layout>
                   <SubComponents>
+                    <!-- Etiqueta dentro del panel de incidentes -->
                     <Component class="javax.swing.JLabel" name="jLabel117">
                       <Properties>
+                        <!-- Configuración de la fuente del texto -->
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                           <Font name="Tahoma" size="64" style="0"/>
                         </Property>
+                        <!-- Color del texto de la etiqueta -->
                         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                           <Color blue="66" green="66" red="66" type="rgb"/>
                         </Property>
+                        <!-- Texto de la etiqueta -->
                         <Property name="text" type="java.lang.String" value="Incidentes"/>
                       </Properties>
                       <Constraints>
+                        <!-- Configuración de la posición y tamaño de la etiqueta -->
                         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
                           <AbsoluteConstraints x="330" y="170" width="-1" height="-1"/>
                         </Constraint>
@@ -717,33 +881,43 @@
                 </Container>
               </SubComponents>
             </Container>
+            <!-- Etiqueta para mostrar el ID del usuario logueado -->
             <Component class="javax.swing.JLabel" name="txtID">
               <Properties>
+                <!-- Configuración de la fuente del texto -->
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Tahoma" size="14" style="0"/>
                 </Property>
+                <!-- Color del texto de la etiqueta -->
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="33" green="33" red="33" type="rgb"/>
                 </Property>
+                <!-- Texto de la etiqueta -->
                 <Property name="text" type="java.lang.String" value="Logged  :"/>
               </Properties>
               <Constraints>
+                <!-- Configuración de la posición y tamaño de la etiqueta -->
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
                   <AbsoluteConstraints x="230" y="20" width="290" height="-1"/>
                 </Constraint>
               </Constraints>
             </Component>
+            <!-- Etiqueta para mostrar la fecha de login -->
             <Component class="javax.swing.JLabel" name="txtDateLog">
               <Properties>
+                <!-- Configuración de la fuente del texto -->
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Tahoma" size="14" style="0"/>
                 </Property>
+                <!-- Color del texto de la etiqueta -->
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="33" green="33" red="33" type="rgb"/>
                 </Property>
+                <!-- Texto de la etiqueta -->
                 <Property name="text" type="java.lang.String" value="Date      :"/>
               </Properties>
               <Constraints>
+                <!-- Configuración de la posición y tamaño de la etiqueta -->
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
                   <AbsoluteConstraints x="230" y="37" width="310" height="20"/>
                 </Constraint>
