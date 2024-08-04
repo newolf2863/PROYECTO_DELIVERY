@@ -2,9 +2,11 @@
 package basededatos;
 
 /**
- *
  * @author Moises Arequipa
  */
+
+// Importaciones necesarias para el funcionamiento de la base de datos y la interfaz gráfica
+// IMPORTACIONES
 import GUI.JFPaquetes;
 import java.sql.*;
 import java.util.ArrayList;
@@ -19,10 +21,16 @@ import mod_administracion.Recepcionista;
 import mod_administracion.Usuario;
 import mod_paquetes.Provincia;
 
+/**
+ * Clase DataBase que maneja las conexiones y operaciones con la base de datos.
+ */
 public class DataBase {
-    private static DataBase instancia;
-    private Connection conexion;
+    private static DataBase instancia;  // Singleton de la clase DataBase
+    private Connection conexion;  // Objeto de conexión a la base de datos
     
+    /**
+     * Constructor privado para implementar el patrón Singleton.
+     */
     private DataBase() {      
         String HOST = "localhost";
         String PUERTO = "5432";
@@ -31,14 +39,21 @@ public class DataBase {
         String PASSWORD = "123";
         
         try {
+            // Cargar el driver de PostgreSQL
             Class.forName("org.postgresql.Driver");
             String url ="jdbc:postgresql://"+HOST+":"+PUERTO+"/"+DB;
+            // Establecer la conexión con la base de datos
             conexion = DriverManager.getConnection(url, USER, PASSWORD);
         } catch (Exception e) {
+            // Mostrar un mensaje de error en caso de excepción
             JOptionPane.showMessageDialog(null, e.getMessage());
         }
     }
     
+    /**
+     * Método para obtener la instancia única de la clase DataBase.
+     * @return Instancia única de la clase DataBase.
+     */
     public static DataBase obtenerInstancia() {
         if (instancia == null) {
             instancia = new DataBase();
@@ -46,6 +61,12 @@ public class DataBase {
         return instancia;
     }
     
+    /**
+     * Método para comprobar las credenciales de un usuario.
+     * @param username Nombre de usuario.
+     * @param password Contraseña del usuario.
+     * @return Rol del usuario si las credenciales son correctas, null en caso contrario.
+     */
     public String comprobarCredencial(String username, String password) {
         String query = "SELECT rol FROM Credencial WHERE nombreUsuario = ? AND clave = ?";
         try {
@@ -65,6 +86,11 @@ public class DataBase {
         }
     }
     
+    /**
+     * Método para obtener un objeto Recepcionista a partir del nombre de usuario.
+     * @param username Nombre de usuario del recepcionista.
+     * @return Objeto Recepcionista si se encuentra, null en caso contrario.
+     */
     public Recepcionista obtenerRecepcionista(String username) {
         String query = "SELECT u.nombres, u.apellidos, u.cedula AS identificacion, u.direccion, u.telefono, u.email, c.provincia " +
                "FROM Usuario u " +
@@ -102,6 +128,11 @@ public class DataBase {
         }
     }
     
+    /**
+     * Método para obtener un objeto Conductor a partir del nombre de usuario.
+     * @param username Nombre de usuario del conductor.
+     * @return Objeto Conductor si se encuentra, null en caso contrario.
+     */
     public Conductor obtenerConductor(String username) {
         String query = "SELECT u.nombres, u.apellidos, u.cedula AS identificacion, u.direccion, u.telefono, u.email, c.provincia " +
                "FROM Usuario u " +
@@ -130,6 +161,11 @@ public class DataBase {
         }
     }
     
+    /**
+     * Método para obtener los datos de un cliente a partir de su cédula.
+     * @param cedula Cédula del cliente.
+     * @return Objeto Cliente si se encuentra, null en caso contrario.
+     */
     public Cliente obtenerDatosPorCedula(String cedula) {
         String query = "SELECT nombres, apellidos, cedula AS identificacion, direccion, telefono, email " +
                        "FROM Usuario " +
@@ -158,7 +194,11 @@ public class DataBase {
         }
     } 
 
-    
+    /**
+     * Método para obtener los datos de un conductor a partir de su cédula.
+     * @param cedula Cédula del conductor.
+     * @return Objeto Conductor si se encuentra, null en caso contrario.
+     */
     public Conductor obtenerConductorPorCedula(String cedula) {
         String query = "SELECT nombres, apellidos, cedula AS identificacion, direccion, telefono, email " +
                        "FROM Usuario " +
@@ -186,9 +226,16 @@ public class DataBase {
             return null;
         }
     } 
-    
-    
-    
+
+    /**
+     * Método para registrar un nuevo cliente en la base de datos.
+     * @param nombres Nombres del cliente.
+     * @param apellidos Apellidos del cliente.
+     * @param cedula Cédula del cliente.
+     * @param direccion Dirección del cliente.
+     * @param telefono Teléfono del cliente.
+     * @param email Correo electrónico del cliente.
+     */
     public void registrarCliente(String nombres, String apellidos, String cedula, String direccion, String telefono, String email) {
         String query = "INSERT INTO Usuario (nombres, apellidos, cedula, direccion, telefono, email) VALUES (?, ?, ?, ?, ?, ?)";
         try (PreparedStatement stmt = conexion.prepareStatement(query)) {
@@ -206,6 +253,11 @@ public class DataBase {
         }
     }
     
+    /**
+     * Método para verificar si un cliente existe en la base de datos.
+     * @param cedula Cédula del cliente.
+     * @return True si el cliente existe, false en caso contrario.
+     */
     public Boolean clienteExiste(String cedula) {
         String consulta = "SELECT COUNT(*) FROM Usuario WHERE cedula = ?";
         try (PreparedStatement stmt = conexion.prepareStatement(consulta)) {
@@ -221,6 +273,14 @@ public class DataBase {
         return false;
     }
     
+    /**
+     * Método para actualizar los datos de un usuario en la base de datos.
+     * @param cedula Cédula del usuario.
+     * @param nuevaDireccion Nueva dirección del usuario.
+     * @param nuevoTelefono Nuevo teléfono del usuario.
+     * @param nuevoEmail Nuevo correo electrónico del usuario.
+     * @return True si la actualización fue exitosa, false en caso contrario.
+     */
     public Boolean actualizarUsuario(String cedula, String nuevaDireccion, String nuevoTelefono, String nuevoEmail) {
         // Construir la consulta SQL dinámicamente en base a los parámetros proporcionados
         StringBuilder queryBuilder = new StringBuilder("UPDATE Usuario SET ");
@@ -271,6 +331,10 @@ public class DataBase {
         return false;
     }
     
+    /**
+     * Método para obtener todos los clientes registrados en la base de datos.
+     * @return Lista de objetos Cliente.
+     */
     public ArrayList<Cliente> obtenerTodosLosUsuarios() {
         ArrayList<Cliente> usuarios = new ArrayList<>();
         String query = "SELECT nombres, apellidos, cedula, direccion, telefono, email FROM Usuario";
@@ -295,6 +359,18 @@ public class DataBase {
         return usuarios;
     }
     
+    /**
+     * Método para insertar un nuevo conductor en la base de datos.
+     * @param nombres Nombres del conductor.
+     * @param apellidos Apellidos del conductor.
+     * @param cedula Cédula del conductor.
+     * @param direccion Dirección del conductor.
+     * @param telefono Teléfono del conductor.
+     * @param email Correo electrónico del conductor.
+     * @param nombreUsuario Nombre de usuario del conductor.
+     * @param clave Clave del conductor.
+     * @param provincia Provincia donde trabaja el conductor.
+     */
     public void insertarConductor(String nombres, String apellidos, String cedula, String direccion, String telefono, String email, String nombreUsuario, String clave, Provincia provincia) {
         String insertUsuarioSQL = "INSERT INTO Usuario (nombres, apellidos, cedula, direccion, telefono, email) VALUES (?, ?, ?, ?, ?, ?)";
         String insertCredencialSQL = "INSERT INTO Credencial (nombreUsuario, clave, rol, provincia, usuario_id) VALUES (?, ?, ?, ?, ?)";
@@ -336,6 +412,11 @@ public class DataBase {
         }
     }
     
+    /**
+     * Método para verificar si un nombre de usuario es único.
+     * @param nombreUsuario Nombre de usuario a verificar.
+     * @return True si el nombre de usuario es único, false en caso contrario.
+     */
     public boolean esNombreUsuarioUnico(String nombreUsuario) {
         String query = "SELECT COUNT(*) FROM Credencial WHERE nombreUsuario = ?";
         try (PreparedStatement stmt = conexion.prepareStatement(query)) {
@@ -352,6 +433,10 @@ public class DataBase {
         return false; // Si ocurre un error, asumimos que no es único para evitar errores en la lógica de la aplicación
     }
     
+    /**
+     * Método para obtener todos los conductores registrados en la base de datos.
+     * @return Lista de objetos Conductor.
+     */
     public ArrayList<Conductor> obtenerTodosLosConductores() {
         ArrayList<Conductor> conductores = new ArrayList<>();
         String query = "SELECT u.nombres, u.apellidos, u.cedula AS identificacion, u.direccion, u.telefono, u.email " +
@@ -379,6 +464,4 @@ public class DataBase {
 
         return conductores;
     }
-
-   
 }
