@@ -27,12 +27,12 @@ public class GestorIncidente {
         this.incidente = incidente;
     }
     
-    /**
-     * Método para crear un incidente asociado a un paquete.
-     * Registra el incidente y lo añade al seguimiento del paquete.
-     * 
-     * @param paquete El paquete al cual se le registrará el incidente.
-     */
+//    /**
+//     * Método para crear un incidente asociado a un paquete.
+//     * Registra el incidente y lo añade al seguimiento del paquete.
+//     * 
+//     * @param paquete El paquete al cual se le registrará el incidente.
+//     */
     public void crearIncidente(Paquete paquete) {
         // Registrar el incidente utilizando el método registrar del objeto incidente
         String registro = incidente.registrar();
@@ -49,7 +49,7 @@ public class GestorIncidente {
      * @param paquete El paquete cuyo incidente será resuelto.
      * @param argumentos Argumentos necesarios para resolver el incidente.
      */
-    public void resolverIncidente(Paquete paquete, String ... argumentos) {
+    public void iniciarSoporte(Paquete paquete, String ... argumentos) {
         // Resolver el incidente utilizando el método resolver del objeto incidente
         String registro = incidente.resolver(argumentos);
         // Obtener el objeto Seguimiento del paquete
