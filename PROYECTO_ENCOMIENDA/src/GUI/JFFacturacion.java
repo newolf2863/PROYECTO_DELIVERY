@@ -561,7 +561,10 @@ public class JFFacturacion extends javax.swing.JFrame {
         
         Inventario inventario = Inventario.obtenerInstancia();
         Paquete paquete = inventario.obtenerPaquete(codigoTracking);
-        
+        if(paquete == null){
+            JOptionPane.showMessageDialog(null, "No existe paquete.", "PAPU", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
         String contenidoPaquete = paquete.getContenido();
         String nombreDestinatario = paquete.getNombreDestinatario();
         

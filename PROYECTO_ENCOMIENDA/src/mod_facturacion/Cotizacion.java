@@ -38,8 +38,7 @@ public final class Cotizacion {
         }
         return instancia;
     }
-
-    /**
+        /**
      * Obtiene el precio de un paquete específico.
      *
      * @param paquete el paquete del cual se calculará el precio.
