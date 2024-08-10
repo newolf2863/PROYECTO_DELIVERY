@@ -1,5 +1,6 @@
 package mod_paquetes;
 
+import mod_transporte.Provincia;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -38,7 +39,7 @@ public class Paquete implements Serializable {
         this.estado = estado;
         seguimiento.notificar(estado);
     }
-
+    
     public ArrayList<String> obtenerHistorialEstados() {
         return seguimiento.obtenerEstadosAnteriores();
     }

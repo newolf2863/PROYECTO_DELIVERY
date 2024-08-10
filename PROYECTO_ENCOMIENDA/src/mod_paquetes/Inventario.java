@@ -1,5 +1,6 @@
 package mod_paquetes;
 
+import mod_transporte.Provincia;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -104,7 +105,6 @@ public final class Inventario {
             paquetes = (ArrayList<Paquete>) ois.readObject();
             ois.close();
         } catch (IOException | ClassNotFoundException e) {
-            System.out.println("No existe el archivo");
         }
     }
 }

@@ -10,11 +10,11 @@ import mod_administracion.Usuario;
 import mod_paquetes.EnCurso;
 import mod_paquetes.Inventario;
 import mod_paquetes.Paquete;
-import mod_paquetes.Provincia;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import mod_administracion.Cliente;
 
 public class Asignacion {
     private static Asignacion instancia;
@@ -30,13 +30,25 @@ public class Asignacion {
         vehiculos = new ArrayList<Vehiculo>();
     }
 
+    
+    
     public static Asignacion obtenerInstancia() {
         if (instancia == null) {
             instancia = new Asignacion();
         }
         return instancia;
     }
-
+    
+    
+    public void borrarRelacionConductorVehiculo(Conductor conductor){
+        for(Map.Entry<Conductor, Vehiculo> entry : asignacionConductores.entrySet()){
+            if(entry.getKey().getCedula().equals(conductor.getCedula())){
+                asignacionConductores.remove(conductor);
+                break;
+            }
+        }
+        guardarRelacionConductores();
+    }
     public void agregarConductor(Conductor usuario) {
         conductores.add(usuario);
         guardarConductores();
@@ -67,16 +79,24 @@ public class Asignacion {
     public boolean asignarPaquetesAVehiculo(Vehiculo vehiculo, Provincia destino) {
         ArrayList<Paquete> paquetesPendientes  = Inventario.obtenerInstancia().obtenerPaquetesPendientes();
         ArrayList<Paquete> paquetes;
+        Vehiculo vehiculoAUsar = null;
         int conteoPaquetes = 0;
+        for (Map.Entry<Vehiculo, ArrayList<Paquete>> entry : asignacionPaquetes.entrySet()) {
+            if (entry.getKey().getNumeroPlaca().equals(vehiculo.getNumeroPlaca())) {
+                vehiculoAUsar = entry.getKey();
+                break;
+            }
+        }
+        
         if (paquetesPendientes.isEmpty()) {
             return false;
-        } else if (asignacionPaquetes.containsKey(vehiculo)) {
-            paquetes = asignacionPaquetes.get(vehiculo);
-            conteoPaquetes = paquetes.size();
-        } else {
+        } else if(vehiculoAUsar == null){
             paquetes = new ArrayList<>();
             asignacionPaquetes.put(vehiculo, paquetes);
-        }
+        } else {
+            paquetes = asignacionPaquetes.get(vehiculoAUsar);
+            conteoPaquetes = paquetes.size();
+        } 
         double capacidad = vehiculo.getCapacidad();
 
         for (Paquete paquete : paquetesPendientes) {
@@ -93,10 +113,20 @@ public class Asignacion {
         if(paquetes == null || paquetes.size()== conteoPaquetes){
             return false;
         }
+        
         vehiculo.setCapacidad(capacidad);
+        if(vehiculoAUsar !=null){
+            asignacionPaquetes.remove(vehiculoAUsar);
+            asignacionPaquetes.put(vehiculo, paquetes);
+        }
+        guardarVehiculo();
         guardarRelacionPaquetes();
+        Inventario.obtenerInstancia().guardarInventario();
         return true;
     }
+    
+    
+    
     public HashMap<Vehiculo, ArrayList<Paquete>> obtenerRelacionPaqueteVehiculo(){
         return asignacionPaquetes;
     }
@@ -111,7 +141,7 @@ public class Asignacion {
         guardarRelacionConductores();
     }
 
-    public ArrayList<Paquete> obtenerPaquetesConductor(Conductor conductor) {
+    public ArrayList<Paquete> obtenerVehiculoConductor(Conductor conductor) {
         if (!asignacionConductores.containsKey(conductor)) {
             return null;
         }
@@ -127,6 +157,26 @@ public class Asignacion {
         }
         return null;
     }
+    
+    public ArrayList<Paquete> obtenerPaquetesDeConductor(Conductor conductor){
+        Vehiculo vehiculo = null;
+        for (Map.Entry<Conductor, Vehiculo> entry : asignacionConductores.entrySet()) {
+            if (entry.getKey().getCedula().equals(conductor.getCedula())) {
+                vehiculo = entry.getValue();
+                break;
+            }
+        }
+        if(vehiculo == null){
+            return null;
+        }
+        for(Map.Entry<Vehiculo, ArrayList<Paquete>> entry : asignacionPaquetes.entrySet()){
+            if(entry.getKey().getNumeroPlaca().equals(vehiculo.getNumeroPlaca())){
+                return entry.getValue();
+            }
+        }
+        return null;
+    }
+    
     
     public void guardarVehiculo() {
         conexionConSer(vehiculos,"FlotaVehiculos");
@@ -219,6 +269,7 @@ public class Asignacion {
     }
 
     public void agregarConductores(ArrayList usuario) {
+        
         conductores.addAll(usuario);
         guardarConductores();
     }
@@ -230,5 +281,7 @@ public class Asignacion {
     public Iterable<Vehiculo> obtenerVehiculos() {
         return vehiculos;
     }
+
+  
     
 }

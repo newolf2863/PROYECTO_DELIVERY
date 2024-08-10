@@ -7,7 +7,6 @@ import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Desktop;
 import java.awt.Window;
-import java.awt.event.KeyEvent;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -46,31 +45,9 @@ import validaciones.*;
 public class JFMenu extends javax.swing.JFrame {
 //Vistas
 
-    private JFPaquetes inventario = null;
-    private JFClientes remitente = null;
-    private JFIncidente incidente = null;
-    private JFConductores conductor = null;
-    private JFFactura factura1 = null;
-
 //Clases   
-    ValidadorDeRegistros validarRegistroF = new ValidadorDeRegistros();
-    ValidadorDeSwings validadorCheck = new ValidadorDeSwings();
 
-    //Empleados
-    private boolean cedulaEmpleadoValidar = false;
-    private boolean nombreEmpleadoValidar = false;
-    private boolean apellidoEmpleadoValidar = false;
-    private boolean cargoEmpleadoValidar = false;
-    private boolean direccionEmpleadoValidar = false;
-    private boolean telefonoConvenValidar = false;
-    private boolean telefonoEmpleadoValiar = false;
-    private boolean correoEmpleadoValidar = false;
 
-    private boolean cargoEmpleadoValidar1 = false;
-    private boolean direccionEmpleadoValidar1 = false;
-    private boolean telefonoConvenValidar1 = false;
-    private boolean telefonoEmpleadoValiar1 = false;
-    private boolean correoEmpleadoValidar1 = false;
     //Usuarios
     private boolean claveUsuario = false;
     //Actualizar usuarios
@@ -101,12 +78,13 @@ public class JFMenu extends javax.swing.JFrame {
     }
 
     public JFMenu(Recepcionista recepcionista) {
-        ArrayList<Conductor> conductores = DataBase.obtenerInstancia().obtenerTodosLosConductores();
-        Asignacion.obtenerInstancia().agregarConductores(conductores);
+        
+        
         Asignacion.obtenerInstancia().cargarVehiculos();
         Asignacion.obtenerInstancia().cargarConductores();
         Asignacion.obtenerInstancia().cargarRelacionConductores();
-
+        Asignacion.obtenerInstancia().cargarRelacionPaquetes();
+        
         initComponents();
         this.recepcionista = recepcionista;
 
@@ -202,19 +180,15 @@ public class JFMenu extends javax.swing.JFrame {
         setTitle("SistemaBestColor");
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setUndecorated(true);
-        setPreferredSize(new java.awt.Dimension(1300, 770));
         setResizable(false);
 
         Home.setLayout(new java.awt.CardLayout());
 
         PanelHome.setBackground(new java.awt.Color(245, 245, 245));
         PanelHome.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        PanelHome.setMinimumSize(new java.awt.Dimension(1300, 770));
-        PanelHome.setPreferredSize(new java.awt.Dimension(1300, 770));
         PanelHome.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel3.setBackground(new java.awt.Color(146, 10, 48));
-        jPanel3.setPreferredSize(new java.awt.Dimension(1300, 20));
         jPanel3.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseDragged(java.awt.event.MouseEvent evt) {
                 jPanel3MouseDragged(evt);
@@ -237,16 +211,16 @@ public class JFMenu extends javax.swing.JFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel69)
-                .addContainerGap(1196, Short.MAX_VALUE))
+                .addContainerGap(1295, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addComponent(jLabel69)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(0, 4, Short.MAX_VALUE))
         );
 
-        PanelHome.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1300, 20));
+        PanelHome.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1400, 20));
 
         jPanel1.setBackground(new java.awt.Color(41, 39, 40));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -525,7 +499,7 @@ public class JFMenu extends javax.swing.JFrame {
                 btnExitActionPerformed(evt);
             }
         });
-        PanelHome.add(btnExit, new org.netbeans.lib.awtextra.AbsoluteConstraints(1260, 20, 35, 35));
+        PanelHome.add(btnExit, new org.netbeans.lib.awtextra.AbsoluteConstraints(1360, 20, 35, 35));
 
         panelContent.setLayout(new java.awt.CardLayout());
 
@@ -670,7 +644,7 @@ public class JFMenu extends javax.swing.JFrame {
         contenido.show(panelContent, "card5");
         cambiarSeccionMenu(4);
         menuEmpleados.setBackground(Color.decode("#494848"));
-        JFrame ventanaRecepcionista = new JFVehiculo(cnx, recepcionista.obtenerSucursal());
+        JFrame ventanaRecepcionista = new JFVehiculo( recepcionista.obtenerSucursal());
         VentanaManager.getInstance().mostrarVentana("recepcionista", ventanaRecepcionista);
     }//GEN-LAST:event_menuEmpleadosMouseClicked
 

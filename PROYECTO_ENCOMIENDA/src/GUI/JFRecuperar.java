@@ -28,9 +28,9 @@ public class JFRecuperar extends javax.swing.JFrame {
      * Creates new form JFLogin
      */
     public JFRecuperar() {
-        initComponents();
         setIconImage(new ImageIcon(getClass().
-                getResource("/proyecto_encomienda/GESTION_PAQUETES/FRONTEND/imagenes/AjustesBest.png")).getImage());
+                getResource("/iconos/AjustesBest.png")).getImage());
+        initComponents();    
         jCBPreguntaControl.setBackground(new Color(255,255,255));
         this.setLocationRelativeTo(null);
         setTitle("Recuperar contraseña");
@@ -147,8 +147,6 @@ public class JFRecuperar extends javax.swing.JFrame {
         );
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 490, -1));
-
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto_encomienda/GESTION_PAQUETES/FRONTEND/imagenes/gestionDePaquetes.png"))); // NOI18N
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 490, 120));
 
         jTFCedula.setFont(new java.awt.Font("Roboto Medium", 0, 12)); // NOI18N

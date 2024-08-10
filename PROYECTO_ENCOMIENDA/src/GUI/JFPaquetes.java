@@ -34,7 +34,7 @@ import mod_facturacion.CalculoPrecio;
 import mod_facturacion.Precio;
 import mod_paquetes.Inventario;
 import mod_paquetes.Paquete;
-import mod_paquetes.Provincia;
+import mod_transporte.Provincia;
 import validaciones.*;
 
 
@@ -516,7 +516,7 @@ public class JFPaquetes extends javax.swing.JFrame {
         Provincia destino = null;
         Class<?> enumClass;
         try {
-            enumClass = Class.forName("mod_paquetes.Provincia");
+            enumClass = Class.forName("mod_transporte.Provincia");
             destino = (Provincia) Enum.valueOf((Class<Enum>) enumClass, JComboDestino.getSelectedItem().toString());
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(JFPaquetes.class.getName()).log(Level.SEVERE, null, ex);

@@ -5,10 +5,8 @@
 package mod_incidentes;
 
 /**
- * Clase que representa un incidente de tipo Error de Dirección.
- * Hereda de la clase Incidente.
- * Gestiona errores relacionados con la imposibilidad de entregar un paquete en la dirección proporcionada.
- * Implementa métodos para registrar y resolver el incidente.
+ * La clase ErrorDireccion representa un tipo específico de incidente relacionado con errores en la dirección de entrega.
+ * Extiende la clase base Incidente.
  * 
  * @autor Rodrigo Haro
  */
@@ -16,9 +14,8 @@ public class ErrorDireccion extends Incidente {
 
     /**
      * Método para registrar el incidente de error en la dirección.
-     * Sobrescribe el método registrar() de la clase base Incidente.
      * 
-     * @return Un mensaje indicando que no se ha podido entregar el paquete en la dirección proporcionada.
+     * @return String con el mensaje de registro del incidente.
      */
     @Override
     public String registrar() {
@@ -27,11 +24,10 @@ public class ErrorDireccion extends Incidente {
 
     /**
      * Método para resolver el incidente de error en la dirección.
-     * Sobrescribe el método resolver() de la clase base Incidente.
      * 
      * @param argumentos Un array de Strings que contiene los argumentos necesarios para resolver el incidente.
-     *                   Se espera que el primer argumento sea la nueva dirección.
-     * @return Un mensaje indicando que el paquete se ha entregado en una nueva dirección.
+     *                   En este caso, se espera que el primer argumento sea la nueva dirección de entrega.
+     * @return String con el mensaje de resolución del incidente.
      */
     @Override
     public String resolver(String[] argumentos) {
