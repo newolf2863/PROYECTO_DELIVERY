@@ -108,4 +108,18 @@ public final class Cotizacion {
             System.out.println("No existe el archivo");
         }
     }
+    
+    /**
+     * Se busca la el Precio de la factura por medio de su id
+     * @param id 
+     * @return Retorna el objeto precio asociado a la Factura
+     */
+    public Precio devolverPrecio(String id){
+        for (Factura i : facturas){
+            if(i.obtenerCodigo().equals(id)){
+                return  i.obtenerPrecio();
+            }
+        }
+        return null;
+    }
 }
