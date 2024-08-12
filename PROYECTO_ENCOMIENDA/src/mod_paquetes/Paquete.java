@@ -123,4 +123,8 @@ public class Paquete implements Serializable {
     public Seguimiento obtenerSeguimiento() {
         return this.seguimiento;
     }
+    
+    public void setDireccionDestino(String nuevaDireccion) {
+        this.direccionDestino = nuevaDireccion;
+    }
 }

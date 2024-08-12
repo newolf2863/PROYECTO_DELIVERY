@@ -21,7 +21,7 @@ import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 import mod_administracion.Recepcionista;
 import mod_facturacion.Factura;
-import mod_incidentes.SolucionDevolucion;
+import mod_incidentes.*;
 import mod_paquetes.Inventario;
 import mod_paquetes.Paquete;
 import mod_paquetes.Pendiente;
@@ -706,7 +706,7 @@ public class JFIncidente extends javax.swing.JFrame {
             return;
         }
 
-        int respuesta = JOptionPane.showConfirmDialog(
+        int respuestaDev = JOptionPane.showConfirmDialog(
                 null,
                 "¿Estás seguro de que deseas resolver este incidente?",
                 "Confirmación de resolución",
@@ -714,7 +714,7 @@ public class JFIncidente extends javax.swing.JFrame {
                 JOptionPane.WARNING_MESSAGE
         );
 
-        if (respuesta == JOptionPane.YES_OPTION) {
+        if (respuestaDev == JOptionPane.YES_OPTION) {
             EstadoIncidente incidenteRegistrar = crearIncidente(incidente);
 
             if (incidenteRegistrar == null) {
@@ -732,6 +732,29 @@ public class JFIncidente extends javax.swing.JFrame {
             mostrarMensaje("La resolución del incidente se ha cancelado", "Resolución Cancelada");
         }
 
+        String nuevaDireccion = jTArgumentos.getText();
+        if (nuevaDireccion.isBlank()) {
+            mostrarMensaje("Ingrese la nueva dirección de entrega", "Error");
+            return;
+        }
+        
+        int respuestaDir = JOptionPane.showConfirmDialog(
+            null,
+            "¿Estás seguro de que deseas cambiar la dirección de este paquete?",
+            "Confirmación de resolución",
+            JOptionPane.YES_NO_OPTION,
+            JOptionPane.WARNING_MESSAGE
+        );
+
+        if (respuestaDir == JOptionPane.YES_OPTION) {
+            SolucionDireccion solucionDireccion = new SolucionDireccion();
+            solucionDireccion.resolverIncidente(codigoPaquete, nuevaDireccion);
+
+            mostrarMensaje("La dirección del paquete ha sido actualizada", "Resolución Exitosa");
+            actualizarTablaIncidentes();
+        } else {
+            mostrarMensaje("La resolución del incidente se ha cancelado", "Resolución Cancelada");
+        }
     }//GEN-LAST:event_jBResolverIncidenteActionPerformed
 
     private EstadoIncidente crearIncidente(String tipoIncidente) {
