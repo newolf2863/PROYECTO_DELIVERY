@@ -3,24 +3,20 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package GUI;
-import basededatos.DataBase;
+
 import com.toedter.calendar.JDateChooser;
-import com.toedter.calendar.JTextFieldDateEditor;
-import java.awt.Color;
-import java.text.SimpleDateFormat;
+
 import javax.swing.JFrame;
 import javax.swing.JRootPane;
-import java.sql.Connection;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.ImageIcon;
-import javax.swing.JTextField;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JLabel;
 import mod_administracion.Conductor;
+import mod_administracion.Recepcionista;
 import mod_paquetes.Paquete;
 import mod_transporte.Provincia;
 import mod_transporte.Asignacion;
@@ -32,53 +28,34 @@ import validaciones.*;
  * @author USUARIO
  */
 public class JFVehiculo extends javax.swing.JFrame {
-    
-    ValidadorDeRegistros validarRegistroF = new ValidadorDeRegistros();
-    ValidadorDeSwings validadorCheck = new ValidadorDeSwings();
-    //Recepcionista
-    private boolean cedulaEmpleadoValidar = false;
-    private boolean nombreEmpleadoValidar = false;
-    private boolean apellidoEmpleadoValidar = false;
-    private boolean cargoEmpleadoValidar = false;
-    private boolean direccionEmpleadoValidar = false;
-    private boolean telefonoConvenValidar = false;
-    private boolean telefonoEmpleadoValiar = false;
-    private boolean correoEmpleadoValidar = false;
-    //Actualizar
-    private boolean cargoEmpleadoValidar1 = false;
-    private boolean direccionEmpleadoValidar1 = false;
-    private boolean telefonoConvenValidar1 = false;
-    private boolean telefonoEmpleadoValiar1 = false;
-    private boolean correoEmpleadoValidar1 = false;
-    private Provincia sucursal;
-    //Conexion
-    Connection cnx;
+
+    private Recepcionista recepcionista;
+
     DefaultTableModel modelo;
-    //Mouse
-    int xMouse, yMouse; 
-    public JFVehiculo( Provincia sucursal) {
+    // Mouse
+    int xMouse, yMouse;
+
+    public JFVehiculo(Recepcionista recepcionista) {
         initComponents();
         setIconImage(new ImageIcon(getClass().getResource("/iconos/icons8_Monitor_32px.png")).getImage());
-        //All Files	C:\Users\USUARIO\GitHub\PROYECTO_DELIVERY\PROYECTO_ENCOMIENDA\src\proyecto_encomienda\GESTION_PAQUETES\FRONTEND\imagenes\caja.png
         JFrame frame = new JFrame();
         frame.getRootPane().setWindowDecorationStyle(JRootPane.NONE);
         setLocationRelativeTo(null);
         cargarProvincias();
         refrescarVehiculos();
 
-        this.sucursal = sucursal;
+        this.recepcionista = recepcionista;
         // Opcional: Deshabilita la edición manual del campo de texto
         modelo = new DefaultTableModel();
         jInventarioVehiculo.setModel(modelo);
         String[] columnNames = {
-            "Codigo", "Contenido", "Destinatario","Provincia Destino"
+                "Codigo", "Contenido", "Destinatario", "Provincia Destino"
         };
         modelo.setColumnIdentifiers(columnNames);
 
     }
-    
 
-  public boolean fechaVacia(JDateChooser dateChooser, JLabel label) {
+    public boolean fechaVacia(JDateChooser dateChooser, JLabel label) {
         if (dateChooser.getDate() == null) {
             label.setVisible(true);
             return false;
@@ -86,60 +63,56 @@ public class JFVehiculo extends javax.swing.JFrame {
             label.setVisible(false);
             return true;
         }
-    }    
-  
-    private String getValueAtSelectedRow(DefaultTableModel model, int selectedRow, String columnName) {
-        int colIndex = model.findColumn(columnName);
-        return colIndex != -1 ? model.getValueAt(selectedRow, colIndex).toString() : "";
     }
+
     private void refrescarVehiculos() {
         DefaultTableModel model = new DefaultTableModel();
         jTablaVehiculos.setModel(model);
         String[] columnNames = {
-            "Placa", "Capacidad", "Nombre Conductor","Identificacion", "Telefono"
+                "Placa", "Capacidad", "Nombre Conductor", "Identificacion", "Telefono"
         };
         model.setColumnIdentifiers(columnNames);
         Asignacion asignacion = Asignacion.obtenerInstancia();
         model.setRowCount(0);
         for (Vehiculo vehiculo : asignacion.obtenerVehiculos()) {
             Conductor conductor = asignacion.obtenerConductorDeVehiculo(vehiculo);
-            if(conductor != null){
-                model.addRow(new Object[]{
-                vehiculo.getNumeroPlaca(),
-                vehiculo.getCapacidad(),
-                conductor.getNombres() +" "+ conductor.getApellidos(),
-                conductor.getCedula(),
-                conductor.getTelefono()
-            });
-            }else{
-                model.addRow(new Object[]{
-                    vehiculo.getNumeroPlaca(),
-                    vehiculo.getCapacidad(),
-                    "NAN",
-                    "NAN",
-                    "NAN"
+            if (conductor != null) {
+                model.addRow(new Object[] {
+                        vehiculo.getNumeroPlaca(),
+                        vehiculo.getCapacidad(),
+                        conductor.getNombres() + " " + conductor.getApellidos(),
+                        conductor.getCedula(),
+                        conductor.getTelefono()
+                });
+            } else {
+                model.addRow(new Object[] {
+                        vehiculo.getNumeroPlaca(),
+                        vehiculo.getCapacidad(),
+                        "NAN",
+                        "NAN",
+                        "NAN"
                 });
             }
         }
     }
 
-    private void refrescarInventario() {
+    private void refrescarAsignacion() {
 
-        Asignacion asignacion = Asignacion.obtenerInstancia();
-        Vehiculo vehiculo = asignacion.obtenerVehiculo(jTPlacaVehiculo3.getText());
-        ArrayList<Paquete> paquetes = asignacion.obtenerRelacionPaqueteVehiculo().get(vehiculo);
-        
+        Vehiculo vehiculo = recepcionista.obtenerVehiculo(jTPlacaVehiculo3.getText());
+        ArrayList<Paquete> paquetes = recepcionista.obtenerRelacionPaqueteVehiculo().get(vehiculo);
+
         modelo.setRowCount(0);
         for (Paquete paquete : paquetes) {
-                modelo.addRow(new Object[]{
-                paquete.obtenerCodigo(),
-                paquete.getContenido(),
-                paquete.getNombreDestinatario(),
-                paquete.getProvinciaDestino().name()
+            modelo.addRow(new Object[] {
+                    paquete.obtenerCodigo(),
+                    paquete.getContenido(),
+                    paquete.getNombreDestinatario(),
+                    paquete.getProvinciaDestino().name()
             });
         }
     }
-    
+
+    // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
@@ -199,16 +172,18 @@ public class JFVehiculo extends javax.swing.JFrame {
         jTCapacidad1 = new javax.swing.JTextField();
         jPanel3 = new javax.swing.JPanel();
         jLabel69 = new javax.swing.JLabel();
-        btnExit = new javax.swing.JButton();
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
         jScrollPane1.setViewportView(jTextArea1);
 
         setTitle("Registro de Empleados");
+        setMinimumSize(new java.awt.Dimension(1180, 680));
         setUndecorated(true);
         getContentPane().setLayout(new java.awt.CardLayout());
 
+        jPEmpleadosTab.setMinimumSize(new java.awt.Dimension(1180, 609));
+        jPEmpleadosTab.setPreferredSize(new java.awt.Dimension(1180, 609));
         jPEmpleadosTab.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jTPEmpleados.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -223,7 +198,7 @@ public class JFVehiculo extends javax.swing.JFrame {
         jPDatosEmpleados.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel27.setText("Capacidad");
-        jPDatosEmpleados.add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(11, 95, -1, -1));
+        jPDatosEmpleados.add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 120, -1, -1));
 
         jTCapacidadVehiculo.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
@@ -240,7 +215,7 @@ public class JFVehiculo extends javax.swing.JFrame {
                 jTCapacidadVehiculoKeyReleased(evt);
             }
         });
-        jPDatosEmpleados.add(jTCapacidadVehiculo, new org.netbeans.lib.awtextra.AbsoluteConstraints(79, 92, 201, -1));
+        jPDatosEmpleados.add(jTCapacidadVehiculo, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 120, 201, -1));
 
         jPanel44.setBorder(javax.swing.BorderFactory.createTitledBorder("Conductor Asignado"));
 
@@ -259,7 +234,7 @@ public class JFVehiculo extends javax.swing.JFrame {
         jPanel44.getAccessibleContext().setAccessibleName("Conductor Asignado\n");
 
         jLabel32.setText("Placa");
-        jPDatosEmpleados.add(jLabel32, new org.netbeans.lib.awtextra.AbsoluteConstraints(17, 37, 34, 22));
+        jPDatosEmpleados.add(jLabel32, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 60, 34, 22));
 
         bRegistrarVehiculo.setText("Registrar Vehiculo");
         bRegistrarVehiculo.addActionListener(new java.awt.event.ActionListener() {
@@ -267,16 +242,16 @@ public class JFVehiculo extends javax.swing.JFrame {
                 bRegistrarVehiculoActionPerformed(evt);
             }
         });
-        jPDatosEmpleados.add(bRegistrarVehiculo, new org.netbeans.lib.awtextra.AbsoluteConstraints(295, 135, -1, 36));
+        jPDatosEmpleados.add(bRegistrarVehiculo, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 190, -1, 36));
 
         jTPlacaVehiculo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTPlacaVehiculoActionPerformed(evt);
             }
         });
-        jPDatosEmpleados.add(jTPlacaVehiculo, new org.netbeans.lib.awtextra.AbsoluteConstraints(79, 37, 201, -1));
+        jPDatosEmpleados.add(jTPlacaVehiculo, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 60, 201, -1));
 
-        jPRE.add(jPDatosEmpleados, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 28, 843, -1));
+        jPRE.add(jPDatosEmpleados, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 28, 1110, 530));
 
         jTPEmpleados.addTab("Registrar Vehiculo", jPRE);
 
@@ -295,7 +270,7 @@ public class JFVehiculo extends javax.swing.JFrame {
         ));
         jScrollPane6.setViewportView(jTablaVehiculos);
 
-        jPCE.add(jScrollPane6, new org.netbeans.lib.awtextra.AbsoluteConstraints(49, 348, 892, 185));
+        jPCE.add(jScrollPane6, new org.netbeans.lib.awtextra.AbsoluteConstraints(49, 348, 1070, 185));
 
         jTPlacaVehiculo1.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
@@ -542,7 +517,7 @@ public class JFVehiculo extends javax.swing.JFrame {
         ));
         jScrollPane25.setViewportView(jInventarioVehiculo);
 
-        jPEE.add(jScrollPane25, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 235, 963, 253));
+        jPEE.add(jScrollPane25, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 235, 1130, 253));
 
         JComboDestino1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         JComboDestino1.addActionListener(new java.awt.event.ActionListener() {
@@ -558,7 +533,7 @@ public class JFVehiculo extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        jPEE.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 186, 83, 31));
+        jPEE.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 190, 83, 31));
 
         jTPlacaVehiculo3.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
@@ -581,20 +556,27 @@ public class JFVehiculo extends javax.swing.JFrame {
         jPEE.add(jTPlacaVehiculo3, new org.netbeans.lib.awtextra.AbsoluteConstraints(73, 59, 204, -1));
 
         jLabel37.setText("Placa");
-        jPEE.add(jLabel37, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 59, 34, 22));
+        jPEE.add(jLabel37, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 60, 34, 22));
 
         jLabel30.setText("Capacidad");
         jPEE.add(jLabel30, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 109, -1, -1));
 
         jTCapacidad1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jTCapacidad1.setEnabled(false);
+        jTCapacidad1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTCapacidad1ActionPerformed(evt);
+            }
+        });
         jPEE.add(jTCapacidad1, new org.netbeans.lib.awtextra.AbsoluteConstraints(74, 106, 203, -1));
 
         jTPEmpleados.addTab("Asignar Paquetes", jPEE);
 
-        jPEmpleadosTab.add(jTPEmpleados, new org.netbeans.lib.awtextra.AbsoluteConstraints(48, 41, 965, -1));
+        jPEmpleadosTab.add(jTPEmpleados, new org.netbeans.lib.awtextra.AbsoluteConstraints(18, 41, 1150, -1));
 
         jPanel3.setBackground(new java.awt.Color(146, 10, 48));
+        jPanel3.setMinimumSize(new java.awt.Dimension(1180, 35));
+        jPanel3.setPreferredSize(new java.awt.Dimension(1180, 35));
         jPanel3.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseDragged(java.awt.event.MouseEvent evt) {
                 jPanel3MouseDragged(evt);
@@ -609,20 +591,8 @@ public class JFVehiculo extends javax.swing.JFrame {
 
         jLabel69.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel69.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel69.setText("Reccepcionista");
-        jPanel3.add(jLabel69, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 0, -1, -1));
-
-        btnExit.setForeground(new java.awt.Color(255, 255, 255));
-        btnExit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/icons8_Delete_32px.png"))); // NOI18N
-        btnExit.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        btnExit.setContentAreaFilled(false);
-        btnExit.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnExit.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnExitActionPerformed(evt);
-            }
-        });
-        jPanel3.add(btnExit, new org.netbeans.lib.awtextra.AbsoluteConstraints(1060, 0, 35, 35));
+        jLabel69.setText("Vehiculos");
+        jPanel3.add(jLabel69, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 0, -1, 20));
 
         jPEmpleadosTab.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
@@ -631,131 +601,124 @@ public class JFVehiculo extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
-        getToolkit().beep();
-        int dialogButton = JOptionPane.YES_NO_OPTION;
-        int dialogResult = JOptionPane.showConfirmDialog(null, "Estas seguro de quieres cerrar la ventana?", "Warning", dialogButton);
-        if (dialogResult == JOptionPane.YES_OPTION) {
-            this.dispose();
-        }
-    }//GEN-LAST:event_btnExitActionPerformed
-
-    private void jPanel3MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel3MouseDragged
+    private void jPanel3MouseDragged(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_jPanel3MouseDragged
         int x = evt.getXOnScreen();
         int y = evt.getYOnScreen();
         this.setLocation(x - xMouse, y - yMouse);
-    }//GEN-LAST:event_jPanel3MouseDragged
+    }// GEN-LAST:event_jPanel3MouseDragged
 
-    private void jPanel3MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel3MousePressed
+    private void jPanel3MousePressed(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_jPanel3MousePressed
         xMouse = evt.getX();
         yMouse = evt.getY();
-    }//GEN-LAST:event_jPanel3MousePressed
+    }// GEN-LAST:event_jPanel3MousePressed
 
-    private void jTPEmpleadosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTPEmpleadosMouseClicked
+    private void jTPEmpleadosMouseClicked(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_jTPEmpleadosMouseClicked
 
-    }//GEN-LAST:event_jTPEmpleadosMouseClicked
+    }// GEN-LAST:event_jTPEmpleadosMouseClicked
 
-    private void BActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BActualizarActionPerformed
+    private void BActualizarActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_BActualizarActionPerformed
         String placa = jTPlacaVehiculo2.getText();
         String cedula = jTCedula2.getText();
-        if(placa.isEmpty() || cedula.isEmpty()){
+        if (placa.isEmpty() || cedula.isEmpty()) {
             JOptionPane.showMessageDialog(this, "El campo está vacío.", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
         if (!ValidadorDeRegistros.validarPlaca(placa)) {
             JOptionPane.showMessageDialog(this, "La placa no es válida.", "Error", JOptionPane.ERROR_MESSAGE);
             return;
-        } else if(!ValidadorDeRegistros.validarCedula(cedula)){
+        } else if (!ValidadorDeRegistros.validarCedula(cedula)) {
             JOptionPane.showMessageDialog(this, "La cedula no es válida.", "Error", JOptionPane.ERROR_MESSAGE);
             return;
-        }else {
+        } else {
             Asignacion asignacion = Asignacion.obtenerInstancia();
             Vehiculo vehiculo = asignacion.obtenerVehiculo(placa);
             if (vehiculo == null) {
-                JOptionPane.showMessageDialog(this, "No existe un vehículo con la placa " + placa, "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this, "No existe un vehículo con la placa " + placa, "Error",
+                        JOptionPane.ERROR_MESSAGE);
                 return;
             }
             Conductor conductor = asignacion.obtenerConductorPorCedula(cedula);
-            if(conductor == null){
-                JOptionPane.showMessageDialog(this, "No existe un conductor con la cedula " + cedula, "Error", JOptionPane.ERROR_MESSAGE);
+            if (conductor == null) {
+                JOptionPane.showMessageDialog(this, "No existe un conductor con la cedula " + cedula, "Error",
+                        JOptionPane.ERROR_MESSAGE);
                 return;
             }
-            jTNombreDespachador3.setText(conductor.getNombres() + " " +conductor.getApellidos());
+            jTNombreDespachador3.setText(conductor.getNombres() + " " + conductor.getApellidos());
             jTTelefono1.setText(conductor.getTelefono());
             jTCorreo1.setText(conductor.getEmail());
-            asignacion.asignarConductorAVehiculo(conductor,vehiculo);
+            recepcionista.asignarConductorAVehiculo(conductor, vehiculo);
             refrescarVehiculos();
         }
-    }//GEN-LAST:event_BActualizarActionPerformed
+    }// GEN-LAST:event_BActualizarActionPerformed
 
-    private void jTCedula2KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTCedula2KeyTyped
+    private void jTCedula2KeyTyped(java.awt.event.KeyEvent evt) {// GEN-FIRST:event_jTCedula2KeyTyped
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTCedula2KeyTyped
+    }// GEN-LAST:event_jTCedula2KeyTyped
 
-    private void jTCedula2KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTCedula2KeyReleased
+    private void jTCedula2KeyReleased(java.awt.event.KeyEvent evt) {// GEN-FIRST:event_jTCedula2KeyReleased
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTCedula2KeyReleased
+    }// GEN-LAST:event_jTCedula2KeyReleased
 
-    private void jTCedula2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTCedula2ActionPerformed
+    private void jTCedula2ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jTCedula2ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTCedula2ActionPerformed
+    }// GEN-LAST:event_jTCedula2ActionPerformed
 
-    private void jTCedula2FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTCedula2FocusLost
+    private void jTCedula2FocusLost(java.awt.event.FocusEvent evt) {// GEN-FIRST:event_jTCedula2FocusLost
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTCedula2FocusLost
+    }// GEN-LAST:event_jTCedula2FocusLost
 
-    private void jTCorreo1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTCorreo1KeyReleased
+    private void jTCorreo1KeyReleased(java.awt.event.KeyEvent evt) {// GEN-FIRST:event_jTCorreo1KeyReleased
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTCorreo1KeyReleased
+    }// GEN-LAST:event_jTCorreo1KeyReleased
 
-    private void jTCorreo1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTCorreo1ActionPerformed
+    private void jTCorreo1ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jTCorreo1ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTCorreo1ActionPerformed
+    }// GEN-LAST:event_jTCorreo1ActionPerformed
 
-    private void jTCorreo1FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTCorreo1FocusLost
+    private void jTCorreo1FocusLost(java.awt.event.FocusEvent evt) {// GEN-FIRST:event_jTCorreo1FocusLost
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTCorreo1FocusLost
+    }// GEN-LAST:event_jTCorreo1FocusLost
 
-    private void jTNombreDespachador3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTNombreDespachador3ActionPerformed
+    private void jTNombreDespachador3ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jTNombreDespachador3ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTNombreDespachador3ActionPerformed
+    }// GEN-LAST:event_jTNombreDespachador3ActionPerformed
 
-    private void jTPlacaVehiculo2KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTPlacaVehiculo2KeyTyped
+    private void jTPlacaVehiculo2KeyTyped(java.awt.event.KeyEvent evt) {// GEN-FIRST:event_jTPlacaVehiculo2KeyTyped
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTPlacaVehiculo2KeyTyped
+    }// GEN-LAST:event_jTPlacaVehiculo2KeyTyped
 
-    private void jTPlacaVehiculo2KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTPlacaVehiculo2KeyReleased
+    private void jTPlacaVehiculo2KeyReleased(java.awt.event.KeyEvent evt) {// GEN-FIRST:event_jTPlacaVehiculo2KeyReleased
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTPlacaVehiculo2KeyReleased
+    }// GEN-LAST:event_jTPlacaVehiculo2KeyReleased
 
-    private void jTPlacaVehiculo2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTPlacaVehiculo2ActionPerformed
+    private void jTPlacaVehiculo2ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jTPlacaVehiculo2ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTPlacaVehiculo2ActionPerformed
+    }// GEN-LAST:event_jTPlacaVehiculo2ActionPerformed
 
-    private void jTPlacaVehiculo2FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTPlacaVehiculo2FocusLost
+    private void jTPlacaVehiculo2FocusLost(java.awt.event.FocusEvent evt) {// GEN-FIRST:event_jTPlacaVehiculo2FocusLost
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTPlacaVehiculo2FocusLost
+    }// GEN-LAST:event_jTPlacaVehiculo2FocusLost
 
-    private void bSeleccionarConductorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bSeleccionarConductorActionPerformed
+    private void bSeleccionarConductorActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_bSeleccionarConductorActionPerformed
         String placa = jTPlacaVehiculo1.getText();
-        if(placa.isEmpty()){
+        if (placa.isEmpty()) {
             JOptionPane.showMessageDialog(this, "El campo de la placa está vacío.", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
         if (!ValidadorDeRegistros.validarPlaca(placa)) {
             JOptionPane.showMessageDialog(this, "La placa no es válida.", "Error", JOptionPane.ERROR_MESSAGE);
         } else {
-            Asignacion asignacion = Asignacion.obtenerInstancia();
-            Vehiculo vehiculo = asignacion.obtenerVehiculo(placa);
+            Vehiculo vehiculo = recepcionista.obtenerVehiculo(placa);
             if (vehiculo == null) {
-                JOptionPane.showMessageDialog(this, "No existe un vehículo con la placa " + placa, "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this, "No existe un vehículo con la placa " + placa, "Error",
+                        JOptionPane.ERROR_MESSAGE);
                 return;
             }
-            Conductor conductor = asignacion.obtenerConductorDeVehiculo(vehiculo);
+            Conductor conductor = Asignacion.obtenerInstancia().obtenerConductorDeVehiculo(vehiculo);
             jTCapacidad.setText(Double.toString(vehiculo.getCapacidad()));
-            if(conductor != null){
+            if (conductor != null) {
                 jTCedula3.setText(conductor.getCedula());
-                jTNombreDespachador1.setText(conductor.getNombres()+" "+ conductor.getApellidos());
+                jTNombreDespachador1.setText(conductor.getNombres() + " " + conductor.getApellidos());
                 jTTelefono.setText(conductor.getTelefono());
                 jTCorreo.setText(conductor.getEmail());
                 return;
@@ -765,7 +728,7 @@ public class JFVehiculo extends javax.swing.JFrame {
             jTTelefono.setText("No existe conductor asignado");
             jTCorreo.setText("No existe conductor asignado");
         }
-    }//GEN-LAST:event_bSeleccionarConductorActionPerformed
+    }// GEN-LAST:event_bSeleccionarConductorActionPerformed
 
     private void cargarProvincias() {
         JComboDestino1.removeAllItems();
@@ -773,66 +736,70 @@ public class JFVehiculo extends javax.swing.JFrame {
             JComboDestino1.addItem(provincia.name());
         }
     }
-    
-    
-    private void jTCorreoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTCorreoKeyReleased
 
-    }//GEN-LAST:event_jTCorreoKeyReleased
+    private void jTCorreoKeyReleased(java.awt.event.KeyEvent evt) {// GEN-FIRST:event_jTCorreoKeyReleased
 
-    private void jTCorreoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTCorreoFocusLost
+    }// GEN-LAST:event_jTCorreoKeyReleased
 
-    }//GEN-LAST:event_jTCorreoFocusLost
+    private void jTCorreoFocusLost(java.awt.event.FocusEvent evt) {// GEN-FIRST:event_jTCorreoFocusLost
 
-    private void jTNombreDespachador1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTNombreDespachador1ActionPerformed
+    }// GEN-LAST:event_jTCorreoFocusLost
+
+    private void jTNombreDespachador1ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jTNombreDespachador1ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTNombreDespachador1ActionPerformed
+    }// GEN-LAST:event_jTNombreDespachador1ActionPerformed
 
-    private void jTPlacaVehiculo1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTPlacaVehiculo1KeyTyped
+    private void jTPlacaVehiculo1KeyTyped(java.awt.event.KeyEvent evt) {// GEN-FIRST:event_jTPlacaVehiculo1KeyTyped
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTPlacaVehiculo1KeyTyped
+    }// GEN-LAST:event_jTPlacaVehiculo1KeyTyped
 
-    private void jTPlacaVehiculo1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTPlacaVehiculo1KeyReleased
+    private void jTPlacaVehiculo1KeyReleased(java.awt.event.KeyEvent evt) {// GEN-FIRST:event_jTPlacaVehiculo1KeyReleased
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTPlacaVehiculo1KeyReleased
+    }// GEN-LAST:event_jTPlacaVehiculo1KeyReleased
 
-    private void jTPlacaVehiculo1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTPlacaVehiculo1ActionPerformed
+    private void jTPlacaVehiculo1ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jTPlacaVehiculo1ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTPlacaVehiculo1ActionPerformed
+    }// GEN-LAST:event_jTPlacaVehiculo1ActionPerformed
 
-    private void jTPlacaVehiculo1FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTPlacaVehiculo1FocusLost
+    private void jTPlacaVehiculo1FocusLost(java.awt.event.FocusEvent evt) {// GEN-FIRST:event_jTPlacaVehiculo1FocusLost
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTPlacaVehiculo1FocusLost
+    }// GEN-LAST:event_jTPlacaVehiculo1FocusLost
 
-    private void jTPlacaVehiculoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTPlacaVehiculoActionPerformed
+    private void jTPlacaVehiculoActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jTPlacaVehiculoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTPlacaVehiculoActionPerformed
+    }// GEN-LAST:event_jTPlacaVehiculoActionPerformed
 
-    private void bRegistrarVehiculoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bRegistrarVehiculoActionPerformed
+    private void bRegistrarVehiculoActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_bRegistrarVehiculoActionPerformed
         Asignacion asignacion = Asignacion.obtenerInstancia();
         double capacidad = Double.parseDouble(jTCapacidadVehiculo.getText());
-        Vehiculo vehiculo = new Vehiculo(jTPlacaVehiculo.getText(),capacidad, sucursal);
+        String placa = jTPlacaVehiculo.getText();
+        if (!ValidadorDeRegistros.validarPlaca(placa)) {
+            JOptionPane.showMessageDialog(this, "La placa no vale papu");
+            return;
+        }
+        Vehiculo vehiculo = new Vehiculo(placa, capacidad, this.recepcionista.obtenerSucursal());
         asignacion.agregarVehiculo(vehiculo);
         JOptionPane.showMessageDialog(this, "El vehiculo se registro con exito");
         refrescarVehiculos();
-    }//GEN-LAST:event_bRegistrarVehiculoActionPerformed
+    }// GEN-LAST:event_bRegistrarVehiculoActionPerformed
 
-    private void jTCapacidadVehiculoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTCapacidadVehiculoKeyReleased
+    private void jTCapacidadVehiculoKeyReleased(java.awt.event.KeyEvent evt) {// GEN-FIRST:event_jTCapacidadVehiculoKeyReleased
 
-    }//GEN-LAST:event_jTCapacidadVehiculoKeyReleased
+    }// GEN-LAST:event_jTCapacidadVehiculoKeyReleased
 
-    private void jTCapacidadVehiculoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTCapacidadVehiculoActionPerformed
+    private void jTCapacidadVehiculoActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jTCapacidadVehiculoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTCapacidadVehiculoActionPerformed
+    }// GEN-LAST:event_jTCapacidadVehiculoActionPerformed
 
-    private void jTCapacidadVehiculoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTCapacidadVehiculoFocusLost
+    private void jTCapacidadVehiculoFocusLost(java.awt.event.FocusEvent evt) {// GEN-FIRST:event_jTCapacidadVehiculoFocusLost
 
-    }//GEN-LAST:event_jTCapacidadVehiculoFocusLost
+    }// GEN-LAST:event_jTCapacidadVehiculoFocusLost
 
-    private void JComboDestino1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JComboDestino1ActionPerformed
+    private void JComboDestino1ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_JComboDestino1ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_JComboDestino1ActionPerformed
+    }// GEN-LAST:event_JComboDestino1ActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton1ActionPerformed
         Provincia destino = null;
         Class<?> enumClass;
         try {
@@ -842,7 +809,7 @@ public class JFVehiculo extends javax.swing.JFrame {
             Logger.getLogger(JFPaquetes.class.getName()).log(Level.SEVERE, null, ex);
         }
         String placa = jTPlacaVehiculo3.getText();
-        if(placa.isEmpty()){
+        if (placa.isEmpty()) {
             JOptionPane.showMessageDialog(this, "El campo de la placa está vacío.", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
@@ -851,42 +818,42 @@ public class JFVehiculo extends javax.swing.JFrame {
             return;
         } else {
             Vehiculo vehiculo = Asignacion.obtenerInstancia().obtenerVehiculo(placa);
-            if(!Asignacion.obtenerInstancia().asignarPaquetesAVehiculo(vehiculo, destino)){
+            if (!recepcionista.asignarPaquetesAVehiculo(vehiculo, destino)) {
                 JOptionPane.showMessageDialog(this, "No existen paquetes", "Error", JOptionPane.ERROR_MESSAGE);
-                return;
             }
         }
-        refrescarInventario();
+        refrescarAsignacion();
+    }// GEN-LAST:event_jButton1ActionPerformed
 
-    }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void jTPlacaVehiculo3FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTPlacaVehiculo3FocusLost
+    private void jTPlacaVehiculo3FocusLost(java.awt.event.FocusEvent evt) {// GEN-FIRST:event_jTPlacaVehiculo3FocusLost
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTPlacaVehiculo3FocusLost
+    }// GEN-LAST:event_jTPlacaVehiculo3FocusLost
 
-    private void jTPlacaVehiculo3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTPlacaVehiculo3ActionPerformed
+    private void jTPlacaVehiculo3ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jTPlacaVehiculo3ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTPlacaVehiculo3ActionPerformed
+    }// GEN-LAST:event_jTPlacaVehiculo3ActionPerformed
 
-    private void jTPlacaVehiculo3KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTPlacaVehiculo3KeyReleased
+    private void jTPlacaVehiculo3KeyReleased(java.awt.event.KeyEvent evt) {// GEN-FIRST:event_jTPlacaVehiculo3KeyReleased
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTPlacaVehiculo3KeyReleased
+    }// GEN-LAST:event_jTPlacaVehiculo3KeyReleased
 
-    private void jTPlacaVehiculo3KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTPlacaVehiculo3KeyTyped
+    private void jTPlacaVehiculo3KeyTyped(java.awt.event.KeyEvent evt) {// GEN-FIRST:event_jTPlacaVehiculo3KeyTyped
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTPlacaVehiculo3KeyTyped
+    }// GEN-LAST:event_jTPlacaVehiculo3KeyTyped
+
+    private void jTCapacidad1ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jTCapacidad1ActionPerformed
+
+    }// GEN-LAST:event_jTCapacidad1ActionPerformed
 
     /**
      * @param args the command line arguments
      */
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BActualizar;
     private javax.swing.JComboBox<String> JComboDestino1;
     private javax.swing.JButton bRegistrarVehiculo;
     private javax.swing.JButton bSeleccionarConductor;
-    private javax.swing.JButton btnExit;
     private javax.swing.JButton jButton1;
     private javax.swing.JTable jInventarioVehiculo;
     private javax.swing.JLabel jLabel27;

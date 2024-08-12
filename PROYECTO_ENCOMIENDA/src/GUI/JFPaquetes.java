@@ -5,38 +5,27 @@
 package GUI;
 
 import basededatos.DataBase;
-import java.sql.Connection;
-import java.sql.SQLException;
+
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
+
 import java.util.ArrayList;
 import javax.swing.JTextField;
 import java.util.List;
 import javax.swing.ImageIcon;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JRootPane;
-import javax.swing.JTable;
-import javax.swing.RowSorter;
-import javax.swing.SortOrder;
-import javax.swing.table.TableRowSorter;
-import java.io.*;
+
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import mod_administracion.Cliente;
 import mod_administracion.Recepcionista;
-import mod_administracion.Usuario;
 import mod_facturacion.CalculoPrecio;
 import mod_facturacion.Precio;
-import mod_paquetes.Inventario;
 import mod_paquetes.Paquete;
 import mod_transporte.Provincia;
 import validaciones.*;
-
 
 /**
  *
@@ -48,24 +37,21 @@ public class JFPaquetes extends javax.swing.JFrame {
     private boolean volumenValidar = false;
     private boolean pesoValidar = false;
     private boolean remitenteValidar = false;
-    private boolean contenidoValidar=false;
+    private boolean contenidoValidar = false;
     private boolean direccionValidar = false;
     private boolean destinatarioValidar = false;
-    private Inventario inventario;
     private Recepcionista recepcionista;
-    
-    //Mouse
-    int xMouse, yMouse;  
-    
-    public JFPaquetes(Recepcionista recepcionista){      
+
+    // Mouse
+    int xMouse, yMouse;
+
+    public JFPaquetes(Recepcionista recepcionista) {
         this.recepcionista = recepcionista;
         initComponents();
         setIconImage(new ImageIcon(getClass().getResource("/iconos/caja.png")).getImage());
-        inventario = Inventario.obtenerInstancia();
         cargarProvincias();
         refrescarInventario();
         desvanecerP();
-        placeHolder();
         jBRegistrarPAInventario.setVisible(false);
         jTablaPaquete.setVisible(false);
         DefaultTableModel model = new DefaultTableModel();
@@ -80,76 +66,62 @@ public class JFPaquetes extends javax.swing.JFrame {
                     int selectedRow = jTablaInventario.getSelectedRow();
                     if (selectedRow != -1) {
                         String codigoTracking = jTablaInventario.getValueAt(selectedRow, 0).toString();
-                        Paquete paquete = inventario.obtenerPaquete(codigoTracking);
+                        Paquete paquete = recepcionista.obtenerPaquete(codigoTracking);
                         // Mostrar un JOptionPane con la información de la fila seleccionada
-                        JOptionPane.showMessageDialog(null, 
-                            paquete.toString(), 
-                            "Información del Paquete", 
-                            JOptionPane.INFORMATION_MESSAGE);
+                        JOptionPane.showMessageDialog(null,
+                                paquete.toString(),
+                                "Información del Paquete",
+                                JOptionPane.INFORMATION_MESSAGE);
                     }
                 }
             }
         });
         setLocationRelativeTo(null);
     }
-    
-    private void cargarInventario() {
-        inventario = Inventario.obtenerInstancia();
-        inventario.cargarInventario();
-    }
-    
+
     private void refrescarInventario() {
         DefaultTableModel model = new DefaultTableModel();
         jTablaInventario.setModel(model);
         String[] columnNames = {
-            "Código de Tracking", "Volumen", "Peso", "Contenido", 
-            "Remitente", "Provincia Origen", "Provincia Destino"
+                "Código de Tracking", "Volumen", "Peso", "Contenido",
+                "Remitente", "Provincia Origen", "Provincia Destino"
         };
         model.setColumnIdentifiers(columnNames);
-        for (Paquete paquete : inventario.obtenerPaquetes()) {
-                model.addRow(new Object[]{
-                paquete.obtenerCodigo(),
-                paquete.getVolumen(),
-                paquete.getPeso(),
-                paquete.getContenido(),
-                paquete.getRemitente().toString(),
-                paquete.getProvinciaOrigen().name(),
-                paquete.getProvinciaDestino().name()
+        for (Paquete paquete : recepcionista.obtenerPaquetes()) {
+            model.addRow(new Object[] {
+                    paquete.obtenerCodigo(),
+                    paquete.getVolumen(),
+                    paquete.getPeso(),
+                    paquete.getContenido(),
+                    paquete.getRemitente().toString(),
+                    paquete.getProvinciaOrigen().name(),
+                    paquete.getProvinciaDestino().name()
             });
         }
     }
-    
+
     private void cargarProvincias() {
         JComboDestino.removeAllItems();
         for (Provincia provincia : Provincia.values()) {
             JComboDestino.addItem(provincia.name());
         }
     }
-    
-    private void placeHolder() {
-        TextPrompt texto1 = new TextPrompt("Obligatorio", jTContenidoPaquete);
-        TextPrompt texto2 = new TextPrompt("Obligatorio", jTVolumen);
-        TextPrompt texto3 = new TextPrompt("Obligatorio", jTPeso);
-        TextPrompt texto = new TextPrompt("Obligatorio", jTRemitente);
-        TextPrompt texto5 = new TextPrompt("Obligatorio", jTDireccion1);
-        TextPrompt texto4 = new TextPrompt("Obligatorio", jTDestinatario);
-    }    
-     
+
     public void desvanecerP() {
         JLabel[] labels = {
-             errorInventario1, errorInventario2, errorInventario3,
-            errorInventario4, errorInventario6, errorInventario7, errorInventario8};
+                errorInventario1, errorInventario2, errorInventario3,
+                errorInventario4, errorInventario6, errorInventario7, errorInventario8 };
         for (JLabel label : labels) {
             label.setVisible(false);
         }
     }
-    @SuppressWarnings("unchecked")
+
+    // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         jPanel3 = new javax.swing.JPanel();
         jLabel69 = new javax.swing.JLabel();
-        btnExit = new javax.swing.JButton();
         jPrincipal = new javax.swing.JPanel();
         jPanel_General = new javax.swing.JTabbedPane();
         jPIR = new javax.swing.JPanel();
@@ -202,11 +174,13 @@ public class JFPaquetes extends javax.swing.JFrame {
         setTitle("Paqueteria");
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setIconImages(null);
+        setMinimumSize(new java.awt.Dimension(1180, 690));
         setUndecorated(true);
-        setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel3.setBackground(new java.awt.Color(146, 10, 48));
+        jPanel3.setMinimumSize(new java.awt.Dimension(1180, 35));
+        jPanel3.setPreferredSize(new java.awt.Dimension(1180, 35));
         jPanel3.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseDragged(java.awt.event.MouseEvent evt) {
                 jPanel3MouseDragged(evt);
@@ -224,20 +198,10 @@ public class JFPaquetes extends javax.swing.JFrame {
         jLabel69.setText("Gestion de Paquetes");
         jPanel3.add(jLabel69, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 0, -1, -1));
 
-        btnExit.setForeground(new java.awt.Color(255, 255, 255));
-        btnExit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/icons8_Delete_32px.png"))); // NOI18N
-        btnExit.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        btnExit.setContentAreaFilled(false);
-        btnExit.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnExit.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnExitActionPerformed(evt);
-            }
-        });
-        jPanel3.add(btnExit, new org.netbeans.lib.awtextra.AbsoluteConstraints(1015, 0, 35, 35));
+        getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
-        getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1050, -1));
-
+        jPrincipal.setMinimumSize(new java.awt.Dimension(1180, 680));
+        jPrincipal.setPreferredSize(new java.awt.Dimension(1180, 680));
         jPrincipal.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPIR.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -246,16 +210,16 @@ public class JFPaquetes extends javax.swing.JFrame {
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel4.setText("Código Tracking");
-        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(11, 27, 89, -1));
+        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 30, 89, -1));
 
         jTCodigoTracking.setEditable(false);
-        jPanel2.add(jTCodigoTracking, new org.netbeans.lib.awtextra.AbsoluteConstraints(142, 24, 203, -1));
+        jPanel2.add(jTCodigoTracking, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 30, 203, -1));
 
         jLabel13.setText("Contenido");
-        jPanel2.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 88, -1, -1));
+        jPanel2.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 90, -1, -1));
 
         jLabel11.setText("Peso");
-        jPanel2.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(11, 162, -1, -1));
+        jPanel2.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 170, -1, -1));
 
         jTPeso.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
@@ -267,7 +231,7 @@ public class JFPaquetes extends javax.swing.JFrame {
                 jTPesoKeyReleased(evt);
             }
         });
-        jPanel2.add(jTPeso, new org.netbeans.lib.awtextra.AbsoluteConstraints(141, 156, 204, -1));
+        jPanel2.add(jTPeso, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 160, 204, -1));
 
         jBRegistrar.setText("Agregar Registro");
         jBRegistrar.addActionListener(new java.awt.event.ActionListener() {
@@ -275,34 +239,34 @@ public class JFPaquetes extends javax.swing.JFrame {
                 jBRegistrarActionPerformed(evt);
             }
         });
-        jPanel2.add(jBRegistrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(267, 294, 134, -1));
+        jPanel2.add(jBRegistrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 300, 134, -1));
 
         jLabel60.setText("Kg");
-        jPanel2.add(jLabel60, new org.netbeans.lib.awtextra.AbsoluteConstraints(363, 159, -1, -1));
+        jPanel2.add(jLabel60, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 170, -1, -1));
 
         errorInventario2.setForeground(new java.awt.Color(255, 0, 51));
         errorInventario2.setText("Peso no válido");
-        jPanel2.add(errorInventario2, new org.netbeans.lib.awtextra.AbsoluteConstraints(141, 184, -1, -1));
+        jPanel2.add(errorInventario2, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 190, -1, -1));
 
         jLabel14.setText("Volumen");
-        jPanel2.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(11, 91, -1, -1));
+        jPanel2.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 100, -1, -1));
 
         errorInventario1.setForeground(new java.awt.Color(255, 0, 51));
         errorInventario1.setText("Volumen no válido");
-        jPanel2.add(errorInventario1, new org.netbeans.lib.awtextra.AbsoluteConstraints(141, 113, 113, -1));
+        jPanel2.add(errorInventario1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 120, 113, -1));
 
         jLabel61.setText("m3");
-        jPanel2.add(jLabel61, new org.netbeans.lib.awtextra.AbsoluteConstraints(363, 88, -1, -1));
+        jPanel2.add(jLabel61, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 90, -1, -1));
 
         jTContenidoPaquete.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 jTContenidoPaqueteFocusLost(evt);
             }
         });
-        jPanel2.add(jTContenidoPaquete, new org.netbeans.lib.awtextra.AbsoluteConstraints(518, 85, 254, -1));
+        jPanel2.add(jTContenidoPaquete, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 90, 254, -1));
 
         jLabel53.setText("Remitente");
-        jPanel2.add(jLabel53, new org.netbeans.lib.awtextra.AbsoluteConstraints(442, 24, -1, -1));
+        jPanel2.add(jLabel53, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 30, -1, -1));
 
         jTRemitente.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
@@ -314,14 +278,14 @@ public class JFPaquetes extends javax.swing.JFrame {
                 jTRemitenteKeyReleased(evt);
             }
         });
-        jPanel2.add(jTRemitente, new org.netbeans.lib.awtextra.AbsoluteConstraints(518, 18, 254, -1));
+        jPanel2.add(jTRemitente, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 20, 254, -1));
 
         errorInventario4.setForeground(new java.awt.Color(255, 0, 51));
         errorInventario4.setText("Remitente no válido");
-        jPanel2.add(errorInventario4, new org.netbeans.lib.awtextra.AbsoluteConstraints(518, 46, -1, -1));
+        jPanel2.add(errorInventario4, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 50, -1, -1));
 
         jLabel63.setText("Destino");
-        jPanel2.add(jLabel63, new org.netbeans.lib.awtextra.AbsoluteConstraints(11, 218, -1, -1));
+        jPanel2.add(jLabel63, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 220, -1, -1));
 
         jTVolumen.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
@@ -333,29 +297,29 @@ public class JFPaquetes extends javax.swing.JFrame {
                 jTVolumenKeyReleased(evt);
             }
         });
-        jPanel2.add(jTVolumen, new org.netbeans.lib.awtextra.AbsoluteConstraints(141, 85, 204, -1));
+        jPanel2.add(jTVolumen, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 90, 204, -1));
 
         errorInventario3.setForeground(new java.awt.Color(255, 0, 51));
         errorInventario3.setText("Destino no válido");
-        jPanel2.add(errorInventario3, new org.netbeans.lib.awtextra.AbsoluteConstraints(141, 246, -1, -1));
+        jPanel2.add(errorInventario3, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 250, -1, -1));
 
         errorInventario6.setForeground(new java.awt.Color(255, 0, 51));
         errorInventario6.setText("Contenido no válido");
-        jPanel2.add(errorInventario6, new org.netbeans.lib.awtextra.AbsoluteConstraints(518, 113, -1, -1));
+        jPanel2.add(errorInventario6, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 120, -1, -1));
 
         jLabel1.setText("Dirección");
-        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(441, 159, 55, -1));
+        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 170, 55, -1));
 
         jTDestinatario.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 jTDestinatarioFocusLost(evt);
             }
         });
-        jPanel2.add(jTDestinatario, new org.netbeans.lib.awtextra.AbsoluteConstraints(518, 218, 254, -1));
+        jPanel2.add(jTDestinatario, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 220, 254, -1));
 
         errorInventario7.setForeground(new java.awt.Color(255, 0, 51));
         errorInventario7.setText("Dirección no válido");
-        jPanel2.add(errorInventario7, new org.netbeans.lib.awtextra.AbsoluteConstraints(518, 184, -1, -1));
+        jPanel2.add(errorInventario7, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 190, -1, -1));
 
         jBEliminar.setText("Eliminar Registro");
         jBEliminar.addActionListener(new java.awt.event.ActionListener() {
@@ -363,23 +327,23 @@ public class JFPaquetes extends javax.swing.JFrame {
                 jBEliminarActionPerformed(evt);
             }
         });
-        jPanel2.add(jBEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(464, 294, 133, -1));
+        jPanel2.add(jBEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 300, 133, -1));
 
         jLabelPrecioPaquete.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabelPrecioPaquete.setText("Precio paquete :");
-        jPanel2.add(jLabelPrecioPaquete, new org.netbeans.lib.awtextra.AbsoluteConstraints(332, 343, -1, -1));
+        jPanel2.add(jLabelPrecioPaquete, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 350, -1, -1));
 
         jLabelImpuesto.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabelImpuesto.setText("Impuesto :");
-        jPanel2.add(jLabelImpuesto, new org.netbeans.lib.awtextra.AbsoluteConstraints(365, 407, -1, -1));
+        jPanel2.add(jLabelImpuesto, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 410, -1, -1));
 
         jLabelPrecioDistancia.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabelPrecioDistancia.setText("Precio distancia :");
-        jPanel2.add(jLabelPrecioDistancia, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 380, -1, -1));
+        jPanel2.add(jLabelPrecioDistancia, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 380, -1, -1));
 
         JLabelPrecioTotal.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         JLabelPrecioTotal.setText("Precio total :");
-        jPanel2.add(JLabelPrecioTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(354, 439, -1, -1));
+        jPanel2.add(JLabelPrecioTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 450, -1, -1));
 
         JComboDestino.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         JComboDestino.addActionListener(new java.awt.event.ActionListener() {
@@ -387,7 +351,7 @@ public class JFPaquetes extends javax.swing.JFrame {
                 JComboDestinoActionPerformed(evt);
             }
         });
-        jPanel2.add(JComboDestino, new org.netbeans.lib.awtextra.AbsoluteConstraints(141, 218, 204, -1));
+        jPanel2.add(JComboDestino, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 220, 204, -1));
 
         jBRegistrarPAInventario.setText("Agregar al inventario");
         jBRegistrarPAInventario.addActionListener(new java.awt.event.ActionListener() {
@@ -395,23 +359,23 @@ public class JFPaquetes extends javax.swing.JFrame {
                 jBRegistrarPAInventarioActionPerformed(evt);
             }
         });
-        jPanel2.add(jBRegistrarPAInventario, new org.netbeans.lib.awtextra.AbsoluteConstraints(359, 488, -1, -1));
+        jPanel2.add(jBRegistrarPAInventario, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 490, -1, -1));
 
         jLabel2.setText("Destinatario");
-        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(433, 221, -1, -1));
+        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 230, -1, -1));
 
         jTDireccion1.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 jTDireccion1FocusLost(evt);
             }
         });
-        jPanel2.add(jTDireccion1, new org.netbeans.lib.awtextra.AbsoluteConstraints(518, 156, 254, -1));
+        jPanel2.add(jTDireccion1, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 160, 254, -1));
 
         errorInventario8.setForeground(new java.awt.Color(255, 0, 51));
         errorInventario8.setText("Destinatario no válido");
-        jPanel2.add(errorInventario8, new org.netbeans.lib.awtextra.AbsoluteConstraints(518, 246, 142, -1));
+        jPanel2.add(errorInventario8, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 250, 142, -1));
 
-        jPIR.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 18, 991, 530));
+        jPIR.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 18, 1140, 530));
 
         jPanel_General.addTab("Registrar Paquete", jPIR);
 
@@ -489,30 +453,32 @@ public class JFPaquetes extends javax.swing.JFrame {
 
         jPanel_General.addTab("Eliminar Paquete", jPIA);
 
-        jPrincipal.add(jPanel_General, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 1030, 610));
+        jPrincipal.add(jPanel_General, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 1160, 610));
 
-        getContentPane().add(jPrincipal, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 30, 1010, 590));
+        getContentPane().add(jPrincipal, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 30, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTPesoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTPesoFocusLost
+    private void jTPesoFocusLost(java.awt.event.FocusEvent evt) {// GEN-FIRST:event_jTPesoFocusLost
         pesoValidar = validarRegistroF.camposDeRegistros(jTPeso, errorInventario2, "precio");
-    }//GEN-LAST:event_jTPesoFocusLost
+    }// GEN-LAST:event_jTPesoFocusLost
 
-    private void jTPesoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTPesoKeyReleased
+    private void jTPesoKeyReleased(java.awt.event.KeyEvent evt) {// GEN-FIRST:event_jTPesoKeyReleased
         pesoValidar = validarRegistroF.camposDeRegistros(jTPeso, errorInventario2, "precio");
-    }//GEN-LAST:event_jTPesoKeyReleased
+    }// GEN-LAST:event_jTPesoKeyReleased
 
-    private void jBRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBRegistrarActionPerformed
- JTextField[] campos = {jTVolumen,jTPeso,jTRemitente, jTDestinatario, jTContenidoPaquete, jTDestinatario};
-        Boolean[] booleanItem = {volumenValidar,pesoValidar,remitenteValidar, direccionValidar, contenidoValidar, destinatarioValidar};
-        JLabel[] labels = {errorInventario1, errorInventario2, errorInventario4,errorInventario7,errorInventario6, errorInventario8};
-        String[] nombresCampos = {"Volumen", "Peso", "Remitente","Direccion", "Contenido del paquete", "Destinatario"};
+    private void jBRegistrarActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jBRegistrarActionPerformed
+        JTextField[] campos = { jTVolumen, jTPeso, jTRemitente, jTDestinatario, jTContenidoPaquete, jTDestinatario };
+        Boolean[] booleanItem = { volumenValidar, pesoValidar, remitenteValidar, direccionValidar, contenidoValidar,
+                destinatarioValidar };
+        JLabel[] labels = { errorInventario1, errorInventario2, errorInventario4, errorInventario7, errorInventario6,
+                errorInventario8 };
+        String[] nombresCampos = { "Volumen", "Peso", "Remitente", "Direccion", "Contenido del paquete",
+                "Destinatario" };
         List<String> errores = validadorCheck.validarCamposLista(campos, booleanItem, labels, nombresCampos);
         errores.addAll(validadorCheck.validarCamposVaciosLista(campos, booleanItem, labels, nombresCampos));
-        String estado = "Pendiente";
-        
+
         Provincia destino = null;
         Class<?> enumClass;
         try {
@@ -531,11 +497,13 @@ public class JFPaquetes extends javax.swing.JFrame {
         } else if (JComboDestino.getSelectedItem() == null) {
             JOptionPane.showMessageDialog(null, "Escoja un destino", "Error", JOptionPane.ERROR_MESSAGE);
         } else if (destino.equals(recepcionista.obtenerSucursal())) {
-            JOptionPane.showMessageDialog(null, "El Destino debe ser otra provincia distinta a la sucursal", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "El Destino debe ser otra provincia distinta a la sucursal", "Error",
+                    JOptionPane.ERROR_MESSAGE);
         } else if (!DataBase.obtenerInstancia().clienteExiste(jTRemitente.getText())) {
             JOptionPane.showMessageDialog(null, "El cliente no está registrado", "Error", JOptionPane.ERROR_MESSAGE);
         } else {
-            String codigo = inventario.getSiguienteCodigoTracking();
+            String codigo = recepcionista.obtenerSiguienteCodigoPaquete();
+
             double volumen = Double.parseDouble(jTVolumen.getText());
             double peso = Double.parseDouble(jTPeso.getText());
             String contenido = jTContenidoPaquete.getText();
@@ -543,91 +511,73 @@ public class JFPaquetes extends javax.swing.JFrame {
             Provincia origen = recepcionista.obtenerSucursal();
             String direccion = jTDireccion1.getText();
             String destinatario = jTDestinatario.getText();
-            Paquete paquete = new Paquete(codigo, volumen, peso, contenido, cliente, origen, destino, direccion, destinatario);
+            Paquete paquete = new Paquete(codigo, volumen, peso, contenido, cliente, origen, destino, direccion,
+                    destinatario);
             recepcionista.registrarPaquete(paquete);
             jTCodigoTracking.setText(codigo);
             mostrarPrecio();
             jBRegistrarPAInventario.setVisible(true);
         }
-    }//GEN-LAST:event_jBRegistrarActionPerformed
+    }// GEN-LAST:event_jBRegistrarActionPerformed
 
-    private void jTRemitenteFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTRemitenteFocusLost
+    private void jTRemitenteFocusLost(java.awt.event.FocusEvent evt) {// GEN-FIRST:event_jTRemitenteFocusLost
         remitenteValidar = validarRegistroF.camposDeRegistros(jTRemitente, errorInventario4, "cedula");
-    }//GEN-LAST:event_jTRemitenteFocusLost
+    }// GEN-LAST:event_jTRemitenteFocusLost
 
-    private void jTRemitenteKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTRemitenteKeyReleased
+    private void jTRemitenteKeyReleased(java.awt.event.KeyEvent evt) {// GEN-FIRST:event_jTRemitenteKeyReleased
         remitenteValidar = validarRegistroF.camposDeRegistros(jTRemitente, errorInventario4, "d");
-    }//GEN-LAST:event_jTRemitenteKeyReleased
+    }// GEN-LAST:event_jTRemitenteKeyReleased
 
-    private void jTVolumenFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTVolumenFocusLost
+    private void jTVolumenFocusLost(java.awt.event.FocusEvent evt) {// GEN-FIRST:event_jTVolumenFocusLost
         volumenValidar = validarRegistroF.camposDeRegistros(jTVolumen, errorInventario1, "precio");
-    }//GEN-LAST:event_jTVolumenFocusLost
+    }// GEN-LAST:event_jTVolumenFocusLost
 
-    private void jTVolumenKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTVolumenKeyReleased
+    private void jTVolumenKeyReleased(java.awt.event.KeyEvent evt) {// GEN-FIRST:event_jTVolumenKeyReleased
         volumenValidar = validarRegistroF.camposDeRegistros(jTVolumen, errorInventario1, "precio");
-    }//GEN-LAST:event_jTVolumenKeyReleased
+    }// GEN-LAST:event_jTVolumenKeyReleased
 
-    private void jBRegistrarPAInventarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBRegistrarPAInventarioActionPerformed
+    private void jBRegistrarPAInventarioActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jBRegistrarPAInventarioActionPerformed
         recepcionista.agregarPaqueteInventario();
         recepcionista.eliminarPaqueteRegistrado();
         refrescarInventario();
-        inventario.guardarInventario();
+        recepcionista.guardarInventario();
+
         vaciarCampos();
-        JOptionPane.showMessageDialog(null, "El paquete se agregó correctamente al inventario.", "Confirmación", JOptionPane.INFORMATION_MESSAGE);
-    }//GEN-LAST:event_jBRegistrarPAInventarioActionPerformed
+        JOptionPane.showMessageDialog(null, "El paquete se agregó correctamente al inventario.", "Confirmación",
+                JOptionPane.INFORMATION_MESSAGE);
+    }// GEN-LAST:event_jBRegistrarPAInventarioActionPerformed
 
-    private void jPanel3MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel3MousePressed
-        xMouse = evt.getX();
-        yMouse = evt.getY();
-    }//GEN-LAST:event_jPanel3MousePressed
+    private void jTContenidoPaqueteFocusLost(java.awt.event.FocusEvent evt) {// GEN-FIRST:event_jTContenidoPaqueteFocusLost
+        contenidoValidar = validarRegistroF.camposDeRegistros(jTContenidoPaquete, errorInventario6, "d");
+    }// GEN-LAST:event_jTContenidoPaqueteFocusLost
 
-    private void jPanel3MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel3MouseDragged
-        int x = evt.getXOnScreen();
-        int y = evt.getYOnScreen();
-        this.setLocation(x - xMouse, y - yMouse);
-    }//GEN-LAST:event_jPanel3MouseDragged
-
-    private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
-        getToolkit().beep();
-        int dialogButton = JOptionPane.YES_NO_OPTION;
-        int dialogResult = JOptionPane.showConfirmDialog(null, "Estas seguro de cerrar esta ventana?", "Warning", dialogButton);
-        if (dialogResult == JOptionPane.YES_OPTION) {
-            this.dispose();
-        }
-    }//GEN-LAST:event_btnExitActionPerformed
-
-    private void jTContenidoPaqueteFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTContenidoPaqueteFocusLost
-       contenidoValidar = validarRegistroF.camposDeRegistros(jTContenidoPaquete, errorInventario6, "d");
-    }//GEN-LAST:event_jTContenidoPaqueteFocusLost
-
-    private void jTDestinatarioFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTDestinatarioFocusLost
+    private void jTDestinatarioFocusLost(java.awt.event.FocusEvent evt) {// GEN-FIRST:event_jTDestinatarioFocusLost
         destinatarioValidar = validarRegistroF.camposDeRegistros(jTDestinatario, errorInventario8, "d");
-    }//GEN-LAST:event_jTDestinatarioFocusLost
+    }// GEN-LAST:event_jTDestinatarioFocusLost
 
-    private void jBEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBEliminarActionPerformed
+    private void jBEliminarActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jBEliminarActionPerformed
         vaciarCampos();
-    }//GEN-LAST:event_jBEliminarActionPerformed
+    }// GEN-LAST:event_jBEliminarActionPerformed
 
-    private void jBEliminarPaqueteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBEliminarPaqueteActionPerformed
+    private void jBEliminarPaqueteActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jBEliminarPaqueteActionPerformed
         int respuesta = JOptionPane.showConfirmDialog(
                 null,
-                "¿Estás seguro de que deseas eliminar el paquete con código de tracking: " + jTCodigoEliminar.getText() + "?",
+                "¿Estás seguro de que deseas eliminar el paquete con código de tracking: " + jTCodigoEliminar.getText()
+                        + "?",
                 "Confirmación de Eliminación",
                 JOptionPane.YES_NO_OPTION,
-                JOptionPane.WARNING_MESSAGE
-        );
+                JOptionPane.WARNING_MESSAGE);
         if (respuesta == JOptionPane.YES_OPTION) {
             // El usuario confirmó la eliminación
-            Paquete paquete = inventario.obtenerPaquete(jTCodigoEliminar.getText());
-            inventario.eliminarPaquete(paquete);
+            Paquete paquete = recepcionista.obtenerPaquete(jTCodigoEliminar.getText());
+            recepcionista.eliminarPaquete(paquete);
             refrescarInventario();
-            inventario.guardarInventario();
+            recepcionista.guardarInventario();
             JOptionPane.showMessageDialog(
                     null,
                     "El paquete con código " + jTCodigoEliminar.getText() + " ha sido eliminado.",
                     "Eliminación Exitosa",
-                    JOptionPane.INFORMATION_MESSAGE
-            );
+                    JOptionPane.INFORMATION_MESSAGE);
             DefaultTableModel modeloTabla = (DefaultTableModel) jTablaPaquete.getModel();
             modeloTabla.setRowCount(0);
         } else {
@@ -636,47 +586,59 @@ public class JFPaquetes extends javax.swing.JFrame {
                     null,
                     "La eliminación del paquete con código " + jTCodigoEliminar.getText() + " ha sido cancelada.",
                     "Eliminación Cancelada",
-                    JOptionPane.INFORMATION_MESSAGE
-            );
+                    JOptionPane.INFORMATION_MESSAGE);
         }
-    }//GEN-LAST:event_jBEliminarPaqueteActionPerformed
+    }// GEN-LAST:event_jBEliminarPaqueteActionPerformed
 
-    private void jBConsultarPaquete1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBConsultarPaquete1ActionPerformed
+    private void jBConsultarPaquete1ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jBConsultarPaquete1ActionPerformed
         String codigo = jTCodigoEliminar.getText();
         if (codigo.isBlank()) {
-            JOptionPane.showMessageDialog(null, "Ingrese un código tracking", "Llene el campo", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Ingrese un código tracking", "Llene el campo",
+                    JOptionPane.INFORMATION_MESSAGE);
             return;
-        } else if (!inventario.existePaquete(codigo)) {
-            JOptionPane.showMessageDialog(null, "El paquete no existe", "Código tracking no existe", JOptionPane.ERROR_MESSAGE);
+        } else if (!recepcionista.consultarSiPaqueteExiste(codigo)) {
+            JOptionPane.showMessageDialog(null, "El paquete no existe", "Código tracking no existe",
+                    JOptionPane.ERROR_MESSAGE);
             return;
         }
-        Paquete paquete = inventario.obtenerPaquete(codigo);
+        Paquete paquete = recepcionista.obtenerPaquete(codigo);
         DefaultTableModel model = new DefaultTableModel();
         model.setRowCount(0);
         model.addColumn("Propiedad");
         model.addColumn("Valor");
-        model.addRow(new Object[]{"Código de Tracking", paquete.obtenerCodigo()});
-        model.addRow(new Object[]{"Volumen", paquete.getVolumen() + " m³"});
-        model.addRow(new Object[]{"Peso", paquete.getPeso() + " kg"});
-        model.addRow(new Object[]{"Contenido", paquete.getContenido()});
-        model.addRow(new Object[]{"Remitente", paquete.getRemitente().toString()});
-        model.addRow(new Object[]{"Provincia Origen", paquete.getProvinciaOrigen().name()});
-        model.addRow(new Object[]{"Provincia Destino", paquete.getProvinciaDestino().name()});
-        model.addRow(new Object[]{"Dirección Destino", paquete.getDireccionDestino()});
-        model.addRow(new Object[]{"Estado", paquete.obtenerEstado().toString()});
-        model.addRow(new Object[]{"Distancia Estimada", paquete.calcularDistancia() + " Km"});
+        model.addRow(new Object[] { "Código de Tracking", paquete.obtenerCodigo() });
+        model.addRow(new Object[] { "Volumen", paquete.getVolumen() + " m³" });
+        model.addRow(new Object[] { "Peso", paquete.getPeso() + " kg" });
+        model.addRow(new Object[] { "Contenido", paquete.getContenido() });
+        model.addRow(new Object[] { "Remitente", paquete.getRemitente().toString() });
+        model.addRow(new Object[] { "Provincia Origen", paquete.getProvinciaOrigen().name() });
+        model.addRow(new Object[] { "Provincia Destino", paquete.getProvinciaDestino().name() });
+        model.addRow(new Object[] { "Dirección Destino", paquete.getDireccionDestino() });
+        model.addRow(new Object[] { "Estado", paquete.obtenerEstado().toString() });
+        model.addRow(new Object[] { "Distancia Estimada", paquete.calcularDistancia() + " Km" });
         jTablaPaquete.setModel(model);
         jTablaPaquete.setVisible(true);
         jBEliminarPaquete.setVisible(true);
-    }//GEN-LAST:event_jBConsultarPaquete1ActionPerformed
+    }// GEN-LAST:event_jBConsultarPaquete1ActionPerformed
 
-    private void jTDireccion1FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTDireccion1FocusLost
+    private void jTDireccion1FocusLost(java.awt.event.FocusEvent evt) {// GEN-FIRST:event_jTDireccion1FocusLost
         direccionValidar = validarRegistroF.camposDeRegistros(jTDireccion1, errorInventario7, "d");
-    }//GEN-LAST:event_jTDireccion1FocusLost
+    }// GEN-LAST:event_jTDireccion1FocusLost
 
-    private void JComboDestinoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JComboDestinoActionPerformed
+    private void JComboDestinoActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_JComboDestinoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_JComboDestinoActionPerformed
+    }// GEN-LAST:event_JComboDestinoActionPerformed
+
+    private void jPanel3MousePressed(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_jPanel3MousePressed
+        xMouse = evt.getX();
+        yMouse = evt.getY();
+    }// GEN-LAST:event_jPanel3MousePressed
+
+    private void jPanel3MouseDragged(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_jPanel3MouseDragged
+        int x = evt.getXOnScreen();
+        int y = evt.getYOnScreen();
+        this.setLocation(x - xMouse, y - yMouse);
+    }// GEN-LAST:event_jPanel3MouseDragged
 
     private void vaciarCampos() {
         recepcionista.eliminarPaqueteRegistrado();
@@ -690,14 +652,13 @@ public class JFPaquetes extends javax.swing.JFrame {
         jTRemitente.setText("");
         jTContenidoPaquete.setText("");
         jTDestinatario.setText("");
+        jTDireccion1.setText("");
         jBRegistrarPAInventario.setVisible(false);
     }
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> JComboDestino;
     private javax.swing.JLabel JLabelPrecioTotal;
-    private javax.swing.JButton btnExit;
     private javax.swing.JLabel errorInventario1;
     private javax.swing.JLabel errorInventario2;
     private javax.swing.JLabel errorInventario3;

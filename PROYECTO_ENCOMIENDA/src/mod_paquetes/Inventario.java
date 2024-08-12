@@ -1,15 +1,14 @@
 package mod_paquetes;
 
-import mod_transporte.Provincia;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.util.ArrayList;
-import mod_administracion.Usuario;
 
-public final class Inventario {
+public final class Inventario implements Serializable {
     private static Inventario instancia;
     private ArrayList<Paquete> paquetes;
 
@@ -24,13 +23,6 @@ public final class Inventario {
         return instancia;
     }
 
-    public Paquete agregarPaquete(double volumen, double peso, String contenido, Usuario remitente, Provincia provinciaOrigen, Provincia provinciaDestino, String direccionDestino, String nombreDestinatario) {
-        String nuevoCodigo = getSiguienteCodigoTracking();
-        Paquete paquete = new Paquete(nuevoCodigo, volumen, peso, contenido, remitente, provinciaOrigen, provinciaDestino, direccionDestino, nombreDestinatario);
-        paquetes.add(paquete);
-        return paquete;
-    }
-    
     public String getSiguienteCodigoTracking() {
         if (paquetes.isEmpty()) {
             return "1";
@@ -39,7 +31,7 @@ public final class Inventario {
         codigo++;
         return String.valueOf(codigo);
     }
-    
+
     public void agregarPaquete(Paquete paquete) {
         paquetes.add(paquete);
     }
@@ -47,7 +39,7 @@ public final class Inventario {
     public void eliminarPaquete(Paquete paquete) {
         paquetes.remove(paquete);
     }
-    
+
     public Boolean existePaquete(String codigoTracking) {
         for (Paquete paquete : paquetes) {
             if (paquete.obtenerCodigo().equals(codigoTracking)) {
@@ -56,20 +48,11 @@ public final class Inventario {
         }
         return false;
     }
-            
+
     public Paquete obtenerPaquete(String codigoTracking) {
         for (Paquete paquete : paquetes) {
             if (paquete.obtenerCodigo().equals(codigoTracking)) {
                 return paquete;
-            }
-        }
-        return null;
-    }
-
-    public EstadoDelPaquete verificarEstadoPaquete(String codigoTracking) {
-        for (Paquete paquete : paquetes) {
-            if (paquete.obtenerCodigo().equals(codigoTracking)) {
-                return paquete.obtenerEstado();
             }
         }
         return null;
@@ -88,7 +71,7 @@ public final class Inventario {
     public ArrayList<Paquete> obtenerPaquetes() {
         return paquetes;
     }
-    
+
     public void guardarInventario() {
         String filePath = "src\\archivos\\inventario.ser";
         try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(filePath))) {
@@ -98,7 +81,7 @@ public final class Inventario {
             e.printStackTrace();
         }
     }
-    
+
     public void cargarInventario() {
         String filePath = "src\\archivos\\inventario.ser";
         try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(filePath))) {

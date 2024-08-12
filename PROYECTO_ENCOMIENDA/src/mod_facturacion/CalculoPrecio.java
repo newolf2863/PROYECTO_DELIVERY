@@ -18,7 +18,7 @@ public abstract class CalculoPrecio implements Serializable {
      * @return el monto calculado.
      */
     public double obtenerMonto() {
-        return monto;
+        return Math.round(monto * 100.0) / 100.0;
     }
 
     /**

@@ -7,90 +7,80 @@ import mod_paquetes.Paquete;
 import mod_paquetes.Pendiente;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import mod_facturacion.Factura;
 import mod_facturacion.Precio;
+import mod_incidentes.PaqueteNoTieneIncidente;
+import mod_incidentes.PaqueteYaTieneIncidente;
+import mod_paquetes.Entregado;
+import mod_transporte.Asignacion;
 import mod_transporte.Provincia;
+import mod_transporte.Vehiculo;
 
 /**
- * Representa a un recepcionista que maneja paquetes y realiza varias operaciones relacionadas con el inventario y la cotización.
- * Extiende la clase {@link Usuario} para incluir funcionalidades específicas para recepcionistas.
+ * Representa a un recepcionista que maneja paquetes y realiza varias
+ * operaciones relacionadas con el inventario y la cotización.
+ * Extiende la clase {@link Usuario} para incluir funcionalidades específicas
+ * para recepcionistas.
  */
 public class Recepcionista extends Usuario {
     private Paquete paqueteEnCotizacion;
     private Provincia sucursal;
+    private Cotizacion cotizacion;
+    private Asignacion asignacion;
 
     /**
-     * Constructor que inicializa los datos del recepcionista y la sucursal a la que pertenece.
+     * Constructor que inicializa los datos del recepcionista y la sucursal a la que
+     * pertenece.
      *
-     * @param nombres el nombre del recepcionista.
-     * @param apellidos los apellidos del recepcionista.
+     * @param nombres        el nombre del recepcionista.
+     * @param apellidos      los apellidos del recepcionista.
      * @param identificacion el identificador único del recepcionista.
-     * @param direccion la dirección del recepcionista.
-     * @param telefono el número de teléfono del recepcionista.
-     * @param email la dirección de correo electrónico del recepcionista.
-     * @param sucursal la provincia donde se encuentra la sucursal del recepcionista.
+     * @param direccion      la dirección del recepcionista.
+     * @param telefono       el número de teléfono del recepcionista.
+     * @param email          la dirección de correo electrónico del recepcionista.
+     * @param sucursal       la provincia donde se encuentra la sucursal del
+     *                       recepcionista.
      */
-    public Recepcionista(String nombres, String apellidos, String identificacion, String direccion, String telefono, String email, Provincia sucursal) {
+    public Recepcionista(String nombres, String apellidos, String identificacion, String direccion, String telefono,
+            String email, Provincia sucursal) {
         super(nombres, apellidos, identificacion, direccion, telefono, email);
         this.sucursal = sucursal;
+        this.cotizacion = Cotizacion.obtenerInstancia();
+        this.asignacion = Asignacion.obtenerInstancia();
     }
 
-    /**
-     * Reporta un incidente para un paquete basado en el código de seguimiento.
-     * El incidente solo puede ser reportado si el paquete está en estado pendiente.
-     *
-     * @param codigoTracking el código de seguimiento del paquete para el cual se reporta el incidente.
-     */
     @Override
-    public void reportarIncidente(String codigoTracking) {
-        Paquete paquete = obtenerPaquete(codigoTracking);
-        if (paquete != null && !(paquete.obtenerEstado() instanceof Pendiente)) {
-            System.out.println("El paquete se encuentra en otro estado fuera de su jurisdicción, no se puede reportar el incidente.");
-            // Delegar a módulo de incidentes aquí
-        } else {
-            System.out.println("No se puede reportar el incidente, el paquete está pendiente.");
+    public void reportarIncidente(Paquete paquete) throws ReporteNoPermitido, PaqueteYaTieneIncidente {
+        if (paquete == null || !(paquete.obtenerEstado() instanceof Pendiente)) {
+            throw new ReporteNoPermitido();
         }
+        gestorIncidente.crearIncidente(paquete);
     }
-
-    /**
-     * Cambia el estado de un paquete basado en el código de seguimiento.
-     * Este método debe ser implementado para modificar el estado del paquete.
-     *
-     * @param codigoTracking el código de seguimiento del paquete cuyo estado se cambiará.
-     * @param estado el nuevo estado del paquete.
-     */
+    
+    
     @Override
-    public void cambiarEstadoPaquete(String codigoTracking, EstadoDelPaquete estado) {
-        // Implementar el cambio de estado aquí
+    public void resolverIncidente(Paquete paquete, String[] argumentos) throws ReporteNoPermitido, PaqueteNoTieneIncidente {
+        if (paquete == null || !(paquete.obtenerEstado() instanceof Pendiente || paquete.obtenerEstado() instanceof Entregado)) {
+            throw new ReporteNoPermitido();
+        }
+        gestorIncidente.solucionarIncidente(paquete, argumentos);
     }
 
-    /**
-     * Elimina un paquete del inventario.
-     *
-     * @param paquete el paquete a eliminar del inventario.
-     */
-    public void eliminarPaqueteInventario(Paquete paquete) {
-        Inventario.obtenerInstancia().eliminarPaquete(paquete);
-    }
-
-    /**
-     * Obtiene el paquete actualmente registrado en la cotización.
-     *
-     * @return el paquete registrado en la cotización, o {@code null} si no hay ninguno.
-     */
-    public Paquete obtenerPaqueteRegistrado() {
-        return paqueteEnCotizacion;
-    }
 
     /**
      * Consulta el precio del paquete actualmente registrado en la cotización.
      *
-     * @return el precio del paquete, o {@code null} si no hay un paquete registrado.
+     * @return el precio del paquete, o {@code null} si no hay un paquete
+     *         registrado.
      */
     public Precio consultarPrecioPaquete() {
         if (paqueteEnCotizacion == null) {
             return null;
         }
-        return Cotizacion.obtenerPrecioPaquete(paqueteEnCotizacion);
+        return cotizacion.obtenerPrecioPaquete(paqueteEnCotizacion);
     }
 
     /**
@@ -119,32 +109,69 @@ public class Recepcionista extends Usuario {
     }
 
     /**
-     * Obtiene el código del paquete actualmente registrado en la cotización.
-     *
-     * @return el código del paquete, o una cadena vacía si no hay ningún paquete registrado.
-     */
-    public String obtenerCodigoPaquete() {
-        if (paqueteEnCotizacion == null) {
-            return "";
-        }
-        return paqueteEnCotizacion.obtenerCodigo();
-    }
-
-    /**
-     * Consulta todos los paquetes en el inventario.
-     *
-     * @return una lista de paquetes en el inventario.
-     */
-    public ArrayList<Paquete> consultarPaquetesInventario() {
-        return Inventario.obtenerInstancia().obtenerPaquetes();
-    }
-
-    /**
      * Obtiene la provincia de la sucursal del recepcionista.
      *
      * @return la provincia donde se encuentra la sucursal del recepcionista.
      */
     public Provincia obtenerSucursal() {
         return this.sucursal;
+    }
+
+    public boolean asignarPaquetesAVehiculo(Vehiculo vehiculo, Provincia destino) {
+        return asignacion.asignarPaquetesAVehiculo(vehiculo, destino);
+    }
+
+    public void asignarConductorAVehiculo(Conductor conductor, Vehiculo vehiculo) {
+        asignacion.asignarConductorAVehiculo(conductor, vehiculo);
+    }
+
+    public ArrayList<Paquete> obtenerPaquetes() {
+        return inventario.obtenerPaquetes();
+    }
+
+    public String obtenerSiguienteCodigoPaquete() {
+        return inventario.getSiguienteCodigoTracking();
+    }
+
+    public void guardarInventario() {
+        inventario.guardarInventario();
+    }
+
+    public void eliminarPaquete(Paquete paquete) {
+        inventario.eliminarPaquete(paquete);
+    }
+
+    public boolean consultarSiPaqueteExiste(String codigo) {
+        return inventario.existePaquete(codigo);
+    }
+
+    public Factura buscarFactura(String codigoFactura) {
+        ArrayList<Factura> facturas = cotizacion.obtenerFacturas();
+        for (Factura factura : facturas) {
+            if (factura.obtenerCodigo().equals(codigoFactura)) {
+                return factura;
+            }
+        }
+        return null;
+    }
+
+    public void emitirFacturaPaquete(Paquete paquete) {
+        cotizacion.emitirFacturaPaquete(paquete);
+    }
+
+    public String getSiguienteCodigoFactura() {
+        return cotizacion.getSiguienteCodigoFactura();
+    }
+
+    public Precio obtenerPrecioPaquete(Paquete paquete) {
+        return cotizacion.obtenerPrecioPaquete(paquete);
+    }
+
+    public Vehiculo obtenerVehiculo(String placa) {
+        return asignacion.obtenerVehiculo(placa);
+    }
+
+    public HashMap<Vehiculo, ArrayList<Paquete>> obtenerRelacionPaqueteVehiculo() {
+        return asignacion.obtenerRelacionPaqueteVehiculo();
     }
 }

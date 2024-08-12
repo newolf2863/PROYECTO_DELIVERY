@@ -37,7 +37,7 @@ public class Paquete implements Serializable {
 
     public void cambiarEstado(EstadoDelPaquete estado) {
         this.estado = estado;
-        seguimiento.notificar(estado);
+        seguimiento.actualizar(estado);
     }
     
     public ArrayList<String> obtenerHistorialEstados() {
@@ -122,5 +122,15 @@ public class Paquete implements Serializable {
 
     public Seguimiento obtenerSeguimiento() {
         return this.seguimiento;
+    }
+    
+    public void cambiarDireccionDestino(String destino) {
+        this.direccionDestino = destino;
+    }
+    
+    public void intercambiarDestinoOrigen() {
+        Provincia temporal = this.provinciaOrigen;
+        this.provinciaOrigen = provinciaDestino;
+        this.provinciaDestino = temporal;
     }
 }

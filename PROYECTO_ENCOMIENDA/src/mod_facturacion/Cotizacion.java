@@ -5,13 +5,13 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import mod_paquetes.Inventario;
 import mod_paquetes.Paquete;
 
 import java.util.ArrayList;
 
 /**
- * Clase singleton que gestiona las cotizaciones y facturas en el sistema de facturación.
+ * Clase singleton que gestiona las cotizaciones y facturas en el sistema de
+ * facturación.
  */
 public final class Cotizacion {
     /** Instancia única de la clase Cotizacion. */
@@ -38,26 +38,28 @@ public final class Cotizacion {
         }
         return instancia;
     }
-        /**
+
+    /**
      * Obtiene el precio de un paquete específico.
      *
      * @param paquete el paquete del cual se calculará el precio.
      * @return el objeto Precio que contiene el cálculo del precio del paquete.
      */
-    public static Precio obtenerPrecioPaquete(Paquete paquete) {
+    public Precio obtenerPrecioPaquete(Paquete paquete) {
         Precio precio = new Precio(
-                paquete, new PrecioPaquete(2, 2), new PrecioDistancia(0.01), new Impuesto(0.12));
+                paquete, new PrecioPaquete(2, 2), new PrecioDistancia(0.10), new Impuesto(0.12));
         return precio;
     }
 
     /**
-     * Emite una factura para un paquete específico y la guarda en la lista de facturas.
+     * Emite una factura para un paquete específico y la guarda en la lista de
+     * facturas.
      *
      * @param paquete el paquete del cual se emitirá la factura.
      */
     public void emitirFacturaPaquete(Paquete paquete) {
         Precio precio = new Precio(
-                paquete, new PrecioPaquete(5, 5), new PrecioDistancia(0.2), new Impuesto(0.12));
+                paquete, new PrecioPaquete(2, 2), new PrecioDistancia(0.10), new Impuesto(0.12));
         facturas.add(new Factura(getSiguienteCodigoFactura(), paquete, precio));
         guardarCotizacion();
     }
@@ -85,6 +87,14 @@ public final class Cotizacion {
         return facturas;
     }
 
+    public void eliminarFactura(String codigoTracking) {
+        for (Factura factura : facturas) {
+            if (factura.obtenerCodigoTracking().equals(codigoTracking)) {
+                facturas.remove(factura);
+            }
+        }
+    }
+
     /**
      * Guarda la lista de facturas en un archivo serializado.
      */
@@ -105,7 +115,6 @@ public final class Cotizacion {
         try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(filePath))) {
             facturas = (ArrayList<Factura>) ois.readObject();
         } catch (IOException | ClassNotFoundException e) {
-            System.out.println("No existe el archivo");
         }
     }
 }

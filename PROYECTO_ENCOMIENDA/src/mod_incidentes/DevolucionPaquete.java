@@ -4,35 +4,36 @@
  */
 package mod_incidentes;
 
+import mod_paquetes.Inventario;
 import mod_paquetes.Paquete;
+import mod_paquetes.Pendiente;
 
-public class ErrorDireccion extends Incidente {
+public class DevolucionPaquete extends Incidente {
 
     @Override
     public String getMensajeRegistro(Paquete paquete) {
-        return "El paquete no se puede entregar en la dirección \"" + paquete.getDireccionDestino() + "\".";
+        return "El cliente ha solicitado la devolución del paquete.";
     }
 
     @Override
     public String getMensajeResolucion(Paquete paquete) {
-        return "Se ha cambiado la dirección de entrega del paquete a \"" + paquete.getDireccionDestino() + "\".";
+        return "El paquete será devuelto a la sucursal.";
     }
 
     @Override
     public String getMensajeSolicitud() {
-        return "Por favor ingrese la nueva dirección de entrega.";
+        return "";
     }
 
     @Override
     public void manejar(Paquete paquete, String[] argumentos) {
-        if (paquete.getDireccionDestino().equals(argumentos[0])) {
-            return;
-        }
-        paquete.cambiarDireccionDestino(argumentos[0]);
+        paquete.intercambiarDestinoOrigen();
+        paquete.cambiarEstado(new Pendiente(paquete));
+        Inventario.obtenerInstancia().guardarInventario();
     }
 
     @Override
     public String toString() {
-        return "Error de dirección";
+        return "Devolución de Paquete";
     }
 }

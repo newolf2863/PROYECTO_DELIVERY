@@ -1,23 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
 <Form version="1.5" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
-  <!-- Propiedades del formulario -->
   <Properties>
-    <!-- Configuración para cerrar la aplicación al cerrar la ventana -->
     <Property name="defaultCloseOperation" type="int" value="3"/>
-    <!-- Título de la ventana -->
     <Property name="title" type="java.lang.String" value="Incidentes"/>
-    <!-- Indica que la ventana no tendrá decoraciones de borde -->
     <Property name="undecorated" type="boolean" value="true"/>
   </Properties>
-  <!-- Propiedades sintéticas del formulario -->
   <SyntheticProperties>
-    <!-- Política de tamaño del formulario -->
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
-    <!-- No generar el formulario centrado -->
     <SyntheticProperty name="generateCenter" type="boolean" value="false"/>
   </SyntheticProperties>
-  <!-- Valores auxiliares del formulario -->
   <AuxValues>
     <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
     <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="false"/>
@@ -28,82 +20,69 @@
     <AuxValue name="FormSettings_listenerGenerationStyle" type="java.lang.Integer" value="0"/>
     <AuxValue name="FormSettings_variablesLocal" type="java.lang.Boolean" value="false"/>
     <AuxValue name="FormSettings_variablesModifier" type="java.lang.Integer" value="2"/>
-    <AuxValue name="designerSize" type="java.awt.Dimension" value="-84,-19,0,5,115,114,0,18,106,97,118,97,46,97,119,116,46,68,105,109,101,110,115,105,111,110,65,-114,-39,-41,-84,95,68,20,2,0,2,73,0,6,104,101,105,103,104,116,73,0,5,119,105,100,116,104,120,112,0,0,2,-88,0,0,4,-100"/>
+    <AuxValue name="designerSize" type="java.awt.Dimension" value="-84,-19,0,5,115,114,0,18,106,97,118,97,46,97,119,116,46,68,105,109,101,110,115,105,111,110,65,-114,-39,-41,-84,95,68,20,2,0,2,73,0,6,104,101,105,103,104,116,73,0,5,119,105,100,116,104,120,112,0,0,2,-78,0,0,4,-100"/>
   </AuxValues>
 
-  <!-- Diseño del formulario utilizando CardLayout -->
   <Layout class="org.netbeans.modules.form.compat2.layouts.DesignCardLayout"/>
   <SubComponents>
-    <!-- Contenedor principal del formulario -->
     <Container class="javax.swing.JPanel" name="JPIncidentes">
       <Properties>
-        <!-- Color de fondo del panel principal -->
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="f5" green="f5" red="f5" type="rgb"/>
         </Property>
-        <!-- Borde del panel principal -->
-        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-          <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
-            <LineBorder/>
-          </Border>
-        </Property>
       </Properties>
-      <!-- Restricciones de diseño del panel principal -->
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
           <CardConstraints cardName="card6"/>
         </Constraint>
       </Constraints>
 
-      <!-- Diseño del panel principal utilizando AbsoluteLayout -->
       <Layout class="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout">
         <Property name="useNullLayout" type="boolean" value="false"/>
       </Layout>
       <SubComponents>
-        <!-- Subpanel para contener componentes adicionales -->
         <Container class="javax.swing.JPanel" name="jPIncidentes">
-          <!-- Restricciones de diseño del subpanel -->
+          <Properties>
+            <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+              <Dimension value="[1180, 680]"/>
+            </Property>
+            <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+              <Dimension value="[1180, 607]"/>
+            </Property>
+          </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="10" y="40" width="1080" height="640"/>
+              <AbsoluteConstraints x="0" y="30" width="-1" height="660"/>
             </Constraint>
           </Constraints>
 
-          <!-- Diseño del subpanel -->
-          <Layout>
-            <DimensionLayout dim="0">
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
-                      <Component id="jTPEmpleados1" min="-2" pref="965" max="-2" attributes="0"/>
-                      <EmptySpace pref="65" max="32767" attributes="0"/>
-                  </Group>
-              </Group>
-            </DimensionLayout>
-            <DimensionLayout dim="1">
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jTPEmpleados1" min="-2" pref="601" max="-2" attributes="0"/>
-                      <EmptySpace pref="33" max="32767" attributes="0"/>
-                  </Group>
-              </Group>
-            </DimensionLayout>
+          <Layout class="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout">
+            <Property name="useNullLayout" type="boolean" value="false"/>
           </Layout>
           <SubComponents>
-            <!-- Componente JTabbedPane para gestionar pestañas -->
             <Container class="javax.swing.JTabbedPane" name="jTPEmpleados1">
-              <!-- Evento de clic del ratón en el JTabbedPane -->
               <Events>
                 <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jTPEmpleados1MouseClicked"/>
               </Events>
+              <Constraints>
+                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                  <AbsoluteConstraints x="25" y="6" width="1110" height="-1"/>
+                </Constraint>
+              </Constraints>
 
-              <!-- Diseño del JTabbedPane -->
               <Layout class="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout"/>
               <SubComponents>
-                <!-- Panel de la pestaña "Registrar Incidente" -->
                 <Container class="javax.swing.JPanel" name="jPRE1">
-                  <!-- Restricciones de diseño de la pestaña -->
+                  <Properties>
+                    <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                      <Dimension value="[1085, 484]"/>
+                    </Property>
+                    <Property name="name" type="java.lang.String" value="" noResource="true"/>
+                    <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                      <Dimension value="[1085, 484]"/>
+                    </Property>
+                    <Property name="requestFocusEnabled" type="boolean" value="false"/>
+                  </Properties>
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
                       <JTabbedPaneConstraints tabName="Registrar Incidente">
@@ -112,112 +91,30 @@
                     </Constraint>
                   </Constraints>
 
-                  <!-- Diseño del panel de la pestaña -->
-                  <Layout>
-                    <DimensionLayout dim="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
-                              <Component id="jPanel10" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace pref="239" max="32767" attributes="0"/>
-                          </Group>
-                      </Group>
-                    </DimensionLayout>
-                    <DimensionLayout dim="1">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
-                              <Component id="jPanel10" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace pref="139" max="32767" attributes="0"/>
-                          </Group>
-                      </Group>
-                    </DimensionLayout>
+                  <Layout class="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout">
+                    <Property name="useNullLayout" type="boolean" value="false"/>
                   </Layout>
                   <SubComponents>
-                    <!-- Subpanel dentro de la pestaña "Registrar Incidente" -->
                     <Container class="javax.swing.JPanel" name="jPanel10">
                       <Properties>
-                        <!-- Borde del subpanel -->
                         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                           <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
                             <LineBorder/>
                           </Border>
                         </Property>
                       </Properties>
+                      <Constraints>
+                        <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                          <AbsoluteConstraints x="30" y="20" width="1060" height="460"/>
+                        </Constraint>
+                      </Constraints>
 
-                      <!-- Diseño del subpanel -->
-                      <Layout>
-                        <DimensionLayout dim="0">
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" attributes="0">
-                                  <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
-                                  <Component id="jScrollPane7" min="-2" pref="622" max="-2" attributes="0"/>
-                                  <EmptySpace pref="34" max="32767" attributes="0"/>
-                              </Group>
-                              <Group type="102" alignment="1" attributes="0">
-                                  <EmptySpace max="32767" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Group type="102" alignment="1" attributes="0">
-                                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                              <Component id="jLabel134" alignment="0" max="32767" attributes="0"/>
-                                              <Component id="jLabel133" alignment="0" min="-2" pref="163" max="-2" attributes="0"/>
-                                          </Group>
-                                          <EmptySpace max="-2" attributes="0"/>
-                                          <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                              <Component id="jTCodigoTracking" alignment="0" max="32767" attributes="0"/>
-                                              <Component id="seleccionIncidentes" alignment="0" pref="157" max="32767" attributes="0"/>
-                                          </Group>
-                                          <EmptySpace min="-2" pref="263" max="-2" attributes="0"/>
-                                      </Group>
-                                      <Group type="102" alignment="1" attributes="0">
-                                          <Component id="jBConsultarPaquete" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace min="-2" pref="113" max="-2" attributes="0"/>
-                                      </Group>
-                                  </Group>
-                              </Group>
-                              <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <EmptySpace min="-2" pref="302" max="-2" attributes="0"/>
-                                      <Component id="jBRegistrarIncidente" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace pref="307" max="32767" attributes="0"/>
-                                  </Group>
-                              </Group>
-                          </Group>
-                        </DimensionLayout>
-                        <DimensionLayout dim="1">
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" alignment="0" attributes="0">
-                                  <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="3" attributes="0">
-                                      <Component id="jLabel134" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jTCodigoTracking" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="jBConsultarPaquete" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="3" attributes="0">
-                                      <Component id="jLabel133" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="seleccionIncidentes" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="jScrollPane7" min="-2" pref="237" max="-2" attributes="0"/>
-                                  <EmptySpace pref="55" max="32767" attributes="0"/>
-                              </Group>
-                              <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
-                                  <Group type="102" alignment="1" attributes="0">
-                                      <EmptySpace pref="368" max="32767" attributes="0"/>
-                                      <Component id="jBRegistrarIncidente" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
-                                  </Group>
-                              </Group>
-                          </Group>
-                        </DimensionLayout>
+                      <Layout class="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout">
+                        <Property name="useNullLayout" type="boolean" value="false"/>
                       </Layout>
                       <SubComponents>
-                        <!-- ComboBox para seleccionar el tipo de incidente -->
                         <Component class="javax.swing.JComboBox" name="seleccionIncidentes">
                           <Properties>
-                            <!-- Modelo de datos del ComboBox -->
                             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                               <StringArray count="5">
                                 <StringItem index="0" value="Selecciona"/>
@@ -228,36 +125,50 @@
                               </StringArray>
                             </Property>
                           </Properties>
-                          <!-- Eventos del ComboBox -->
                           <Events>
                             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="seleccionIncidentesActionPerformed"/>
                           </Events>
-                          <!-- Valores auxiliares del ComboBox -->
                           <AuxValues>
                             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
                           </AuxValues>
+                          <Constraints>
+                            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                              <AbsoluteConstraints x="267" y="70" width="157" height="-1"/>
+                            </Constraint>
+                          </Constraints>
                         </Component>
-                        <!-- Etiqueta para el tipo de incidente -->
                         <Component class="javax.swing.JLabel" name="jLabel133">
                           <Properties>
                             <Property name="text" type="java.lang.String" value="Tipo de incidente:"/>
                           </Properties>
+                          <Constraints>
+                            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                              <AbsoluteConstraints x="98" y="73" width="163" height="-1"/>
+                            </Constraint>
+                          </Constraints>
                         </Component>
-                        <!-- Etiqueta para el código de seguimiento -->
                         <Component class="javax.swing.JLabel" name="jLabel134">
                           <Properties>
                             <Property name="text" type="java.lang.String" value="C&#xf3;digo tracking"/>
                           </Properties>
+                          <Constraints>
+                            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                              <AbsoluteConstraints x="98" y="20" width="163" height="-1"/>
+                            </Constraint>
+                          </Constraints>
                         </Component>
-                        <!-- Campo de texto para el código de seguimiento -->
                         <Component class="javax.swing.JTextField" name="jTCodigoTracking">
                           <Events>
                             <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="jTCodigoTrackingFocusLost"/>
                             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTCodigoTrackingActionPerformed"/>
                             <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTCodigoTrackingKeyReleased"/>
                           </Events>
+                          <Constraints>
+                            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                              <AbsoluteConstraints x="267" y="17" width="157" height="-1"/>
+                            </Constraint>
+                          </Constraints>
                         </Component>
-                        <!-- Botón para consultar un paquete -->
                         <Component class="javax.swing.JButton" name="jBConsultarPaquete">
                           <Properties>
                             <Property name="text" type="java.lang.String" value="Consultar"/>
@@ -265,19 +176,26 @@
                           <Events>
                             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBConsultarPaqueteActionPerformed"/>
                           </Events>
+                          <Constraints>
+                            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                              <AbsoluteConstraints x="493" y="45" width="-1" height="-1"/>
+                            </Constraint>
+                          </Constraints>
                         </Component>
-                        <!-- ScrollPane que contiene una tabla -->
                         <Container class="javax.swing.JScrollPane" name="jScrollPane7">
                           <AuxValues>
                             <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
                           </AuxValues>
+                          <Constraints>
+                            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                              <AbsoluteConstraints x="38" y="110" width="910" height="237"/>
+                            </Constraint>
+                          </Constraints>
 
                           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
                           <SubComponents>
-                            <!-- Tabla dentro del ScrollPane -->
                             <Component class="javax.swing.JTable" name="jTablaPaquete">
                               <Properties>
-                                <!-- Modelo de datos de la tabla -->
                                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                                   <Table columnCount="4" rowCount="4">
                                     <Column editable="true" title="Title 1" type="java.lang.Object"/>
@@ -286,7 +204,6 @@
                                     <Column editable="true" title="Title 4" type="java.lang.Object"/>
                                   </Table>
                                 </Property>
-                                <!-- Configuración del encabezado de la tabla -->
                                 <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
                                   <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
                                 </Property>
@@ -294,7 +211,6 @@
                             </Component>
                           </SubComponents>
                         </Container>
-                        <!-- Botón para registrar un incidente -->
                         <Component class="javax.swing.JButton" name="jBRegistrarIncidente">
                           <Properties>
                             <Property name="text" type="java.lang.String" value="Registrar"/>
@@ -302,14 +218,17 @@
                           <Events>
                             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBRegistrarIncidenteActionPerformed"/>
                           </Events>
+                          <Constraints>
+                            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                              <AbsoluteConstraints x="440" y="360" width="130" height="30"/>
+                            </Constraint>
+                          </Constraints>
                         </Component>
                       </SubComponents>
                     </Container>
                   </SubComponents>
                 </Container>
-                <!-- Panel de la pestaña "Resolver Incidente" -->
                 <Container class="javax.swing.JPanel" name="jPAE1">
-                  <!-- Restricciones de diseño de la pestaña -->
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
                       <JTabbedPaneConstraints tabName="Resolver Incidente">
@@ -318,236 +237,134 @@
                     </Constraint>
                   </Constraints>
 
-                  <!-- Diseño del panel de la pestaña -->
-                  <Layout>
-                    <DimensionLayout dim="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
-                              <Component id="jPanel11" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace pref="228" max="32767" attributes="0"/>
-                          </Group>
-                      </Group>
-                    </DimensionLayout>
-                    <DimensionLayout dim="1">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" attributes="0">
-                              <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
-                              <Component id="jPanel11" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace pref="68" max="32767" attributes="0"/>
-                          </Group>
-                      </Group>
-                    </DimensionLayout>
+                  <Layout class="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout">
+                    <Property name="useNullLayout" type="boolean" value="false"/>
                   </Layout>
                   <SubComponents>
-                    <!-- Subpanel dentro de la pestaña "Resolver Incidente" -->
                     <Container class="javax.swing.JPanel" name="jPanel11">
                       <Properties>
-                        <!-- Borde del subpanel -->
                         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                           <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
                             <LineBorder/>
                           </Border>
                         </Property>
+                      </Properties>
+                      <Constraints>
+                        <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                          <AbsoluteConstraints x="36" y="28" width="1050" height="520"/>
+                        </Constraint>
+                      </Constraints>
 
-                        <!-- Diseño del subpanel -->
-                        <Layout>
-                          <DimensionLayout dim="0">
-                            <Group type="103" groupAlignment="0" attributes="0">
-                                <Group type="102" alignment="1" attributes="0">
-                                    <EmptySpace min="0" pref="37" max="32767" attributes="0"/>
-                                    <Group type="103" groupAlignment="0" attributes="0">
-                                        <Group type="102" alignment="1" attributes="0">
-                                            <Component id="jScrollPane8" min="-2" pref="622" max="-2" attributes="0"/>
-                                            <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
-                                        </Group>
-                                        <Group type="102" alignment="1" attributes="0">
-                                            <Component id="jLabel138" min="-2" pref="78" max="-2" attributes="0"/>
-                                            <EmptySpace min="-2" pref="88" max="-2" attributes="0"/>
-                                            <Component id="jTArgumentos" min="-2" pref="169" max="-2" attributes="0"/>
-                                            <EmptySpace min="-2" pref="257" max="-2" attributes="0"/>
-                                        </Group>
-                                    </Group>
-                                </Group>
-                                <Group type="102" attributes="0">
-                                    <Group type="103" groupAlignment="0" attributes="0">
-                                        <Group type="102" attributes="0">
-                                            <EmptySpace min="-2" pref="94" max="-2" attributes="0"/>
-                                            <Component id="jLabel137" min="-2" pref="163" max="-2" attributes="0"/>
-                                            <EmptySpace max="-2" attributes="0"/>
-                                            <Component id="jTCodigoResolver" min="-2" pref="157" max="-2" attributes="0"/>
-                                            <EmptySpace min="-2" pref="77" max="-2" attributes="0"/>
-                                            <Component id="jBConsultarIncidente" min="-2" max="-2" attributes="0"/>
-                                        </Group>
-                                        <Group type="102" alignment="0" attributes="0">
-                                            <EmptySpace min="-2" pref="302" max="-2" attributes="0"/>
-                                            <Component id="jBResolverIncidente" min="-2" max="-2" attributes="0"/>
-                                        </Group>
-                                    </Group>
-                                    <EmptySpace max="32767" attributes="0"/>
-                                </Group>
-                            </Group>
-                          </DimensionLayout>
-                          <DimensionLayout dim="1">
-                            <Group type="103" groupAlignment="0" attributes="0">
-                                <Group type="102" alignment="0" attributes="0">
-                                    <Group type="103" groupAlignment="0" attributes="0">
-                                        <Group type="102" attributes="0">
-                                            <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
-                                            <Component id="jLabel137" min="-2" max="-2" attributes="0"/>
-                                        </Group>
-                                        <Group type="102" alignment="1" attributes="0">
-                                            <EmptySpace max="-2" attributes="0"/>
-                                            <Group type="103" groupAlignment="3" attributes="0">
-                                                <Component id="jTCodigoResolver" alignment="3" min="-2" max="-2" attributes="0"/>
-                                                <Component id="jBConsultarIncidente" alignment="3" min="-2" max="-2" attributes="0"/>
-                                            </Group>
-                                        </Group>
-                                    </Group>
-                                    <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                    <Component id="jScrollPane8" min="-2" pref="237" max="-2" attributes="0"/>
-                                    <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
-                                    <Group type="103" groupAlignment="3" attributes="0">
-                                        <Component id="jTArgumentos" alignment="3" min="-2" max="-2" attributes="0"/>
-                                        <Component id="jLabel138" alignment="3" min="-2" max="-2" attributes="0"/>
-                                    </Group>
-                                    <EmptySpace pref="49" max="32767" attributes="0"/>
-                                    <Component id="jBResolverIncidente" min="-2" max="-2" attributes="0"/>
-                                    <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
-                                </Group>
-                            </Group>
-                          </DimensionLayout>
-                        </Layout>
-                        <SubComponents>
-                          <!-- Etiqueta para el código de seguimiento -->
-                          <Component class="javax.swing.JLabel" name="jLabel137">
-                            <Properties>
-                              <Property name="text" type="java.lang.String" value="C&#xf3;digo tracking"/>
-                            </Properties>
-                          </Component>
-                          <!-- Campo de texto para el código de seguimiento -->
-                          <Component class="javax.swing.JTextField" name="jTCodigoResolver">
-                            <Events>
-                              <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="jTCodigoResolverFocusLost"/>
-                              <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTCodigoResolverActionPerformed"/>
-                              <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTCodigoResolverKeyReleased"/>
-                            </Events>
-                          </Component>
-                          <!-- Botón para consultar un incidente -->
-                          <Component class="javax.swing.JButton" name="jBConsultarIncidente">
-                            <Properties>
-                              <Property name="text" type="java.lang.String" value="Consultar"/>
-                            </Properties>
-                            <Events>
-                              <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBConsultarIncidenteActionPerformed"/>
-                            </Events>
-                          </Component>
-                          <!-- ScrollPane que contiene una tabla -->
-                          <Container class="javax.swing.JScrollPane" name="jScrollPane8">
-                            <AuxValues>
-                              <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
-                            </AuxValues>
+                      <Layout class="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout">
+                        <Property name="useNullLayout" type="boolean" value="false"/>
+                      </Layout>
+                      <SubComponents>
+                        <Component class="javax.swing.JLabel" name="jLabel137">
+                          <Properties>
+                            <Property name="text" type="java.lang.String" value="C&#xf3;digo tracking"/>
+                          </Properties>
+                          <Constraints>
+                            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                              <AbsoluteConstraints x="110" y="40" width="163" height="-1"/>
+                            </Constraint>
+                          </Constraints>
+                        </Component>
+                        <Component class="javax.swing.JTextField" name="jTCodigoResolver">
+                          <Events>
+                            <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="jTCodigoResolverFocusLost"/>
+                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTCodigoResolverActionPerformed"/>
+                            <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTCodigoResolverKeyReleased"/>
+                          </Events>
+                          <Constraints>
+                            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                              <AbsoluteConstraints x="270" y="40" width="157" height="-1"/>
+                            </Constraint>
+                          </Constraints>
+                        </Component>
+                        <Component class="javax.swing.JButton" name="jBConsultarIncidente">
+                          <Properties>
+                            <Property name="text" type="java.lang.String" value="Consultar"/>
+                          </Properties>
+                          <Events>
+                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBConsultarIncidenteActionPerformed"/>
+                          </Events>
+                          <Constraints>
+                            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                              <AbsoluteConstraints x="490" y="40" width="-1" height="-1"/>
+                            </Constraint>
+                          </Constraints>
+                        </Component>
+                        <Container class="javax.swing.JScrollPane" name="jScrollPane8">
+                          <AuxValues>
+                            <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+                          </AuxValues>
+                          <Constraints>
+                            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                              <AbsoluteConstraints x="31" y="110" width="930" height="237"/>
+                            </Constraint>
+                          </Constraints>
 
-                            <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
-                            <SubComponents>
-                              <!-- Tabla dentro del ScrollPane -->
-                              <Component class="javax.swing.JTable" name="jTIncidente">
-                                <Properties>
-                                  <!-- Modelo de datos de la tabla -->
-                                  <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                                    <Table columnCount="4" rowCount="4">
-                                      <Column editable="true" title="Title 1" type="java.lang.Object"/>
-                                      <Column editable="true" title="Title 2" type="java.lang.Object"/>
-                                      <Column editable="true" title="Title 3" type="java.lang.Object"/>
-                                      <Column editable="true" title="Title 4" type="java.lang.Object"/>
-                                    </Table>
-                                  </Property>
-                                  <!-- Configuración del encabezado de la tabla -->
-                                  <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
-                                    <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
-                                  </Property>
-                                </Properties>
-                              </Component>
-                            </SubComponents>
-                          </Container>
-                          <!-- Botón para resolver un incidente -->
-                          <Component class="javax.swing.JButton" name="jBResolverIncidente">
-                            <Properties>
-                              <Property name="text" type="java.lang.String" value="Resolver"/>
-                            </Properties>
-                            <Events>
-                              <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBResolverIncidenteActionPerformed"/>
-                            </Events>
-                          </Component>
-                          <!-- Etiqueta para los argumentos -->
-                          <Component class="javax.swing.JLabel" name="jLabel138">
-                            <Properties>
-                              <Property name="text" type="java.lang.String" value="Argumentos"/>
-                            </Properties>
-                          </Component>
-                          <!-- Campo de texto para los argumentos -->
-                          <Component class="javax.swing.JTextField" name="jTArgumentos">
-                            <Events>
-                              <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="jTArgumentosFocusLost"/>
-                              <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTArgumentosActionPerformed"/>
-                              <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTArgumentosKeyReleased"/>
-                            </Events>
-                          </Component>
-                        </SubComponents>
-                      </Container>
-                    </SubComponents>
-                  </Container>
-                </SubComponents>
-              </Container>
-            </SubComponents>
-          </Container>
+                          <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+                          <SubComponents>
+                            <Component class="javax.swing.JTable" name="jTIncidente">
+                              <Properties>
+                                <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
+                                  <Table columnCount="4" rowCount="4">
+                                    <Column editable="true" title="Title 1" type="java.lang.Object"/>
+                                    <Column editable="true" title="Title 2" type="java.lang.Object"/>
+                                    <Column editable="true" title="Title 3" type="java.lang.Object"/>
+                                    <Column editable="true" title="Title 4" type="java.lang.Object"/>
+                                  </Table>
+                                </Property>
+                                <Property name="rowHeight" type="int" value="40"/>
+                                <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
+                                  <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
+                                </Property>
+                              </Properties>
+                            </Component>
+                          </SubComponents>
+                        </Container>
+                        <Component class="javax.swing.JButton" name="jBResolverIncidente">
+                          <Properties>
+                            <Property name="text" type="java.lang.String" value="Resolver"/>
+                          </Properties>
+                          <Events>
+                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBResolverIncidenteActionPerformed"/>
+                          </Events>
+                          <Constraints>
+                            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                              <AbsoluteConstraints x="450" y="380" width="130" height="30"/>
+                            </Constraint>
+                          </Constraints>
+                        </Component>
+                      </SubComponents>
+                    </Container>
+                  </SubComponents>
+                </Container>
+              </SubComponents>
+            </Container>
+          </SubComponents>
         </Container>
-        <!-- Panel superior que contiene el título y botón de salida -->
         <Container class="javax.swing.JPanel" name="jPanel3">
           <Properties>
-            <!-- Color de fondo del panel -->
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="30" green="a" red="92" type="rgb"/>
             </Property>
           </Properties>
-          <!-- Eventos del panel -->
           <Events>
             <EventHandler event="mouseDragged" listener="java.awt.event.MouseMotionListener" parameters="java.awt.event.MouseEvent" handler="jPanel3MouseDragged"/>
             <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jPanel3MousePressed"/>
           </Events>
-          <!-- Restricciones de diseño del panel -->
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="0" y="0" width="1180" height="-1"/>
+              <AbsoluteConstraints x="0" y="0" width="1180" height="30"/>
             </Constraint>
           </Constraints>
 
-          <!-- Diseño del panel -->
-          <Layout>
-            <DimensionLayout dim="0">
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jLabel69" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="1040" max="32767" attributes="0"/>
-                      <Component id="btnExit" min="-2" pref="35" max="-2" attributes="0"/>
-                  </Group>
-              </Group>
-            </DimensionLayout>
-            <DimensionLayout dim="1">
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jLabel69" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="btnExit" alignment="0" min="-2" pref="35" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                  </Group>
-              </Group>
-            </DimensionLayout>
+          <Layout class="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout">
+            <Property name="useNullLayout" type="boolean" value="false"/>
           </Layout>
           <SubComponents>
-            <!-- Etiqueta del título del panel -->
             <Component class="javax.swing.JLabel" name="jLabel69">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -556,32 +373,13 @@
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Gestion de Envios"/>
+                <Property name="text" type="java.lang.String" value="Incidentes"/>
               </Properties>
-            </Component>
-            <!-- Botón de salida -->
-            <Component class="javax.swing.JButton" name="btnExit">
-              <Properties>
-                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
-                </Property>
-                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/iconos/power_24dp.png"/>
-                </Property>
-                <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-                  <Border info="org.netbeans.modules.form.compat2.border.EmptyBorderInfo">
-                    <EmptyBorder/>
-                  </Border>
-                </Property>
-                <Property name="contentAreaFilled" type="boolean" value="false"/>
-                <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-                  <Color id="Hand Cursor"/>
-                </Property>
-              </Properties>
-              <!-- Eventos del botón de salida -->
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnExitActionPerformed"/>
-              </Events>
+              <Constraints>
+                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                  <AbsoluteConstraints x="6" y="0" width="-1" height="-1"/>
+                </Constraint>
+              </Constraints>
             </Component>
           </SubComponents>
         </Container>
