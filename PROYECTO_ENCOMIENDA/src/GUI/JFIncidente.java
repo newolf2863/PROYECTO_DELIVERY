@@ -669,7 +669,7 @@ public class JFIncidente extends javax.swing.JFrame {
 
         GestorIncidente gestor = new GestorIncidente(incidenteRegistrar);
         String[] partes = argumentos.split("\\s+");
-        gestor.resolverIncidente(paquete, partes);
+        //gestor.resolverIncidente(paquete, partes);
 
         mostrarMensaje("El incidente se ha resuelto", "Resolución Exitosa");
         actualizarTablaIncidentes();
