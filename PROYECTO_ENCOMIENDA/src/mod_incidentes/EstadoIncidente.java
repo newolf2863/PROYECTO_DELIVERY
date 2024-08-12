@@ -19,6 +19,7 @@ public abstract class EstadoIncidente {
      * @return Una cadena que describe el registro del incidente.
      */
     public abstract String registrar();
+    public abstract String resolver();
     
     /**
      * Método abstracto para resolver un incidente.
