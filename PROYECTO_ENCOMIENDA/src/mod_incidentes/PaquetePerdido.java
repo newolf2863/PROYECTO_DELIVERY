@@ -20,7 +20,7 @@ public class PaquetePerdido extends EstadoIncidente {
      */
     @Override
     public String registrar() {
-        return "La ubicación de su paquete es desconocida";
+        return "La dirección de su paquete es erronea";
     }
 
     /**
@@ -39,5 +39,10 @@ public class PaquetePerdido extends EstadoIncidente {
             return "Su paquete no se ha podido encontrar, por favor, acérquese a la agencia más cercana para recibir una compensación";
         }
         return "";
+    }
+
+    @Override
+    public String resolver() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 }

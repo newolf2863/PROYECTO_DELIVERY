@@ -742,7 +742,7 @@ public class JFIncidenteConductor extends javax.swing.JFrame {
         if (respuesta == JOptionPane.YES_OPTION) {
             String[] partes = argumentos.split("\\s+");
             GestorIncidente gi = new GestorIncidente(incidenteRegistrar);
-            gi.resolverIncidente(paquete, partes);
+            gi.iniciarSoporte(paquete, partes);
             JOptionPane.showMessageDialog(
                 null,
                 "El incidente se ha resuelto",

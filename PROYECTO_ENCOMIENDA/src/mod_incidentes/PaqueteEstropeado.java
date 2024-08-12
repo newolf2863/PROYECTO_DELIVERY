@@ -41,4 +41,9 @@ public class PaqueteEstropeado extends EstadoIncidente {
         }
         return "";    
     }
+
+    @Override
+    public String resolver() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }

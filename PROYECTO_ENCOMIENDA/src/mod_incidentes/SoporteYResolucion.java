@@ -12,27 +12,12 @@ import mod_paquetes.Seguimiento;
  * @author Issac
  */
 public class SoporteYResolucion {
-    private GestorIncidente gestorIncidente;
-
-    public SoporteYResolucion(GestorIncidente gestor) {
-        this.gestorIncidente = gestor;
+    public void resolverIncidente(Paquete paquete, EstadoIncidente incidente) {
+        // Lógica para resolver el incidente
+        String registroResolucion = incidente.resolver();
+        // Obtiene el seguimiento del paquete
+        Seguimiento seguimiento = paquete.obtenerSeguimiento();
+        // Registra la resolución del incidente en el seguimiento del paquete
+        seguimiento.resolverIncidente(registroResolucion);
     }
-
-    public void gestionarConsulta(Paquete paquete) {
-        // Lógica para gestionar la consulta
-        gestorIncidente.crearIncidente(paquete);
-    }
-
-
-//    /**
-//     * Método para resolver un incidente asociado a un paquete.
-//     * Resuelve el incidente con los argumentos proporcionados y actualiza el seguimiento del paquete.
-//     * 
-//     * @param paquete El paquete cuyo incidente será resuelto.
-//     * @param argumentos Argumentos necesarios para resolver el incidente.
-//     */
-    public void resolverIncidente(Paquete paquete, String ... argumentos) {
-        gestorIncidente.iniciarSoporte(paquete, argumentos);
-    }
-
 }

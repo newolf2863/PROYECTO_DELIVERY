@@ -33,4 +33,9 @@ public class ErrorDireccion extends EstadoIncidente {
     public String resolver(String[] argumentos) {
         return "Se ha entregado el paquete en una nueva dirección: " + argumentos[0];
     }
+
+    @Override
+    public String resolver() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }
