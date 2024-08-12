@@ -10,7 +10,7 @@ package mod_incidentes;
  * 
  * @autor Rodrigo Haro
  */
-public abstract class Incidente {
+public abstract class EstadoIncidente {
     
     /**
      * Método abstracto para registrar un incidente.
