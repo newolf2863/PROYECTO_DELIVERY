@@ -625,8 +625,8 @@ public class JFIncidente extends javax.swing.JFrame {
                 if (factura != null) {
                     double precioEnvio = factura.obtenerPrecio().getPrecioTotalPaquete();
                     if (incidente.equals("Paquete Perdido")) {
-                        jTArgumentos.setText("Valor del reembolso: $" + precioEnvio + ". Estado del paquete (Recuperado/Desconocido)");
-                        jTArgumentos.setEnabled(true); // Permite la edición para ingresar el estado del paquete
+                        jTArgumentos.setText("Valor del reembolso: $" + precioEnvio);
+                        jTArgumentos.setEnabled(false); // Permite la edición para ingresar el estado del paquete
                     } else {
                         jTArgumentos.setText("Valor del reembolso: $" + precioEnvio);
                         jTArgumentos.setEnabled(false); // Deshabilita la casilla para no permitir la edición
@@ -635,7 +635,7 @@ public class JFIncidente extends javax.swing.JFrame {
                     mostrarMensaje("Factura no encontrada para el código de tracking: " + codigoTracking, "Error");
                     if (incidente.equals("Paquete Perdido")) {
                         jTArgumentos.setText("Reembolso por paquete perdido. Estado del paquete (Recuperado/Desconocido)");
-                        jTArgumentos.setEnabled(true); // Permite la edición para ingresar el estado del paquete
+                        jTArgumentos.setEnabled(false); // Permite la edición para ingresar el estado del paquete
                     } else {
                         jTArgumentos.setText("Reembolso por daños");
                         jTArgumentos.setEnabled(false); // Deshabilita la casilla para no permitir la edición
