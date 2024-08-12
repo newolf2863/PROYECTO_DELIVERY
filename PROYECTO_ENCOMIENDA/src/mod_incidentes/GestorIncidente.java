@@ -15,22 +15,23 @@ import mod_paquetes.Seguimiento;
  */
 public class GestorIncidente {
     // Instancia de Incidente que será manejada por este gestor
-    Incidente incidente;
+    EstadoIncidente incidente;
     
     /**
      * Constructor de la clase GestorIncidente.
      * 
      * @param incidente Instancia de la clase Incidente que será gestionada.
      */
-    public GestorIncidente(Incidente incidente) {
+    public GestorIncidente(EstadoIncidente incidente) {
         this.incidente = incidente;
     }
     
-    /**
-     * Método para crear un incidente asociado a un paquete.
-     * 
-     * @param paquete El paquete al cual se le asociará el incidente.
-     */
+//    /**
+//     * Método para crear un incidente asociado a un paquete.
+//     * Registra el incidente y lo añade al seguimiento del paquete.
+//     * 
+//     * @param paquete El paquete al cual se le registrará el incidente.
+//     */
     public void crearIncidente(Paquete paquete) {
         // Registra el incidente utilizando el método registrar() de la instancia incidente
         String registro = incidente.registrar();
@@ -46,8 +47,8 @@ public class GestorIncidente {
      * @param paquete El paquete al cual se le resolverá el incidente.
      * @param argumentos Argumentos necesarios para resolver el incidente.
      */
-    public void resolverIncidente(Paquete paquete, String ... argumentos) {
-        // Resuelve el incidente utilizando el método resolver() de la instancia incidente
+    public void iniciarSoporte(Paquete paquete, String ... argumentos) {
+        // Resolver el incidente utilizando el método resolver del objeto incidente
         String registro = incidente.resolver(argumentos);
         // Obtiene el seguimiento del paquete
         Seguimiento seguimiento = paquete.obtenerSeguimiento();

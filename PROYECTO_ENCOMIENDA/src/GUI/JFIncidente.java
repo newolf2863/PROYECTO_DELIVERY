@@ -6,7 +6,7 @@ package GUI;
 
 import mod_incidentes.ErrorDireccion;
 import mod_incidentes.GestorIncidente;
-import mod_incidentes.Incidente;
+import mod_incidentes.EstadoIncidente;
 import mod_incidentes.PaqueteEstropeado;
 import mod_incidentes.PaquetePerdido;
 import java.sql.Connection;
@@ -541,7 +541,7 @@ public class JFIncidente extends javax.swing.JFrame {
     private void jBRegistrarIncidenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBRegistrarIncidenteActionPerformed
         String incidente = (String) seleccionIncidentes.getSelectedItem();
         Paquete paquete = Inventario.obtenerInstancia().obtenerPaquete(jTCodigoTracking.getText());
-        Incidente incidenteRegistrar = null;
+        EstadoIncidente incidenteRegistrar = null;
         switch (incidente) {
             case "Error Dirección" -> incidenteRegistrar = new ErrorDireccion();
             case "Paquete Estropeado" -> incidenteRegistrar = new PaqueteEstropeado();
@@ -660,7 +660,7 @@ public class JFIncidente extends javax.swing.JFrame {
     );
 
     if (respuesta == JOptionPane.YES_OPTION) {
-        Incidente incidenteRegistrar = crearIncidente(incidente);
+        EstadoIncidente incidenteRegistrar = crearIncidente(incidente);
 
         if (incidenteRegistrar == null) {
             mostrarMensaje("Tipo de incidente no reconocido", "Error");
@@ -679,7 +679,7 @@ public class JFIncidente extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jBResolverIncidenteActionPerformed
 
-    private Incidente crearIncidente(String tipoIncidente) {
+    private EstadoIncidente crearIncidente(String tipoIncidente) {
     return switch (tipoIncidente) {
         case "Error Dirección" -> new ErrorDireccion();
         case "Paquete Estropeado" -> new PaqueteEstropeado();

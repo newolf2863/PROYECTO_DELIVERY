@@ -11,7 +11,7 @@ package mod_incidentes;
  *
  * @autor Rodrigo Haro
  */
-public class PaqueteEstropeado extends Incidente {
+public class PaqueteEstropeado extends EstadoIncidente {
 
     /**
      * Registra el incidente de paquete estropeado.
