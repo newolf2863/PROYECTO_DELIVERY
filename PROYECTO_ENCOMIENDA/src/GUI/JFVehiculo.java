@@ -22,7 +22,7 @@ import java.util.logging.Logger;
 import javax.swing.JLabel;
 import mod_administracion.Conductor;
 import mod_paquetes.Paquete;
-import mod_paquetes.Provincia;
+import mod_transporte.Provincia;
 import mod_transporte.Asignacion;
 import mod_transporte.Vehiculo;
 import validaciones.*;
@@ -56,10 +56,9 @@ public class JFVehiculo extends javax.swing.JFrame {
     DefaultTableModel modelo;
     //Mouse
     int xMouse, yMouse; 
-    public JFVehiculo(Connection cnx, Provincia sucursal) {
+    public JFVehiculo( Provincia sucursal) {
         initComponents();
         setIconImage(new ImageIcon(getClass().getResource("/iconos/icons8_Monitor_32px.png")).getImage());
-        this.cnx=cnx;
         //All Files	C:\Users\USUARIO\GitHub\PROYECTO_DELIVERY\PROYECTO_ENCOMIENDA\src\proyecto_encomienda\GESTION_PAQUETES\FRONTEND\imagenes\caja.png
         JFrame frame = new JFrame();
         frame.getRootPane().setWindowDecorationStyle(JRootPane.NONE);
@@ -78,13 +77,6 @@ public class JFVehiculo extends javax.swing.JFrame {
 
     }
     
-    public JFVehiculo() {
-        initComponents();
-        setIconImage(new ImageIcon(getClass().getResource("/proyecto_encomienda/GESTION_PAQUETES/FRONTEND/imagenes/icons8_Monitor_32px.png")).getImage());
-        JFrame frame = new JFrame();
-        frame.getRootPane().setWindowDecorationStyle(JRootPane.NONE);
-        setLocationRelativeTo(null);
-    }
 
   public boolean fechaVacia(JDateChooser dateChooser, JLabel label) {
         if (dateChooser.getDate() == null) {
@@ -433,7 +425,7 @@ public class JFVehiculo extends javax.swing.JFrame {
         jPDatosRecuperadosEmpleados.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel38.setText("Placa");
-        jPDatosRecuperadosEmpleados.add(jLabel38, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 160, 34, 22));
+        jPDatosRecuperadosEmpleados.add(jLabel38, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 90, 34, 22));
 
         jTPlacaVehiculo2.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
@@ -453,7 +445,7 @@ public class JFVehiculo extends javax.swing.JFrame {
                 jTPlacaVehiculo2KeyTyped(evt);
             }
         });
-        jPDatosRecuperadosEmpleados.add(jTPlacaVehiculo2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 160, 210, -1));
+        jPDatosRecuperadosEmpleados.add(jTPlacaVehiculo2, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 90, 210, -1));
 
         jPanel46.setBorder(javax.swing.BorderFactory.createTitledBorder("Conductor Asignado"));
         jPanel46.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -465,11 +457,11 @@ public class JFVehiculo extends javax.swing.JFrame {
                 jTNombreDespachador3ActionPerformed(evt);
             }
         });
-        jPanel46.add(jTNombreDespachador3, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 40, 206, -1));
+        jPanel46.add(jTNombreDespachador3, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 90, 206, -1));
 
         jTTelefono1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jTTelefono1.setEnabled(false);
-        jPanel46.add(jTTelefono1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 70, 206, -1));
+        jPanel46.add(jTTelefono1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 120, 206, -1));
 
         jTCorreo1.setEnabled(false);
         jTCorreo1.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -487,19 +479,19 @@ public class JFVehiculo extends javax.swing.JFrame {
                 jTCorreo1KeyReleased(evt);
             }
         });
-        jPanel46.add(jTCorreo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 110, 206, -1));
+        jPanel46.add(jTCorreo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 150, 206, -1));
 
         jLabel39.setText("Cedula");
-        jPanel46.add(jLabel39, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 55, -1));
+        jPanel46.add(jLabel39, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 55, -1));
 
         jLabel40.setText("Nombres");
-        jPanel46.add(jLabel40, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 55, -1));
+        jPanel46.add(jLabel40, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 90, 55, -1));
 
         jLabel41.setText("Telefono");
-        jPanel46.add(jLabel41, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 70, 55, -1));
+        jPanel46.add(jLabel41, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 120, 55, -1));
 
         jLabel42.setText("Correo");
-        jPanel46.add(jLabel42, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 110, 55, -1));
+        jPanel46.add(jLabel42, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 150, 55, -1));
 
         jTCedula2.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
@@ -519,11 +511,11 @@ public class JFVehiculo extends javax.swing.JFrame {
                 jTCedula2KeyTyped(evt);
             }
         });
-        jPanel46.add(jTCedula2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 10, 206, -1));
+        jPanel46.add(jTCedula2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 50, 206, -1));
 
-        jPDatosRecuperadosEmpleados.add(jPanel46, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, -1, 140));
+        jPDatosRecuperadosEmpleados.add(jPanel46, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 270, 220));
 
-        jPAE.add(jPDatosRecuperadosEmpleados, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, 390, 270));
+        jPAE.add(jPDatosRecuperadosEmpleados, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, 680, 270));
 
         BActualizar.setText("Asignar");
         BActualizar.addActionListener(new java.awt.event.ActionListener() {
@@ -844,7 +836,7 @@ public class JFVehiculo extends javax.swing.JFrame {
         Provincia destino = null;
         Class<?> enumClass;
         try {
-            enumClass = Class.forName("mod_paquetes.Provincia");
+            enumClass = Class.forName("mod_transporte.Provincia");
             destino = (Provincia) Enum.valueOf((Class<Enum>) enumClass, JComboDestino1.getSelectedItem().toString());
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(JFPaquetes.class.getName()).log(Level.SEVERE, null, ex);
@@ -858,9 +850,8 @@ public class JFVehiculo extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "La placa no es válida.", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         } else {
-            Asignacion asignacion = Asignacion.obtenerInstancia();
-            Vehiculo vehiculo = asignacion.obtenerVehiculo(placa);
-            if(!asignacion.asignarPaquetesAVehiculo(vehiculo, destino)){
+            Vehiculo vehiculo = Asignacion.obtenerInstancia().obtenerVehiculo(placa);
+            if(!Asignacion.obtenerInstancia().asignarPaquetesAVehiculo(vehiculo, destino)){
                 JOptionPane.showMessageDialog(this, "No existen paquetes", "Error", JOptionPane.ERROR_MESSAGE);
                 return;
             }
@@ -888,40 +879,7 @@ public class JFVehiculo extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(JFVehiculo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(JFVehiculo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(JFVehiculo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(JFVehiculo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new JFVehiculo().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BActualizar;

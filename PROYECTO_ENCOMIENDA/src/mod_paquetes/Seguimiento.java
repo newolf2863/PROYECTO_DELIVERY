@@ -37,6 +37,7 @@ public class Seguimiento implements Serializable {
     
     public void resolverIncidente(String definicion) {
         resolucionIncidente = definicion;
+        registroIncidente = "";
     }
     
     public String obtenerRegistroIncidente() {

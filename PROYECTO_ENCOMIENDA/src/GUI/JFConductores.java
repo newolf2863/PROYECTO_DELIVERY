@@ -17,7 +17,7 @@ import java.util.List;
 import javax.swing.JLabel;
 import mod_administracion.Conductor;
 import mod_administracion.Recepcionista;
-import mod_paquetes.Provincia;
+import mod_transporte.Provincia;
 import mod_transporte.Asignacion;
 import validaciones.*;
 
@@ -95,6 +95,14 @@ public class JFConductores extends javax.swing.JFrame {
         jTNombreUsuario1 = new javax.swing.JTextField();
         jBRegistrarConductor = new javax.swing.JButton();
         jPPC = new javax.swing.JPanel();
+        jPIA = new javax.swing.JPanel();
+        jPanel4 = new javax.swing.JPanel();
+        jScrollPane7 = new javax.swing.JScrollPane();
+        jTablaConductor = new javax.swing.JTable();
+        jLabel5 = new javax.swing.JLabel();
+        jTCodigoEliminar = new javax.swing.JTextField();
+        jBEliminarConductor = new javax.swing.JButton();
+        jBConsultarConductor = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel69 = new javax.swing.JLabel();
         btnExit = new javax.swing.JButton();
@@ -295,15 +303,70 @@ public class JFConductores extends javax.swing.JFrame {
 
         jPGP.addTab("Registrar Conductor", jPPR);
 
+        jPIA.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 903, Short.MAX_VALUE)
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 474, Short.MAX_VALUE)
+        );
+
+        jPIA.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(1000, 110, -1, -1));
+
+        jTablaConductor.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane7.setViewportView(jTablaConductor);
+
+        jPIA.add(jScrollPane7, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 160, 650, 237));
+
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel5.setText("Cedula Conductor");
+        jPIA.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 50, -1, -1));
+        jPIA.add(jTCodigoEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 50, 200, 20));
+
+        jBEliminarConductor.setText("Eliminar");
+        jBEliminarConductor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBEliminarConductorActionPerformed(evt);
+            }
+        });
+        jPIA.add(jBEliminarConductor, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 430, -1, -1));
+
+        jBConsultarConductor.setText("Ver Conductor");
+        jBConsultarConductor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBConsultarConductorActionPerformed(evt);
+            }
+        });
+        jPIA.add(jBConsultarConductor, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 100, -1, -1));
+
         javax.swing.GroupLayout jPPCLayout = new javax.swing.GroupLayout(jPPC);
         jPPC.setLayout(jPPCLayout);
         jPPCLayout.setHorizontalGroup(
             jPPCLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1030, Short.MAX_VALUE)
+            .addGroup(jPPCLayout.createSequentialGroup()
+                .addComponent(jPIA, javax.swing.GroupLayout.PREFERRED_SIZE, 1030, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPPCLayout.setVerticalGroup(
             jPPCLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 565, Short.MAX_VALUE)
+            .addGroup(jPPCLayout.createSequentialGroup()
+                .addComponent(jPIA, javax.swing.GroupLayout.PREFERRED_SIZE, 575, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         jPGP.addTab("Eliminar Conductor", jPPC);
@@ -522,9 +585,74 @@ public class JFConductores extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jTClaveConductorKeyTyped
 
+    private void jBEliminarConductorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBEliminarConductorActionPerformed
+        int respuesta = JOptionPane.showConfirmDialog(
+            null,
+            "¿Estás seguro de que deseas eliminar el conductor con cedula: " + jTCodigoEliminar.getText() + "?",
+            "Confirmación de Eliminación",
+            JOptionPane.YES_NO_OPTION,
+            JOptionPane.WARNING_MESSAGE
+        );
+        if (respuesta == JOptionPane.YES_OPTION) {
+            String codigo = jTCodigoEliminar.getText();
+
+            // El usuario confirmó la eliminación
+            Conductor conductor = Asignacion.obtenerInstancia().obtenerConductorPorCedula(codigo);
+            Asignacion.obtenerInstancia().eliminarConductor(conductor);
+            Asignacion.obtenerInstancia().borrarRelacionConductorVehiculo(conductor);
+            Asignacion.obtenerInstancia().guardarConductores();
+            JOptionPane.showMessageDialog(
+                null,
+                "El conductor con cedula " + jTCodigoEliminar.getText() + " ha sido eliminado.",
+                "Eliminación Exitosa",
+                JOptionPane.INFORMATION_MESSAGE
+            );
+            DefaultTableModel modeloTabla = (DefaultTableModel) jTablaConductor.getModel();
+            modeloTabla.setRowCount(0);
+        } else {
+            // El usuario canceló la eliminación
+            JOptionPane.showMessageDialog(
+                null,
+                "La eliminación del conductor con cedula " + jTCodigoEliminar.getText() + " ha sido cancelada.",
+                "Eliminación Cancelada",
+                JOptionPane.INFORMATION_MESSAGE
+            );
+        }
+    }//GEN-LAST:event_jBEliminarConductorActionPerformed
+
+    private void jBConsultarConductorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBConsultarConductorActionPerformed
+        String codigo = jTCodigoEliminar.getText();
+        Conductor conductor = Asignacion.obtenerInstancia().obtenerConductorPorCedula(codigo);
+        if (codigo.isBlank()) {
+            JOptionPane.showMessageDialog(null, "Ingrese una cedula", "Llene el campo", JOptionPane.INFORMATION_MESSAGE);
+            return;
+        } else if (conductor == null) {
+            JOptionPane.showMessageDialog(null, "El Conductor no existe", "El Conductor no existe", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        DefaultTableModel model = new DefaultTableModel();
+        model.setRowCount(0);
+        String[] columnNames = {
+            "Cedula", "Nombres", "Email", "Telefono"
+        };
+        model.setColumnIdentifiers(columnNames);
+        model.addRow(new Object[]{
+                conductor.getCedula(),
+                conductor.getNombres() + " " + conductor.getApellidos(),
+                conductor.getEmail(),
+                conductor.getTelefono()
+            });
+        jTablaConductor.setModel(model);
+        jTablaConductor.setVisible(true);
+        jBEliminarConductor.setVisible(true);
+    }//GEN-LAST:event_jBConsultarConductorActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel JPProovedores;
     private javax.swing.JButton btnExit;
+    private javax.swing.JButton jBConsultarConductor;
+    private javax.swing.JButton jBEliminarConductor;
     private javax.swing.JButton jBRegistrarConductor;
     private javax.swing.JLabel jLabel107;
     private javax.swing.JLabel jLabel21;
@@ -532,25 +660,31 @@ public class JFConductores extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel26;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel69;
     private javax.swing.JLabel jLabel73;
     private javax.swing.JLabel jLabel87;
     private javax.swing.JTabbedPane jPGP;
+    private javax.swing.JPanel jPIA;
     private javax.swing.JPanel jPPC;
     private javax.swing.JPanel jPPR;
     private javax.swing.JPanel jPanel15;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane11;
+    private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JTextField jTApellidoConductor;
     private javax.swing.JTextField jTCedulaConductor;
     private javax.swing.JTextField jTClaveConductor;
+    private javax.swing.JTextField jTCodigoEliminar;
     private javax.swing.JTable jTConductores;
     private javax.swing.JTextField jTCorreoConductor;
     private javax.swing.JTextField jTDireccionConductor;
     private javax.swing.JTextField jTNombreConductor;
     private javax.swing.JTextField jTNombreUsuario1;
     private javax.swing.JTextField jTTelefonoConductor;
+    private javax.swing.JTable jTablaConductor;
     // End of variables declaration//GEN-END:variables
 
     private void vaciarCampos() {

@@ -8,20 +8,19 @@ import mod_paquetes.Paquete;
 import mod_paquetes.Seguimiento;
 
 /**
- * Clase que gestiona los incidentes relacionados con paquetes.
- * Permite crear y resolver incidentes utilizando un objeto de tipo Incidente.
+ * La clase GestorIncidente maneja la creación y resolución de incidentes asociados a paquetes.
+ * Utiliza una instancia de la clase Incidente para realizar las operaciones correspondientes.
  * 
  * @autor Rodrigo Haro
  */
 public class GestorIncidente {
-    // Atributo que representa el incidente a gestionar
+    // Instancia de Incidente que será manejada por este gestor
     Incidente incidente;
     
     /**
      * Constructor de la clase GestorIncidente.
-     * Inicializa el gestor con un objeto de tipo Incidente.
      * 
-     * @param incidente El incidente que será gestionado por esta clase.
+     * @param incidente Instancia de la clase Incidente que será gestionada.
      */
     public GestorIncidente(Incidente incidente) {
         this.incidente = incidente;
@@ -34,27 +33,26 @@ public class GestorIncidente {
 //     * @param paquete El paquete al cual se le registrará el incidente.
 //     */
     public void crearIncidente(Paquete paquete) {
-        // Registrar el incidente utilizando el método registrar del objeto incidente
+        // Registra el incidente utilizando el método registrar() de la instancia incidente
         String registro = incidente.registrar();
-        // Obtener el objeto Seguimiento del paquete
+        // Obtiene el seguimiento del paqueteguimiento seguimiento = paquete.obtenerS
         Seguimiento seguimiento = paquete.obtenerSeguimiento();
-        // Registrar el incidente en el seguimiento del paquete
+        // Registra el incidente en el seguimiento del paquete
         seguimiento.registrarIncidente(registro);
     }
     
     /**
      * Método para resolver un incidente asociado a un paquete.
-     * Resuelve el incidente con los argumentos proporcionados y actualiza el seguimiento del paquete.
      * 
-     * @param paquete El paquete cuyo incidente será resuelto.
+     * @param paquete El paquete al cual se le resolverá el incidente.
      * @param argumentos Argumentos necesarios para resolver el incidente.
      */
     public void iniciarSoporte(Paquete paquete, String ... argumentos) {
         // Resolver el incidente utilizando el método resolver del objeto incidente
         String registro = incidente.resolver(argumentos);
-        // Obtener el objeto Seguimiento del paquete
+        // Obtiene el seguimiento del paquete
         Seguimiento seguimiento = paquete.obtenerSeguimiento();
-        // Registrar la resolución del incidente en el seguimiento del paquete
+        // Registra la resolución del incidente en el seguimiento del paquete
         seguimiento.resolverIncidente(registro);
     }
 }

@@ -175,11 +175,7 @@ public class JFIncidente extends javax.swing.JFrame {
         jPanel10Layout.setHorizontalGroup(
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel10Layout.createSequentialGroup()
-                .addGap(30, 30, 30)
-                .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 622, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(34, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel10Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(37, Short.MAX_VALUE)
                 .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel10Layout.createSequentialGroup()
                         .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -192,7 +188,10 @@ public class JFIncidente extends javax.swing.JFrame {
                         .addGap(263, 263, 263))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel10Layout.createSequentialGroup()
                         .addComponent(jBConsultarPaquete)
-                        .addGap(113, 113, 113))))
+                        .addGap(113, 113, 113))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel10Layout.createSequentialGroup()
+                        .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 622, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(27, 27, 27))))
             .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel10Layout.createSequentialGroup()
                     .addGap(302, 302, 302)
@@ -433,7 +432,7 @@ public class JFIncidente extends javax.swing.JFrame {
         jLabel69.setText("Gestion de Envios");
 
         btnExit.setForeground(new java.awt.Color(255, 255, 255));
-        btnExit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/icons8_Delete_32px.png"))); // NOI18N
+        btnExit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/power_24dp.png"))); // NOI18N
         btnExit.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         btnExit.setContentAreaFilled(false);
         btnExit.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -543,12 +542,12 @@ public class JFIncidente extends javax.swing.JFrame {
         String incidente = (String) seleccionIncidentes.getSelectedItem();
         Paquete paquete = Inventario.obtenerInstancia().obtenerPaquete(jTCodigoTracking.getText());
         Incidente incidenteRegistrar = null;
-        if (incidente.equals("Error Dirección")) {
-            incidenteRegistrar = new ErrorDireccion();
-        } else if (incidente.equals("Paquete Estropeado")) {
-            incidenteRegistrar = new PaqueteEstropeado();
-        } else if (incidente.equals("Paquete Perdido")) {
-            incidenteRegistrar = new PaquetePerdido();
+        switch (incidente) {
+            case "Error Dirección" -> incidenteRegistrar = new ErrorDireccion();
+            case "Paquete Estropeado" -> incidenteRegistrar = new PaqueteEstropeado();
+            case "Paquete Perdido" -> incidenteRegistrar = new PaquetePerdido();
+            default -> {
+            }
         }
         if (!(paquete.obtenerEstado() instanceof Pendiente)) {
             JOptionPane.showMessageDialog(
@@ -575,6 +574,7 @@ public class JFIncidente extends javax.swing.JFrame {
                 "Registro Exitoso",
                 JOptionPane.INFORMATION_MESSAGE
             );
+            Inventario.obtenerInstancia().guardarInventario();
             DefaultTableModel modeloTabla = (DefaultTableModel) jTablaPaquete.getModel();
             modeloTabla.setRowCount(0);
         } else {
@@ -625,67 +625,82 @@ public class JFIncidente extends javax.swing.JFrame {
     }//GEN-LAST:event_jBConsultarIncidenteActionPerformed
 
     private void jBResolverIncidenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBResolverIncidenteActionPerformed
-        String incidente = (String) seleccionIncidentes1.getSelectedItem();
-        Paquete paquete = Inventario.obtenerInstancia().obtenerPaquete(jTCodigoResolver.getText());
-        Incidente incidenteRegistrar = null;
-        if (incidente.equals("Error Dirección")) {
-            incidenteRegistrar = new ErrorDireccion();
-        } else if (incidente.equals("Paquete Estropeado")) {
-            incidenteRegistrar = new PaqueteEstropeado();
-        } else if (incidente.equals("Paquete Perdido")) {
-            incidenteRegistrar = new PaquetePerdido();
-        }
-        if (!(paquete.obtenerEstado() instanceof Pendiente)) {
-            JOptionPane.showMessageDialog(
-                null,
-                "El paquete se encuentra fuera de su jurisdicción",
-                "Resolución falló",
-                JOptionPane.INFORMATION_MESSAGE
-            );
-            return;
-        }
-        String argumentos = jTArgumentos.getText();
-        if (argumentos.isBlank()) {
-            JOptionPane.showMessageDialog(
-                null,
-                "Ingrese los argumentos",
-                "Error",
-                JOptionPane.INFORMATION_MESSAGE
-            );
-            return;
-        }
-        int respuesta = JOptionPane.showConfirmDialog(
+    String incidente = (String) seleccionIncidentes1.getSelectedItem();
+    String codigoPaquete = jTCodigoResolver.getText();
+    // Validación temprana del código del paquete
+    if (codigoPaquete.isBlank()) {
+        JOptionPane.showMessageDialog(
             null,
-            "¿Estás seguro de que deseas resolver este incidente?",
-            "Confirmación de resolución",
-            JOptionPane.YES_NO_OPTION,
-            JOptionPane.WARNING_MESSAGE
+            "Ingrese el código del paquete",
+            "Error",
+            JOptionPane.INFORMATION_MESSAGE
         );
-        if (respuesta == JOptionPane.YES_OPTION) {
-            String[] partes = argumentos.split("\\s+");
-            GestorIncidente gi = new GestorIncidente(incidenteRegistrar);
-            for (String parte : partes) {
-                System.out.println(parte);
-            }
-            gi.resolverIncidente(paquete, partes);
-            JOptionPane.showMessageDialog(
-                null,
-                "El incidente se ha resuelto",
-                "Resolución Exitosa",
-                JOptionPane.INFORMATION_MESSAGE
-            );
-            DefaultTableModel modeloTabla = (DefaultTableModel) jTIncidente.getModel();
-            modeloTabla.setRowCount(0);
-        } else {
-            JOptionPane.showMessageDialog(
-                null,
-                "La resolución del incidente se ha cancelado",
-                "Resolución Cancelada",
-                JOptionPane.INFORMATION_MESSAGE
-            );
+        return;
+    }
+
+    Paquete paquete = Inventario.obtenerInstancia().obtenerPaquete(codigoPaquete);
+    
+    if (!(paquete.obtenerEstado() instanceof Pendiente)) {
+        mostrarMensaje("El paquete se encuentra fuera de su jurisdicción", "Resolución falló");
+        return;
+    }
+
+    String argumentos = jTArgumentos.getText();
+    if (argumentos.isBlank()) {
+        mostrarMensaje("Ingrese los argumentos", "Error");
+        return;
+    }
+
+    int respuesta = JOptionPane.showConfirmDialog(
+        null,
+        "¿Estás seguro de que deseas resolver este incidente?",
+        "Confirmación de resolución",
+        JOptionPane.YES_NO_OPTION,
+        JOptionPane.WARNING_MESSAGE
+    );
+
+    if (respuesta == JOptionPane.YES_OPTION) {
+        Incidente incidenteRegistrar = crearIncidente(incidente);
+
+        if (incidenteRegistrar == null) {
+            mostrarMensaje("Tipo de incidente no reconocido", "Error");
+            return;
         }
+
+        GestorIncidente gestor = new GestorIncidente(incidenteRegistrar);
+        String[] partes = argumentos.split("\\s+");
+        gestor.resolverIncidente(paquete, partes);
+
+        mostrarMensaje("El incidente se ha resuelto", "Resolución Exitosa");
+        actualizarTablaIncidentes();
+    } else {
+        mostrarMensaje("La resolución del incidente se ha cancelado", "Resolución Cancelada");
+    }
+
     }//GEN-LAST:event_jBResolverIncidenteActionPerformed
 
+    private Incidente crearIncidente(String tipoIncidente) {
+    return switch (tipoIncidente) {
+        case "Error Dirección" -> new ErrorDireccion();
+        case "Paquete Estropeado" -> new PaqueteEstropeado();
+        case "Paquete Perdido" -> new PaquetePerdido();
+        default -> null;
+    };
+}
+
+private void mostrarMensaje(String mensaje, String titulo) {
+    JOptionPane.showMessageDialog(
+        null,
+        mensaje,
+        titulo,
+        JOptionPane.INFORMATION_MESSAGE
+    );
+}
+
+private void actualizarTablaIncidentes() {
+    DefaultTableModel modeloTabla = (DefaultTableModel) jTIncidente.getModel();
+    modeloTabla.setRowCount(0);
+}
     private void jTArgumentosFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTArgumentosFocusLost
         // TODO add your handling code here:
     }//GEN-LAST:event_jTArgumentosFocusLost

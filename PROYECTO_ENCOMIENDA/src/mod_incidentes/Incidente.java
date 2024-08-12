@@ -5,8 +5,8 @@
 package mod_incidentes;
 
 /**
- * Clase abstracta que representa un incidente.
- * Define los métodos que deben ser implementados por las clases que hereden de esta.
+ * La clase abstracta Incidente define el comportamiento general para manejar incidentes.
+ * Esta clase debe ser extendida por clases concretas que implementen los métodos abstractos.
  * 
  * @autor Rodrigo Haro
  */
@@ -14,18 +14,18 @@ public abstract class Incidente {
     
     /**
      * Método abstracto para registrar un incidente.
-     * Debe ser implementado por las clases que hereden de Incidente.
+     * Las clases que extiendan esta clase deben proporcionar una implementación concreta.
      * 
-     * @return Una cadena de texto con la descripción del registro del incidente.
+     * @return Una cadena que describe el registro del incidente.
      */
     public abstract String registrar();
     
     /**
      * Método abstracto para resolver un incidente.
-     * Debe ser implementado por las clases que hereden de Incidente.
+     * Las clases que extiendan esta clase deben proporcionar una implementación concreta.
      * 
-     * @param argumentos Un array de Strings que contiene los argumentos necesarios para resolver el incidente.
-     * @return Una cadena de texto con la descripción de la resolución del incidente.
+     * @param argumentos Argumentos necesarios para resolver el incidente.
+     * @return Una cadena que describe la resolución del incidente.
      */
     public abstract String resolver(String[] argumentos);
 }
