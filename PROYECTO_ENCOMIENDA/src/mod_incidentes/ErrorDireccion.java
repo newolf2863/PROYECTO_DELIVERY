@@ -10,7 +10,7 @@ package mod_incidentes;
  * 
  * @autor Rodrigo Haro
  */
-public class ErrorDireccion extends Incidente {
+public class ErrorDireccion extends EstadoIncidente {
 
     /**
      * Método para registrar el incidente de error en la dirección.

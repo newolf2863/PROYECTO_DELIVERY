@@ -15,14 +15,14 @@ import mod_paquetes.Seguimiento;
  */
 public class GestorIncidente {
     // Instancia de Incidente que será manejada por este gestor
-    Incidente incidente;
+    EstadoIncidente incidente;
     
     /**
      * Constructor de la clase GestorIncidente.
      * 
      * @param incidente Instancia de la clase Incidente que será gestionada.
      */
-    public GestorIncidente(Incidente incidente) {
+    public GestorIncidente(EstadoIncidente incidente) {
         this.incidente = incidente;
     }
     

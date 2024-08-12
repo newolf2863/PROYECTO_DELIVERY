@@ -21,7 +21,7 @@ import javax.swing.table.DefaultTableModel;
 import mod_administracion.Cliente;
 import mod_incidentes.ErrorDireccion;
 import mod_incidentes.GestorIncidente;
-import mod_incidentes.Incidente;
+import mod_incidentes.EstadoIncidente;
 import mod_incidentes.PaqueteEstropeado;
 import mod_incidentes.PaquetePerdido;
 import mod_paquetes.Entregado;
@@ -368,7 +368,7 @@ public class JFPaquetesCliente extends javax.swing.JFrame {
     private void jBRegistrarIncidenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBRegistrarIncidenteActionPerformed
         String incidente = (String) seleccionIncidentes.getSelectedItem();
         Paquete paquete = Inventario.obtenerInstancia().obtenerPaquete(jTCodigo.getText());
-        Incidente incidenteRegistrar = new ErrorDireccion();
+        EstadoIncidente incidenteRegistrar = new ErrorDireccion();
         if (incidente.equals("Error Dirección")) {
             incidenteRegistrar = new ErrorDireccion();
         } else if (incidente.equals("Paquete Estropeado")) {
