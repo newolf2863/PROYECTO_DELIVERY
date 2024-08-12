@@ -24,9 +24,9 @@ public final class Inventario {
         return instancia;
     }
 
-    public Paquete agregarPaquete(double volumen, double peso, String contenido, Usuario remitente, Provincia provinciaOrigen, Provincia provinciaDestino, String direccionDestino, String nombreDestinatario) {
+    public Paquete agregarPaquete(double volumen, double peso, String contenido, Usuario remitente, Provincia provinciaOrigen, Provincia provinciaDestino, String direccionDestino, String nombreDestinatario, double  PrecioEstimadoVolumen) {
         String nuevoCodigo = getSiguienteCodigoTracking();
-        Paquete paquete = new Paquete(nuevoCodigo, volumen, peso, contenido, remitente, provinciaOrigen, provinciaDestino, direccionDestino, nombreDestinatario);
+        Paquete paquete = new Paquete(nuevoCodigo, volumen, peso, contenido, remitente, provinciaOrigen, provinciaDestino, direccionDestino, nombreDestinatario, PrecioEstimadoVolumen);
         paquetes.add(paquete);
         return paquete;
     }

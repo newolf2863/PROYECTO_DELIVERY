@@ -12,6 +12,7 @@ public class Paquete implements Serializable {
     private String codigoTracking;
     private double volumen;
     private double peso;
+    private double precioEstimadoContenido;
     private String contenido;
     private Usuario remitente;
     private Provincia provinciaOrigen;
@@ -20,8 +21,12 @@ public class Paquete implements Serializable {
     private String nombreDestinatario;
     private EstadoDelPaquete estado;
     private Seguimiento seguimiento;
+    
 
-    public Paquete(String codigoTracking, double volumen, double peso, String contenido, Usuario remitente, Provincia provinciaOrigen, Provincia provinciaDestino, String direccionDestino, String nombreDestinatario) {
+    public Paquete(String codigoTracking, double volumen, double peso, 
+            String contenido, Usuario remitente, Provincia provinciaOrigen, 
+            Provincia provinciaDestino, String direccionDestino, 
+            String nombreDestinatario, double precioEstimadoContenido) {
         this.codigoTracking = codigoTracking;
         this.volumen = volumen;
         this.peso = peso;
@@ -33,6 +38,7 @@ public class Paquete implements Serializable {
         this.nombreDestinatario = nombreDestinatario;
         this.estado = new Pendiente(this);
         this.seguimiento = new Seguimiento(estado);
+        this.precioEstimadoContenido = precioEstimadoContenido; 
     }
 
     public void cambiarEstado(EstadoDelPaquete estado) {
@@ -100,6 +106,14 @@ public class Paquete implements Serializable {
     public String getNombreDestinatario() {
         return nombreDestinatario;
     }
+    
+    public double getPrecioEstimadoContenido() {
+        return precioEstimadoContenido;
+    }
+
+    public void setPrecioEstimadoContenido(double precioEstimadoContenido) {
+        this.precioEstimadoContenido = precioEstimadoContenido;
+    }    
 
     public String toString() {
         return "Paquete: \n" +

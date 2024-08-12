@@ -617,33 +617,44 @@ public class JFIncidente extends javax.swing.JFrame {
 
         // Switch para manejar cada tipo de incidente
         switch (incidente) {
-            case "Paquete Estropeado" -> {
-                // Resolver el incidente y obtener el precio total
+            case "Paquete Estropeado":
+            case "Paquete Perdido": {
+        // Resolver el incidente y obtener el precio total
                 ArrayList<Factura> facturas = solucionDevolucion.cargarFacturas();
                 Factura factura = solucionDevolucion.obtenerFacturaPorCodigoTracking(facturas, codigoTracking);
                 if (factura != null) {
                     double precioEnvio = factura.obtenerPrecio().getPrecioTotalPaquete();
+                    if (incidente.equals("Paquete Perdido")) {
+                        jTArgumentos.setText("Valor del reembolso: $" + precioEnvio + ". Estado del paquete (Recuperado/Desconocido)");
+                        jTArgumentos.setEnabled(true); // Permite la edición para ingresar el estado del paquete
+                } else {
                     jTArgumentos.setText("Valor del reembolso: $" + precioEnvio);
+                    jTArgumentos.setEnabled(false); // Deshabilita la casilla para no permitir la edición
+                }
                 } else {
                     mostrarMensaje("Factura no encontrada para el código de tracking: " + codigoTracking, "Error");
-                    jTArgumentos.setText("Reembolso por daños");
+                    if (incidente.equals("Paquete Perdido")) {
+                        jTArgumentos.setText("Reembolso por paquete perdido. Estado del paquete (Recuperado/Desconocido)");
+                        jTArgumentos.setEnabled(true); // Permite la edición para ingresar el estado del paquete
+                    } else {
+                        jTArgumentos.setText("Reembolso por daños");
+                        jTArgumentos.setEnabled(false); // Deshabilita la casilla para no permitir la edición
+                    }
                 }
-                jTArgumentos.setEnabled(false); // Deshabilita la casilla para no permitir la edición
+                break;
             }
-            case "Error Dirección" -> {
+            case "Error Dirección": {
                 jTArgumentos.setText("Ingrese la nueva dirección de entrega");
                 jTArgumentos.setEnabled(true); // Habilita la casilla para permitir la corrección
+                break;
             }
-            case "Paquete Perdido" -> {
-                jTArgumentos.setText("Ingrese el estado del paquete (Recuperado/Desconocido)");
-                jTArgumentos.setEnabled(true); // Deshabilita la casilla
-            }
-            default -> {
+            default: {
                 jTArgumentos.setText("");
                 jTArgumentos.setEnabled(false); // Deshabilita la casilla por defecto
                 mostrarMensaje("Tipo de incidente no reconocido", "Error");
+            break;
             }
-        } 
+        }
     }//GEN-LAST:event_seleccionIncidentes1ActionPerformed
 
     private void jTCodigoResolverFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTCodigoResolverFocusLost
