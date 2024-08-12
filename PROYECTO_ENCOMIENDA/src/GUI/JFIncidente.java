@@ -627,10 +627,10 @@ public class JFIncidente extends javax.swing.JFrame {
                     if (incidente.equals("Paquete Perdido")) {
                         jTArgumentos.setText("Valor del reembolso: $" + precioEnvio + ". Estado del paquete (Recuperado/Desconocido)");
                         jTArgumentos.setEnabled(true); // Permite la edición para ingresar el estado del paquete
-                } else {
-                    jTArgumentos.setText("Valor del reembolso: $" + precioEnvio);
-                    jTArgumentos.setEnabled(false); // Deshabilita la casilla para no permitir la edición
-                }
+                    } else {
+                        jTArgumentos.setText("Valor del reembolso: $" + precioEnvio);
+                        jTArgumentos.setEnabled(false); // Deshabilita la casilla para no permitir la edición
+                    }
                 } else {
                     mostrarMensaje("Factura no encontrada para el código de tracking: " + codigoTracking, "Error");
                     if (incidente.equals("Paquete Perdido")) {
