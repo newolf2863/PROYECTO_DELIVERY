@@ -600,7 +600,7 @@ public class JFMenuConductor extends javax.swing.JFrame {
         contenido.show(panelContent, "card1");
         cambiarSeccionMenu(0);
         menuinventario.setBackground(Color.decode("#494848"));
-        JFrame ventanaIncidentes = new JFIncidenteConductor(inventario);
+        JFrame ventanaIncidentes = new JFIncidenteConductor1(inventario);
         VentanaManager.getInstance().mostrarVentana("Incidentes", ventanaIncidentes);
         jLInicio.setText("Paquetes");
     }//GEN-LAST:event_menuIncidentesMouseClicked

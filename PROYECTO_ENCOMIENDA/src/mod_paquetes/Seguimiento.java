@@ -47,4 +47,8 @@ public class Seguimiento implements Serializable {
     public String obtenerResolucion() {
         return this.resolucionIncidente;
     }
+
+    public void limpiarIncidente() {
+        throw new UnsupportedOperationException("Resuelto"); 
+    }
 }

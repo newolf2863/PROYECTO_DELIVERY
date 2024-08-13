@@ -9,9 +9,11 @@ import mod_incidentes.GestorIncidente;
 import mod_incidentes.EstadoIncidente;
 import mod_incidentes.PaqueteEstropeado;
 import mod_incidentes.PaquetePerdido;
+import mod_incidentes.PaqueteRechazado;
 import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.DefaultCellEditor;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -22,9 +24,7 @@ import javax.swing.table.DefaultTableModel;
 import mod_administracion.Recepcionista;
 import mod_facturacion.Factura;
 import mod_incidentes.*;
-import mod_paquetes.Inventario;
-import mod_paquetes.Paquete;
-import mod_paquetes.Pendiente;
+import mod_paquetes.*;
 import mod_paquetes.Seguimiento;
 import validaciones.*;
 
@@ -120,7 +120,7 @@ public class JFIncidente extends javax.swing.JFrame {
 
         jPanel10.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        seleccionIncidentes.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecciona", "Daño en el Paquete", "Error de Dirección", "Paquete Perdido" }));
+        seleccionIncidentes.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecciona", "Daño en el Paquete", "Error de Dirección", "Paquete Perdido", "Paquete Rechazado" }));
         seleccionIncidentes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 seleccionIncidentesActionPerformed(evt);
@@ -343,10 +343,10 @@ public class JFIncidente extends javax.swing.JFrame {
                         .addGap(30, 30, 30)
                         .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 622, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel11Layout.createSequentialGroup()
-                        .addGap(176, 176, 176)
+                        .addGap(156, 156, 156)
                         .addComponent(jLabel138, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jTArgumentos, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTArgumentos, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(34, Short.MAX_VALUE))
             .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel11Layout.createSequentialGroup()
@@ -543,118 +543,144 @@ public class JFIncidente extends javax.swing.JFrame {
     }//GEN-LAST:event_jTCodigoTrackingActionPerformed
 
     private void jBRegistrarIncidenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBRegistrarIncidenteActionPerformed
-        String incidente = (String) seleccionIncidentes.getSelectedItem();
-        Paquete paquete = Inventario.obtenerInstancia().obtenerPaquete(jTCodigoTracking.getText());
-        EstadoIncidente incidenteRegistrar = null;
-        switch (incidente) {
-            case "Error Dirección" ->
-                incidenteRegistrar = new ErrorDireccion();
-            case "Paquete Estropeado" ->
-                incidenteRegistrar = new PaqueteEstropeado();
-            case "Paquete Perdido" ->
-                incidenteRegistrar = new PaquetePerdido();
-            default -> {
-            }
-        }
-        if (!(paquete.obtenerEstado() instanceof Pendiente)) {
-            JOptionPane.showMessageDialog(
-                    null,
-                    "El paquete se encuentra fuera de su jurisdicción",
-                    "Registro falló",
-                    JOptionPane.INFORMATION_MESSAGE
-            );
-            return;
-        }
-        int respuesta = JOptionPane.showConfirmDialog(
-                null,
-                "¿Estás seguro de que deseas registrar este incidente?",
-                "Confirmación de registro",
-                JOptionPane.YES_NO_OPTION,
-                JOptionPane.WARNING_MESSAGE
+        
+         String incidente = (String) seleccionIncidentes.getSelectedItem();
+    if (incidente == null || incidente.isEmpty()) {
+        JOptionPane.showMessageDialog(
+            null,
+            "Por favor, selecciona un tipo de incidente",
+            "Selección inválida",
+            JOptionPane.WARNING_MESSAGE
         );
-        if (respuesta == JOptionPane.YES_OPTION) {
-            GestorIncidente gi = new GestorIncidente(incidenteRegistrar);
-            gi.crearIncidente(paquete);
-            JOptionPane.showMessageDialog(
-                    null,
-                    "El incidente se ha registrado",
-                    "Registro Exitoso",
-                    JOptionPane.INFORMATION_MESSAGE
-            );
-            Inventario.obtenerInstancia().guardarInventario();
-            DefaultTableModel modeloTabla = (DefaultTableModel) jTablaPaquete.getModel();
-            modeloTabla.setRowCount(0);
-        } else {
-            JOptionPane.showMessageDialog(
-                    null,
-                    "El registro del incidente se ha cancelado",
-                    "Registro Cancelado",
-                    JOptionPane.INFORMATION_MESSAGE
-            );
-        }
+        return;
+    }
+
+    Paquete paquete = Inventario.obtenerInstancia().obtenerPaquete(jTCodigoTracking.getText());
+    if (!esEstadoValido(paquete)) {
+        mostrarMensaje("El paquete se encuentra fuera de su jurisdicción", "Registro falló");
+        return;
+    }
+
+    EstadoIncidente incidenteRegistrar = crearIncidente(incidente);
+    if (incidenteRegistrar == null) {
+        mostrarMensaje("El tipo de incidente no es válido", "Registro falló");
+        return;
+    }
+
+    if (confirmarRegistro()) {
+        GestorIncidente gi = new GestorIncidente(incidenteRegistrar);
+        gi.crearIncidente(paquete);
+        mostrarMensaje("El incidente se ha registrado", "Registro Exitoso");
+        Inventario.obtenerInstancia().guardarInventario();
+        actualizarTablaPaquetes();
+    } else {
+        mostrarMensaje("El registro del incidente se ha cancelado", "Registro Cancelado");
+    }
     }//GEN-LAST:event_jBRegistrarIncidenteActionPerformed
+
+    
+        private boolean esEstadoValido(Paquete paquete) {
+    return paquete != null && paquete.obtenerEstado() instanceof Pendiente;
+}
+
+private EstadoIncidente crearIncidente(String tipoIncidente) {
+    return switch (tipoIncidente) {
+        case "Error Dirección" -> new ErrorDireccion();
+        case "Paquete Estropeado" -> new PaqueteEstropeado();
+        case "Paquete Perdido" -> new PaquetePerdido();
+        case "Paquete Rechazado" -> new PaqueteRechazado();
+        default -> null;
+    };
+}
+
+private boolean confirmarRegistro() {
+    int respuesta = JOptionPane.showConfirmDialog(
+        null,
+        "¿Estás seguro de que deseas registrar este incidente?",
+        "Confirmación de registro",
+        JOptionPane.YES_NO_OPTION,
+        JOptionPane.WARNING_MESSAGE
+    );
+    return respuesta == JOptionPane.YES_OPTION;
+}
+
+private void mostrarMensaje(String mensaje, String titulo) {
+    JOptionPane.showMessageDialog(
+        null,
+        mensaje,
+        titulo,
+        JOptionPane.INFORMATION_MESSAGE
+    );
+}
+
+private void actualizarTablaPaquetes() {
+    DefaultTableModel modeloTabla = (DefaultTableModel) jTablaPaquete.getModel();
+    modeloTabla.setRowCount(0);
+}
+    
+
 
     private void seleccionIncidentes1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_seleccionIncidentes1ActionPerformed
     // Verificar si la inicialización ha terminado
-        if (!isInitialized) {
-            return;
-        }
-
-        String incidente = (String) seleccionIncidentes1.getSelectedItem();
-        // Verificación de null
-        if (incidente == null) {
-            mostrarMensaje("Seleccione un tipo de incidente", "Error");
-            return;
-        }
-
-        String codigoTracking = jTCodigoResolver.getText().trim();
-        if (codigoTracking.isEmpty()) {
-            mostrarMensaje("Ingrese un código de tracking válido", "Error");
-            return;
-        }
-
-        SolucionDevolucion solucionDevolucion = new SolucionDevolucion();
-
-        // Switch para manejar cada tipo de incidente
-        switch (incidente) {
-            case "Paquete Estropeado":
-            case "Paquete Perdido": {
-        // Resolver el incidente y obtener el precio total
-                ArrayList<Factura> facturas = solucionDevolucion.cargarFacturas();
-                Factura factura = solucionDevolucion.obtenerFacturaPorCodigoTracking(facturas, codigoTracking);
-                if (factura != null) {
-                    double precioEnvio = factura.obtenerPrecio().getPrecioTotalPaquete();
-                    if (incidente.equals("Paquete Perdido")) {
-                        jTArgumentos.setText("Valor del reembolso: $" + precioEnvio);
-                        jTArgumentos.setEnabled(false); // Permite la edición para ingresar el estado del paquete
-                    } else {
-                        jTArgumentos.setText("Valor del reembolso: $" + precioEnvio);
-                        jTArgumentos.setEnabled(false); // Deshabilita la casilla para no permitir la edición
-                    }
-                } else {
-                    mostrarMensaje("Factura no encontrada para el código de tracking: " + codigoTracking, "Error");
-                    if (incidente.equals("Paquete Perdido")) {
-                        jTArgumentos.setText("Reembolso por paquete perdido. Estado del paquete (Recuperado/Desconocido)");
-                        jTArgumentos.setEnabled(false); // Permite la edición para ingresar el estado del paquete
-                    } else {
-                        jTArgumentos.setText("Reembolso por daños");
-                        jTArgumentos.setEnabled(false); // Deshabilita la casilla para no permitir la edición
-                    }
-                }
-                break;
-            }
-            case "Error Dirección": {
-                jTArgumentos.setText("Ingrese la nueva dirección de entrega");
-                jTArgumentos.setEnabled(true); // Habilita la casilla para permitir la corrección
-                break;
-            }
-            default: {
-                jTArgumentos.setText("");
-                jTArgumentos.setEnabled(false); // Deshabilita la casilla por defecto
-                mostrarMensaje("Tipo de incidente no reconocido", "Error");
-            break;
-            }
-        }
+//        if (!isInitialized) {
+//            return;
+//        }
+//
+//        String incidente = (String) seleccionIncidentes1.getSelectedItem();
+//        // Verificación de null
+//        if (incidente == null) {
+//            mostrarMensaje("Seleccione un tipo de incidente", "Error");
+//            return;
+//        }
+//
+//        String codigoTracking = jTCodigoResolver.getText().trim();
+//        if (codigoTracking.isEmpty()) {
+//            mostrarMensaje("Ingrese un código de tracking válido", "Error");
+//            return;
+//        }
+//
+//        SolucionDevolucion solucionDevolucion = new SolucionDevolucion();
+//
+//        // Switch para manejar cada tipo de incidente
+//        switch (incidente) {
+//            case "Paquete Estropeado":
+//            case "Paquete Perdido": {
+//        // Resolver el incidente y obtener el precio total
+//                ArrayList<Factura> facturas = solucionDevolucion.cargarFacturas();
+//                Factura factura = solucionDevolucion.obtenerFacturaPorCodigoTracking(facturas, codigoTracking);
+//                if (factura != null) {
+//                    double precioEnvio = factura.obtenerPrecio().getPrecioTotalPaquete();
+//                    if (incidente.equals("Paquete Perdido")) {
+//                        jTArgumentos.setText("Valor del reembolso: $" + precioEnvio);
+//                        jTArgumentos.setEnabled(false); // Permite la edición para ingresar el estado del paquete
+//                    } else {
+//                        jTArgumentos.setText("Valor del reembolso: $" + precioEnvio);
+//                        jTArgumentos.setEnabled(false); // Deshabilita la casilla para no permitir la edición
+//                    }
+//                } else {
+//                    mostrarMensaje("Factura no encontrada para el código de tracking: " + codigoTracking, "Error");
+//                    if (incidente.equals("Paquete Perdido")) {
+//                        jTArgumentos.setText("Reembolso por paquete perdido. Estado del paquete (Recuperado/Desconocido)");
+//                        jTArgumentos.setEnabled(false); // Permite la edición para ingresar el estado del paquete
+//                    } else {
+//                        jTArgumentos.setText("Reembolso por daños");
+//                        jTArgumentos.setEnabled(false); // Deshabilita la casilla para no permitir la edición
+//                    }
+//                }
+//                break;
+//            }
+//            case "Error Dirección": {
+//                jTArgumentos.setText("Ingrese la nueva dirección de entrega");
+//                jTArgumentos.setEnabled(true); // Habilita la casilla para permitir la corrección
+//                break;
+//            }
+//            default: {
+//                jTArgumentos.setText("");
+//                jTArgumentos.setEnabled(false); // Deshabilita la casilla por defecto
+//                mostrarMensaje("Tipo de incidente no reconocido", "Error");
+//            break;
+//            }
+//        }
     }//GEN-LAST:event_seleccionIncidentes1ActionPerformed
 
     private void jTCodigoResolverFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTCodigoResolverFocusLost
@@ -669,125 +695,207 @@ public class JFIncidente extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTCodigoResolverKeyReleased
 
+    
     private void jBConsultarIncidenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBConsultarIncidenteActionPerformed
         Inventario inventario = Inventario.obtenerInstancia();
-        if (jTCodigoResolver.getText().isBlank()) {
-            JOptionPane.showMessageDialog(null, "Ingrese un código tracking", "Llene el campo", JOptionPane.INFORMATION_MESSAGE);
-            return;
+        String codigoTracking = jTCodigoResolver.getText().trim();
+
+        if (codigoTracking.isEmpty()) {
+        mostrarMensaje("Ingrese un código tracking", "Llene el campo", JOptionPane.INFORMATION_MESSAGE);
+        return;
+    }
+
+    if (!inventario.existePaquete(codigoTracking)) {
+        mostrarMensaje("El paquete no existe", "Código tracking no existe", JOptionPane.ERROR_MESSAGE);
+        return;
+    }
+
+    Paquete paquete = inventario.obtenerPaquete(codigoTracking);
+    Seguimiento seguimiento = paquete.obtenerSeguimiento();
+    
+    DefaultTableModel model = new DefaultTableModel() {
+        @Override
+        public boolean isCellEditable(int row, int column) {
+            // Deshabilitar edición por defecto para todas las celdas
+            return false;
         }
-        if (!inventario.existePaquete(jTCodigoResolver.getText())) {
-            JOptionPane.showMessageDialog(null, "El paquete no existe", "Código tracking no existe", JOptionPane.ERROR_MESSAGE);
-            return;
+    };
+    
+    model.setRowCount(0);
+    model.addColumn("Propiedad");
+    model.addColumn("Valor");
+    
+    model.addRow(new Object[]{"Estado del paquete", seguimiento.obtenerEstado()});
+    model.addRow(new Object[]{"Incidente", seguimiento.obtenerRegistroIncidente()});
+    
+    // Obtener el tipo de incidente desde el JComboBox
+    String incidente = (String) seleccionIncidentes1.getSelectedItem();
+    if (incidente == null || incidente.equals("Seleccione")) {
+        mostrarMensaje("Seleccione un tipo de incidente válido", "Error");
+        return;
+    }
+    
+    SolucionDevolucion solucionDevolucion = new SolucionDevolucion();
+    ArrayList<Factura> facturas = solucionDevolucion.cargarFacturas();
+    Factura factura = solucionDevolucion.obtenerFacturaPorCodigoTracking(facturas, codigoTracking);
+
+    switch (incidente) {
+        case "Paquete Estropeado":
+        case "Paquete Perdido": {
+            if (factura != null) {
+                double precioEnvio = factura.obtenerPrecio().getPrecioTotalPaquete();
+                jTArgumentos.setText("Valor del reembolso: $" + precioEnvio);
+                jTArgumentos.setEnabled(false); // Deshabilitar edición en jTArgumentos
+            } else {
+                mostrarMensaje("Factura no encontrada para el código de tracking: " + codigoTracking, "Error");
+                jTArgumentos.setText("Reembolso no disponible. Factura no encontrada.");
+                jTArgumentos.setEnabled(false); // Deshabilitar edición en jTArgumentos
+            }
+            break;
         }
-        Seguimiento seguimiento = inventario.obtenerPaquete(jTCodigoResolver.getText()).obtenerSeguimiento();
-        DefaultTableModel model = new DefaultTableModel();
-        model.setRowCount(0);
-        model.addColumn("Propiedad");
-        model.addColumn("Valor");
-        model.addRow(new Object[]{"Estado del paquete", seguimiento.obtenerEstado()});
-        model.addRow(new Object[]{"Incidente", seguimiento.obtenerRegistroIncidente()});
-        jTIncidente.setModel(model);
-        jBResolverIncidente.setVisible(true);
+        case "Error Dirección": {
+            jTArgumentos.setText("Ingrese la nueva dirección de entrega");
+            jTArgumentos.setEnabled(true); // Habilitar edición en jTArgumentos para corregir la dirección
+            break;
+        }
+        case "Paquete Rechazado": {
+            jTArgumentos.setText("Ingrese la razón del rechazo");
+            jTArgumentos.setEnabled(true); // Habilitar edición en jTArgumentos para ingresar la razón del rechazo
+            break;
+        }
+        default: {
+            mostrarMensaje("Tipo de incidente no reconocido", "Error");
+            jTArgumentos.setText("");
+            jTArgumentos.setEnabled(false); // Deshabilitar edición en caso de error
+            break;
+        }
+    }
+
+    jTIncidente.setModel(model);
+    jBResolverIncidente.setVisible(true);
     }//GEN-LAST:event_jBConsultarIncidenteActionPerformed
 
+    
+    private boolean esCodigoTrackingInvalido(String codigo) {
+        return codigo == null || codigo.isBlank();
+    }
+
+
+    private void mostrarMensaje(String mensaje, String titulo, int tipoMensaje) {
+        JOptionPane.showMessageDialog(null, mensaje, titulo, tipoMensaje);
+    }
+private void actualizarTablaIncidente(Seguimiento seguimiento) {
+    DefaultTableModel model = new DefaultTableModel();
+    model.setRowCount(0);
+    model.addColumn("Propiedad");
+    model.addColumn("Valor");
+    model.addRow(new Object[]{"Estado del paquete", seguimiento.obtenerEstado()});
+    model.addRow(new Object[]{"Incidente", seguimiento.obtenerRegistroIncidente()});
+    jTIncidente.setModel(model);
+}         
+
+    private boolean esEstadoValido(Paquete paquete, String incidente) {
+    if (paquete == null) return false;
+
+    EstadoDelPaquete estado = paquete.obtenerEstado();
+
+    switch (incidente) {
+        case "Paquete Rechazado":
+            // Solo válido si el estado es "Encurso"
+            return estado instanceof EnCurso;
+        default:
+            // Otros incidentes solo son válidos si el estado es "Pendiente"
+            return estado instanceof Pendiente;
+    }
+}
+    
     private void jBResolverIncidenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBResolverIncidenteActionPerformed
         String incidente = (String) seleccionIncidentes1.getSelectedItem();
-        String codigoPaquete = jTCodigoResolver.getText();
+        String codigoPaquete = jTCodigoResolver.getText().trim();
+
         // Validación temprana del código del paquete
-        if (codigoPaquete.isBlank()) {
-            JOptionPane.showMessageDialog(
-                    null,
-                    "Ingrese el código del paquete",
-                    "Error",
-                    JOptionPane.INFORMATION_MESSAGE
-            );
-            return;
-        }
-
-        Paquete paquete = Inventario.obtenerInstancia().obtenerPaquete(codigoPaquete);
-
-        if (!(paquete.obtenerEstado() instanceof Pendiente)) {
-            mostrarMensaje("El paquete se encuentra fuera de su jurisdicción", "Resolución falló");
-            return;
-        }
-
-        String argumentos = jTArgumentos.getText();
-        if (argumentos.isBlank()) {
-            mostrarMensaje("Ingrese los argumentos", "Error");
-            return;
-        }
-
-        int respuestaDev = JOptionPane.showConfirmDialog(
+    if (codigoPaquete.isBlank()) {
+        JOptionPane.showMessageDialog(
                 null,
-                "¿Estás seguro de que deseas resolver este incidente?",
-                "Confirmación de resolución",
-                JOptionPane.YES_NO_OPTION,
-                JOptionPane.WARNING_MESSAGE
+                "Ingrese el código del paquete",
+                "Error",
+                JOptionPane.INFORMATION_MESSAGE
         );
+        return;
+    }
 
-        if (respuestaDev == JOptionPane.YES_OPTION) {
-            EstadoIncidente incidenteRegistrar = crearIncidente(incidente);
+    Paquete paquete = Inventario.obtenerInstancia().obtenerPaquete(codigoPaquete);
 
-            if (incidenteRegistrar == null) {
-                mostrarMensaje("Tipo de incidente no reconocido", "Error");
-                return;
-            }
+    if (!esEstadoValido(paquete, incidente)) {
+        mostrarMensaje("El paquete se encuentra fuera de su jurisdicción", "Resolución falló");
+        return;
+    }
 
-            GestorIncidente gestor = new GestorIncidente(incidenteRegistrar);
-            String[] partes = argumentos.split("\\s+");
-            //gestor.resolverIncidente(paquete, partes);
+    String argumentos = jTArgumentos.getText().trim();
+    if (argumentos.isBlank()) {
+        mostrarMensaje("Ingrese los argumentos", "Error");
+        return;
+    }
 
-            mostrarMensaje("El incidente se ha resuelto", "Resolución Exitosa");
-            actualizarTablaIncidentes();
-        } else {
-            mostrarMensaje("La resolución del incidente se ha cancelado", "Resolución Cancelada");
-        }
-
-        String nuevaDireccion = jTArgumentos.getText();
-        if (nuevaDireccion.isBlank()) {
-            mostrarMensaje("Ingrese la nueva dirección de entrega", "Error");
-            return;
-        }
-        
-        int respuestaDir = JOptionPane.showConfirmDialog(
+    int respuestaDev = JOptionPane.showConfirmDialog(
             null,
-            "¿Estás seguro de que deseas cambiar la dirección de este paquete?",
+            "¿Estás seguro de que deseas resolver este incidente?",
             "Confirmación de resolución",
             JOptionPane.YES_NO_OPTION,
             JOptionPane.WARNING_MESSAGE
-        );
+    );
 
-        if (respuestaDir == JOptionPane.YES_OPTION) {
-            SolucionDireccion solucionDireccion = new SolucionDireccion();
-            solucionDireccion.resolverIncidente(codigoPaquete, nuevaDireccion);
-
-            mostrarMensaje("La dirección del paquete ha sido actualizada", "Resolución Exitosa");
-            actualizarTablaIncidentes();
-        } else {
-            mostrarMensaje("La resolución del incidente se ha cancelado", "Resolución Cancelada");
-        }
-    }//GEN-LAST:event_jBResolverIncidenteActionPerformed
-
-    private EstadoIncidente crearIncidente(String tipoIncidente) {
-        return switch (tipoIncidente) {
-            case "Error Dirección" ->
-                new ErrorDireccion();
-            case "Paquete Estropeado" ->
-                new PaqueteEstropeado();
-            case "Paquete Perdido" ->
-                new PaquetePerdido();
-            default ->
-                null;
-        };
+    if (respuestaDev != JOptionPane.YES_OPTION) {
+        mostrarMensaje("La resolución ha sido cancelada.", "Resolución Cancelada");
+        return;
     }
 
-    private void mostrarMensaje(String mensaje, String titulo) {
-        JOptionPane.showMessageDialog(
-                null,
-                mensaje,
-                titulo,
-                JOptionPane.INFORMATION_MESSAGE
-        );
+    // Validación del tipo de incidente y resolución
+    switch (incidente) {
+        case "Paquete Estropeado":
+        case "Paquete Perdido": {
+            realizarReembolso(); // Lógica para realizar el reembolso
+            mostrarMensaje("El reembolso ha sido procesado con éxito.", "Reembolso Exitoso");
+            break;
+        }
+        case "Error Dirección": {
+            String nuevaDireccion = argumentos;
+            if (nuevaDireccion.isEmpty() || nuevaDireccion.equals("Ingrese la nueva dirección de entrega")) {
+                mostrarMensaje("Debe ingresar una nueva dirección para corregir el error.", "Error");
+                return;
+            }
+            paquete.setDireccionDestino(nuevaDireccion); // Actualizar la dirección del paquete
+            mostrarMensaje("La dirección ha sido actualizada con éxito.", "Actualización Exitosa");
+            break;
+        }
+        case "Paquete Rechazado": {
+            String razonRechazo = argumentos;
+            if (razonRechazo.isEmpty() || razonRechazo.equals("Ingrese la razón del rechazo")) {
+                mostrarMensaje("Debe ingresar una razón por la que el paquete fue rechazado.", "Error");
+                return;
+            }
+            registrarRazonRechazo(razonRechazo); // Lógica para registrar la razón del rechazo
+            mostrarMensaje("La razón del rechazo ha sido registrada con éxito.", "Registro Exitoso");
+            break;
+        }
+        default: {
+            mostrarMensaje("Tipo de incidente no reconocido. No se puede resolver.", "Error");
+            return;
+        }
+    }
+
+    // Lógica para marcar el incidente como resuelto
+    paquete.obtenerSeguimiento().limpiarIncidente(); // Limpia o marca como resuelto el incidente
+    mostrarMensaje("El incidente ha sido resuelto y el paquete ya no tiene incidentes.", "Resolución Completa");
+    }//GEN-LAST:event_jBResolverIncidenteActionPerformed
+
+    // Métodos auxiliares
+    private void realizarReembolso() {
+    // Lógica para procesar el reembolso
+    }
+
+    private void registrarRazonRechazo(String razonRechazo) {
+    // Lógica para registrar la razón del rechazo del paquete
     }
 
     private void actualizarTablaIncidentes() {
@@ -842,9 +950,12 @@ public class JFIncidente extends javax.swing.JFrame {
         seleccionIncidentes.addItem("Error Dirección");
         seleccionIncidentes.addItem("Paquete Estropeado");
         seleccionIncidentes.addItem("Paquete Perdido");
+        seleccionIncidentes.addItem("Paquete Rechazado");
         seleccionIncidentes1.removeAllItems();
+        seleccionIncidentes1.addItem("Seleccione");
         seleccionIncidentes1.addItem("Error Dirección");
         seleccionIncidentes1.addItem("Paquete Estropeado");
         seleccionIncidentes1.addItem("Paquete Perdido");
+        seleccionIncidentes1.addItem("Paquete Rechazado");
     }
 }

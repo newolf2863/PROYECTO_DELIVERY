@@ -10,9 +10,11 @@ import mod_incidentes.GestorIncidente;
 import mod_incidentes.EstadoIncidente;
 import mod_incidentes.PaqueteEstropeado;
 import mod_incidentes.PaquetePerdido;
+import mod_incidentes.PaqueteRechazado;
 import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.DefaultCellEditor;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -20,36 +22,29 @@ import javax.swing.JOptionPane;
 import javax.swing.JRootPane;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
-import mod_administracion.Conductor;
 import mod_administracion.Recepcionista;
-import mod_paquetes.EnCurso;
+import mod_facturacion.Factura;
+import mod_incidentes.*;
+import mod_paquetes.*;
 import mod_paquetes.Inventario;
-import mod_paquetes.Paquete;
-import mod_paquetes.Pendiente;
 import mod_paquetes.Seguimiento;
-import mod_transporte.Asignacion;
 import validaciones.*;
 
 /**
- * JFrame para la gestión de incidentes por parte de conductores
- * Incluye funcionalidades para registrar y resolver incidentes
- * Se conecta con otros módulos para obtener y actualizar datos de incidentes
- * y paquetes
- * 
+ *
+ * @author Moises Arequipa
  * @Grupo: Segunda es Todo
  */
-public class JFIncidenteConductor extends javax.swing.JFrame {
+public class JFIncidenteConductor1 extends javax.swing.JFrame {
 
     /**
      * Creates new form JFIncidente
-     * Constructor que inicializa el formulario de incidentes
-     * @param inventario Listado de paquetes disponibles
      */
     //Validadores
     ValidadorDeRegistros validarRegistroF = new ValidadorDeRegistros();
     ValidadorDeSwings validadorCheck = new ValidadorDeSwings();
     ArrayList<Paquete> inventario;
-    
+
     //Mouse
     int xMouse, yMouse;
 
@@ -57,12 +52,9 @@ public class JFIncidenteConductor extends javax.swing.JFrame {
     private boolean idIncidenteValidar = false;
     private boolean descriptionValidar = false;
     private boolean seleccionValidar = false;
+    private boolean isInitialized = false;
 
-    /**
-     * Constructor que inicializa el formulario de incidentes
-     * @param inventario Listado de paquetes disponibles
-     */
-    public JFIncidenteConductor(ArrayList<Paquete> inventario) {
+    public JFIncidenteConductor1(ArrayList<Paquete> inventario) {
         initComponents();
         this.inventario = inventario;
         setIconImage(new ImageIcon(getClass().getResource("/iconos/exclamacion.png")).getImage());
@@ -73,12 +65,8 @@ public class JFIncidenteConductor extends javax.swing.JFrame {
         jBRegistrarIncidente.setVisible(false);
         jTablaPaquete.setVisible(false);
         cargarIncidentes();
-        
     }
 
-    /**
-     * Método para colocar un placeholder en el campo de código de tracking
-     */
     private void placeHolder() {
         TextPrompt texto1 = new TextPrompt("Obligatorio", jTCodigoTracking);
     }
@@ -102,6 +90,8 @@ public class JFIncidenteConductor extends javax.swing.JFrame {
         jBRegistrarIncidente = new javax.swing.JButton();
         jPAE1 = new javax.swing.JPanel();
         jPanel11 = new javax.swing.JPanel();
+        seleccionIncidentes1 = new javax.swing.JComboBox<>();
+        jLabel136 = new javax.swing.JLabel();
         jLabel137 = new javax.swing.JLabel();
         jTCodigoResolver = new javax.swing.JTextField();
         jBConsultarIncidente = new javax.swing.JButton();
@@ -131,7 +121,7 @@ public class JFIncidenteConductor extends javax.swing.JFrame {
 
         jPanel10.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        seleccionIncidentes.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecciona", "Daño en el Paquete", "Error de Dirección", "Paquete Perdido", "Rechazo Entrega" }));
+        seleccionIncidentes.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecciona", "Daño en el Paquete", "Error de Dirección", "Paquete Perdido", "Paquete Rechazado" }));
         seleccionIncidentes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 seleccionIncidentesActionPerformed(evt);
@@ -190,11 +180,7 @@ public class JFIncidenteConductor extends javax.swing.JFrame {
         jPanel10Layout.setHorizontalGroup(
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel10Layout.createSequentialGroup()
-                .addGap(30, 30, 30)
-                .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 622, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(34, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel10Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(37, Short.MAX_VALUE)
                 .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel10Layout.createSequentialGroup()
                         .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -207,7 +193,10 @@ public class JFIncidenteConductor extends javax.swing.JFrame {
                         .addGap(263, 263, 263))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel10Layout.createSequentialGroup()
                         .addComponent(jBConsultarPaquete)
-                        .addGap(113, 113, 113))))
+                        .addGap(113, 113, 113))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel10Layout.createSequentialGroup()
+                        .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 622, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(27, 27, 27))))
             .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel10Layout.createSequentialGroup()
                     .addGap(302, 302, 302)
@@ -257,6 +246,15 @@ public class JFIncidenteConductor extends javax.swing.JFrame {
         jTPEmpleados1.addTab("Registrar Incidente", jPRE1);
 
         jPanel11.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        seleccionIncidentes1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecciona", "Paquete Estropeado", "Error Dirección", "Paquete Perdido" }));
+        seleccionIncidentes1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                seleccionIncidentes1ActionPerformed(evt);
+            }
+        });
+
+        jLabel136.setText("Tipo de incidente:");
 
         jLabel137.setText("Código tracking");
 
@@ -326,51 +324,62 @@ public class JFIncidenteConductor extends javax.swing.JFrame {
         jPanel11Layout.setHorizontalGroup(
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel11Layout.createSequentialGroup()
-                .addGap(0, 37, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel11Layout.createSequentialGroup()
-                        .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 622, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(27, 27, 27))
+                        .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel137, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel136, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jTCodigoResolver, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(seleccionIncidentes1, javax.swing.GroupLayout.Alignment.LEADING, 0, 157, Short.MAX_VALUE))
+                        .addGap(263, 263, 263))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel11Layout.createSequentialGroup()
-                        .addComponent(jLabel138, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(88, 88, 88)
-                        .addComponent(jTArgumentos, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(257, 257, 257))))
+                        .addComponent(jBConsultarIncidente)
+                        .addGap(113, 113, 113))))
             .addGroup(jPanel11Layout.createSequentialGroup()
                 .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel11Layout.createSequentialGroup()
-                        .addGap(94, 94, 94)
-                        .addComponent(jLabel137, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTCodigoResolver, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(77, 77, 77)
-                        .addComponent(jBConsultarIncidente))
+                        .addGap(30, 30, 30)
+                        .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 622, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel11Layout.createSequentialGroup()
-                        .addGap(302, 302, 302)
-                        .addComponent(jBResolverIncidente)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(156, 156, 156)
+                        .addComponent(jLabel138, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTArgumentos, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(34, Short.MAX_VALUE))
+            .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel11Layout.createSequentialGroup()
+                    .addGap(302, 302, 302)
+                    .addComponent(jBResolverIncidente)
+                    .addContainerGap(307, Short.MAX_VALUE)))
         );
         jPanel11Layout.setVerticalGroup(
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel11Layout.createSequentialGroup()
-                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel11Layout.createSequentialGroup()
-                        .addGap(43, 43, 43)
-                        .addComponent(jLabel137))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel11Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTCodigoResolver, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jBConsultarIncidente))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30)
+                .addGap(16, 16, 16)
                 .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTArgumentos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel138))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
-                .addComponent(jBResolverIncidente)
-                .addGap(36, 36, 36))
+                    .addComponent(jLabel137)
+                    .addComponent(jTCodigoResolver, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jBConsultarIncidente)
+                .addGap(2, 2, 2)
+                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel136)
+                    .addComponent(seleccionIncidentes1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(26, 26, 26)
+                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel138)
+                    .addComponent(jTArgumentos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(74, Short.MAX_VALUE))
+            .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel11Layout.createSequentialGroup()
+                    .addContainerGap(435, Short.MAX_VALUE)
+                    .addComponent(jBResolverIncidente)
+                    .addGap(10, 10, 10)))
         );
 
         javax.swing.GroupLayout jPAE1Layout = new javax.swing.GroupLayout(jPAE1);
@@ -380,7 +389,7 @@ public class JFIncidenteConductor extends javax.swing.JFrame {
             .addGroup(jPAE1Layout.createSequentialGroup()
                 .addGap(46, 46, 46)
                 .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(228, Short.MAX_VALUE))
+                .addContainerGap(231, Short.MAX_VALUE))
         );
         jPAE1Layout.setVerticalGroup(
             jPAE1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -464,76 +473,58 @@ public class JFIncidenteConductor extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-     * Acción al seleccionar un incidente
-     * @param evt evento de selección
-     */
     private void seleccionIncidentesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_seleccionIncidentesActionPerformed
 
     }//GEN-LAST:event_seleccionIncidentesActionPerformed
 
-    /**
-     * Acción al soltar una tecla en el campo de código de tracking
-     * @param evt evento de teclado
-     */
     private void jTCodigoTrackingKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTCodigoTrackingKeyReleased
 
     }//GEN-LAST:event_jTCodigoTrackingKeyReleased
 
-    /**
-     * Acción al presionar el botón de consultar paquete
-     * @param evt evento de acción
-     */
     private void jBConsultarPaqueteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBConsultarPaqueteActionPerformed
-        if (jTCodigoTracking.getText().isBlank()) {
-            JOptionPane.showMessageDialog(null, "Ingrese un código tracking", "Llene el campo", JOptionPane.INFORMATION_MESSAGE);
-            return;
-        }
-        Paquete paqueteIncidente = obtenerPaquete(jTCodigoTracking.getText());
-        if(inventario == null){
-            JOptionPane.showMessageDialog(null, "No tiene Paquetes","No tiene Paquetes", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-        for(Paquete paquete: inventario){
-            if(paquete.getCodigoTracking().equals(jTCodigoTracking.getText())){
-                paqueteIncidente = paquete;
+        try {
+            if (jTCodigoTracking.getText().isBlank()) {
+                JOptionPane.showMessageDialog(null, "Ingrese un código tracking", "Llene el campo", JOptionPane.INFORMATION_MESSAGE);
+                return;
             }
-        }
-        if (paqueteIncidente == null) {
-            JOptionPane.showMessageDialog(null, "El paquete no existe", "Código tracking no existe", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-        DefaultTableModel model = new DefaultTableModel();
-        model.setRowCount(0);
-        model.addColumn("Propiedad");
-        model.addColumn("Valor");
-        model.addRow(new Object[]{"Código de Tracking", paqueteIncidente.getCodigoTracking()});
-        model.addRow(new Object[]{"Volumen", paqueteIncidente.getVolumen() + " m³"});
-        model.addRow(new Object[]{"Peso", paqueteIncidente.getPeso() + " kg"});
-        model.addRow(new Object[]{"Contenido", paqueteIncidente.getContenido()});
-        model.addRow(new Object[]{"Remitente", paqueteIncidente.getRemitente().toString()});
-        model.addRow(new Object[]{"Provincia Origen", paqueteIncidente.getProvinciaOrigen().name()});
-        model.addRow(new Object[]{"Provincia Destino", paqueteIncidente.getProvinciaDestino().name()});
-        model.addRow(new Object[]{"Dirección Destino", paqueteIncidente.getDireccionDestino()});
-        model.addRow(new Object[]{"Estado", paqueteIncidente.obtenerEstado().toString()});
-        model.addRow(new Object[]{"Distancia Estimada", paqueteIncidente.calcularDistancia() + " Km"});
+
+            Paquete paquete = buscarPaqueteAsignado(jTCodigoTracking.getText());
+
+            DefaultTableModel model = new DefaultTableModel();
+            model.setRowCount(0);
+            model.addColumn("Propiedad");
+            model.addColumn("Valor");
+        model.addRow(new Object[]{"Código de Tracking", paquete.obtenerCodigo()});
+        model.addRow(new Object[]{"Volumen", paquete.getVolumen() + " m³"});
+        model.addRow(new Object[]{"Peso", paquete.getPeso() + " kg"});
+        model.addRow(new Object[]{"Contenido", paquete.getContenido()});
+        model.addRow(new Object[]{"Remitente", paquete.getRemitente().toString()});
+        model.addRow(new Object[]{"Provincia Origen", paquete.getProvinciaOrigen().name()});
+        model.addRow(new Object[]{"Provincia Destino", paquete.getProvinciaDestino().name()});
+        model.addRow(new Object[]{"Dirección Destino", paquete.getDireccionDestino()});
+        model.addRow(new Object[]{"Estado", paquete.obtenerEstado().toString()});
+        model.addRow(new Object[]{"Distancia Estimada", paquete.calcularDistancia() + " Km"});
         jTablaPaquete.setModel(model);
         jBRegistrarIncidente.setVisible(true);
         jTablaPaquete.setVisible(true);
+    } catch (PaqueteFueraDeJurisdiccionException e) {
+        JOptionPane.showMessageDialog(null, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+    }
     }//GEN-LAST:event_jBConsultarPaqueteActionPerformed
 
-    /**
-     * Acción al hacer clic en el tab de empleados
-     * @param evt evento de mouse
-     */
+    private Paquete buscarPaqueteAsignado(String codigoTracking) throws PaqueteFueraDeJurisdiccionException {
+        for (Paquete paquete : inventario) {
+            if (paquete.obtenerCodigo().equals(codigoTracking)) {
+                return paquete;
+            }
+        }
+        throw new PaqueteFueraDeJurisdiccionException("Este paquete está fuera de su jurisdicción");
+    }
+    
     private void jTPEmpleados1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTPEmpleados1MouseClicked
 
     }//GEN-LAST:event_jTPEmpleados1MouseClicked
 
-    /**
-     * Acción al presionar el botón de salir
-     * @param evt evento de acción
-     */
     private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
         getToolkit().beep();
         int dialogButton = JOptionPane.YES_NO_OPTION;
@@ -543,246 +534,355 @@ public class JFIncidenteConductor extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnExitActionPerformed
 
-    /**
-     * Acción al arrastrar el panel superior
-     * @param evt evento de mouse
-     */
     private void jPanel3MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel3MouseDragged
         int x = evt.getXOnScreen();
         int y = evt.getYOnScreen();
         this.setLocation(x - xMouse, y - yMouse);
     }//GEN-LAST:event_jPanel3MouseDragged
 
-    /**
-     * Acción al presionar el panel superior
-     * @param evt evento de mouse
-     */
     private void jPanel3MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel3MousePressed
         xMouse = evt.getX();
         yMouse = evt.getY();
     }//GEN-LAST:event_jPanel3MousePressed
 
-    /**
-     * Acción al perder el foco en el campo de código de tracking
-     * @param evt evento de foco
-     */
     private void jTCodigoTrackingFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTCodigoTrackingFocusLost
-        
+
     }//GEN-LAST:event_jTCodigoTrackingFocusLost
 
-    /**
-     * Acción al realizar acción en el campo de código de tracking
-     * @param evt evento de acción
-     */
     private void jTCodigoTrackingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTCodigoTrackingActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTCodigoTrackingActionPerformed
 
-    /**
-     * Método para obtener un paquete según su código de tracking
-     * @param codigo Código de tracking del paquete
-     * @return Paquete encontrado o null si no existe
-     */
-    private Paquete obtenerPaquete(String codigo){
-        for(Paquete paquete :inventario){
-            if(paquete.getCodigoTracking().equals(codigo)){
-                return paquete;
-            }
-        }
-        return null;
-    }
-    
-    /**
-     * Acción al presionar el botón de registrar incidente
-     * @param evt evento de acción
-     */
     private void jBRegistrarIncidenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBRegistrarIncidenteActionPerformed
-        if (jTCodigoTracking.getText().isBlank()) {
-            JOptionPane.showMessageDialog(null, "Ingrese un código tracking", "Llene el campo", JOptionPane.INFORMATION_MESSAGE);
-            return;
-        }
-        String incidente = (String) seleccionIncidentes.getSelectedItem();
-        Paquete paquete = obtenerPaquete(jTCodigoTracking.getText());
-        EstadoIncidente incidenteRegistrar = null;
-        if (incidente.equals("Error Dirección")) {
-            incidenteRegistrar = new ErrorDireccion();
-        } else if (incidente.equals("Paquete Estropeado")) {
-            incidenteRegistrar = new PaqueteEstropeado();
-        } else if (incidente.equals("Paquete Perdido")) {
-            incidenteRegistrar = new PaquetePerdido();
-        }
-        if (!(paquete.obtenerEstado() instanceof EnCurso)) {
-            JOptionPane.showMessageDialog(
-                null,
-                "El paquete se encuentra fuera de su jurisdicción",
-                "Registro falló",
-                JOptionPane.INFORMATION_MESSAGE
-            );
-            return;
-        }
-        int respuesta = JOptionPane.showConfirmDialog(
+        
+         String incidente = (String) seleccionIncidentes.getSelectedItem();
+    if (incidente == null || incidente.isEmpty()) {
+        JOptionPane.showMessageDialog(
             null,
-            "¿Estás seguro de que deseas registrar este incidente?",
-            "Confirmación de registro",
-            JOptionPane.YES_NO_OPTION,
+            "Por favor, selecciona un tipo de incidente",
+            "Selección inválida",
             JOptionPane.WARNING_MESSAGE
         );
-        if (respuesta == JOptionPane.YES_OPTION) {
-            GestorIncidente gi = new GestorIncidente(incidenteRegistrar);
-            gi.crearIncidente(paquete);
-            JOptionPane.showMessageDialog(
-                null,
-                "El incidente se ha registrado",
-                "Registro Exitoso",
-                JOptionPane.INFORMATION_MESSAGE
-            );
-            Asignacion.obtenerInstancia().guardarRelacionPaquetes();
-            DefaultTableModel modeloTabla = (DefaultTableModel) jTablaPaquete.getModel();
-            modeloTabla.setRowCount(0);
-        } else {
-            JOptionPane.showMessageDialog(
-                null,
-                "El registro del incidente se ha cancelado",
-                "Registro Cancelado",
-                JOptionPane.INFORMATION_MESSAGE
-            );
-        }
+        return;
+    }
+
+    Paquete paquete = Inventario.obtenerInstancia().obtenerPaquete(jTCodigoTracking.getText());
+    if (!esEstadoValido(paquete)) {
+        mostrarMensaje("El paquete se encuentra fuera de su jurisdicción", "Registro falló");
+        return;
+    }
+
+    EstadoIncidente incidenteRegistrar = crearIncidente(incidente);
+    if (incidenteRegistrar == null) {
+        mostrarMensaje("El tipo de incidente no es válido", "Registro falló");
+        return;
+    }
+
+    if (confirmarRegistro()) {
+        GestorIncidente gi = new GestorIncidente(incidenteRegistrar);
+        gi.crearIncidente(paquete);
+        mostrarMensaje("El incidente se ha registrado", "Registro Exitoso");
+        Inventario.obtenerInstancia().guardarInventario();
+        actualizarTablaPaquetes();
+    } else {
+        mostrarMensaje("El registro del incidente se ha cancelado", "Registro Cancelado");
+    }
     }//GEN-LAST:event_jBRegistrarIncidenteActionPerformed
 
-    /**
-     * Acción al perder el foco en el campo de código de resolver
-     * @param evt evento de foco
-     */
+    
+        private boolean esEstadoValido(Paquete paquete) {
+    return paquete != null && paquete.obtenerEstado() instanceof EnCurso;
+}
+
+        public class PaqueteFueraDeJurisdiccionException extends Exception {
+            public PaqueteFueraDeJurisdiccionException(String mensaje) {
+                super(mensaje);
+            }
+        }
+        
+private EstadoIncidente crearIncidente(String tipoIncidente) {
+    return switch (tipoIncidente) {
+        case "Error Dirección" -> new ErrorDireccion();
+        case "Paquete Estropeado" -> new PaqueteEstropeado();
+        case "Paquete Perdido" -> new PaquetePerdido();
+        case "Paquete Rechazado" -> new PaqueteRechazado();
+        default -> null;
+    };
+}
+
+private boolean confirmarRegistro() {
+    int respuesta = JOptionPane.showConfirmDialog(
+        null,
+        "¿Estás seguro de que deseas registrar este incidente?",
+        "Confirmación de registro",
+        JOptionPane.YES_NO_OPTION,
+        JOptionPane.WARNING_MESSAGE
+    );
+    return respuesta == JOptionPane.YES_OPTION;
+}
+
+private void mostrarMensaje(String mensaje, String titulo) {
+    JOptionPane.showMessageDialog(
+        null,
+        mensaje,
+        titulo,
+        JOptionPane.INFORMATION_MESSAGE
+    );
+}
+
+private void actualizarTablaPaquetes() {
+    DefaultTableModel modeloTabla = (DefaultTableModel) jTablaPaquete.getModel();
+    modeloTabla.setRowCount(0);
+
+    for (Paquete paquete : inventario) {
+        modeloTabla.addRow(new Object[]{
+            paquete.obtenerCodigo(),
+            paquete.getVolumen() + " m³",
+            paquete.getPeso() + " kg",
+            paquete.getContenido(),
+            paquete.getRemitente().toString(),
+            paquete.getProvinciaOrigen().name(),
+            paquete.getProvinciaDestino().name(),
+            paquete.getDireccionDestino(),
+            paquete.obtenerEstado().toString(),
+            paquete.calcularDistancia() + " Km"
+        });
+    }
+}
+    
+
+
+    private void seleccionIncidentes1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_seleccionIncidentes1ActionPerformed
+    
+    }//GEN-LAST:event_seleccionIncidentes1ActionPerformed
+
     private void jTCodigoResolverFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTCodigoResolverFocusLost
         // TODO add your handling code here:
     }//GEN-LAST:event_jTCodigoResolverFocusLost
 
-    /**
-     * Acción al realizar acción en el campo de código de resolver
-     * @param evt evento de acción
-     */
     private void jTCodigoResolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTCodigoResolverActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTCodigoResolverActionPerformed
 
-    /**
-     * Acción al soltar una tecla en el campo de código de resolver
-     * @param evt evento de teclado
-     */
     private void jTCodigoResolverKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTCodigoResolverKeyReleased
         // TODO add your handling code here:
     }//GEN-LAST:event_jTCodigoResolverKeyReleased
 
-    /**
-     * Acción al presionar el botón de consultar incidente
-     * @param evt evento de acción
-     */
+    
     private void jBConsultarIncidenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBConsultarIncidenteActionPerformed
-        if (jTCodigoResolver.getText().isBlank()) {
-            JOptionPane.showMessageDialog(null, "Ingrese un código tracking", "Llene el campo", JOptionPane.INFORMATION_MESSAGE);
-            return;
+        Inventario inventario = Inventario.obtenerInstancia();
+        String codigoTracking = jTCodigoResolver.getText().trim();
+
+        if (codigoTracking.isEmpty()) {
+        mostrarMensaje("Ingrese un código tracking", "Llene el campo", JOptionPane.INFORMATION_MESSAGE);
+        return;
+    }
+
+    if (!inventario.existePaquete(codigoTracking)) {
+        mostrarMensaje("El paquete no existe", "Código tracking no existe", JOptionPane.ERROR_MESSAGE);
+        return;
+    }
+
+    Paquete paquete = inventario.obtenerPaquete(codigoTracking);
+    Seguimiento seguimiento = paquete.obtenerSeguimiento();
+    
+    DefaultTableModel model = new DefaultTableModel() {
+        @Override
+        public boolean isCellEditable(int row, int column) {
+            // Deshabilitar edición por defecto para todas las celdas
+            return false;
         }
-        Paquete paquete = obtenerPaquete(jTCodigoResolver.getText());
-        if (paquete == null) {
-            JOptionPane.showMessageDialog(null, "El paquete no existe", "Código tracking no existe", JOptionPane.ERROR_MESSAGE);
-            return;
+    };
+    
+    model.setRowCount(0);
+    model.addColumn("Propiedad");
+    model.addColumn("Valor");
+    
+    model.addRow(new Object[]{"Estado del paquete", seguimiento.obtenerEstado()});
+    model.addRow(new Object[]{"Incidente", seguimiento.obtenerRegistroIncidente()});
+    
+    // Obtener el tipo de incidente desde el JComboBox
+    String incidente = (String) seleccionIncidentes1.getSelectedItem();
+    if (incidente == null || incidente.equals("Seleccione")) {
+        mostrarMensaje("Seleccione un tipo de incidente válido", "Error");
+        return;
+    }
+    
+    SolucionDevolucion solucionDevolucion = new SolucionDevolucion();
+    ArrayList<Factura> facturas = solucionDevolucion.cargarFacturas();
+    Factura factura = solucionDevolucion.obtenerFacturaPorCodigoTracking(facturas, codigoTracking);
+
+    switch (incidente) {
+        case "Paquete Estropeado":
+        case "Paquete Perdido": {
+            if (factura != null) {
+                double precioEnvio = factura.obtenerPrecio().getPrecioTotalPaquete();
+                jTArgumentos.setText("Valor del reembolso: $" + precioEnvio);
+                jTArgumentos.setEnabled(false); // Deshabilitar edición en jTArgumentos
+            } else {
+                mostrarMensaje("Factura no encontrada para el código de tracking: " + codigoTracking, "Error");
+                jTArgumentos.setText("Reembolso no disponible. Factura no encontrada.");
+                jTArgumentos.setEnabled(false); // Deshabilitar edición en jTArgumentos
+            }
+            break;
         }
-        Seguimiento seguimiento = paquete.obtenerSeguimiento();
-        DefaultTableModel model = new DefaultTableModel();
-        model.setRowCount(0);
-        model.addColumn("Propiedad");
-        model.addColumn("Valor");
-        model.addRow(new Object[]{"Estado del paquete", seguimiento.obtenerEstado()});
-        model.addRow(new Object[]{"Incidente", seguimiento.obtenerRegistroIncidente()});
-        jTIncidente.setModel(model);
-        jBResolverIncidente.setVisible(true);
+        case "Error Dirección": {
+            jTArgumentos.setText("Ingrese la nueva dirección de entrega");
+            jTArgumentos.setEnabled(true); // Habilitar edición en jTArgumentos para corregir la dirección
+            break;
+        }
+        case "Paquete Rechazado": {
+            jTArgumentos.setText("Ingrese la razón del rechazo");
+            jTArgumentos.setEnabled(true); // Habilitar edición en jTArgumentos para ingresar la razón del rechazo
+            break;
+        }
+        default: {
+            mostrarMensaje("Tipo de incidente no reconocido", "Error");
+            jTArgumentos.setText("");
+            jTArgumentos.setEnabled(false); // Deshabilitar edición en caso de error
+            break;
+        }
+    }
+
+    jTIncidente.setModel(model);
+    jBResolverIncidente.setVisible(true);
     }//GEN-LAST:event_jBConsultarIncidenteActionPerformed
 
-    /**
-     * Acción al presionar el botón de resolver incidente
-     * @param evt evento de acción
-     */
+    
+    private boolean esCodigoTrackingInvalido(String codigo) {
+        return codigo == null || codigo.isBlank();
+    }
+
+
+    private void mostrarMensaje(String mensaje, String titulo, int tipoMensaje) {
+        JOptionPane.showMessageDialog(null, mensaje, titulo, tipoMensaje);
+    }
+private void actualizarTablaIncidente(Seguimiento seguimiento) {
+    DefaultTableModel model = new DefaultTableModel();
+    model.setRowCount(0);
+    model.addColumn("Propiedad");
+    model.addColumn("Valor");
+    model.addRow(new Object[]{"Estado del paquete", seguimiento.obtenerEstado()});
+    model.addRow(new Object[]{"Incidente", seguimiento.obtenerRegistroIncidente()});
+    jTIncidente.setModel(model);
+}         
+
+    private boolean esEstadoValido(Paquete paquete, String incidente) {
+    if (paquete == null) return false;
+
+    EstadoDelPaquete estado = paquete.obtenerEstado();
+
+    switch (incidente) {
+        case "Paquete Rechazado":
+            // Solo válido si el estado es "Encurso"
+            return estado instanceof EnCurso;
+        default:
+            // Otros incidentes solo son válidos si el estado es "Pendiente"
+            return estado instanceof Pendiente;
+    }
+}
+    
     private void jBResolverIncidenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBResolverIncidenteActionPerformed
-        Paquete paquete = obtenerPaquete(jTCodigoResolver.getText());
-        String incidente = paquete.obtenerSeguimiento().obtenerRegistroIncidente();
-        EstadoIncidente incidenteRegistrar = null;
-        
-        if (incidente.equals("No se ha podido entregar el paquete en la dirección proporcionada")) {
-            incidenteRegistrar = new ErrorDireccion();
-        } else if (incidente.equals("El paquete se encuentra en malas condiciones")) {
-            incidenteRegistrar = new PaqueteEstropeado();
-        } else if (incidente.equals("La ubicación de su paquete es desconocida")) {
-            incidenteRegistrar = new PaquetePerdido();
-        }
-        if (!(paquete.obtenerEstado() instanceof EnCurso)) {
-            JOptionPane.showMessageDialog(
+        String incidente = (String) seleccionIncidentes1.getSelectedItem();
+        String codigoPaquete = jTCodigoResolver.getText().trim();
+
+        // Validación temprana del código del paquete
+    if (codigoPaquete.isBlank()) {
+        JOptionPane.showMessageDialog(
                 null,
-                "El paquete se encuentra fuera de su jurisdicción",
-                "Resolución falló",
-                JOptionPane.INFORMATION_MESSAGE
-            );
-            return;
-        }
-        String argumentos = jTArgumentos.getText();
-        if (argumentos.isBlank()) {
-            JOptionPane.showMessageDialog(
-                null,
-                "Ingrese los argumentos",
+                "Ingrese el código del paquete",
                 "Error",
                 JOptionPane.INFORMATION_MESSAGE
-            );
-            return;
-        }
-        int respuesta = JOptionPane.showConfirmDialog(
+        );
+        return;
+    }
+
+    Paquete paquete = Inventario.obtenerInstancia().obtenerPaquete(codigoPaquete);
+
+    if (!esEstadoValido(paquete, incidente)) {
+        mostrarMensaje("El paquete se encuentra fuera de su jurisdicción", "Resolución falló");
+        return;
+    }
+
+    String argumentos = jTArgumentos.getText().trim();
+    if (argumentos.isBlank()) {
+        mostrarMensaje("Ingrese los argumentos", "Error");
+        return;
+    }
+
+    int respuestaDev = JOptionPane.showConfirmDialog(
             null,
             "¿Estás seguro de que deseas resolver este incidente?",
             "Confirmación de resolución",
             JOptionPane.YES_NO_OPTION,
             JOptionPane.WARNING_MESSAGE
-        );
-        if (respuesta == JOptionPane.YES_OPTION) {
-            String[] partes = argumentos.split("\\s+");
-            GestorIncidente gi = new GestorIncidente(incidenteRegistrar);
-            gi.iniciarSoporte(paquete, partes);
-            JOptionPane.showMessageDialog(
-                null,
-                "El incidente se ha resuelto",
-                "Resolución Exitosa",
-                JOptionPane.INFORMATION_MESSAGE
-            );
-            Asignacion.obtenerInstancia().guardarRelacionPaquetes();
-            DefaultTableModel modeloTabla = (DefaultTableModel) jTIncidente.getModel();
-            modeloTabla.setRowCount(0);
-        } else {
-            JOptionPane.showMessageDialog(
-                null,
-                "La resolución del incidente se ha cancelado",
-                "Resolución Cancelada",
-                JOptionPane.INFORMATION_MESSAGE
-            );
+    );
+
+    if (respuestaDev != JOptionPane.YES_OPTION) {
+        mostrarMensaje("La resolución ha sido cancelada.", "Resolución Cancelada");
+        return;
+    }
+
+    // Validación del tipo de incidente y resolución
+    switch (incidente) {
+        case "Paquete Estropeado":
+        case "Paquete Perdido": {
+            realizarReembolso(); // Lógica para realizar el reembolso
+            mostrarMensaje("El reembolso ha sido procesado con éxito.", "Reembolso Exitoso");
+            break;
         }
+        case "Error Dirección": {
+            String nuevaDireccion = argumentos;
+            if (nuevaDireccion.isEmpty() || nuevaDireccion.equals("Ingrese la nueva dirección de entrega")) {
+                mostrarMensaje("Debe ingresar una nueva dirección para corregir el error.", "Error");
+                return;
+            }
+            paquete.setDireccionDestino(nuevaDireccion); // Actualizar la dirección del paquete
+            mostrarMensaje("La dirección ha sido actualizada con éxito.", "Actualización Exitosa");
+            break;
+        }
+        case "Paquete Rechazado": {
+            String razonRechazo = argumentos;
+            if (razonRechazo.isEmpty() || razonRechazo.equals("Ingrese la razón del rechazo")) {
+                mostrarMensaje("Debe ingresar una razón por la que el paquete fue rechazado.", "Error");
+                return;
+            }
+            registrarRazonRechazo(razonRechazo); // Lógica para registrar la razón del rechazo
+            mostrarMensaje("La razón del rechazo ha sido registrada con éxito.", "Registro Exitoso");
+            break;
+        }
+        default: {
+            mostrarMensaje("Tipo de incidente no reconocido. No se puede resolver.", "Error");
+            return;
+        }
+    }
+
+    // Lógica para marcar el incidente como resuelto
+    paquete.obtenerSeguimiento().limpiarIncidente(); // Limpia o marca como resuelto el incidente
+    mostrarMensaje("El incidente ha sido resuelto y el paquete ya no tiene incidentes.", "Resolución Completa");
     }//GEN-LAST:event_jBResolverIncidenteActionPerformed
 
-    /**
-     * Acción al perder el foco en el campo de argumentos
-     * @param evt evento de foco
-     */
+    // Métodos auxiliares
+    private void realizarReembolso() {
+    // Lógica para procesar el reembolso
+    }
+
+    private void registrarRazonRechazo(String razonRechazo) {
+    // Lógica para registrar la razón del rechazo del paquete
+    }
+
+    private void actualizarTablaIncidentes() {
+        DefaultTableModel modeloTabla = (DefaultTableModel) jTIncidente.getModel();
+        modeloTabla.setRowCount(0);
+    }
     private void jTArgumentosFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTArgumentosFocusLost
         // TODO add your handling code here:
     }//GEN-LAST:event_jTArgumentosFocusLost
 
-    /**
-     * Acción al realizar acción en el campo de argumentos
-     * @param evt evento de acción
-     */
     private void jTArgumentosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTArgumentosActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTArgumentosActionPerformed
 
-    /**
-     * Acción al soltar una tecla en el campo de argumentos
-     * @param evt evento de teclado
-     */
     private void jTArgumentosKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTArgumentosKeyReleased
         // TODO add your handling code here:
     }//GEN-LAST:event_jTArgumentosKeyReleased
@@ -796,6 +896,7 @@ public class JFIncidenteConductor extends javax.swing.JFrame {
     private javax.swing.JButton jBResolverIncidente;
     private javax.swing.JLabel jLabel133;
     private javax.swing.JLabel jLabel134;
+    private javax.swing.JLabel jLabel136;
     private javax.swing.JLabel jLabel137;
     private javax.swing.JLabel jLabel138;
     private javax.swing.JLabel jLabel69;
@@ -814,15 +915,20 @@ public class JFIncidenteConductor extends javax.swing.JFrame {
     private javax.swing.JTabbedPane jTPEmpleados1;
     private javax.swing.JTable jTablaPaquete;
     private javax.swing.JComboBox<String> seleccionIncidentes;
+    private javax.swing.JComboBox<String> seleccionIncidentes1;
     // End of variables declaration//GEN-END:variables
 
-    /**
-     * Método para cargar los tipos de incidentes en el JComboBox
-     */
     private void cargarIncidentes() {
         seleccionIncidentes.removeAllItems();
         seleccionIncidentes.addItem("Error Dirección");
         seleccionIncidentes.addItem("Paquete Estropeado");
         seleccionIncidentes.addItem("Paquete Perdido");
+        seleccionIncidentes.addItem("Paquete Rechazado");
+        seleccionIncidentes1.removeAllItems();
+        seleccionIncidentes1.addItem("Seleccione");
+        seleccionIncidentes1.addItem("Error Dirección");
+        seleccionIncidentes1.addItem("Paquete Estropeado");
+        seleccionIncidentes1.addItem("Paquete Perdido");
+        seleccionIncidentes1.addItem("Paquete Rechazado");
     }
 }
