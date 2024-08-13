@@ -2,6 +2,7 @@ package mod_paquetes;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 public class Seguimiento implements Serializable {
     private EstadoDelPaquete estadoActual;
@@ -49,6 +50,6 @@ public class Seguimiento implements Serializable {
     }
 
     public void limpiarIncidente() {
-        throw new UnsupportedOperationException("Resuelto"); 
+        JOptionPane.showMessageDialog(null, "El incidente ha sido resuelto exitosamente.", "Incidente Resuelto", JOptionPane.INFORMATION_MESSAGE);
     }
 }

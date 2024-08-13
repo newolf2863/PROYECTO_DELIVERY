@@ -542,10 +542,32 @@ public class JFIncidente extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTCodigoTrackingActionPerformed
 
+    // Método para verificar si el estado del paquete es válido para registrar un incidente
+private boolean esEstadoValidoParaRegistrar(Paquete paquete) {
+    return paquete != null && paquete.obtenerEstado() instanceof EnCurso;
+}
+
+// Método para verificar si el estado del paquete es válido para resolver un incidente
+private boolean esEstadoValidoParaResolver(Paquete paquete, String incidente) {
+    if (paquete == null) return false;
+
+    EstadoDelPaquete estado = paquete.obtenerEstado();
+
+    switch (incidente) {
+        case "Paquete Rechazado":
+            // Solo válido si el estado es "EnCurso"
+            return estado instanceof EnCurso;
+        default:
+            // Otros incidentes solo son válidos si el estado es "Pendiente"
+            return estado instanceof Pendiente;
+    }
+}
+    
+    
     private void jBRegistrarIncidenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBRegistrarIncidenteActionPerformed
         
          String incidente = (String) seleccionIncidentes.getSelectedItem();
-    if (incidente == null || incidente.isEmpty()) {
+         if (incidente == null || incidente.isEmpty()) {
         JOptionPane.showMessageDialog(
             null,
             "Por favor, selecciona un tipo de incidente",
@@ -556,8 +578,8 @@ public class JFIncidente extends javax.swing.JFrame {
     }
 
     Paquete paquete = Inventario.obtenerInstancia().obtenerPaquete(jTCodigoTracking.getText());
-    if (!esEstadoValido(paquete)) {
-        mostrarMensaje("El paquete se encuentra fuera de su jurisdicción", "Registro falló");
+    if (!esEstadoValidoParaRegistrar(paquete)) {
+        mostrarMensaje("El paquete debe estar en estado 'EnCurso' para registrar el incidente", "Registro falló");
         return;
     }
 
@@ -814,7 +836,7 @@ private void actualizarTablaIncidente(Seguimiento seguimiento) {
         String codigoPaquete = jTCodigoResolver.getText().trim();
 
         // Validación temprana del código del paquete
-    if (codigoPaquete.isBlank()) {
+        if (codigoPaquete.isBlank()) {
         JOptionPane.showMessageDialog(
                 null,
                 "Ingrese el código del paquete",
@@ -826,7 +848,7 @@ private void actualizarTablaIncidente(Seguimiento seguimiento) {
 
     Paquete paquete = Inventario.obtenerInstancia().obtenerPaquete(codigoPaquete);
 
-    if (!esEstadoValido(paquete, incidente)) {
+    if (!esEstadoValidoParaResolver(paquete, incidente)) {
         mostrarMensaje("El paquete se encuentra fuera de su jurisdicción", "Resolución falló");
         return;
     }
@@ -850,11 +872,10 @@ private void actualizarTablaIncidente(Seguimiento seguimiento) {
         return;
     }
 
-    // Validación del tipo de incidente y resolución
     switch (incidente) {
         case "Paquete Estropeado":
         case "Paquete Perdido": {
-            realizarReembolso(); // Lógica para realizar el reembolso
+            realizarReembolso();
             mostrarMensaje("El reembolso ha sido procesado con éxito.", "Reembolso Exitoso");
             break;
         }
@@ -864,7 +885,7 @@ private void actualizarTablaIncidente(Seguimiento seguimiento) {
                 mostrarMensaje("Debe ingresar una nueva dirección para corregir el error.", "Error");
                 return;
             }
-            paquete.setDireccionDestino(nuevaDireccion); // Actualizar la dirección del paquete
+            paquete.setDireccionDestino(nuevaDireccion);
             mostrarMensaje("La dirección ha sido actualizada con éxito.", "Actualización Exitosa");
             break;
         }
@@ -874,7 +895,8 @@ private void actualizarTablaIncidente(Seguimiento seguimiento) {
                 mostrarMensaje("Debe ingresar una razón por la que el paquete fue rechazado.", "Error");
                 return;
             }
-            registrarRazonRechazo(razonRechazo); // Lógica para registrar la razón del rechazo
+            registrarRazonRechazo(razonRechazo);
+            paquete.cambiarEstado(new Pendiente(paquete)); // Cambiar el estado a Pendiente
             mostrarMensaje("La razón del rechazo ha sido registrada con éxito.", "Registro Exitoso");
             break;
         }
@@ -884,9 +906,9 @@ private void actualizarTablaIncidente(Seguimiento seguimiento) {
         }
     }
 
-    // Lógica para marcar el incidente como resuelto
-    paquete.obtenerSeguimiento().limpiarIncidente(); // Limpia o marca como resuelto el incidente
+    paquete.obtenerSeguimiento().limpiarIncidente(); // Limpiar el incidente
     mostrarMensaje("El incidente ha sido resuelto y el paquete ya no tiene incidentes.", "Resolución Completa");
+        
     }//GEN-LAST:event_jBResolverIncidenteActionPerformed
 
     // Métodos auxiliares
