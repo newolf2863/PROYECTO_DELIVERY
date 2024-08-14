@@ -101,7 +101,7 @@ public class JFMenu extends javax.swing.JFrame {
 
         resultado = mostrarFechaHora(fechaYHora, fecha, localM);
         //jDateChooserFecha.setText(resultado);
-        txtID.setText("Usuario\t: " + "Recepcionista " + recepcionista.obtenerSucursal().name());
+        txtID.setText("Usuario\t: " + "Recepcionista Sucursal: " + recepcionista.obtenerSucursal().name());
         txtDateLog.setText("Fecha\t: " + resultado);
         JFrame frame = new JFrame();
         frame.getRootPane().setWindowDecorationStyle(JRootPane.NONE);
@@ -175,6 +175,7 @@ public class JFMenu extends javax.swing.JFrame {
         jLabel117 = new javax.swing.JLabel();
         txtID = new javax.swing.JLabel();
         txtDateLog = new javax.swing.JLabel();
+        jSeparator1 = new javax.swing.JSeparator();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("SistemaBestColor");
@@ -575,6 +576,7 @@ public class JFMenu extends javax.swing.JFrame {
         txtDateLog.setForeground(new java.awt.Color(51, 51, 51));
         txtDateLog.setText("Date      :");
         PanelHome.add(txtDateLog, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 40, 310, -1));
+        PanelHome.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 70, 1180, 10));
 
         Home.add(PanelHome, "home");
 
@@ -929,6 +931,7 @@ public class JFMenu extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel13;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel menuClientes;
     private javax.swing.JLabel menuEmpleados;
     private javax.swing.JLabel menuFacturacionYVenta;

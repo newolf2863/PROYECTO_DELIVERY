@@ -184,6 +184,7 @@ public class JFIngresar extends javax.swing.JFrame {
         setBackground(new java.awt.Color(255, 255, 255));
         setUndecorated(true);
         setResizable(false);
+        getContentPane().setLayout(new java.awt.CardLayout());
 
         bg.setBackground(new java.awt.Color(255, 255, 255));
         bg.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -248,7 +249,7 @@ public class JFIngresar extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 277, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 297, Short.MAX_VALUE)
                 .addComponent(exitP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -260,7 +261,7 @@ public class JFIngresar extends javax.swing.JFrame {
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
-        bg.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 460, -1));
+        bg.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 480, -1));
 
         jTFUser.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
         jTFUser.setForeground(new java.awt.Color(204, 204, 204));
@@ -347,7 +348,7 @@ public class JFIngresar extends javax.swing.JFrame {
         bg.add(olvidasteContra, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 310, -1, -1));
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/gestionDePaquetes.png"))); // NOI18N
-        bg.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 20, 460, 120));
+        bg.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 20, 480, 120));
 
         jLabel4.setFont(new java.awt.Font("Roboto Medium", 1, 24)); // NOI18N
         jLabel4.setText("Iniciar sesión");
@@ -369,21 +370,7 @@ public class JFIngresar extends javax.swing.JFrame {
         });
         bg.add(botonCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 310, -1, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(bg, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(bg, javax.swing.GroupLayout.PREFERRED_SIZE, 419, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
+        getContentPane().add(bg, "card2");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
