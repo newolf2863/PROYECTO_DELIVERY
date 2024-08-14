@@ -364,7 +364,6 @@
                           <Events>
                             <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="jTUsuarioFocusLost"/>
                             <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTUsuarioKeyReleased"/>
-                            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTUsuarioKeyTyped"/>
                           </Events>
                         </Component>
                         <Component class="javax.swing.JButton" name="jBRegistrarConductor">

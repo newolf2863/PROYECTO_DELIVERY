@@ -8,11 +8,13 @@ import basededatos.DataBase;
 
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JFrame;
 import javax.swing.JRootPane;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.ImageIcon;
+import javax.swing.JTextField;
 import mod_administracion.Conductor;
 import mod_administracion.Recepcionista;
 import mod_transporte.Provincia;
@@ -25,6 +27,7 @@ import validaciones.*;
  */
 public class JFConductores extends javax.swing.JFrame {
 //Validadores
+
     ValidadorDeRegistros validarRegistroF = new ValidadorDeRegistros();
     ValidadorDeSwings validadorCheck = new ValidadorDeSwings();
     private Recepcionista recepcionista;
@@ -43,7 +46,6 @@ public class JFConductores extends javax.swing.JFrame {
     private boolean nomb = false;
 //Mouse
     int xMouse, yMouse;
-
 
     public JFConductores(Recepcionista recepcionista) {
         initComponents();
@@ -237,9 +239,6 @@ public class JFConductores extends javax.swing.JFrame {
         jTUsuario.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 jTUsuarioKeyReleased(evt);
-            }
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                jTUsuarioKeyTyped(evt);
             }
         });
 
@@ -526,68 +525,63 @@ public class JFConductores extends javax.swing.JFrame {
     }//GEN-LAST:event_jTTelefonoConductorKeyReleased
 
     private void jBRegistrarConductorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBRegistrarConductorActionPerformed
+        String apellidos = jTApellidoConductor.getText();       
+        String telefono = jTTelefonoConductor.getText();      
+        String correo = jTCorreoConductor.getText();      
+        String direccion = jTDireccionConductor.getText();        
+        String nombreUsuario = jTUsuario.getText();
+        String nombres = jTNombreConductor.getText();
         String cedula = jTCedulaConductor.getText();
-        if (!ValidadorDeRegistros.validarCedula(cedula)) {
-            JOptionPane.showMessageDialog(this, "Cédula es inválida", "Error", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
+        String clave = jTClaveConductor.getText();
+        JTextField[] campos = {jTCedulaConductor, jTNombreConductor, jTApellidoConductor, jTTelefonoConductor,
+            jTCorreoConductor, jTDireccionConductor, jTUsuario, jTClaveConductor};
+        Boolean[] booleanoscondu = {cedulaConductorValidar, nombreConductorValidar, apellidoConductorValidar,
+            telefonoConductorValidar, telefonoConductorValidar, correoConductorValidar, direccionConductorValidar,
+            usuarioConductorValidar, claveConductorValidar};
+        String[] nombresCampos = {"documento", "nombre", "apellido","telefono","correo","dirección"
+        ,"usuario","clave"};
+        List<String> errores = validadorCheck.validarCamposLista(campos, booleanoscondu, nombresCampos);
+        errores.addAll(validadorCheck.validarCamposVaciosLista(campos, booleanoscondu, nombresCampos));
+        
         if (DataBase.obtenerInstancia().clienteExiste(cedula)) {
             JOptionPane.showMessageDialog(this, "Cédula ya registrada", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
-        String nombres = jTNombreConductor.getText();
-        if (!ValidadorDeRegistros.validarNombres(nombres)) {
-            JOptionPane.showMessageDialog(this, "Los nombres son inválidos", "Error", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-        String apellidos = jTApellidoConductor.getText();
-        if (!ValidadorDeRegistros.validarNombres(apellidos)) {
-            JOptionPane.showMessageDialog(this, "Los apellidos son inválidos", "Error", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-        String telefono = jTTelefonoConductor.getText();
-        if (!ValidadorDeRegistros.validarTelefono(telefono)) {
-            JOptionPane.showMessageDialog(this, "El teléfono es inválido", "Error", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-        String correo = jTCorreoConductor.getText();
-        if (!ValidadorDeRegistros.validarEmail(correo)) {
-            JOptionPane.showMessageDialog(this, "El correo es inválido", "Error", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-        String direccion = jTDireccionConductor.getText();
-        if (!ValidadorDeRegistros.validarDireccion(direccion)) {
-            JOptionPane.showMessageDialog(this, "La dirección es inválida", "Error", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-        String nombreUsuario = jTUsuario.getText();
-        if (nombreUsuario.isEmpty() || nombreUsuario.length() < 5) {
-            JOptionPane.showMessageDialog(this, "El nombre de usuario es inválido", "Error", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-        String clave = jTClaveConductor.getText();
-        if (clave.isEmpty() || clave.length() < 5) {
-            JOptionPane.showMessageDialog(this, "La clave es inválida", "Error", JOptionPane.ERROR_MESSAGE);
-            return;
-        } else if (!DataBase.obtenerInstancia().esNombreUsuarioUnico(nombreUsuario)) {
+        
+        if (!DataBase.obtenerInstancia().esNombreUsuarioUnico(nombreUsuario)) {
             JOptionPane.showMessageDialog(this, "El nombre de usuario ya existe", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
-        DataBase.obtenerInstancia().insertarConductor(nombres, apellidos, cedula, direccion, telefono, correo, nombreUsuario, clave, recepcionista.obtenerSucursal());
+        
+
+        if (!errores.isEmpty()) {
+            StringBuilder mensajeError = new StringBuilder("Se encontraron los siguientes errores:\n");
+            for (String error : errores) {
+                mensajeError.append("- ").append(error).append("\n");
+            }
+            JOptionPane.showMessageDialog(null, mensajeError.toString(), "Errores", JOptionPane.ERROR_MESSAGE);
+        } else {
+            Object[] options = {"Si", "No"};
+            int opcion = JOptionPane.showOptionDialog(null, "¿Deseas registrar los datos?", "Confirmación",
+                    JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
+            if (opcion == JOptionPane.YES_OPTION) {
+                DataBase.obtenerInstancia().insertarConductor(nombres, apellidos, cedula, direccion, telefono, correo, nombreUsuario, clave, recepcionista.obtenerSucursal());
         JOptionPane.showMessageDialog(
                 null,
                 "El registro del conductor ha sido exitoso",
                 "Registro Exitoso",
                 JOptionPane.INFORMATION_MESSAGE
         );
+        
         Conductor conductor = new Conductor(nombres, apellidos, cedula, direccion, telefono, correo);
         Asignacion.obtenerInstancia().agregarConductor(conductor);
         vaciarCampos();
         cargarConductores();
+            }
+        }  
     }//GEN-LAST:event_jBRegistrarConductorActionPerformed
-    
-    
-    
+
+
     private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
         getToolkit().beep();
         int dialogButton = JOptionPane.YES_NO_OPTION;
@@ -623,42 +617,32 @@ public class JFConductores extends javax.swing.JFrame {
     }//GEN-LAST:event_jTDireccionConductorFocusLost
 
     private void jTDireccionConductorKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTDireccionConductorKeyReleased
-         direccionConductorValidar = validarRegistroF.camposDeRegistros(jTDireccionConductor, "direccion");
+        direccionConductorValidar = validarRegistroF.camposDeRegistros(jTDireccionConductor, "direccion");
     }//GEN-LAST:event_jTDireccionConductorKeyReleased
 
     private void jTClaveConductorFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTClaveConductorFocusLost
-         claveConductorValidar=validarRegistroF.camposDeRegistros(jTClaveConductor, "contraseña");
-         validarRegistroF.hideTooltip();
+        claveConductorValidar = validarRegistroF.camposDeRegistros(jTClaveConductor, "contraseña");
+        validarRegistroF.hideTooltip();
     }//GEN-LAST:event_jTClaveConductorFocusLost
-  
+
     private void jTClaveConductorKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTClaveConductorKeyReleased
-    claveConductorValidar = validarRegistroF.camposDeRegistros(jTClaveConductor, "contraseña");
+        claveConductorValidar = validarRegistroF.camposDeRegistros(jTClaveConductor, "contraseña");
     }//GEN-LAST:event_jTClaveConductorKeyReleased
 
- 
 
-    
     private void jTUsuarioFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTUsuarioFocusLost
-        usuarioConductorValidar=validarRegistroF.camposDeRegistros(jTUsuario, "usuario");
+        usuarioConductorValidar = validarRegistroF.camposDeRegistros(jTUsuario, "usuario");
         validarRegistroF.hideTooltip();
+        String nombreUsuario = jTUsuario.getText();
+        if (!DataBase.obtenerInstancia().esNombreUsuarioUnico(nombreUsuario)) {
+            JOptionPane.showMessageDialog(this, "El nombre de usuario ya existe", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
     }//GEN-LAST:event_jTUsuarioFocusLost
 
     private void jTUsuarioKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTUsuarioKeyReleased
-        usuarioConductorValidar=validarRegistroF.camposDeRegistros(jTUsuario, "usuario");
+        usuarioConductorValidar = validarRegistroF.camposDeRegistros(jTUsuario, "usuario");
     }//GEN-LAST:event_jTUsuarioKeyReleased
-
-    private void jTUsuarioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTUsuarioKeyTyped
-        char c = evt.getKeyChar();
-        if (c != KeyEvent.VK_BACK_SPACE && c != KeyEvent.VK_DELETE) {
-            if (!((Character.isLetter(c) && Character.isLowerCase(c))
-                    || (Character.isLetter(c) && Character.isUpperCase(c))
-                    || Character.isDigit(c) || c == 'ñ' || c == 'Ñ')) {
-                evt.consume(); // No permite ingresar el carácter
-                // Mostrar mensaje de advertencia
-                JOptionPane.showMessageDialog(this, "Solo se permiten letras y números.");
-            }
-        }
-    }//GEN-LAST:event_jTUsuarioKeyTyped
 
     private void jBEliminarConductorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBEliminarConductorActionPerformed
         int respuesta = JOptionPane.showConfirmDialog(

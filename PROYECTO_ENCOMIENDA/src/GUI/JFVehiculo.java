@@ -224,22 +224,6 @@ public class JFVehiculo extends javax.swing.JFrame {
 
         jLabel27.setText("Capacidad");
         jPDatosEmpleados.add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(11, 95, -1, -1));
-
-        jTCapacidadVehiculo.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                jTCapacidadVehiculoFocusLost(evt);
-            }
-        });
-        jTCapacidadVehiculo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTCapacidadVehiculoActionPerformed(evt);
-            }
-        });
-        jTCapacidadVehiculo.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                jTCapacidadVehiculoKeyReleased(evt);
-            }
-        });
         jPDatosEmpleados.add(jTCapacidadVehiculo, new org.netbeans.lib.awtextra.AbsoluteConstraints(79, 92, 201, -1));
 
         jPanel44.setBorder(javax.swing.BorderFactory.createTitledBorder("Conductor Asignado"));
@@ -268,12 +252,6 @@ public class JFVehiculo extends javax.swing.JFrame {
             }
         });
         jPDatosEmpleados.add(bRegistrarVehiculo, new org.netbeans.lib.awtextra.AbsoluteConstraints(295, 135, -1, 36));
-
-        jTPlacaVehiculo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTPlacaVehiculoActionPerformed(evt);
-            }
-        });
         jPDatosEmpleados.add(jTPlacaVehiculo, new org.netbeans.lib.awtextra.AbsoluteConstraints(79, 37, 201, -1));
 
         jPRE.add(jPDatosEmpleados, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 28, 843, -1));
@@ -803,10 +781,6 @@ public class JFVehiculo extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTPlacaVehiculo1FocusLost
 
-    private void jTPlacaVehiculoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTPlacaVehiculoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTPlacaVehiculoActionPerformed
-
     private void bRegistrarVehiculoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bRegistrarVehiculoActionPerformed
         Asignacion asignacion = Asignacion.obtenerInstancia();
         double capacidad = Double.parseDouble(jTCapacidadVehiculo.getText());
@@ -815,18 +789,6 @@ public class JFVehiculo extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(this, "El vehiculo se registro con exito");
         refrescarVehiculos();
     }//GEN-LAST:event_bRegistrarVehiculoActionPerformed
-
-    private void jTCapacidadVehiculoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTCapacidadVehiculoKeyReleased
-
-    }//GEN-LAST:event_jTCapacidadVehiculoKeyReleased
-
-    private void jTCapacidadVehiculoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTCapacidadVehiculoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTCapacidadVehiculoActionPerformed
-
-    private void jTCapacidadVehiculoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTCapacidadVehiculoFocusLost
-
-    }//GEN-LAST:event_jTCapacidadVehiculoFocusLost
 
     private void JComboDestino1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JComboDestino1ActionPerformed
         // TODO add your handling code here:
