@@ -5,6 +5,7 @@
 package GUI;
 
 import basededatos.DataBase;
+
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import javax.swing.JFrame;
@@ -12,15 +13,11 @@ import javax.swing.JRootPane;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.ImageIcon;
-import javax.swing.JTextField;
-import java.util.List;
-import javax.swing.JLabel;
 import mod_administracion.Conductor;
 import mod_administracion.Recepcionista;
 import mod_transporte.Provincia;
 import mod_transporte.Asignacion;
 import validaciones.*;
-
 
 /**
  *
@@ -28,7 +25,6 @@ import validaciones.*;
  */
 public class JFConductores extends javax.swing.JFrame {
 //Validadores
-
     ValidadorDeRegistros validarRegistroF = new ValidadorDeRegistros();
     ValidadorDeSwings validadorCheck = new ValidadorDeSwings();
     private Recepcionista recepcionista;
@@ -39,17 +35,15 @@ public class JFConductores extends javax.swing.JFrame {
     private boolean nombreConductorValidar = false;
     private boolean apellidoConductorValidar = false;
     private boolean telefonoConductorValidar = false;
-    private boolean rucConductorValidar=false;
-    private boolean nomb=false;
-//ConductoresActualizar
-    private boolean cIConductor1 = false;
-    private boolean nombreEmpresaProve1 = false;
-    private boolean cedulaProve1 = false;
-    private boolean nombreProve1 = false;
-    private boolean apellidoProve1 = false;
-    private boolean telefonoProve1 = false;
+    private boolean rucConductorValidar = false;
+    private boolean correoConductorValidar = false;
+    private boolean direccionConductorValidar = false;
+    private boolean usuarioConductorValidar = false;
+    private boolean claveConductorValidar = false;
+    private boolean nomb = false;
 //Mouse
     int xMouse, yMouse;
+
 
     public JFConductores(Recepcionista recepcionista) {
         initComponents();
@@ -59,7 +53,7 @@ public class JFConductores extends javax.swing.JFrame {
         frame.getRootPane().setWindowDecorationStyle(JRootPane.NONE);
         setLocationRelativeTo(null);
         cargarConductores();
-     }
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -92,7 +86,7 @@ public class JFConductores extends javax.swing.JFrame {
         jLabel25 = new javax.swing.JLabel();
         jLabel26 = new javax.swing.JLabel();
         jTClaveConductor = new javax.swing.JTextField();
-        jTNombreUsuario1 = new javax.swing.JTextField();
+        jTUsuario = new javax.swing.JTextField();
         jBRegistrarConductor = new javax.swing.JButton();
         jPPC = new javax.swing.JPanel();
         jPIA = new javax.swing.JPanel();
@@ -135,16 +129,14 @@ public class JFConductores extends javax.swing.JFrame {
         });
         jScrollPane11.setViewportView(jTConductores);
 
-        jPPR.add(jScrollPane11, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 360, 975, 210));
+        jPPR.add(jScrollPane11, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 360, 975, 190));
 
         jPanel15.setBorder(javax.swing.BorderFactory.createTitledBorder("Datos conductor"));
         jPanel15.setToolTipText("");
 
         jPanel9.setBorder(javax.swing.BorderFactory.createTitledBorder("Datos personales del conductor"));
-        jPanel9.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel21.setText("Cédula");
-        jPanel9.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(11, 29, -1, -1));
 
         jTCedulaConductor.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
@@ -156,10 +148,8 @@ public class JFConductores extends javax.swing.JFrame {
                 jTCedulaConductorKeyReleased(evt);
             }
         });
-        jPanel9.add(jTCedulaConductor, new org.netbeans.lib.awtextra.AbsoluteConstraints(72, 21, 247, -1));
 
         jLabel22.setText("Nombres");
-        jPanel9.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(11, 54, -1, -1));
 
         jTNombreConductor.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
@@ -171,10 +161,8 @@ public class JFConductores extends javax.swing.JFrame {
                 jTNombreConductorKeyReleased(evt);
             }
         });
-        jPanel9.add(jTNombreConductor, new org.netbeans.lib.awtextra.AbsoluteConstraints(72, 51, 247, -1));
 
         jLabel23.setText("Apellido");
-        jPanel9.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(11, 85, -1, -1));
 
         jTApellidoConductor.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
@@ -186,10 +174,8 @@ public class JFConductores extends javax.swing.JFrame {
                 jTApellidoConductorKeyReleased(evt);
             }
         });
-        jPanel9.add(jTApellidoConductor, new org.netbeans.lib.awtextra.AbsoluteConstraints(72, 82, 247, -1));
 
         jLabel107.setText("Teléfono");
-        jPanel9.add(jLabel107, new org.netbeans.lib.awtextra.AbsoluteConstraints(11, 116, -1, -1));
 
         jTTelefonoConductor.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
@@ -201,10 +187,8 @@ public class JFConductores extends javax.swing.JFrame {
                 jTTelefonoConductorKeyReleased(evt);
             }
         });
-        jPanel9.add(jTTelefonoConductor, new org.netbeans.lib.awtextra.AbsoluteConstraints(72, 110, 247, -1));
 
         jLabel87.setText("Correo");
-        jPanel9.add(jLabel87, new org.netbeans.lib.awtextra.AbsoluteConstraints(17, 150, 43, -1));
 
         jTCorreoConductor.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
@@ -216,10 +200,8 @@ public class JFConductores extends javax.swing.JFrame {
                 jTCorreoConductorKeyReleased(evt);
             }
         });
-        jPanel9.add(jTCorreoConductor, new org.netbeans.lib.awtextra.AbsoluteConstraints(72, 144, 247, -1));
 
         jLabel73.setText("Dirección");
-        jPanel9.add(jLabel73, new org.netbeans.lib.awtextra.AbsoluteConstraints(11, 181, -1, -1));
 
         jTDireccionConductor.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
@@ -231,13 +213,10 @@ public class JFConductores extends javax.swing.JFrame {
                 jTDireccionConductorKeyReleased(evt);
             }
         });
-        jPanel9.add(jTDireccionConductor, new org.netbeans.lib.awtextra.AbsoluteConstraints(73, 178, 246, -1));
 
         jLabel25.setText("Nombre de usuario");
-        jPanel9.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(371, 24, -1, -1));
 
         jLabel26.setText("Clave");
-        jPanel9.add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(371, 89, -1, -1));
 
         jTClaveConductor.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
@@ -248,26 +227,21 @@ public class JFConductores extends javax.swing.JFrame {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 jTClaveConductorKeyReleased(evt);
             }
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                jTClaveConductorKeyTyped(evt);
-            }
         });
-        jPanel9.add(jTClaveConductor, new org.netbeans.lib.awtextra.AbsoluteConstraints(371, 111, 187, -1));
 
-        jTNombreUsuario1.addFocusListener(new java.awt.event.FocusAdapter() {
+        jTUsuario.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
-                jTNombreUsuario1FocusLost(evt);
+                jTUsuarioFocusLost(evt);
             }
         });
-        jTNombreUsuario1.addKeyListener(new java.awt.event.KeyAdapter() {
+        jTUsuario.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
-                jTNombreUsuario1KeyReleased(evt);
+                jTUsuarioKeyReleased(evt);
             }
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                jTNombreUsuario1KeyTyped(evt);
+                jTUsuarioKeyTyped(evt);
             }
         });
-        jPanel9.add(jTNombreUsuario1, new org.netbeans.lib.awtextra.AbsoluteConstraints(371, 45, 187, -1));
 
         jBRegistrarConductor.setText("Registrar datos");
         jBRegistrarConductor.addActionListener(new java.awt.event.ActionListener() {
@@ -276,30 +250,125 @@ public class JFConductores extends javax.swing.JFrame {
             }
         });
 
+        javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
+        jPanel9.setLayout(jPanel9Layout);
+        jPanel9Layout.setHorizontalGroup(
+            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel9Layout.createSequentialGroup()
+                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(jBRegistrarConductor)
+                        .addGroup(jPanel9Layout.createSequentialGroup()
+                            .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(jPanel9Layout.createSequentialGroup()
+                                    .addGap(6, 6, 6)
+                                    .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabel21)
+                                        .addComponent(jLabel22))
+                                    .addGap(12, 12, 12)
+                                    .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jTNombreConductor, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jTCedulaConductor, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGroup(jPanel9Layout.createSequentialGroup()
+                                    .addContainerGap()
+                                    .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(jPanel9Layout.createSequentialGroup()
+                                            .addGap(6, 6, 6)
+                                            .addComponent(jLabel87, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGap(12, 12, 12)
+                                            .addComponent(jTCorreoConductor, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGroup(jPanel9Layout.createSequentialGroup()
+                                            .addComponent(jLabel73)
+                                            .addGap(12, 12, 12)
+                                            .addComponent(jTDireccionConductor, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGroup(jPanel9Layout.createSequentialGroup()
+                                            .addComponent(jLabel107)
+                                            .addGap(14, 14, 14)
+                                            .addComponent(jTTelefonoConductor, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                            .addGap(76, 76, 76)
+                            .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel25)
+                                .addComponent(jTUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel26)
+                                .addComponent(jTClaveConductor, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(jPanel9Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel23)
+                        .addGap(15, 15, 15)
+                        .addComponent(jTApellidoConductor, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(173, Short.MAX_VALUE))
+        );
+        jPanel9Layout.setVerticalGroup(
+            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel9Layout.createSequentialGroup()
+                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jBRegistrarConductor)
+                    .addGroup(jPanel9Layout.createSequentialGroup()
+                        .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel9Layout.createSequentialGroup()
+                                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel9Layout.createSequentialGroup()
+                                        .addGap(11, 11, 11)
+                                        .addComponent(jLabel21))
+                                    .addGroup(jPanel9Layout.createSequentialGroup()
+                                        .addContainerGap()
+                                        .addComponent(jTCedulaConductor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(28, 28, 28)
+                                        .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                            .addComponent(jTNombreConductor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jLabel22))))
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jTApellidoConductor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(jPanel9Layout.createSequentialGroup()
+                                        .addGap(3, 3, 3)
+                                        .addComponent(jLabel23)))
+                                .addGap(22, 22, 22)
+                                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel9Layout.createSequentialGroup()
+                                        .addGap(6, 6, 6)
+                                        .addComponent(jLabel107))
+                                    .addComponent(jTTelefonoConductor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(jPanel9Layout.createSequentialGroup()
+                                .addComponent(jLabel25)
+                                .addGap(5, 5, 5)
+                                .addComponent(jTUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(34, 34, 34)
+                                .addComponent(jLabel26)
+                                .addGap(6, 6, 6)
+                                .addComponent(jTClaveConductor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(28, 28, 28)
+                        .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel9Layout.createSequentialGroup()
+                                .addGap(6, 6, 6)
+                                .addComponent(jLabel87))
+                            .addComponent(jTCorreoConductor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(28, 28, 28)
+                        .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jTDireccionConductor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel9Layout.createSequentialGroup()
+                                .addGap(3, 3, 3)
+                                .addComponent(jLabel73)))))
+                .addContainerGap(16, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout jPanel15Layout = new javax.swing.GroupLayout(jPanel15);
         jPanel15.setLayout(jPanel15Layout);
         jPanel15Layout.setHorizontalGroup(
             jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel15Layout.createSequentialGroup()
-                .addGap(230, 230, 230)
-                .addComponent(jBRegistrarConductor)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(jPanel15Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(194, Short.MAX_VALUE))
         );
         jPanel15Layout.setVerticalGroup(
             jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel15Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
-                .addComponent(jBRegistrarConductor)
-                .addContainerGap())
+                .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jPPR.add(jPanel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 20, 660, 310));
+        jPPR.add(jPanel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 970, 330));
 
         jPGP.addTab("Registrar Conductor", jPPR);
 
@@ -371,7 +440,7 @@ public class JFConductores extends javax.swing.JFrame {
 
         jPGP.addTab("Eliminar Conductor", jPPC);
 
-        JPProovedores.add(jPGP, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 60, 1030, 600));
+        JPProovedores.add(jPGP, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 60, 1080, 600));
 
         jPanel3.setBackground(new java.awt.Color(146, 10, 48));
         jPanel3.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
@@ -415,35 +484,39 @@ public class JFConductores extends javax.swing.JFrame {
     }//GEN-LAST:event_jTConductoresMouseClicked
 
     private void jTCedulaConductorFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTCedulaConductorFocusLost
-        //cedulaConductorValidar = validarRegistroF.camposDeRegistros(jTCedulaConductor, errorProveedores3, "cedula");
+        cedulaConductorValidar = validarRegistroF.camposDeRegistros(jTCedulaConductor, "cedula");
+        validarRegistroF.hideTooltip();
     }//GEN-LAST:event_jTCedulaConductorFocusLost
 
     private void jTCedulaConductorKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTCedulaConductorKeyReleased
-        //cedulaConductorValidar = validarRegistroF.camposDeRegistros(jTCedulaConductor, errorProveedores3, "cedula");
+        cedulaConductorValidar = validarRegistroF.camposDeRegistros(jTCedulaConductor, "cedula");
     }//GEN-LAST:event_jTCedulaConductorKeyReleased
 
     private void jTNombreConductorFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTNombreConductorFocusLost
-        //nombreConductorValidar = validarRegistroF.camposDeRegistros(jTNombreConductor, errorProveedores4, "n");
+        nombreConductorValidar = validarRegistroF.camposDeRegistros(jTNombreConductor, "nombre");
+        validarRegistroF.hideTooltip();
     }//GEN-LAST:event_jTNombreConductorFocusLost
 
     private void jTNombreConductorKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTNombreConductorKeyReleased
-        //nombreConductorValidar = validarRegistroF.camposDeRegistros(jTNombreConductor, errorProveedores4, "n");
+        nombreConductorValidar = validarRegistroF.camposDeRegistros(jTNombreConductor, "nombre");
     }//GEN-LAST:event_jTNombreConductorKeyReleased
 
     private void jTApellidoConductorFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTApellidoConductorFocusLost
-        //apellidoConductorValidar = validarRegistroF.camposDeRegistros(jTApellidoConductor, errorProveedores5, "n");
+        apellidoConductorValidar = validarRegistroF.camposDeRegistros(jTApellidoConductor, "nombre");
+        validarRegistroF.hideTooltip();
     }//GEN-LAST:event_jTApellidoConductorFocusLost
 
     private void jTApellidoConductorKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTApellidoConductorKeyReleased
-        //apellidoConductorValidar = validarRegistroF.camposDeRegistros(jTApellidoConductor, errorProveedores5, "n");
+        apellidoConductorValidar = validarRegistroF.camposDeRegistros(jTApellidoConductor, "nombre");
     }//GEN-LAST:event_jTApellidoConductorKeyReleased
 
     private void jTTelefonoConductorFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTTelefonoConductorFocusLost
-        //telefonoConductorValidar = validarRegistroF.camposDeRegistros(jTTelefonoConductor, errorProveedores6, "telefono");
+        telefonoConductorValidar = validarRegistroF.camposDeRegistros(jTTelefonoConductor, "telefono");
+        validarRegistroF.hideTooltip();
     }//GEN-LAST:event_jTTelefonoConductorFocusLost
 
     private void jTTelefonoConductorKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTTelefonoConductorKeyReleased
-        //telefonoConductorValidar = validarRegistroF.camposDeRegistros(jTTelefonoConductor, errorProveedores6, "telefono");
+        telefonoConductorValidar = validarRegistroF.camposDeRegistros(jTTelefonoConductor, "telefono");
     }//GEN-LAST:event_jTTelefonoConductorKeyReleased
 
     private void jBRegistrarConductorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBRegistrarConductorActionPerformed
@@ -481,11 +554,11 @@ public class JFConductores extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "La dirección es inválida", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
-        String nombreUsuario = jTNombreUsuario1.getText();
+        String nombreUsuario = jTUsuario.getText();
         if (nombreUsuario.isEmpty() || nombreUsuario.length() < 5) {
             JOptionPane.showMessageDialog(this, "El nombre de usuario es inválido", "Error", JOptionPane.ERROR_MESSAGE);
             return;
-        } 
+        }
         String clave = jTClaveConductor.getText();
         if (clave.isEmpty() || clave.length() < 5) {
             JOptionPane.showMessageDialog(this, "La clave es inválida", "Error", JOptionPane.ERROR_MESSAGE);
@@ -496,17 +569,19 @@ public class JFConductores extends javax.swing.JFrame {
         }
         DataBase.obtenerInstancia().insertarConductor(nombres, apellidos, cedula, direccion, telefono, correo, nombreUsuario, clave, recepcionista.obtenerSucursal());
         JOptionPane.showMessageDialog(
-            null,
-            "El registro del conductor ha sido exitoso",
-            "Registro Exitoso",
-            JOptionPane.INFORMATION_MESSAGE
+                null,
+                "El registro del conductor ha sido exitoso",
+                "Registro Exitoso",
+                JOptionPane.INFORMATION_MESSAGE
         );
         Conductor conductor = new Conductor(nombres, apellidos, cedula, direccion, telefono, correo);
         Asignacion.obtenerInstancia().agregarConductor(conductor);
         vaciarCampos();
         cargarConductores();
     }//GEN-LAST:event_jBRegistrarConductorActionPerformed
-
+    
+    
+    
     private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
         getToolkit().beep();
         int dialogButton = JOptionPane.YES_NO_OPTION;
@@ -528,38 +603,45 @@ public class JFConductores extends javax.swing.JFrame {
     }//GEN-LAST:event_jPanel3MousePressed
 
     private void jTCorreoConductorFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTCorreoConductorFocusLost
-        // TODO add your handling code here:
+        correoConductorValidar = validarRegistroF.camposDeRegistros(jTCorreoConductor, "email");
+        validarRegistroF.hideTooltip();
     }//GEN-LAST:event_jTCorreoConductorFocusLost
 
     private void jTCorreoConductorKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTCorreoConductorKeyReleased
-        // TODO add your handling code here:
+        correoConductorValidar = validarRegistroF.camposDeRegistros(jTCorreoConductor, "email");
     }//GEN-LAST:event_jTCorreoConductorKeyReleased
 
     private void jTDireccionConductorFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTDireccionConductorFocusLost
-        // TODO add your handling code here:
+        direccionConductorValidar = validarRegistroF.camposDeRegistros(jTDireccionConductor, "direccion");
+        validarRegistroF.hideTooltip();
     }//GEN-LAST:event_jTDireccionConductorFocusLost
 
     private void jTDireccionConductorKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTDireccionConductorKeyReleased
-        // TODO add your handling code here:
+         direccionConductorValidar = validarRegistroF.camposDeRegistros(jTDireccionConductor, "direccion");
     }//GEN-LAST:event_jTDireccionConductorKeyReleased
 
     private void jTClaveConductorFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTClaveConductorFocusLost
-        // TODO add your handling code here:
+         claveConductorValidar=validarRegistroF.camposDeRegistros(jTClaveConductor, "contraseña");
+         validarRegistroF.hideTooltip();
     }//GEN-LAST:event_jTClaveConductorFocusLost
-
+  
     private void jTClaveConductorKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTClaveConductorKeyReleased
-        // TODO add your handling code here:
+    claveConductorValidar = validarRegistroF.camposDeRegistros(jTClaveConductor, "contraseña");
     }//GEN-LAST:event_jTClaveConductorKeyReleased
 
-    private void jTNombreUsuario1FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTNombreUsuario1FocusLost
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTNombreUsuario1FocusLost
+ 
 
-    private void jTNombreUsuario1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTNombreUsuario1KeyReleased
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTNombreUsuario1KeyReleased
+    
+    private void jTUsuarioFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTUsuarioFocusLost
+        usuarioConductorValidar=validarRegistroF.camposDeRegistros(jTUsuario, "usuario");
+        validarRegistroF.hideTooltip();
+    }//GEN-LAST:event_jTUsuarioFocusLost
 
-    private void jTNombreUsuario1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTNombreUsuario1KeyTyped
+    private void jTUsuarioKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTUsuarioKeyReleased
+        usuarioConductorValidar=validarRegistroF.camposDeRegistros(jTUsuario, "usuario");
+    }//GEN-LAST:event_jTUsuarioKeyReleased
+
+    private void jTUsuarioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTUsuarioKeyTyped
         char c = evt.getKeyChar();
         if (c != KeyEvent.VK_BACK_SPACE && c != KeyEvent.VK_DELETE) {
             if (!((Character.isLetter(c) && Character.isLowerCase(c))
@@ -570,28 +652,15 @@ public class JFConductores extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this, "Solo se permiten letras y números.");
             }
         }
-    }//GEN-LAST:event_jTNombreUsuario1KeyTyped
-
-    private void jTClaveConductorKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTClaveConductorKeyTyped
-        char c = evt.getKeyChar();
-        if (c != KeyEvent.VK_BACK_SPACE && c != KeyEvent.VK_DELETE) {
-            if (!((Character.isLetter(c) && Character.isLowerCase(c))
-                    || (Character.isLetter(c) && Character.isUpperCase(c))
-                    || Character.isDigit(c) || c == 'ñ' || c == 'Ñ')) {
-                evt.consume(); // No permite ingresar el carácter
-                // Mostrar mensaje de advertencia
-                JOptionPane.showMessageDialog(this, "Solo se permiten letras y números.");
-            }
-        }
-    }//GEN-LAST:event_jTClaveConductorKeyTyped
+    }//GEN-LAST:event_jTUsuarioKeyTyped
 
     private void jBEliminarConductorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBEliminarConductorActionPerformed
         int respuesta = JOptionPane.showConfirmDialog(
-            null,
-            "¿Estás seguro de que deseas eliminar el conductor con cedula: " + jTCodigoEliminar.getText() + "?",
-            "Confirmación de Eliminación",
-            JOptionPane.YES_NO_OPTION,
-            JOptionPane.WARNING_MESSAGE
+                null,
+                "¿Estás seguro de que deseas eliminar el conductor con cedula: " + jTCodigoEliminar.getText() + "?",
+                "Confirmación de Eliminación",
+                JOptionPane.YES_NO_OPTION,
+                JOptionPane.WARNING_MESSAGE
         );
         if (respuesta == JOptionPane.YES_OPTION) {
             String codigo = jTCodigoEliminar.getText();
@@ -602,20 +671,20 @@ public class JFConductores extends javax.swing.JFrame {
             Asignacion.obtenerInstancia().borrarRelacionConductorVehiculo(conductor);
             Asignacion.obtenerInstancia().guardarConductores();
             JOptionPane.showMessageDialog(
-                null,
-                "El conductor con cedula " + jTCodigoEliminar.getText() + " ha sido eliminado.",
-                "Eliminación Exitosa",
-                JOptionPane.INFORMATION_MESSAGE
+                    null,
+                    "El conductor con cedula " + jTCodigoEliminar.getText() + " ha sido eliminado.",
+                    "Eliminación Exitosa",
+                    JOptionPane.INFORMATION_MESSAGE
             );
             DefaultTableModel modeloTabla = (DefaultTableModel) jTablaConductor.getModel();
             modeloTabla.setRowCount(0);
         } else {
             // El usuario canceló la eliminación
             JOptionPane.showMessageDialog(
-                null,
-                "La eliminación del conductor con cedula " + jTCodigoEliminar.getText() + " ha sido cancelada.",
-                "Eliminación Cancelada",
-                JOptionPane.INFORMATION_MESSAGE
+                    null,
+                    "La eliminación del conductor con cedula " + jTCodigoEliminar.getText() + " ha sido cancelada.",
+                    "Eliminación Cancelada",
+                    JOptionPane.INFORMATION_MESSAGE
             );
         }
     }//GEN-LAST:event_jBEliminarConductorActionPerformed
@@ -638,11 +707,11 @@ public class JFConductores extends javax.swing.JFrame {
         };
         model.setColumnIdentifiers(columnNames);
         model.addRow(new Object[]{
-                conductor.getCedula(),
-                conductor.getNombres() + " " + conductor.getApellidos(),
-                conductor.getEmail(),
-                conductor.getTelefono()
-            });
+            conductor.getCedula(),
+            conductor.getNombres() + " " + conductor.getApellidos(),
+            conductor.getEmail(),
+            conductor.getTelefono()
+        });
         jTablaConductor.setModel(model);
         jTablaConductor.setVisible(true);
         jBEliminarConductor.setVisible(true);
@@ -682,8 +751,8 @@ public class JFConductores extends javax.swing.JFrame {
     private javax.swing.JTextField jTCorreoConductor;
     private javax.swing.JTextField jTDireccionConductor;
     private javax.swing.JTextField jTNombreConductor;
-    private javax.swing.JTextField jTNombreUsuario1;
     private javax.swing.JTextField jTTelefonoConductor;
+    private javax.swing.JTextField jTUsuario;
     private javax.swing.JTable jTablaConductor;
     // End of variables declaration//GEN-END:variables
 
@@ -694,7 +763,7 @@ public class JFConductores extends javax.swing.JFrame {
         jTTelefonoConductor.setText("");
         jTCorreoConductor.setText("");
         jTDireccionConductor.setText("");
-        jTNombreUsuario1.setText("");
+        jTUsuario.setText("");
         jTClaveConductor.setText("");
     }
 
@@ -710,8 +779,7 @@ public class JFConductores extends javax.swing.JFrame {
                 conductor.getCedula(),
                 conductor.getDireccion(),
                 conductor.getTelefono(),
-                conductor.getEmail(),
-            };
+                conductor.getEmail(),};
             model.addRow(row);
         }
     }

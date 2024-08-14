@@ -25,22 +25,19 @@ public class ValidadorDeSwings {
      * @param nombresCampos Un array de nombres de los campos para incluir en los mensajes de error.
      * @return Una lista de mensajes de error para los campos inválidos.
      */
-    public List<String> validarCamposLista(JTextField[] campos, Boolean[] valores, JLabel[] labels, String[] nombresCampos) {
+    public List<String> validarCamposLista(JTextField[] campos, Boolean[] valores, String[] nombresCampos) {
         List<String> errores = new ArrayList<>();
 
         for (int i = 0; i < campos.length; i++) {
             JTextField campo = campos[i];
             Boolean valor = valores[i]; // Cambié `boolean` a `Boolean` para permitir valores nulos
-            JLabel label = labels[i];
             String nombreCampo = nombresCampos[i];
 
             if (!valor) { // Valida con el estado booleano pasado
                 errores.add("Error en el campo " + nombreCampo + ": El campo es inválido");
-                label.setVisible(true);
                 campo.setBackground(new Color(255, 204, 204));
             } else {
                 campo.setBackground(Color.WHITE);
-                label.setVisible(false);
             }
         }
 
@@ -52,24 +49,20 @@ public class ValidadorDeSwings {
      *
      * @param campos Un array de campos de texto a validar.
      * @param valores Un array de valores booleanos que representan la validez de cada campo.
-     * @param labels Un array de etiquetas asociadas a los campos de texto.
      * @param nombresCampos Un array de nombres de los campos para incluir en los mensajes de error.
      * @return Una lista de mensajes de error para los campos vacíos.
      */
-    public List<String> validarCamposVaciosLista(JTextField[] campos, Boolean[] valores, JLabel[] labels, String[] nombresCampos) {
+    public List<String> validarCamposVaciosLista(JTextField[] campos, Boolean[] valores, String[] nombresCampos) {
         List<String> errores = new ArrayList<>();
         for (int i = 0; i < campos.length; i++) {
             JTextField campo = campos[i];
-            JLabel label = labels[i];
             boolean valor = valores[i];
             if (campo.getText().isEmpty()) {
-                label.setVisible(true);
                 campo.setBackground(new Color(255, 204, 204));
                 String mensajeError = "Error en el campo " + nombresCampos[i] + ": El campo está vacío";
                 errores.add(mensajeError);
             } else {
                 if (valor) {
-                    label.setVisible(false);
                     campo.setBackground(Color.WHITE);
                 }
             }

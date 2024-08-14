@@ -73,6 +73,7 @@ public class JFIncidenteConductor extends javax.swing.JFrame {
         jBRegistrarIncidente.setVisible(false);
         jTablaPaquete.setVisible(false);
         cargarIncidentes();
+        
     }
 
     /**
