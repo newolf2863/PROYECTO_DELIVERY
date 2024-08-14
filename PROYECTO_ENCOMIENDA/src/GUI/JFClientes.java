@@ -45,19 +45,11 @@ public class JFClientes extends javax.swing.JFrame {
         JFrame frame = new JFrame();
         frame.getRootPane().setWindowDecorationStyle(JRootPane.NONE);
         setLocationRelativeTo(null);
-        desvanecer();
         cargarClientes();
     }
     
     
-     public void desvanecer() {    
-        errorc1.setVisible(false);
-        errorc2.setVisible(false);
-        errorc3.setVisible(false);
-        errorc4.setVisible(false);
-        errorc5.setVisible(false);
-        errorc6.setVisible(false);
-    }
+
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -79,12 +71,6 @@ public class JFClientes extends javax.swing.JFrame {
         jLabel89 = new javax.swing.JLabel();
         correoCli2 = new javax.swing.JTextField();
         jLabel87 = new javax.swing.JLabel();
-        errorc1 = new javax.swing.JLabel();
-        errorc2 = new javax.swing.JLabel();
-        errorc3 = new javax.swing.JLabel();
-        errorc4 = new javax.swing.JLabel();
-        errorc5 = new javax.swing.JLabel();
-        errorc6 = new javax.swing.JLabel();
         jBRegistarCliente = new javax.swing.JButton();
         jPPA1 = new javax.swing.JPanel();
         jPActualizarClientes = new javax.swing.JPanel();
@@ -134,6 +120,9 @@ public class JFClientes extends javax.swing.JFrame {
             }
         });
         jTFNombresR.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTFNombresRKeyReleased(evt);
+            }
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 jTFNombresRKeyTyped(evt);
             }
@@ -146,12 +135,22 @@ public class JFClientes extends javax.swing.JFrame {
                 jTFTelefonoRFocusLost(evt);
             }
         });
+        jTFTelefonoR.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTFTelefonoRKeyReleased(evt);
+            }
+        });
 
         jLTipoCli.setText("CI");
 
         jTFCIRegistrarC.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 jTFCIRegistrarCFocusLost(evt);
+            }
+        });
+        jTFCIRegistrarC.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTFCIRegistrarCKeyReleased(evt);
             }
         });
 
@@ -162,6 +161,11 @@ public class JFClientes extends javax.swing.JFrame {
                 jTFDireccionRFocusLost(evt);
             }
         });
+        jTFDireccionR.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTFDireccionRKeyReleased(evt);
+            }
+        });
 
         jTFApellidosR.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
@@ -169,6 +173,9 @@ public class JFClientes extends javax.swing.JFrame {
             }
         });
         jTFApellidosR.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTFApellidosRKeyReleased(evt);
+            }
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 jTFApellidosRKeyTyped(evt);
             }
@@ -181,26 +188,13 @@ public class JFClientes extends javax.swing.JFrame {
                 correoCli2FocusLost(evt);
             }
         });
+        correoCli2.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                correoCli2KeyReleased(evt);
+            }
+        });
 
         jLabel87.setText("Correo");
-
-        errorc1.setForeground(new java.awt.Color(255, 102, 102));
-        errorc1.setText("*error");
-
-        errorc2.setForeground(new java.awt.Color(255, 102, 102));
-        errorc2.setText("Nombres inválidos");
-
-        errorc3.setForeground(new java.awt.Color(255, 102, 102));
-        errorc3.setText("Apellidos inválidos");
-
-        errorc4.setForeground(new java.awt.Color(255, 102, 102));
-        errorc4.setText("Correo inválido");
-
-        errorc5.setForeground(new java.awt.Color(255, 102, 102));
-        errorc5.setText("*error");
-
-        errorc6.setForeground(new java.awt.Color(255, 102, 102));
-        errorc6.setText("Dirección inválida");
 
         javax.swing.GroupLayout jPanel46Layout = new javax.swing.GroupLayout(jPanel46);
         jPanel46.setLayout(jPanel46Layout);
@@ -211,15 +205,10 @@ public class JFClientes extends javax.swing.JFrame {
                 .addGroup(jPanel46Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel46Layout.createSequentialGroup()
                         .addComponent(jLabel89)
-                        .addGap(18, 18, 18)
-                        .addComponent(errorc3)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel46Layout.createSequentialGroup()
                         .addGroup(jPanel46Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel46Layout.createSequentialGroup()
-                                .addComponent(jLabel87, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(28, 28, 28)
-                                .addComponent(errorc4))
+                            .addComponent(jLabel87, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jTFApellidosR, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 182, Short.MAX_VALUE)
                             .addComponent(correoCli2, javax.swing.GroupLayout.Alignment.LEADING))
                         .addGap(0, 0, Short.MAX_VALUE))
@@ -227,27 +216,15 @@ public class JFClientes extends javax.swing.JFrame {
                         .addGroup(jPanel46Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(jTFCIRegistrarC, javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel46Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(jPanel46Layout.createSequentialGroup()
-                                    .addComponent(jLabel66)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(errorc2))
+                                .addComponent(jLabel66)
                                 .addComponent(jTFNombresR, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(jPanel46Layout.createSequentialGroup()
-                                    .addComponent(jLTipoCli)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(errorc1))))
+                                .addComponent(jLTipoCli)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 70, Short.MAX_VALUE)
                         .addGroup(jPanel46Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jTFDireccionR, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel46Layout.createSequentialGroup()
-                                .addComponent(jLabel73)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(errorc6))
+                            .addComponent(jLabel73)
                             .addComponent(jTFTelefonoR, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel46Layout.createSequentialGroup()
-                                .addComponent(jLabel71)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(errorc5)))
+                            .addComponent(jLabel71))
                         .addGap(45, 45, 45))))
         );
         jPanel46Layout.setVerticalGroup(
@@ -255,40 +232,28 @@ public class JFClientes extends javax.swing.JFrame {
             .addGroup(jPanel46Layout.createSequentialGroup()
                 .addGroup(jPanel46Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel46Layout.createSequentialGroup()
-                        .addGroup(jPanel46Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLTipoCli)
-                            .addComponent(errorc1))
+                        .addComponent(jLTipoCli)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jTFCIRegistrarC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel46Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel66)
-                            .addComponent(errorc2))
+                        .addComponent(jLabel66)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jTFNombresR, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel46Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addGroup(jPanel46Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel71)
-                            .addComponent(errorc5))
+                        .addComponent(jLabel71)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jTFTelefonoR, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel46Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel73)
-                            .addComponent(errorc6))
+                        .addComponent(jLabel73)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jTFDireccionR, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel46Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel89)
-                    .addComponent(errorc3))
+                .addComponent(jLabel89)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jTFApellidosR, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel46Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel87)
-                    .addComponent(errorc4))
+                .addComponent(jLabel87)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(correoCli2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(14, 14, 14))
@@ -544,7 +509,8 @@ public class JFClientes extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jTFNombresRFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTFNombresRFocusLost
-        nombreEsValido = validarRegistroF.camposDeRegistros(jTFNombresR, errorc2, "n");
+        nombreEsValido = validarRegistroF.camposDeRegistros(jTFNombresR, "nombre");
+        validarRegistroF.hideTooltip();
     }//GEN-LAST:event_jTFNombresRFocusLost
 
     private void jTFNombresRKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFNombresRKeyTyped
@@ -555,26 +521,24 @@ public class JFClientes extends javax.swing.JFrame {
     }//GEN-LAST:event_jTFNombresRKeyTyped
 
     private void jTFTelefonoRFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTFTelefonoRFocusLost
-        telefonoEsValido = validarRegistroF.camposCliente(jTFTelefonoR, errorc5, "b");
+        telefonoEsValido = validarRegistroF.camposDeRegistros(jTFTelefonoR, "telefono");
+        validarRegistroF.hideTooltip();
     }//GEN-LAST:event_jTFTelefonoRFocusLost
 
     private void jTFCIRegistrarCFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTFCIRegistrarCFocusLost
         String cedula = jTFCIRegistrarC.getText();
-        cedulaEsValida = validarRegistroF.camposCliente(jTFCIRegistrarC, errorc1, "a");
-        if (!cedulaEsValida) {
-            return;
-        }
-        if (DataBase.obtenerInstancia().clienteExiste(cedula)) {
-            JOptionPane.showMessageDialog(this, "Cliente ya registrado", "Error", JOptionPane.ERROR_MESSAGE);
-        }
+        cedulaEsValida = validarRegistroF.camposDeRegistros(jTFCIRegistrarC, "cedula");
+        validarRegistroF.hideTooltip();
     }//GEN-LAST:event_jTFCIRegistrarCFocusLost
 
     private void jTFDireccionRFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTFDireccionRFocusLost
-        direccionEsValida = validarRegistroF.camposDeRegistros(jTFDireccionR, errorc6, "d");
+        direccionEsValida = validarRegistroF.camposDeRegistros(jTFDireccionR, "direccion");
+        validarRegistroF.hideTooltip();
     }//GEN-LAST:event_jTFDireccionRFocusLost
 
     private void jTFApellidosRFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTFApellidosRFocusLost
-        apellidoEsValido = validarRegistroF.camposDeRegistros(jTFApellidosR, errorc3, "n");
+        apellidoEsValido = validarRegistroF.camposDeRegistros(jTFApellidosR, "nombre");
+        validarRegistroF.hideTooltip();
     }//GEN-LAST:event_jTFApellidosRFocusLost
 
     private void jTFApellidosRKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFApellidosRKeyTyped
@@ -585,18 +549,18 @@ public class JFClientes extends javax.swing.JFrame {
     }//GEN-LAST:event_jTFApellidosRKeyTyped
 
     private void correoCli2FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_correoCli2FocusLost
-        correoEsValido = validarRegistroF.camposDeRegistros(correoCli2, errorc4, "c");
+        correoEsValido = validarRegistroF.camposDeRegistros(correoCli2, "email");
+        validarRegistroF.hideTooltip();
     }//GEN-LAST:event_correoCli2FocusLost
 
     private void jBRegistarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBRegistarClienteActionPerformed
         JTextField[] campos = {jTFCIRegistrarC, jTFNombresR, jTFApellidosR, correoCli2,
             jTFTelefonoR, jTFDireccionR};
-        JLabel[] labels = {errorc1, errorc2, errorc3, errorc4, errorc5, errorc6};
         Boolean[] booleanosCliente = {cedulaEsValida, nombreEsValido, apellidoEsValido, correoEsValido,
             telefonoEsValido, direccionEsValida};
         String[] nombresCampos = {"documento", "nombre", "apellido", "correo", "teléfono", "dirección"};
-        List<String> errores = validadorCheck.validarCamposLista(campos, booleanosCliente, labels, nombresCampos);
-        errores.addAll(validadorCheck.validarCamposVaciosLista(campos, booleanosCliente, labels, nombresCampos));
+        List<String> errores = validadorCheck.validarCamposLista(campos, booleanosCliente, nombresCampos);
+        errores.addAll(validadorCheck.validarCamposVaciosLista(campos, booleanosCliente, nombresCampos));
         if (!errores.isEmpty()) {
             StringBuilder mensajeError = new StringBuilder("Se encontraron los siguientes errores:\n");
             for (String error : errores) {
@@ -772,6 +736,30 @@ public class JFClientes extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_nombreSelectActionPerformed
 
+    private void jTFCIRegistrarCKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFCIRegistrarCKeyReleased
+        cedulaEsValida = validarRegistroF.camposDeRegistros(jTFCIRegistrarC, "cedula");
+    }//GEN-LAST:event_jTFCIRegistrarCKeyReleased
+
+    private void jTFNombresRKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFNombresRKeyReleased
+        nombreEsValido = validarRegistroF.camposDeRegistros(jTFNombresR, "nombre");
+    }//GEN-LAST:event_jTFNombresRKeyReleased
+
+    private void jTFApellidosRKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFApellidosRKeyReleased
+       apellidoEsValido = validarRegistroF.camposDeRegistros(jTFApellidosR, "nombre");
+    }//GEN-LAST:event_jTFApellidosRKeyReleased
+
+    private void correoCli2KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_correoCli2KeyReleased
+       correoEsValido = validarRegistroF.camposDeRegistros(correoCli2, "email");
+    }//GEN-LAST:event_correoCli2KeyReleased
+
+    private void jTFTelefonoRKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFTelefonoRKeyReleased
+       telefonoEsValido = validarRegistroF.camposDeRegistros(jTFTelefonoR, "telefono");
+    }//GEN-LAST:event_jTFTelefonoRKeyReleased
+
+    private void jTFDireccionRKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFDireccionRKeyReleased
+       direccionEsValida = validarRegistroF.camposDeRegistros(jTFDireccionR, "direccion");
+    }//GEN-LAST:event_jTFDireccionRKeyReleased
+
     /**
      * @param args the command line arguments
      */
@@ -822,12 +810,6 @@ public class JFClientes extends javax.swing.JFrame {
     private javax.swing.JCheckBox correoSelect;
     private javax.swing.JTextField direccionActualizar;
     private javax.swing.JCheckBox direccionSelect;
-    private javax.swing.JLabel errorc1;
-    private javax.swing.JLabel errorc2;
-    private javax.swing.JLabel errorc3;
-    private javax.swing.JLabel errorc4;
-    private javax.swing.JLabel errorc5;
-    private javax.swing.JLabel errorc6;
     private javax.swing.JButton jBIActualizarAct1;
     private javax.swing.JButton jBRegistarCliente;
     private javax.swing.JButton jBuscarCI;

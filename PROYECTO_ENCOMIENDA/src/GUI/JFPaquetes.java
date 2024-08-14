@@ -51,6 +51,7 @@ public class JFPaquetes extends javax.swing.JFrame {
     private boolean contenidoValidar=false;
     private boolean direccionValidar = false;
     private boolean destinatarioValidar = false;
+    private boolean precioValidar=false;
     private Inventario inventario;
     private Recepcionista recepcionista;
     
@@ -64,7 +65,6 @@ public class JFPaquetes extends javax.swing.JFrame {
         inventario = Inventario.obtenerInstancia();
         cargarProvincias();
         refrescarInventario();
-        desvanecerP();
         placeHolder();
         jBRegistrarPAInventario.setVisible(false);
         jTablaPaquete.setVisible(false);
@@ -135,14 +135,7 @@ public class JFPaquetes extends javax.swing.JFrame {
         TextPrompt texto4 = new TextPrompt("Obligatorio", jTDestinatario);
     }    
      
-    public void desvanecerP() {
-        JLabel[] labels = {
-             errorInventario1, errorInventario2, errorInventario3,
-            errorInventario4, errorInventario6, errorInventario7, errorInventario8};
-        for (JLabel label : labels) {
-            label.setVisible(false);
-        }
-    }
+  
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -161,21 +154,15 @@ public class JFPaquetes extends javax.swing.JFrame {
         jTPeso = new javax.swing.JTextField();
         jBRegistrar = new javax.swing.JButton();
         jLabel60 = new javax.swing.JLabel();
-        errorInventario2 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
-        errorInventario1 = new javax.swing.JLabel();
         jLabel61 = new javax.swing.JLabel();
         jTContenidoPaquete = new javax.swing.JTextField();
         jLabel53 = new javax.swing.JLabel();
         jTRemitente = new javax.swing.JTextField();
-        errorInventario4 = new javax.swing.JLabel();
         jLabel63 = new javax.swing.JLabel();
         jTPrecioEstimadoVolumen = new javax.swing.JTextField();
-        errorInventario3 = new javax.swing.JLabel();
-        errorInventario6 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jTDestinatario = new javax.swing.JTextField();
-        errorInventario7 = new javax.swing.JLabel();
         jBEliminar = new javax.swing.JButton();
         jLabelPrecioPaquete = new javax.swing.JLabel();
         jLabelImpuesto = new javax.swing.JLabel();
@@ -185,7 +172,6 @@ public class JFPaquetes extends javax.swing.JFrame {
         jBRegistrarPAInventario = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jTDireccion1 = new javax.swing.JTextField();
-        errorInventario8 = new javax.swing.JLabel();
         jLabel64 = new javax.swing.JLabel();
         jTVolumen1 = new javax.swing.JTextField();
         jLabel62 = new javax.swing.JLabel();
@@ -283,16 +269,8 @@ public class JFPaquetes extends javax.swing.JFrame {
         jLabel60.setText("$");
         jPanel2.add(jLabel60, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 290, -1, -1));
 
-        errorInventario2.setForeground(new java.awt.Color(255, 0, 51));
-        errorInventario2.setText("Peso no válido");
-        jPanel2.add(errorInventario2, new org.netbeans.lib.awtextra.AbsoluteConstraints(141, 184, -1, -1));
-
         jLabel14.setText("Volumen");
         jPanel2.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(11, 91, -1, -1));
-
-        errorInventario1.setForeground(new java.awt.Color(255, 0, 51));
-        errorInventario1.setText("Volumen no válido");
-        jPanel2.add(errorInventario1, new org.netbeans.lib.awtextra.AbsoluteConstraints(141, 113, 113, -1));
 
         jLabel61.setText("m3");
         jPanel2.add(jLabel61, new org.netbeans.lib.awtextra.AbsoluteConstraints(363, 88, -1, -1));
@@ -319,10 +297,6 @@ public class JFPaquetes extends javax.swing.JFrame {
         });
         jPanel2.add(jTRemitente, new org.netbeans.lib.awtextra.AbsoluteConstraints(518, 18, 254, -1));
 
-        errorInventario4.setForeground(new java.awt.Color(255, 0, 51));
-        errorInventario4.setText("Remitente no válido");
-        jPanel2.add(errorInventario4, new org.netbeans.lib.awtextra.AbsoluteConstraints(518, 46, -1, -1));
-
         jLabel63.setText("Precio Contenido");
         jPanel2.add(jLabel63, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 290, -1, -1));
 
@@ -338,14 +312,6 @@ public class JFPaquetes extends javax.swing.JFrame {
         });
         jPanel2.add(jTPrecioEstimadoVolumen, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 290, 204, -1));
 
-        errorInventario3.setForeground(new java.awt.Color(255, 0, 51));
-        errorInventario3.setText("Destino no válido");
-        jPanel2.add(errorInventario3, new org.netbeans.lib.awtextra.AbsoluteConstraints(141, 246, -1, -1));
-
-        errorInventario6.setForeground(new java.awt.Color(255, 0, 51));
-        errorInventario6.setText("Contenido no válido");
-        jPanel2.add(errorInventario6, new org.netbeans.lib.awtextra.AbsoluteConstraints(518, 113, -1, -1));
-
         jLabel1.setText("Dirección");
         jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(441, 159, 55, -1));
 
@@ -355,10 +321,6 @@ public class JFPaquetes extends javax.swing.JFrame {
             }
         });
         jPanel2.add(jTDestinatario, new org.netbeans.lib.awtextra.AbsoluteConstraints(518, 218, 254, -1));
-
-        errorInventario7.setForeground(new java.awt.Color(255, 0, 51));
-        errorInventario7.setText("Dirección no válido");
-        jPanel2.add(errorInventario7, new org.netbeans.lib.awtextra.AbsoluteConstraints(518, 184, -1, -1));
 
         jBEliminar.setText("Eliminar Registro");
         jBEliminar.addActionListener(new java.awt.event.ActionListener() {
@@ -409,10 +371,6 @@ public class JFPaquetes extends javax.swing.JFrame {
             }
         });
         jPanel2.add(jTDireccion1, new org.netbeans.lib.awtextra.AbsoluteConstraints(518, 156, 254, -1));
-
-        errorInventario8.setForeground(new java.awt.Color(255, 0, 51));
-        errorInventario8.setText("Destinatario no válido");
-        jPanel2.add(errorInventario8, new org.netbeans.lib.awtextra.AbsoluteConstraints(518, 246, 142, -1));
 
         jLabel64.setText("Destino");
         jPanel2.add(jLabel64, new org.netbeans.lib.awtextra.AbsoluteConstraints(11, 218, -1, -1));
@@ -518,22 +476,20 @@ public class JFPaquetes extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jTPesoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTPesoFocusLost
-        pesoValidar = validarRegistroF.camposDeRegistros(jTPeso, errorInventario2, "precio");
+        pesoValidar = validarRegistroF.camposDeRegistros(jTPeso, "precio");
     }//GEN-LAST:event_jTPesoFocusLost
 
     private void jTPesoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTPesoKeyReleased
-        pesoValidar = validarRegistroF.camposDeRegistros(jTPeso, errorInventario2, "precio");
+        pesoValidar = validarRegistroF.camposDeRegistros(jTPeso, "precio");
     }//GEN-LAST:event_jTPesoKeyReleased
 
     private void jBRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBRegistrarActionPerformed
 
-        JTextField[] campos = {jTVolumen1, jTPeso, jTRemitente, jTDestinatario, jTContenidoPaquete, jTDestinatario};
-    Boolean[] booleanItem = {volumenValidar, pesoValidar, remitenteValidar, direccionValidar, contenidoValidar, destinatarioValidar};
-    JLabel[] labels = {errorInventario1, errorInventario2, errorInventario4, errorInventario7, errorInventario6, errorInventario8};
-    String[] nombresCampos = {"Volumen", "Peso", "Remitente", "Direccion", "Contenido del paquete", "Destinatario"};
-    List<String> errores = validadorCheck.validarCamposLista(campos, booleanItem, labels, nombresCampos);
-    errores.addAll(validadorCheck.validarCamposVaciosLista(campos, booleanItem, labels, nombresCampos));
-    String estado = "Pendiente";
+    JTextField[] campos = {jTVolumen1, jTPeso, jTRemitente, jTDestinatario, jTContenidoPaquete, jTDestinatario,jTPrecioEstimadoVolumen};
+    Boolean[] booleanItem = {volumenValidar, pesoValidar, remitenteValidar, direccionValidar, contenidoValidar, destinatarioValidar,precioValidar};
+    String[] nombresCampos = {"Volumen", "Peso", "Remitente", "Direccion", "Contenido del paquete", "Destinatario","Precio contenido"};
+    List<String> errores = validadorCheck.validarCamposLista(campos, booleanItem, nombresCampos);
+    errores.addAll(validadorCheck.validarCamposVaciosLista(campos, booleanItem, nombresCampos));
     
     Provincia destino = null;
     Class<?> enumClass;
@@ -579,19 +535,19 @@ public class JFPaquetes extends javax.swing.JFrame {
     }//GEN-LAST:event_jBRegistrarActionPerformed
 
     private void jTRemitenteFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTRemitenteFocusLost
-        remitenteValidar = validarRegistroF.camposDeRegistros(jTRemitente, errorInventario4, "cedula");
+        remitenteValidar = validarRegistroF.camposDeRegistros(jTRemitente, "cedula");
     }//GEN-LAST:event_jTRemitenteFocusLost
 
     private void jTRemitenteKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTRemitenteKeyReleased
-        remitenteValidar = validarRegistroF.camposDeRegistros(jTRemitente, errorInventario4, "d");
+        remitenteValidar = validarRegistroF.camposDeRegistros(jTRemitente, "d");
     }//GEN-LAST:event_jTRemitenteKeyReleased
 
     private void jTPrecioEstimadoVolumenFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTPrecioEstimadoVolumenFocusLost
-        volumenValidar = validarRegistroF.camposDeRegistros(jTPrecioEstimadoVolumen, errorInventario1, "precio");
+        precioValidar = validarRegistroF.camposDeRegistros(jTPrecioEstimadoVolumen, "precio");
     }//GEN-LAST:event_jTPrecioEstimadoVolumenFocusLost
 
     private void jTPrecioEstimadoVolumenKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTPrecioEstimadoVolumenKeyReleased
-        volumenValidar = validarRegistroF.camposDeRegistros(jTPrecioEstimadoVolumen, errorInventario1, "precio");
+        precioValidar = validarRegistroF.camposDeRegistros(jTPrecioEstimadoVolumen, "precio");
     }//GEN-LAST:event_jTPrecioEstimadoVolumenKeyReleased
 
     private void jBRegistrarPAInventarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBRegistrarPAInventarioActionPerformed
@@ -624,11 +580,11 @@ public class JFPaquetes extends javax.swing.JFrame {
     }//GEN-LAST:event_btnExitActionPerformed
 
     private void jTContenidoPaqueteFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTContenidoPaqueteFocusLost
-       contenidoValidar = validarRegistroF.camposDeRegistros(jTContenidoPaquete, errorInventario6, "d");
+       contenidoValidar = validarRegistroF.camposDeRegistros(jTContenidoPaquete, "d");
     }//GEN-LAST:event_jTContenidoPaqueteFocusLost
 
     private void jTDestinatarioFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTDestinatarioFocusLost
-        destinatarioValidar = validarRegistroF.camposDeRegistros(jTDestinatario, errorInventario8, "d");
+        destinatarioValidar = validarRegistroF.camposDeRegistros(jTDestinatario, "d");
     }//GEN-LAST:event_jTDestinatarioFocusLost
 
     private void jBEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBEliminarActionPerformed
@@ -698,7 +654,7 @@ public class JFPaquetes extends javax.swing.JFrame {
     }//GEN-LAST:event_jBConsultarPaquete1ActionPerformed
 
     private void jTDireccion1FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTDireccion1FocusLost
-        direccionValidar = validarRegistroF.camposDeRegistros(jTDireccion1, errorInventario7, "d");
+        direccionValidar = validarRegistroF.camposDeRegistros(jTDireccion1, "d");
     }//GEN-LAST:event_jTDireccion1FocusLost
 
     private void JComboDestinoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JComboDestinoActionPerformed
@@ -733,13 +689,6 @@ public class JFPaquetes extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> JComboDestino;
     private javax.swing.JLabel JLabelPrecioTotal;
     private javax.swing.JButton btnExit;
-    private javax.swing.JLabel errorInventario1;
-    private javax.swing.JLabel errorInventario2;
-    private javax.swing.JLabel errorInventario3;
-    private javax.swing.JLabel errorInventario4;
-    private javax.swing.JLabel errorInventario6;
-    private javax.swing.JLabel errorInventario7;
-    private javax.swing.JLabel errorInventario8;
     private javax.swing.JButton jBConsultarPaquete1;
     private javax.swing.JButton jBEliminar;
     private javax.swing.JButton jBEliminarPaquete;
