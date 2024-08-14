@@ -14,7 +14,6 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.ImageIcon;
 import mod_administracion.Conductor;
 import mod_administracion.Recepcionista;
-import mod_transporte.Asignacion;
 import validaciones.*;
 
 /**
@@ -454,7 +453,7 @@ public class JFConductores extends javax.swing.JFrame {
         DataBase.obtenerInstancia().insertarConductor(nombres, apellidos, cedula, direccion, telefono, correo,
                 nombreUsuario, clave, recepcionista.obtenerSucursal());
         Conductor conductor = new Conductor(nombres, apellidos, cedula, direccion, telefono, correo);
-        Asignacion.obtenerInstancia().agregarConductor(conductor);
+        recepcionista.agregarConductor(conductor);
 
         JOptionPane.showMessageDialog(
                 null,
@@ -545,10 +544,9 @@ public class JFConductores extends javax.swing.JFrame {
             String codigo = jTCodigoEliminar.getText();
 
             // El usuario confirmó la eliminación
-            Conductor conductor = Asignacion.obtenerInstancia().obtenerConductorPorCedula(codigo);
-            Asignacion.obtenerInstancia().eliminarConductor(conductor);
-            Asignacion.obtenerInstancia().borrarRelacionConductorVehiculo(conductor);
-            Asignacion.obtenerInstancia().guardarConductores();
+            Conductor conductor = recepcionista.obtenerConductorPorCedula(codigo);
+            recepcionista.eliminarConductor(conductor);
+            recepcionista.borrarRelacionConductorVehiculo(conductor);
             JOptionPane.showMessageDialog(
                     null,
                     "El conductor con cedula " + jTCodigoEliminar.getText() + " ha sido eliminado.",
@@ -568,7 +566,7 @@ public class JFConductores extends javax.swing.JFrame {
 
     private void jBConsultarConductorActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jBConsultarConductorActionPerformed
         String codigo = jTCodigoEliminar.getText();
-        Conductor conductor = Asignacion.obtenerInstancia().obtenerConductorPorCedula(codigo);
+        Conductor conductor = recepcionista.obtenerConductorPorCedula(codigo);
         if (codigo.isBlank()) {
             JOptionPane.showMessageDialog(null, "Ingrese una cedula", "Llene el campo",
                     JOptionPane.INFORMATION_MESSAGE);
@@ -647,7 +645,7 @@ public class JFConductores extends javax.swing.JFrame {
 
     private void cargarConductores() {
         DefaultTableModel model = (DefaultTableModel) jTConductores.getModel();
-        ArrayList<Conductor> conductores = Asignacion.obtenerInstancia().obtenerConductores();
+        ArrayList<Conductor> conductores = recepcionista.obtenerConductores();
         model.setRowCount(0);
         String[] columnNames = {
                 "Cedula", "Nombres", "Email", "Telefono"

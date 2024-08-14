@@ -8,14 +8,12 @@ import mod_paquetes.Pendiente;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import mod_facturacion.Factura;
 import mod_facturacion.Precio;
 import mod_incidentes.PaqueteNoTieneIncidente;
 import mod_incidentes.PaqueteYaTieneIncidente;
 import mod_paquetes.Entregado;
-import mod_transporte.Asignacion;
+import mod_transporte.FlotaVehiculo;
 import mod_transporte.Provincia;
 import mod_transporte.Vehiculo;
 
@@ -26,10 +24,8 @@ import mod_transporte.Vehiculo;
  * para recepcionistas.
  */
 public class Recepcionista extends Usuario {
-    private Paquete paqueteEnCotizacion;
     private Provincia sucursal;
     private Cotizacion cotizacion;
-    private Asignacion asignacion;
 
     /**
      * Constructor que inicializa los datos del recepcionista y la sucursal a la que
@@ -49,7 +45,6 @@ public class Recepcionista extends Usuario {
         super(nombres, apellidos, identificacion, direccion, telefono, email);
         this.sucursal = sucursal;
         this.cotizacion = Cotizacion.obtenerInstancia();
-        this.asignacion = Asignacion.obtenerInstancia();
     }
 
     @Override
@@ -76,36 +71,21 @@ public class Recepcionista extends Usuario {
      * @return el precio del paquete, o {@code null} si no hay un paquete
      *         registrado.
      */
-    public Precio consultarPrecioPaquete() {
+    public Precio consultarPrecioPaquete(Paquete paqueteEnCotizacion) {
         if (paqueteEnCotizacion == null) {
             return null;
         }
         return cotizacion.obtenerPrecioPaquete(paqueteEnCotizacion);
     }
 
-    /**
-     * Registra un paquete en la cotización.
-     *
-     * @param paquete el paquete a registrar.
-     */
-    public void registrarPaquete(Paquete paquete) {
-        paqueteEnCotizacion = paquete;
-    }
 
     /**
      * Agrega el paquete actualmente registrado al inventario.
      */
-    public void agregarPaqueteInventario() {
+    public void agregarPaqueteInventario(Paquete paqueteEnCotizacion) {
         if (paqueteEnCotizacion != null) {
             Inventario.obtenerInstancia().agregarPaquete(paqueteEnCotizacion);
         }
-    }
-
-    /**
-     * Elimina el paquete actualmente registrado en la cotización.
-     */
-    public void eliminarPaqueteRegistrado() {
-        paqueteEnCotizacion = null;
     }
 
     /**
@@ -118,11 +98,11 @@ public class Recepcionista extends Usuario {
     }
 
     public boolean asignarPaquetesAVehiculo(Vehiculo vehiculo, Provincia destino) {
-        return asignacion.asignarPaquetesAVehiculo(vehiculo, destino);
+        return asignacionPaquete.asignarPaquetesAVehiculo(vehiculo, destino);
     }
 
     public void asignarConductorAVehiculo(Conductor conductor, Vehiculo vehiculo) {
-        asignacion.asignarConductorAVehiculo(conductor, vehiculo);
+        asignacionConductor.asignarConductorAVehiculo(conductor, vehiculo);
     }
 
     public ArrayList<Paquete> obtenerPaquetes() {
@@ -168,10 +148,46 @@ public class Recepcionista extends Usuario {
     }
 
     public Vehiculo obtenerVehiculo(String placa) {
-        return asignacion.obtenerVehiculo(placa);
+        return asignacionPaquete.obtenerVehiculo(placa);
     }
 
     public HashMap<Vehiculo, ArrayList<Paquete>> obtenerRelacionPaqueteVehiculo() {
-        return asignacion.obtenerRelacionPaqueteVehiculo();
+        return asignacionPaquete.obtenerRelacionPaqueteVehiculo();
     }
+
+    public Conductor obtenerConductorPorCedula(String cedula) {
+        return asignacionConductor.obtenerConductorPorCedula(cedula);
+    }
+
+    public Conductor obtenerConductorDeVehiculo(Vehiculo vehiculo) {
+        return asignacionConductor.obtenerConductorDeVehiculo(vehiculo);
+    }
+
+    public void agregarConductor(Conductor conductor) {
+        asignacionConductor.agregarConductor(conductor);
+    }
+
+    public void eliminarConductor(Conductor conductor) {
+        asignacionConductor.eliminarConductor(conductor);
+    }
+
+    public void borrarRelacionConductorVehiculo(Conductor conductor) {
+        asignacionConductor.borrarRelacionConductorVehiculo(conductor);
+    }
+
+    public ArrayList<Conductor> obtenerConductores() {
+        return asignacionConductor.obtenerConductores();
+    }
+
+    public ArrayList<Vehiculo> obtenerVehiculos() {
+        return asignacionPaquete.obtenerVehiculos();
+    }
+
+    public void agregarVehiculo(Vehiculo vehiculo) {
+        asignacionPaquete.agregarVehiculo(vehiculo);
+    }
+
+
+
+
 }

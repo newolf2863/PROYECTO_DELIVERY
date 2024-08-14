@@ -15,7 +15,6 @@ import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import mod_administracion.Conductor;
 import mod_paquetes.Paquete;
-import mod_transporte.Asignacion;
 import validaciones.*;
 
 /**

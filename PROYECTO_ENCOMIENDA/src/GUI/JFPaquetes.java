@@ -467,7 +467,7 @@ public class JFPaquetes extends javax.swing.JFrame {
     private void jTPesoKeyReleased(java.awt.event.KeyEvent evt) {// GEN-FIRST:event_jTPesoKeyReleased
         pesoValidar = validarRegistroF.camposDeRegistros(jTPeso, errorInventario2, "precio");
     }// GEN-LAST:event_jTPesoKeyReleased
-
+    Paquete paquete = null;
     private void jBRegistrarActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jBRegistrarActionPerformed
         JTextField[] campos = { jTVolumen, jTPeso, jTRemitente, jTDestinatario, jTContenidoPaquete, jTDestinatario };
         Boolean[] booleanItem = { volumenValidar, pesoValidar, remitenteValidar, direccionValidar, contenidoValidar,
@@ -511,9 +511,8 @@ public class JFPaquetes extends javax.swing.JFrame {
             Provincia origen = recepcionista.obtenerSucursal();
             String direccion = jTDireccion1.getText();
             String destinatario = jTDestinatario.getText();
-            Paquete paquete = new Paquete(codigo, volumen, peso, contenido, cliente, origen, destino, direccion,
+            paquete = new Paquete(codigo, volumen, peso, contenido, cliente, origen, destino, direccion,
                     destinatario);
-            recepcionista.registrarPaquete(paquete);
             jTCodigoTracking.setText(codigo);
             mostrarPrecio();
             jBRegistrarPAInventario.setVisible(true);
@@ -537,8 +536,8 @@ public class JFPaquetes extends javax.swing.JFrame {
     }// GEN-LAST:event_jTVolumenKeyReleased
 
     private void jBRegistrarPAInventarioActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jBRegistrarPAInventarioActionPerformed
-        recepcionista.agregarPaqueteInventario();
-        recepcionista.eliminarPaqueteRegistrado();
+        recepcionista.agregarPaqueteInventario(paquete);
+        paquete = null;
         refrescarInventario();
         recepcionista.guardarInventario();
 
@@ -641,7 +640,7 @@ public class JFPaquetes extends javax.swing.JFrame {
     }// GEN-LAST:event_jPanel3MouseDragged
 
     private void vaciarCampos() {
-        recepcionista.eliminarPaqueteRegistrado();
+        paquete = null;
         jLabelPrecioPaquete.setText("Precio Paquete : ");
         jLabelPrecioDistancia.setText("Precio Distancia : ");
         jLabelImpuesto.setText("Impuesto : ");
@@ -709,7 +708,7 @@ public class JFPaquetes extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     private void mostrarPrecio() {
-        Precio precio = recepcionista.consultarPrecioPaquete();
+        Precio precio = recepcionista.consultarPrecioPaquete(paquete);
         ArrayList<CalculoPrecio> precios = precio.obtenerPreciosIndividuales();
         jLabelPrecioPaquete.setText("Precio Paquete : " + precios.get(0).obtenerMonto());
         jLabelPrecioDistancia.setText("Precio Distancia : " + precios.get(1).obtenerMonto());

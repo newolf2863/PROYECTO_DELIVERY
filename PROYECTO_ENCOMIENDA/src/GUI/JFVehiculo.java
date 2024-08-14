@@ -19,7 +19,8 @@ import mod_administracion.Conductor;
 import mod_administracion.Recepcionista;
 import mod_paquetes.Paquete;
 import mod_transporte.Provincia;
-import mod_transporte.Asignacion;
+import mod_transporte.AsignacionConductor;
+import mod_transporte.FlotaVehiculo;
 import mod_transporte.Vehiculo;
 import validaciones.*;
 
@@ -42,9 +43,9 @@ public class JFVehiculo extends javax.swing.JFrame {
         frame.getRootPane().setWindowDecorationStyle(JRootPane.NONE);
         setLocationRelativeTo(null);
         cargarProvincias();
+        this.recepcionista = recepcionista;
         refrescarVehiculos();
 
-        this.recepcionista = recepcionista;
         // Opcional: Deshabilita la edición manual del campo de texto
         modelo = new DefaultTableModel();
         jInventarioVehiculo.setModel(modelo);
@@ -72,10 +73,10 @@ public class JFVehiculo extends javax.swing.JFrame {
                 "Placa", "Capacidad", "Nombre Conductor", "Identificacion", "Telefono"
         };
         model.setColumnIdentifiers(columnNames);
-        Asignacion asignacion = Asignacion.obtenerInstancia();
+        
         model.setRowCount(0);
-        for (Vehiculo vehiculo : asignacion.obtenerVehiculos()) {
-            Conductor conductor = asignacion.obtenerConductorDeVehiculo(vehiculo);
+        for (Vehiculo vehiculo : recepcionista.obtenerVehiculos()) {
+            Conductor conductor = recepcionista.obtenerConductorDeVehiculo(vehiculo);
             if (conductor != null) {
                 model.addRow(new Object[] {
                         vehiculo.getNumeroPlaca(),
@@ -100,7 +101,7 @@ public class JFVehiculo extends javax.swing.JFrame {
 
         Vehiculo vehiculo = recepcionista.obtenerVehiculo(jTPlacaVehiculo3.getText());
         ArrayList<Paquete> paquetes = recepcionista.obtenerRelacionPaqueteVehiculo().get(vehiculo);
-
+        
         modelo.setRowCount(0);
         for (Paquete paquete : paquetes) {
             modelo.addRow(new Object[] {
@@ -630,14 +631,13 @@ public class JFVehiculo extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "La cedula no es válida.", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         } else {
-            Asignacion asignacion = Asignacion.obtenerInstancia();
-            Vehiculo vehiculo = asignacion.obtenerVehiculo(placa);
+            Vehiculo vehiculo = recepcionista.obtenerVehiculo(placa);
             if (vehiculo == null) {
                 JOptionPane.showMessageDialog(this, "No existe un vehículo con la placa " + placa, "Error",
                         JOptionPane.ERROR_MESSAGE);
                 return;
             }
-            Conductor conductor = asignacion.obtenerConductorPorCedula(cedula);
+            Conductor conductor = recepcionista.obtenerConductorPorCedula(cedula);
             if (conductor == null) {
                 JOptionPane.showMessageDialog(this, "No existe un conductor con la cedula " + cedula, "Error",
                         JOptionPane.ERROR_MESSAGE);
@@ -714,7 +714,7 @@ public class JFVehiculo extends javax.swing.JFrame {
                         JOptionPane.ERROR_MESSAGE);
                 return;
             }
-            Conductor conductor = Asignacion.obtenerInstancia().obtenerConductorDeVehiculo(vehiculo);
+            Conductor conductor = recepcionista.obtenerConductorDeVehiculo(vehiculo);
             jTCapacidad.setText(Double.toString(vehiculo.getCapacidad()));
             if (conductor != null) {
                 jTCedula3.setText(conductor.getCedula());
@@ -770,7 +770,6 @@ public class JFVehiculo extends javax.swing.JFrame {
     }// GEN-LAST:event_jTPlacaVehiculoActionPerformed
 
     private void bRegistrarVehiculoActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_bRegistrarVehiculoActionPerformed
-        Asignacion asignacion = Asignacion.obtenerInstancia();
         double capacidad = Double.parseDouble(jTCapacidadVehiculo.getText());
         String placa = jTPlacaVehiculo.getText();
         if (!ValidadorDeRegistros.validarPlaca(placa)) {
@@ -778,7 +777,7 @@ public class JFVehiculo extends javax.swing.JFrame {
             return;
         }
         Vehiculo vehiculo = new Vehiculo(placa, capacidad, this.recepcionista.obtenerSucursal());
-        asignacion.agregarVehiculo(vehiculo);
+        recepcionista.agregarVehiculo(vehiculo);
         JOptionPane.showMessageDialog(this, "El vehiculo se registro con exito");
         refrescarVehiculos();
     }// GEN-LAST:event_bRegistrarVehiculoActionPerformed
@@ -817,9 +816,10 @@ public class JFVehiculo extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "La placa no es válida.", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         } else {
-            Vehiculo vehiculo = Asignacion.obtenerInstancia().obtenerVehiculo(placa);
+            Vehiculo vehiculo = recepcionista.obtenerVehiculo(placa);
             if (!recepcionista.asignarPaquetesAVehiculo(vehiculo, destino)) {
                 JOptionPane.showMessageDialog(this, "No existen paquetes", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
             }
         }
         refrescarAsignacion();

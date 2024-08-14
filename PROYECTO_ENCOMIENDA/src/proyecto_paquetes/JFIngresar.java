@@ -19,7 +19,6 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import mod_facturacion.Cotizacion;
 import mod_paquetes.Inventario;
-import mod_transporte.Asignacion;
 
 /**
  * Esta clase representa la interfaz gráfica de la ventana de inicio de sesión.
