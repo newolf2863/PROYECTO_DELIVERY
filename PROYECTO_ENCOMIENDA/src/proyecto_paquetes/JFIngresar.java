@@ -80,6 +80,20 @@ public class JFIngresar extends javax.swing.JFrame {
                 olvidasteContra.setForeground(originalColor);
             }
         });
+        
+        botonCliente.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                botonCliente.setFont(boldFont);
+                botonCliente.setForeground(hoverColor);
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                botonCliente.setFont(originalFont);
+                botonCliente.setForeground(originalColor);
+            }
+        });
     }
 
     /**

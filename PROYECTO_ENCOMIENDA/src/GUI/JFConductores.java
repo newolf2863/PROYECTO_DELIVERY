@@ -552,8 +552,6 @@ public class JFConductores extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "El nombre de usuario ya existe", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
-        
-
         if (!errores.isEmpty()) {
             StringBuilder mensajeError = new StringBuilder("Se encontraron los siguientes errores:\n");
             for (String error : errores) {

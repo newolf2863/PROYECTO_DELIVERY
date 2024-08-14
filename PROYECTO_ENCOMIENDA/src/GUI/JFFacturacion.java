@@ -387,11 +387,6 @@ public class JFFacturacion extends javax.swing.JFrame {
         jPRegistrarFactura.add(jTPrecioPaquete, new org.netbeans.lib.awtextra.AbsoluteConstraints(910, 440, 151, -1));
 
         jTPrecioImpuesto.setEditable(false);
-        jTPrecioImpuesto.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTPrecioImpuestoActionPerformed(evt);
-            }
-        });
         jPRegistrarFactura.add(jTPrecioImpuesto, new org.netbeans.lib.awtextra.AbsoluteConstraints(910, 470, 151, -1));
 
         jLTotal.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
@@ -399,11 +394,6 @@ public class JFFacturacion extends javax.swing.JFrame {
         jPRegistrarFactura.add(jLTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 500, -1, -1));
 
         jTTotal.setEditable(false);
-        jTTotal.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTTotalActionPerformed(evt);
-            }
-        });
         jPRegistrarFactura.add(jTTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(910, 500, 151, -1));
 
         jPPaquete.setBorder(javax.swing.BorderFactory.createTitledBorder("Paquete"));
@@ -413,9 +403,6 @@ public class JFFacturacion extends javax.swing.JFrame {
         jPPaquete.add(jLabel37, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, -1, -1));
 
         jTCodigoPaquete.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                jTCodigoPaqueteKeyReleased(evt);
-            }
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 jTCodigoPaqueteKeyTyped(evt);
             }
@@ -435,11 +422,6 @@ public class JFFacturacion extends javax.swing.JFrame {
         jPPaquete.add(jLabel64, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, -1, -1));
 
         jTContenidoPaquete.setEditable(false);
-        jTContenidoPaquete.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                jTContenidoPaqueteKeyReleased(evt);
-            }
-        });
         jPPaquete.add(jTContenidoPaquete, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 120, 200, 30));
 
         jLabel29.setText("Nombre Destinatario");
@@ -474,11 +456,6 @@ public class JFFacturacion extends javax.swing.JFrame {
         jPRegistrarFactura.add(jLabel70, new org.netbeans.lib.awtextra.AbsoluteConstraints(1070, 410, 10, -1));
 
         jTPrecioDistancia.setEditable(false);
-        jTPrecioDistancia.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTPrecioDistanciaActionPerformed(evt);
-            }
-        });
         jPRegistrarFactura.add(jTPrecioDistancia, new org.netbeans.lib.awtextra.AbsoluteConstraints(910, 410, 151, -1));
 
         jLabel71.setText("$");
@@ -540,10 +517,6 @@ public class JFFacturacion extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jTCodigoPaqueteKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTCodigoPaqueteKeyReleased
-
-    }//GEN-LAST:event_jTCodigoPaqueteKeyReleased
 
     private void jTCodigoPaqueteKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTCodigoPaqueteKeyTyped
         char variable = evt.getKeyChar();
@@ -608,10 +581,6 @@ public class JFFacturacion extends javax.swing.JFrame {
         
     }//GEN-LAST:event_btnBuscarPaqueteActionPerformed
 
-    private void jTContenidoPaqueteKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTContenidoPaqueteKeyReleased
-
-    }//GEN-LAST:event_jTContenidoPaqueteKeyReleased
-
     private void jBGenerarFacturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBGenerarFacturaActionPerformed
         Cotizacion cotizacion = Cotizacion.obtenerInstancia();
         String codigoTracking = jTCodigoPaquete.getText();
@@ -654,18 +623,6 @@ public class JFFacturacion extends javax.swing.JFrame {
         xMouse = evt.getX();
         yMouse = evt.getY();
     }//GEN-LAST:event_jPanel3MousePressed
-
-    private void jTTotalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTTotalActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTTotalActionPerformed
-
-    private void jTPrecioDistanciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTPrecioDistanciaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTPrecioDistanciaActionPerformed
-
-    private void jTPrecioImpuestoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTPrecioImpuestoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTPrecioImpuestoActionPerformed
 
     private void btnBuscarFacturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarFacturaActionPerformed
         String codigoFactura = jTCodigoFactura.getText();
