@@ -52,6 +52,7 @@ public class JFPaquetes extends javax.swing.JFrame {
     private boolean direccionValidar = false;
     private boolean destinatarioValidar = false;
     private boolean precioValidar=false;
+    private boolean codigoTrakingValidar=false;
     private Inventario inventario;
     private Recepcionista recepcionista;
     
@@ -90,6 +91,8 @@ public class JFPaquetes extends javax.swing.JFrame {
                 }
             }
         });
+        String codigo = inventario.getSiguienteCodigoTracking();
+        jTCodigoTracking.setText(codigo);
         setLocationRelativeTo(null);
     }
     
@@ -320,6 +323,11 @@ public class JFPaquetes extends javax.swing.JFrame {
                 jTDestinatarioFocusLost(evt);
             }
         });
+        jTDestinatario.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTDestinatarioKeyReleased(evt);
+            }
+        });
         jPanel2.add(jTDestinatario, new org.netbeans.lib.awtextra.AbsoluteConstraints(518, 218, 254, -1));
 
         jBEliminar.setText("Eliminar Registro");
@@ -368,6 +376,11 @@ public class JFPaquetes extends javax.swing.JFrame {
         jTDireccion1.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 jTDireccion1FocusLost(evt);
+            }
+        });
+        jTDireccion1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTDireccion1KeyReleased(evt);
             }
         });
         jPanel2.add(jTDireccion1, new org.netbeans.lib.awtextra.AbsoluteConstraints(518, 156, 254, -1));
@@ -448,6 +461,12 @@ public class JFPaquetes extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel5.setText("Código Tracking");
         jPIA.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 50, -1, -1));
+
+        jTCodigoEliminar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTCodigoEliminarKeyReleased(evt);
+            }
+        });
         jPIA.add(jTCodigoEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 50, 200, 20));
 
         jBEliminarPaquete.setText("Eliminar");
@@ -476,7 +495,8 @@ public class JFPaquetes extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jTPesoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTPesoFocusLost
-        pesoValidar = validarRegistroF.camposDeRegistros(jTPeso, "precio");
+        pesoValidar = validarRegistroF.camposDeRegistros(jTPeso, "peso");
+        validarRegistroF.hideTooltip();
     }//GEN-LAST:event_jTPesoFocusLost
 
     private void jTPesoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTPesoKeyReleased
@@ -536,14 +556,16 @@ public class JFPaquetes extends javax.swing.JFrame {
 
     private void jTRemitenteFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTRemitenteFocusLost
         remitenteValidar = validarRegistroF.camposDeRegistros(jTRemitente, "cedula");
+        validarRegistroF.hideTooltip();
     }//GEN-LAST:event_jTRemitenteFocusLost
 
     private void jTRemitenteKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTRemitenteKeyReleased
-        remitenteValidar = validarRegistroF.camposDeRegistros(jTRemitente, "d");
+        remitenteValidar = validarRegistroF.camposDeRegistros(jTRemitente, "cedula");
     }//GEN-LAST:event_jTRemitenteKeyReleased
 
     private void jTPrecioEstimadoVolumenFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTPrecioEstimadoVolumenFocusLost
         precioValidar = validarRegistroF.camposDeRegistros(jTPrecioEstimadoVolumen, "precio");
+        validarRegistroF.hideTooltip();
     }//GEN-LAST:event_jTPrecioEstimadoVolumenFocusLost
 
     private void jTPrecioEstimadoVolumenKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTPrecioEstimadoVolumenKeyReleased
@@ -581,10 +603,12 @@ public class JFPaquetes extends javax.swing.JFrame {
 
     private void jTContenidoPaqueteFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTContenidoPaqueteFocusLost
        contenidoValidar = validarRegistroF.camposDeRegistros(jTContenidoPaquete, "d");
+       validarRegistroF.hideTooltip();
     }//GEN-LAST:event_jTContenidoPaqueteFocusLost
 
     private void jTDestinatarioFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTDestinatarioFocusLost
-        destinatarioValidar = validarRegistroF.camposDeRegistros(jTDestinatario, "d");
+        destinatarioValidar = validarRegistroF.camposDeRegistros(jTDestinatario, "nombre");
+        validarRegistroF.hideTooltip();
     }//GEN-LAST:event_jTDestinatarioFocusLost
 
     private void jBEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBEliminarActionPerformed
@@ -654,7 +678,8 @@ public class JFPaquetes extends javax.swing.JFrame {
     }//GEN-LAST:event_jBConsultarPaquete1ActionPerformed
 
     private void jTDireccion1FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTDireccion1FocusLost
-        direccionValidar = validarRegistroF.camposDeRegistros(jTDireccion1, "d");
+        direccionValidar = validarRegistroF.camposDeRegistros(jTDireccion1, "direccion");
+        validarRegistroF.hideTooltip();
     }//GEN-LAST:event_jTDireccion1FocusLost
 
     private void JComboDestinoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JComboDestinoActionPerformed
@@ -668,6 +693,19 @@ public class JFPaquetes extends javax.swing.JFrame {
     private void jTVolumen1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTVolumen1KeyReleased
         // TODO add your handling code here:
     }//GEN-LAST:event_jTVolumen1KeyReleased
+
+    private void jTDireccion1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTDireccion1KeyReleased
+        direccionValidar = validarRegistroF.camposDeRegistros(jTDireccion1, "direccion");
+        
+    }//GEN-LAST:event_jTDireccion1KeyReleased
+
+    private void jTDestinatarioKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTDestinatarioKeyReleased
+         destinatarioValidar = validarRegistroF.camposDeRegistros(jTDestinatario, "nombre");
+    }//GEN-LAST:event_jTDestinatarioKeyReleased
+
+    private void jTCodigoEliminarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTCodigoEliminarKeyReleased
+         codigoTrakingValidar = validarRegistroF.camposDeRegistros(jTCodigoEliminar, "entero");
+    }//GEN-LAST:event_jTCodigoEliminarKeyReleased
 
     private void vaciarCampos() {
         recepcionista.eliminarPaqueteRegistrado();

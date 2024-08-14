@@ -405,6 +405,12 @@ public class JFConductores extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel5.setText("Cedula Conductor");
         jPIA.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 50, -1, -1));
+
+        jTCodigoEliminar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTCodigoEliminarKeyReleased(evt);
+            }
+        });
         jPIA.add(jTCodigoEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 50, 200, 20));
 
         jBEliminarConductor.setText("Eliminar");
@@ -716,6 +722,10 @@ public class JFConductores extends javax.swing.JFrame {
         jTablaConductor.setVisible(true);
         jBEliminarConductor.setVisible(true);
     }//GEN-LAST:event_jBConsultarConductorActionPerformed
+
+    private void jTCodigoEliminarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTCodigoEliminarKeyReleased
+        validarRegistroF.camposDeRegistros(jTCodigoEliminar, "cedula");
+    }//GEN-LAST:event_jTCodigoEliminarKeyReleased
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel JPProovedores;
