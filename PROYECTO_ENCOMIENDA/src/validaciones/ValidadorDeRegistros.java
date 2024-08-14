@@ -60,7 +60,8 @@ public class ValidadorDeRegistros {
         case "vacio" -> valor = !texto.isEmpty();
         case "enteros" -> valor = texto.matches("^\\d+$");
         case "contraseña" -> valor = texto.matches("^(?=.*[A-Z])(?=.*[a-z])(?=.*\\d)(?=.*[@#$%^&+=!]).{5,}$");
-        case "usuario" -> valor = texto.matches("^[a-zA-Z0-9]{5,}$");
+        case "usuario" -> valor = texto.matches("^[a-zA-Z0-9]+$");
+
     }
 
     // Mostrar el tooltip si no es válido
@@ -132,6 +133,12 @@ public String generarMensajeError(String caso, String texto) {
                 mensaje.append("El nombre no es válido.<br> Solo se permiten letras y espacios.<br>");
             }
         }
+        case "usuario" -> {
+            if (!texto.matches("^[a-zA-Z0-9]+$")){
+                mensaje.append("El nombre de usuario no es válido.<br> Solo se permiten letras y números.<br>");
+            }
+        }
+        
         case "email" -> {
             if (!validarEmail(texto)) {
                 mensaje.append("El email no es válido.<br> Asegúrate de que tiene el formato correcto.<br>");
