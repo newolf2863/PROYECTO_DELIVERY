@@ -38,7 +38,6 @@ public class ValidadorDeRegistros {
      * y actualiza el estado del campo y la etiqueta de acuerdo con la validez.
      *
      * @param textField El campo de texto a validar.
-     * @param label La etiqueta que mostrará mensajes de error.
      * @param caso El caso que define el tipo de validación a realizar.
      * @return true si el campo es válido; false en caso contrario.
      */
@@ -57,6 +56,7 @@ public class ValidadorDeRegistros {
         case "telefono" -> valor = texto.matches("^\\d{10}$");
         case "cedula" -> valor = validarCedula(texto);
         case "precio" -> valor = validarMaximoDosDecimales(texto);
+        case "peso" -> valor = validarMaximoDosDecimales(texto);
         case "vacio" -> valor = !texto.isEmpty();
         case "enteros" -> valor = texto.matches("^\\d+$");
         case "contraseña" -> valor = texto.matches("^(?=.*[A-Z])(?=.*[a-z])(?=.*\\d)(?=.*[@#$%^&+=!]).{5,}$");
@@ -155,6 +155,11 @@ public String generarMensajeError(String caso, String texto) {
         case "precio" -> {
             if (!validarMaximoDosDecimales(texto)) {
                 mensaje.append("El precio no es válido.<br> Solo se permiten números con hasta dos decimales.<br>");
+            }
+        }
+        case "peso" -> {
+            if (!validarMaximoDosDecimales(texto)) {
+                mensaje.append("El peso no es válido.<br> Solo se permiten números con hasta dos decimales.<br>");
             }
         }
         case "vacio" -> {
