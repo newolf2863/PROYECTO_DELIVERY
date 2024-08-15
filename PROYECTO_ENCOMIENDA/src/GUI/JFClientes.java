@@ -119,6 +119,11 @@ public class JFClientes extends javax.swing.JFrame {
                 jTFTelefonoRFocusLost(evt);
             }
         });
+        jTFTelefonoR.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTFTelefonoRKeyReleased(evt);
+            }
+        });
 
         jLTipoCli.setText("CI");
 
@@ -437,6 +442,11 @@ public class JFClientes extends javax.swing.JFrame {
 
     private void jTFCIRegistrarCFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTFCIRegistrarCFocusLost
         cedulaEsValida=validarRegistroF.camposDeRegistros(jTFCIRegistrarC, "cedula");
+        String idCliente=jTFCIRegistrarC.getText();
+        if (DataBase.obtenerInstancia().clienteExiste(idCliente)) {
+            JOptionPane.showMessageDialog(this, "Cédula ya registrada", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
         validarRegistroF.hideTooltip();
     }//GEN-LAST:event_jTFCIRegistrarCFocusLost
 
@@ -458,6 +468,60 @@ public class JFClientes extends javax.swing.JFrame {
         correoEsValido=validarRegistroF.camposDeRegistros(correoCli2, "email");
     }//GEN-LAST:event_correoCli2KeyReleased
 
+    private void jTFTelefonoRKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFTelefonoRKeyReleased
+        telefonoEsValido = validarRegistroF.camposDeRegistros(jTFTelefonoR, "telefono");    
+    }//GEN-LAST:event_jTFTelefonoRKeyReleased
+
+    private void jBRegistarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBRegistarClienteActionPerformed
+        String idCliente = jTFCIRegistrarC.getText();
+        JTextField[] campos = { jTFCIRegistrarC, jTFNombresR, jTFApellidosR, correoCli2,
+                jTFTelefonoR, jTFDireccionR };
+        Boolean[] booleanosCliente = { cedulaEsValida, nombreEsValido, apellidoEsValido, correoEsValido,
+                telefonoEsValido, direccionEsValida };
+        String[] nombresCampos = { "documento", "nombre", "apellido", "correo", "teléfono", "dirección" };
+        List<String> errores = validadorCheck.validarCamposLista(campos, booleanosCliente, nombresCampos);
+        errores.addAll(validadorCheck.validarCamposVaciosLista(campos, booleanosCliente, nombresCampos));
+        
+        if (DataBase.obtenerInstancia().clienteExiste(idCliente)) {
+            JOptionPane.showMessageDialog(this, "Cédula ya registrada", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        if (!errores.isEmpty()) {
+            StringBuilder mensajeError = new StringBuilder("Se encontraron los siguientes errores:\n");
+            for (String error : errores) {
+                mensajeError.append("- ").append(error).append("\n");
+            }
+            JOptionPane.showMessageDialog(null, mensajeError.toString(), "Errores", JOptionPane.ERROR_MESSAGE);
+        } else {
+            Object[] options = { "Si", "No" };
+            int opcion = JOptionPane.showOptionDialog(null, "¿Deseas registrar los datos?", "Confirmación",
+                    JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
+            if (opcion == JOptionPane.YES_OPTION) {
+                String nombresCliente = jTFNombresR.getText();
+                String apellidosCliente = jTFApellidosR.getText();
+                String telefonoClientes = jTFTelefonoR.getText();
+                String direccionClientes = jTFDireccionR.getText();
+                String correoDelCli = correoCli2.getText();
+                
+                DataBase.obtenerInstancia().registrarCliente(nombresCliente, apellidosCliente, idCliente,
+                        direccionClientes, telefonoClientes, correoDelCli);
+                vaciarCampos();
+                JOptionPane.showMessageDialog(
+                        null,
+                        "El registro del cliente ha sido exitoso",
+                        "Registro Exitoso",
+                        JOptionPane.INFORMATION_MESSAGE);
+                cargarClientes();
+            } else {
+                JOptionPane.showMessageDialog(
+                        null,
+                        "El registro del cliente ha sido cancelado",
+                        "Registro Cancelado",
+                        JOptionPane.INFORMATION_MESSAGE);
+            }
+        }
+    }//GEN-LAST:event_jBRegistarClienteActionPerformed
+
     private void jTFNombresRFocusLost(java.awt.event.FocusEvent evt) {// GEN-FIRST:event_jTFNombresRFocusLost
         nombreEsValido = validarRegistroF.camposDeRegistros(jTFNombresR, "nombre");
          validarRegistroF.hideTooltip();
@@ -478,50 +542,7 @@ public class JFClientes extends javax.swing.JFrame {
     }// GEN-LAST:event_jTFApellidosRFocusLost
 
    
-  
-    private void jBRegistarClienteActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jBRegistarClienteActionPerformed
-        JTextField[] campos = { jTFCIRegistrarC, jTFNombresR, jTFApellidosR, correoCli2,
-                jTFTelefonoR, jTFDireccionR };
-        Boolean[] booleanosCliente = { cedulaEsValida, nombreEsValido, apellidoEsValido, correoEsValido,
-                telefonoEsValido, direccionEsValida };
-        String[] nombresCampos = { "documento", "nombre", "apellido", "correo", "teléfono", "dirección" };
-        List<String> errores = validadorCheck.validarCamposLista(campos, booleanosCliente, nombresCampos);
-        errores.addAll(validadorCheck.validarCamposVaciosLista(campos, booleanosCliente, nombresCampos));
-        if (!errores.isEmpty()) {
-            StringBuilder mensajeError = new StringBuilder("Se encontraron los siguientes errores:\n");
-            for (String error : errores) {
-                mensajeError.append("- ").append(error).append("\n");
-            }
-            JOptionPane.showMessageDialog(null, mensajeError.toString(), "Errores", JOptionPane.ERROR_MESSAGE);
-        } else {
-            Object[] options = { "Si", "No" };
-            int opcion = JOptionPane.showOptionDialog(null, "¿Deseas registrar los datos?", "Confirmación",
-                    JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
-            if (opcion == JOptionPane.YES_OPTION) {
-                String nombresCliente = jTFNombresR.getText();
-                String apellidosCliente = jTFApellidosR.getText();
-                String telefonoClientes = jTFTelefonoR.getText();
-                String direccionClientes = jTFDireccionR.getText();
-                String correoDelCli = correoCli2.getText();
-                String idCliente = jTFCIRegistrarC.getText();
-                DataBase.obtenerInstancia().registrarCliente(nombresCliente, apellidosCliente, idCliente,
-                        direccionClientes, telefonoClientes, correoDelCli);
-                vaciarCampos();
-                JOptionPane.showMessageDialog(
-                        null,
-                        "El registro del cliente ha sido exitoso",
-                        "Registro Exitoso",
-                        JOptionPane.INFORMATION_MESSAGE);
-                cargarClientes();
-            } else {
-                JOptionPane.showMessageDialog(
-                        null,
-                        "El registro del cliente ha sido cancelado",
-                        "Registro Cancelado",
-                        JOptionPane.INFORMATION_MESSAGE);
-            }
-        }
-    }// GEN-LAST:event_jBRegistarClienteActionPerformed
+ 
 
     private void jBIActualizarAct1ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jBIActualizarAct1ActionPerformed
         List<String> camposInvalidos = new ArrayList<>();
