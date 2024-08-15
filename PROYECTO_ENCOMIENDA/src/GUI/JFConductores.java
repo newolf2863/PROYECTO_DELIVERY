@@ -43,7 +43,9 @@ public class JFConductores extends javax.swing.JFrame {
     private boolean direccionConductorValidar = false;
     private boolean usuarioConductorValidar = false;
     private boolean claveConductorValidar = false;
-    private boolean nomb = false;
+    private boolean nombre = false;
+    private boolean nombre2 = false;
+    
 //Mouse
     int xMouse, yMouse;
 
