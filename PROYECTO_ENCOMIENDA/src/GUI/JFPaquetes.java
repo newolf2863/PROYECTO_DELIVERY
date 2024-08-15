@@ -37,29 +37,29 @@ import mod_paquetes.Paquete;
 import mod_transporte.Provincia;
 import validaciones.*;
 
-
 /**
  *
  * @author USUARIO
  */
 public class JFPaquetes extends javax.swing.JFrame {
+
     ValidadorDeRegistros validarRegistroF = new ValidadorDeRegistros();
     ValidadorDeSwings validadorCheck = new ValidadorDeSwings();
     private boolean volumenValidar = false;
     private boolean pesoValidar = false;
     private boolean remitenteValidar = false;
-    private boolean contenidoValidar=false;
+    private boolean contenidoValidar = false;
     private boolean direccionValidar = false;
     private boolean destinatarioValidar = false;
-    private boolean precioValidar=false;
-    private boolean codigoTrakingValidar=false;
+    private boolean precioValidar = false;
+    private boolean codigoTrakingValidar = false;
     private Inventario inventario;
     private Recepcionista recepcionista;
-    
+
     //Mouse
-    int xMouse, yMouse;  
-    
-    public JFPaquetes(Recepcionista recepcionista){      
+    int xMouse, yMouse;
+
+    public JFPaquetes(Recepcionista recepcionista) {
         this.recepcionista = recepcionista;
         initComponents();
         setIconImage(new ImageIcon(getClass().getResource("/iconos/caja.png")).getImage());
@@ -83,10 +83,10 @@ public class JFPaquetes extends javax.swing.JFrame {
                         String codigoTracking = jTablaInventario.getValueAt(selectedRow, 0).toString();
                         Paquete paquete = inventario.obtenerPaquete(codigoTracking);
                         // Mostrar un JOptionPane con la información de la fila seleccionada
-                        JOptionPane.showMessageDialog(null, 
-                            paquete.toString(), 
-                            "Información del Paquete", 
-                            JOptionPane.INFORMATION_MESSAGE);
+                        JOptionPane.showMessageDialog(null,
+                                paquete.toString(),
+                                "Información del Paquete",
+                                JOptionPane.INFORMATION_MESSAGE);
                     }
                 }
             }
@@ -95,22 +95,22 @@ public class JFPaquetes extends javax.swing.JFrame {
         jTCodigoTracking.setText(codigo);
         setLocationRelativeTo(null);
     }
-    
+
     private void cargarInventario() {
         inventario = Inventario.obtenerInstancia();
         inventario.cargarInventario();
     }
-    
+
     private void refrescarInventario() {
         DefaultTableModel model = new DefaultTableModel();
         jTablaInventario.setModel(model);
         String[] columnNames = {
-            "Código de Tracking", "Volumen", "Peso", "Contenido", 
+            "Código de Tracking", "Volumen", "Peso", "Contenido",
             "Remitente", "Provincia Origen", "Provincia Destino"
         };
         model.setColumnIdentifiers(columnNames);
         for (Paquete paquete : inventario.obtenerPaquetes()) {
-                model.addRow(new Object[]{
+            model.addRow(new Object[]{
                 paquete.obtenerCodigo(),
                 paquete.getVolumen(),
                 paquete.getPeso(),
@@ -121,14 +121,14 @@ public class JFPaquetes extends javax.swing.JFrame {
             });
         }
     }
-    
+
     private void cargarProvincias() {
         JComboDestino.removeAllItems();
         for (Provincia provincia : Provincia.values()) {
             JComboDestino.addItem(provincia.name());
         }
     }
-    
+
     private void placeHolder() {
         TextPrompt texto1 = new TextPrompt("Obligatorio", jTContenidoPaquete);
         TextPrompt texto2 = new TextPrompt("Obligatorio", jTPrecioEstimadoVolumen);
@@ -136,9 +136,8 @@ public class JFPaquetes extends javax.swing.JFrame {
         TextPrompt texto = new TextPrompt("Obligatorio", jTRemitente);
         TextPrompt texto5 = new TextPrompt("Obligatorio", jTDireccion1);
         TextPrompt texto4 = new TextPrompt("Obligatorio", jTDestinatario);
-    }    
-     
-  
+    }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -283,6 +282,11 @@ public class JFPaquetes extends javax.swing.JFrame {
                 jTContenidoPaqueteFocusLost(evt);
             }
         });
+        jTContenidoPaquete.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTContenidoPaqueteKeyReleased(evt);
+            }
+        });
         jPanel2.add(jTContenidoPaquete, new org.netbeans.lib.awtextra.AbsoluteConstraints(518, 85, 254, -1));
 
         jLabel53.setText("Remitente");
@@ -388,11 +392,6 @@ public class JFPaquetes extends javax.swing.JFrame {
         jLabel64.setText("Destino");
         jPanel2.add(jLabel64, new org.netbeans.lib.awtextra.AbsoluteConstraints(11, 218, -1, -1));
 
-        jTVolumen1.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                jTVolumen1FocusLost(evt);
-            }
-        });
         jTVolumen1.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 jTVolumen1KeyReleased(evt);
@@ -505,53 +504,53 @@ public class JFPaquetes extends javax.swing.JFrame {
 
     private void jBRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBRegistrarActionPerformed
 
-    JTextField[] campos = {jTVolumen1, jTPeso, jTRemitente, jTDestinatario, jTContenidoPaquete, jTDestinatario,jTPrecioEstimadoVolumen};
-    Boolean[] booleanItem = {volumenValidar, pesoValidar, remitenteValidar, direccionValidar, contenidoValidar, destinatarioValidar,precioValidar};
-    String[] nombresCampos = {"Volumen", "Peso", "Remitente", "Direccion", "Contenido del paquete", "Destinatario","Precio contenido"};
-    List<String> errores = validadorCheck.validarCamposLista(campos, booleanItem, nombresCampos);
-    errores.addAll(validadorCheck.validarCamposVaciosLista(campos, booleanItem, nombresCampos));
-    
-    Provincia destino = null;
-    Class<?> enumClass;
-    try {
-        enumClass = Class.forName("mod_transporte.Provincia");
-        destino = (Provincia) Enum.valueOf((Class<Enum>) enumClass, JComboDestino.getSelectedItem().toString());
-    } catch (ClassNotFoundException ex) {
-        Logger.getLogger(JFPaquetes.class.getName()).log(Level.SEVERE, null, ex);
-    }
+        JTextField[] campos = {jTVolumen1, jTPeso, jTRemitente, jTDestinatario, jTContenidoPaquete, jTDestinatario, jTPrecioEstimadoVolumen};
+        Boolean[] booleanItem = {volumenValidar, pesoValidar, remitenteValidar, direccionValidar, contenidoValidar, destinatarioValidar, precioValidar};
+        String[] nombresCampos = {"Volumen", "Peso", "Remitente", "Direccion", "Contenido del paquete", "Destinatario", "Precio contenido"};
+        List<String> errores = validadorCheck.validarCamposLista(campos, booleanItem, nombresCampos);
+        errores.addAll(validadorCheck.validarCamposVaciosLista(campos, booleanItem, nombresCampos));
 
-    if (!errores.isEmpty()) {
-        StringBuilder mensajeError = new StringBuilder("Se encontraron los siguientes errores:\n");
-        for (String error : errores) {
-            mensajeError.append("- ").append(error).append("\n");
+        Provincia destino = null;
+        Class<?> enumClass;
+        try {
+            enumClass = Class.forName("mod_transporte.Provincia");
+            destino = (Provincia) Enum.valueOf((Class<Enum>) enumClass, JComboDestino.getSelectedItem().toString());
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(JFPaquetes.class.getName()).log(Level.SEVERE, null, ex);
         }
-        JOptionPane.showMessageDialog(null, mensajeError.toString(), "Errores", JOptionPane.ERROR_MESSAGE);
-    } else if (JComboDestino.getSelectedItem() == null) {
-        JOptionPane.showMessageDialog(null, "Escoja un destino", "Error", JOptionPane.ERROR_MESSAGE);
-    } else if (destino.equals(recepcionista.obtenerSucursal())) {
-        JOptionPane.showMessageDialog(null, "El Destino debe ser otra provincia distinta a la sucursal", "Error", JOptionPane.ERROR_MESSAGE);
-    } else if (!DataBase.obtenerInstancia().clienteExiste(jTRemitente.getText())) {
-        JOptionPane.showMessageDialog(null, "El cliente no está registrado", "Error", JOptionPane.ERROR_MESSAGE);
-    } else {
-        String codigo = inventario.getSiguienteCodigoTracking();
-        double volumen = Double.parseDouble(jTVolumen1.getText()); // Campo para volumen
-        double peso = Double.parseDouble(jTPeso.getText());
-        double precioEstimadoContenido = Double.parseDouble(jTPrecioEstimadoVolumen.getText()); // Campo para precio estimado del contenido
-        String contenido = jTContenidoPaquete.getText();
-        Cliente cliente = DataBase.obtenerInstancia().obtenerDatosPorCedula(jTRemitente.getText());
-        Provincia origen = recepcionista.obtenerSucursal();
-        String direccion = jTDireccion1.getText();
-        String destinatario = jTDestinatario.getText();
-        
-        // Crear el paquete con los nuevos parámetros
-        Paquete paquete = new Paquete(codigo, volumen, peso, contenido, cliente, origen, destino, direccion, destinatario, precioEstimadoContenido);
-        
-        // Registrar el paquete
-        recepcionista.registrarPaquete(paquete);
-        jTCodigoTracking.setText(codigo);
-        mostrarPrecio();
-        jBRegistrarPAInventario.setVisible(true);
-    }
+
+        if (!errores.isEmpty()) {
+            StringBuilder mensajeError = new StringBuilder("Se encontraron los siguientes errores:\n");
+            for (String error : errores) {
+                mensajeError.append("- ").append(error).append("\n");
+            }
+            JOptionPane.showMessageDialog(null, mensajeError.toString(), "Errores", JOptionPane.ERROR_MESSAGE);
+        } else if (JComboDestino.getSelectedItem() == null) {
+            JOptionPane.showMessageDialog(null, "Escoja un destino", "Error", JOptionPane.ERROR_MESSAGE);
+        } else if (destino.equals(recepcionista.obtenerSucursal())) {
+            JOptionPane.showMessageDialog(null, "El Destino debe ser otra provincia distinta a la sucursal", "Error", JOptionPane.ERROR_MESSAGE);
+        } else if (!DataBase.obtenerInstancia().clienteExiste(jTRemitente.getText())) {
+            JOptionPane.showMessageDialog(null, "El cliente no está registrado", "Error", JOptionPane.ERROR_MESSAGE);
+        } else {
+            String codigo = inventario.getSiguienteCodigoTracking();
+            double volumen = Double.parseDouble(jTVolumen1.getText()); // Campo para volumen
+            double peso = Double.parseDouble(jTPeso.getText());
+            double precioEstimadoContenido = Double.parseDouble(jTPrecioEstimadoVolumen.getText()); // Campo para precio estimado del contenido
+            String contenido = jTContenidoPaquete.getText();
+            Cliente cliente = DataBase.obtenerInstancia().obtenerDatosPorCedula(jTRemitente.getText());
+            Provincia origen = recepcionista.obtenerSucursal();
+            String direccion = jTDireccion1.getText();
+            String destinatario = jTDestinatario.getText();
+
+            // Crear el paquete con los nuevos parámetros
+            Paquete paquete = new Paquete(codigo, volumen, peso, contenido, cliente, origen, destino, direccion, destinatario, precioEstimadoContenido);
+
+            // Registrar el paquete
+            recepcionista.registrarPaquete(paquete);
+            jTCodigoTracking.setText(codigo);
+            mostrarPrecio();
+            jBRegistrarPAInventario.setVisible(true);
+        }
     }//GEN-LAST:event_jBRegistrarActionPerformed
 
     private void jTRemitenteFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTRemitenteFocusLost
@@ -602,8 +601,8 @@ public class JFPaquetes extends javax.swing.JFrame {
     }//GEN-LAST:event_btnExitActionPerformed
 
     private void jTContenidoPaqueteFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTContenidoPaqueteFocusLost
-       contenidoValidar = validarRegistroF.camposDeRegistros(jTContenidoPaquete, "d");
-       validarRegistroF.hideTooltip();
+        contenidoValidar = validarRegistroF.camposDeRegistros(jTContenidoPaquete, "contenido");
+        validarRegistroF.hideTooltip();
     }//GEN-LAST:event_jTContenidoPaqueteFocusLost
 
     private void jTDestinatarioFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTDestinatarioFocusLost
@@ -686,26 +685,25 @@ public class JFPaquetes extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_JComboDestinoActionPerformed
 
-    private void jTVolumen1FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTVolumen1FocusLost
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTVolumen1FocusLost
-
-    private void jTVolumen1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTVolumen1KeyReleased
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTVolumen1KeyReleased
-
     private void jTDireccion1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTDireccion1KeyReleased
         direccionValidar = validarRegistroF.camposDeRegistros(jTDireccion1, "direccion");
-        
     }//GEN-LAST:event_jTDireccion1KeyReleased
 
     private void jTDestinatarioKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTDestinatarioKeyReleased
-         destinatarioValidar = validarRegistroF.camposDeRegistros(jTDestinatario, "nombre");
+        destinatarioValidar = validarRegistroF.camposDeRegistros(jTDestinatario, "nombre");
     }//GEN-LAST:event_jTDestinatarioKeyReleased
 
     private void jTCodigoEliminarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTCodigoEliminarKeyReleased
-         codigoTrakingValidar = validarRegistroF.camposDeRegistros(jTCodigoEliminar, "entero");
+        codigoTrakingValidar = validarRegistroF.camposDeRegistros(jTCodigoEliminar, "entero");
     }//GEN-LAST:event_jTCodigoEliminarKeyReleased
+
+    private void jTContenidoPaqueteKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTContenidoPaqueteKeyReleased
+        contenidoValidar = validarRegistroF.camposDeRegistros(jTContenidoPaquete, "contenido");
+    }//GEN-LAST:event_jTContenidoPaqueteKeyReleased
+
+    private void jTVolumen1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTVolumen1KeyReleased
+        volumenValidar = validarRegistroF.camposDeRegistros(jTVolumen1, "enteros");
+    }//GEN-LAST:event_jTVolumen1KeyReleased
 
     private void vaciarCampos() {
         recepcionista.eliminarPaqueteRegistrado();

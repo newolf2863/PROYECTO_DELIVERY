@@ -14,17 +14,18 @@ import javax.swing.JWindow;
 
 /**
  * La clase ValidadorDeRegistros proporciona métodos para validar distintos
- * tipos de datos y formatos en campos de texto, así como para gestionar
- * el contenido del portapapeles.
+ * tipos de datos y formatos en campos de texto, así como para gestionar el
+ * contenido del portapapeles.
  *
  * @author USUARIO
  */
-
 public class ValidadorDeRegistros {
+
     private JWindow tooltipWindow;
+
     /**
-     * Valida si la placa de un vehículo cumple con el formato especificado.
-     * El formato debe ser de 3 letras seguidas de 3 dígitos.
+     * Valida si la placa de un vehículo cumple con el formato especificado. El
+     * formato debe ser de 3 letras seguidas de 3 dígitos.
      *
      * @param placa La placa del vehículo a validar.
      * @return true si la placa es válida; false en caso contrario.
@@ -33,197 +34,216 @@ public class ValidadorDeRegistros {
         String patron = "^[A-Z]{3}\\d{3}$";
         return placa.matches(patron);
     }
+
     /**
-     * Valida el contenido del campo de texto basado en el caso especificado
-     * y actualiza el estado del campo y la etiqueta de acuerdo con la validez.
+     * Valida el contenido del campo de texto basado en el caso especificado y
+     * actualiza el estado del campo y la etiqueta de acuerdo con la validez.
      *
      * @param textField El campo de texto a validar.
      * @param caso El caso que define el tipo de validación a realizar.
      * @return true si el campo es válido; false en caso contrario.
      */
     public boolean camposDeRegistros(JTextField textField, String caso) {
-    boolean valor = false;
-    String texto = textField.getText();
-    String mensaje = generarMensajeError(caso, texto);
+        boolean valor = false;
+        String texto = textField.getText();
+        String mensaje = generarMensajeError(caso, texto);
 
-    // Realiza la validación según el caso
-    switch (caso) {
-        case "direccion" -> valor = validarDireccion(texto);
-        case "ruc" -> valor = validarRUC(texto);
-        case "nombre" -> valor = texto.matches("^[A-Za-záéíóúÁÉÍÓÚñÑüÜ]+( [A-Za-záéíóúÁÉÍÓÚñÑüÜ]+)*$");
-        case "email" -> valor = validarEmail(texto);
-        case "telefonoFijo" -> valor = validarTelefono(texto);
-        case "telefono" -> valor = texto.matches("^\\d{10}$");
-        case "cedula" -> valor = validarCedula(texto);
-        case "precio" -> valor = validarMaximoDosDecimales(texto);
-        case "peso" -> valor = validarMaximoDosDecimales(texto);
-        case "vacio" -> valor = !texto.isEmpty();
-        case "enteros" -> valor = texto.matches("^\\d+$");
-        case "contraseña" -> valor = texto.matches("^(?=.*[A-Z])(?=.*[a-z])(?=.*\\d)(?=.*[@#$%^&+=!]).{5,}$");
-        case "usuario" -> valor = texto.matches("^[a-zA-Z0-9]+$");
+        // Realiza la validación según el caso
+        switch (caso) {
+            case "direccion" ->
+                valor = validarDireccion(texto);
+            case "contenido" ->
+                valor = texto.matches("^[A-Za-záéíóúÁÉÍÓÚñÑüÜ0-9]+([,.]?[ ]?[A-Za-záéíóúÁÉÍÓÚñÑüÜ0-9]+)*$");
+            case "ruc" ->
+                valor = validarRUC(texto);
+            case "nombre" ->
+                valor = texto.matches("^[A-Za-záéíóúÁÉÍÓÚñÑüÜ]+( [A-Za-záéíóúÁÉÍÓÚñÑüÜ]+)*$");
+            case "email" ->
+                valor = validarEmail(texto);
+            case "telefonoFijo" ->
+                valor = validarTelefono(texto);
+            case "telefono" ->
+                valor = texto.matches("^\\d{10}$");
+            case "cedula" ->
+                valor = validarCedula(texto);
+            case "precio" ->
+                valor = validarMaximoDosDecimales(texto);
+            case "peso" ->
+                valor = validarMaximoDosDecimales(texto);
+            case "vacio" ->
+                valor = !texto.isEmpty();
+            case "enteros" ->
+                valor = texto.matches("^\\d+$");
+            case "contraseña" ->
+                valor = texto.matches("^(?=.*[A-Z])(?=.*[a-z])(?=.*\\d)(?=.*[@#$%^&+=!]).{5,}$");
+            case "usuario" ->
+                valor = texto.matches("^[a-zA-Z0-9]+$");
 
+        }
+
+        // Mostrar el tooltip si no es válido
+        if (!valor) {
+            showTooltip(textField, mensaje);
+            textField.setBackground(new Color(255, 204, 204));
+        } else {
+            hideTooltip();
+            textField.setBackground(new Color(255, 255, 255));
+        }
+
+        return valor;
     }
 
-    // Mostrar el tooltip si no es válido
-    if (!valor) {
-        showTooltip(textField, mensaje);
-        textField.setBackground(new Color(255, 204, 204));
-    } else {
-        hideTooltip();
-        textField.setBackground(new Color(255, 255, 255));
+    public String generarMensajeContrasenia(String contraseña) {
+        StringBuilder mensaje = new StringBuilder();
+        boolean cumpleRequisitos = true;
+        if (!contraseña.matches(".*[A-Z].*")) {
+            mensaje.append("- Debe contener al menos una letra mayúscula.<br>");
+            cumpleRequisitos = false;
+        }
+        if (!contraseña.matches(".*[a-z].*")) {
+            mensaje.append("- Debe contener al menos una letra minúscula.<br>");
+            cumpleRequisitos = false;
+        }
+        if (!contraseña.matches(".*\\d.*")) {
+            mensaje.append("- Debe contener al menos un dígito.<br>");
+            cumpleRequisitos = false;
+        }
+        if (!contraseña.matches(".*[@#$%^&+=!].*")) {
+            mensaje.append("- Debe contener al menos un carácter especial (@, #, $, %, ^, &, +, =, !).<br>");
+            cumpleRequisitos = false;
+        }
+        if (contraseña.length() < 5) {
+            mensaje.append("- Debe tener una longitud mínima de 5 caracteres.<br>");
+            cumpleRequisitos = false;
+        }
+
+        if (cumpleRequisitos) {
+            // Si cumple todos los requisitos, no se retorna un mensaje de error.
+            return "";
+        } else {
+            mensaje.append("</html>");
+        }
+
+        return mensaje.toString();
     }
 
-    return valor;
-}
+    public String generarMensajeError(String caso, String texto) {
+        StringBuilder mensaje = new StringBuilder();
+        mensaje.append("<html>");
 
+        switch (caso) {
+            case "direccion" -> {
+                if (!validarDireccion(texto)) {
+                    mensaje.append("La dirección no es válida.<br> Asegúrate de que contiene solo letras, números y algunos caracteres especiales.<br>");
+                }
+            }
+            case "ruc" -> {
+                if (!validarRUC(texto)) {
+                    mensaje.append("El RUC no es válido.<br> Debe contener 13 dígitos.<br>");
+                }
+            }
+            case "nombre" -> {
+                if (!texto.matches("^[A-Za-záéíóúÁÉÍÓÚñÑüÜ]+( [A-Za-záéíóúÁÉÍÓÚñÑüÜ]+)*$")) {
+                    mensaje.append("El nombre no es válido.<br> Solo se permiten letras y espacios.<br>");
+                }
+            }
+            case "usuario" -> {
+                if (!texto.matches("^[a-zA-Z0-9]+$")) {
+                    mensaje.append("El nombre de usuario no es válido.<br> Solo se permiten letras y números.<br>");
+                }
+            }
 
-public String generarMensajeContrasenia(String contraseña) {
-    StringBuilder mensaje = new StringBuilder();
-    boolean cumpleRequisitos = true;
-    if (!contraseña.matches(".*[A-Z].*")) {
-        mensaje.append("- Debe contener al menos una letra mayúscula.<br>");
-        cumpleRequisitos = false;
-    }
-    if (!contraseña.matches(".*[a-z].*")) {
-        mensaje.append("- Debe contener al menos una letra minúscula.<br>");
-        cumpleRequisitos = false;
-    }
-    if (!contraseña.matches(".*\\d.*")) {
-        mensaje.append("- Debe contener al menos un dígito.<br>");
-        cumpleRequisitos = false;
-    }
-    if (!contraseña.matches(".*[@#$%^&+=!].*")) {
-        mensaje.append("- Debe contener al menos un carácter especial (@, #, $, %, ^, &, +, =, !).<br>");
-        cumpleRequisitos = false;
-    }
-    if (contraseña.length() < 5) {
-        mensaje.append("- Debe tener una longitud mínima de 5 caracteres.<br>");
-        cumpleRequisitos = false;
-    }
+            case "email" -> {
+                if (!validarEmail(texto)) {
+                    mensaje.append("El email no es válido.<br> Asegúrate de que tiene el formato correcto.<br>");
+                }
+            }
+            case "telefonoFijo" -> {
+                if (!validarTelefono(texto)) {
+                    mensaje.append("El teléfono fijo no es válido.<br> Debe seguir el formato +593-XXXXXXXXX.<br>");
+                }
+            }
+            case "telefono" -> {
+                if (!texto.matches("^\\d{10}$")) {
+                    mensaje.append("El teléfono no es válido.<br> Debe contener 10 dígitos.<br>");
+                }
+            }
+            case "cedula" -> {
+                if (!validarCedula(texto)) {
+                    mensaje.append("La cédula no es válida.<br> Asegúrate de que tiene 10 dígitos.<br>");
+                }
+            }
+            case "precio" -> {
+                if (!validarMaximoDosDecimales(texto)) {
+                    mensaje.append("El precio no es válido.<br> Solo se permiten números con hasta dos decimales.<br>");
+                }
+            }
+            case "peso" -> {
+                if (!validarMaximoDosDecimales(texto)) {
+                    mensaje.append("El peso no es válido.<br> Solo se permiten números con hasta dos decimales.<br>");
+                }
+            }
+            case "vacio" -> {
+                if (texto.isEmpty()) {
+                    mensaje.append("Este campo no puede estar vacío.<br>");
+                }
+            }
+            case "enteros" -> {
+                if (!texto.matches("^\\d+$")) {
+                    mensaje.append("Solo se permiten números enteros en este campo.<br>");
+                }
+            }
+            case "contraseña" -> {
+                mensaje.append("La contraseña debe cumplir con lo siguiente:<br>");
+                mensaje.append(generarMensajeContrasenia(texto));
+            }
+            case "contenido" -> {
+                if (!texto.matches("^[A-Za-záéíóúÁÉÍÓÚñÑüÜ0-9]+([,.]?[ ]?[A-Za-záéíóúÁÉÍÓÚñÑüÜ0-9]+)*$")) {
+                    mensaje.append("Contenido Inválido.<br>");
+                }
 
-    if (cumpleRequisitos) {
-        // Si cumple todos los requisitos, no se retorna un mensaje de error.
-        return ""; 
-    } else {
-        mensaje.append("</html>");
-    }
+            }
+        }
 
-    return mensaje.toString();
-}
+        if (mensaje.length() == 6) { // Esto significa que no se agregaron mensajes de error
+            mensaje.setLength(0); // Elimina la etiqueta HTML si no hay errores
+        } else {
+            mensaje.append("</html>");
+        }
 
-
-
-public String generarMensajeError(String caso, String texto) {
-    StringBuilder mensaje = new StringBuilder();
-    mensaje.append("<html>");
-
-    switch (caso) {
-        case "direccion" -> {
-            if (!validarDireccion(texto)) {
-                mensaje.append("La dirección no es válida.<br> Asegúrate de que contiene solo letras, números y algunos caracteres especiales.<br>");
-            }
-        }
-        case "ruc" -> {
-            if (!validarRUC(texto)) {
-                mensaje.append("El RUC no es válido.<br> Debe contener 13 dígitos.<br>");
-            }
-        }
-        case "nombre" -> {
-            if (!texto.matches("^[A-Za-záéíóúÁÉÍÓÚñÑüÜ]+( [A-Za-záéíóúÁÉÍÓÚñÑüÜ]+)*$")) {
-                mensaje.append("El nombre no es válido.<br> Solo se permiten letras y espacios.<br>");
-            }
-        }
-        case "usuario" -> {
-            if (!texto.matches("^[a-zA-Z0-9]+$")){
-                mensaje.append("El nombre de usuario no es válido.<br> Solo se permiten letras y números.<br>");
-            }
-        }
-        
-        case "email" -> {
-            if (!validarEmail(texto)) {
-                mensaje.append("El email no es válido.<br> Asegúrate de que tiene el formato correcto.<br>");
-            }
-        }
-        case "telefonoFijo" -> {
-            if (!validarTelefono(texto)) {
-                mensaje.append("El teléfono fijo no es válido.<br> Debe seguir el formato +593-XXXXXXXXX.<br>");
-            }
-        }
-        case "telefono" -> {
-            if (!texto.matches("^\\d{10}$")) {
-                mensaje.append("El teléfono no es válido.<br> Debe contener 10 dígitos.<br>");
-            }
-        }
-        case "cedula" -> {
-            if (!validarCedula(texto)) {
-                mensaje.append("La cédula no es válida.<br> Asegúrate de que tiene 10 dígitos.<br>");
-            }
-        }
-        case "precio" -> {
-            if (!validarMaximoDosDecimales(texto)) {
-                mensaje.append("El precio no es válido.<br> Solo se permiten números con hasta dos decimales.<br>");
-            }
-        }
-        case "peso" -> {
-            if (!validarMaximoDosDecimales(texto)) {
-                mensaje.append("El peso no es válido.<br> Solo se permiten números con hasta dos decimales.<br>");
-            }
-        }
-        case "vacio" -> {
-            if (texto.isEmpty()) {
-                mensaje.append("Este campo no puede estar vacío.<br>");
-            }
-        }
-        case "enteros" -> {
-            if (!texto.matches("^\\d+$")) {
-                mensaje.append("Solo se permiten números enteros en este campo.<br>");
-            }
-        }
-        case "contraseña" -> {
-            mensaje.append("La contraseña debe cumplir con lo siguiente:<br>");
-            mensaje.append(generarMensajeContrasenia(texto));
-        }
+        return mensaje.toString();
     }
 
-    if (mensaje.length() == 6) { // Esto significa que no se agregaron mensajes de error
-        mensaje.setLength(0); // Elimina la etiqueta HTML si no hay errores
-    } else {
-        mensaje.append("</html>");
+    public void showTooltip(JTextField textField, String message) {
+        if (tooltipWindow == null) {
+            tooltipWindow = new JWindow();
+            JLabel label = new JLabel(message);
+            label.setOpaque(true);
+            label.setBackground(new Color(211, 211, 211)); // Color gris claro
+            label.setForeground(Color.BLACK);
+            tooltipWindow.getContentPane().add(label);
+            tooltipWindow.pack();
+        } else {
+            ((JLabel) tooltipWindow.getContentPane().getComponent(0)).setText(message);
+            tooltipWindow.pack();
+        }
+
+        // Calcula la ubicación correcta para mostrar el tooltip
+        Point location = textField.getLocationOnScreen();
+        tooltipWindow.setLocation(location.x + textField.getWidth(), location.y);
+        tooltipWindow.setVisible(true);
     }
 
-    return mensaje.toString();
-}
-
-     public void showTooltip(JTextField textField, String message) {
-    if (tooltipWindow == null) {
-        tooltipWindow = new JWindow();
-        JLabel label = new JLabel(message);
-        label.setOpaque(true);
-        label.setBackground(new Color(211, 211, 211)); // Color gris claro
-        label.setForeground(Color.BLACK);
-        tooltipWindow.getContentPane().add(label);
-        tooltipWindow.pack();
-    } else {
-        ((JLabel) tooltipWindow.getContentPane().getComponent(0)).setText(message);
-        tooltipWindow.pack();
-    }
-
-    // Calcula la ubicación correcta para mostrar el tooltip
-    Point location = textField.getLocationOnScreen();
-    tooltipWindow.setLocation(location.x + textField.getWidth(), location.y);
-    tooltipWindow.setVisible(true);
-}
     public void hideTooltip() {
-    if (tooltipWindow != null) {
-        tooltipWindow.setVisible(false);
+        if (tooltipWindow != null) {
+            tooltipWindow.setVisible(false);
+        }
     }
-}
-
-    
 
     /**
-     * Valida el contenido del campo de texto para campos específicos de clientes
-     * y actualiza el estado del campo y la etiqueta de acuerdo con la validez.
+     * Valida el contenido del campo de texto para campos específicos de
+     * clientes y actualiza el estado del campo y la etiqueta de acuerdo con la
+     * validez.
      *
      * @param textField El campo de texto a validar.
      * @param label La etiqueta que mostrará mensajes de error.
@@ -266,7 +286,8 @@ public String generarMensajeError(String caso, String texto) {
      * Valida que el valor tiene como máximo dos decimales.
      *
      * @param valor El valor a validar.
-     * @return true si el valor tiene como máximo dos decimales; false en caso contrario.
+     * @return true si el valor tiene como máximo dos decimales; false en caso
+     * contrario.
      */
     public boolean validarMaximoDosDecimales(String valor) {
         try {
@@ -307,8 +328,8 @@ public String generarMensajeError(String caso, String texto) {
     }
 
     /**
-     * Valida el formato del número de teléfono.
-     * El formato debe ser: +593-XXXXXXXXX (donde X es un dígito).
+     * Valida el formato del número de teléfono. El formato debe ser:
+     * +593-XXXXXXXXX (donde X es un dígito).
      *
      * @param telefono El número de teléfono a validar.
      * @return true si el número de teléfono es válido; false en caso contrario.
@@ -320,8 +341,8 @@ public String generarMensajeError(String caso, String texto) {
     }
 
     /**
-     * Valida el formato de la dirección.
-     * La dirección puede contener letras, números y algunos caracteres especiales.
+     * Valida el formato de la dirección. La dirección puede contener letras,
+     * números y algunos caracteres especiales.
      *
      * @param dirNegocio La dirección a validar.
      * @return true si la dirección es válida; false en caso contrario.
@@ -331,7 +352,8 @@ public String generarMensajeError(String caso, String texto) {
     }
 
     /**
-     * Valida el formato del correo electrónico. Solo permite correos de ciertos dominios.
+     * Valida el formato del correo electrónico. Solo permite correos de ciertos
+     * dominios.
      *
      * @param email El correo electrónico a validar.
      * @return true si el correo electrónico es válido; false en caso contrario.
@@ -344,8 +366,9 @@ public String generarMensajeError(String caso, String texto) {
     }
 
     /**
-     * Valida la cédula de identidad en formato ecuatoriano.
-     * La cédula debe tener 10 dígitos y el dígito verificador se calcula con una fórmula específica.
+     * Valida la cédula de identidad en formato ecuatoriano. La cédula debe
+     * tener 10 dígitos y el dígito verificador se calcula con una fórmula
+     * específica.
      *
      * @param cedula La cédula a validar.
      * @return true si la cédula es válida; false en caso contrario.
@@ -393,8 +416,8 @@ public String generarMensajeError(String caso, String texto) {
     }
 
     /**
-     * Valida que la cadena de texto representa nombres válidos.
-     * Los nombres pueden contener letras y espacios.
+     * Valida que la cadena de texto representa nombres válidos. Los nombres
+     * pueden contener letras y espacios.
      *
      * @param nombres La cadena de texto a validar.
      * @return true si la cadena es válida; false en caso contrario.
@@ -412,6 +435,5 @@ public String generarMensajeError(String caso, String texto) {
     private boolean validarRUC(String texto) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-    
- 
+
 }
