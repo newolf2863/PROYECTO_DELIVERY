@@ -275,7 +275,7 @@ public class JFIngresar extends javax.swing.JFrame {
                 jBMostrarCActionPerformed(evt);
             }
         });
-        bg.add(jBMostrarC, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 360, 140, 40));
+        bg.add(jBMostrarC, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 360, 160, 40));
 
         olvidasteContra.setForeground(new java.awt.Color(102, 153, 255));
         olvidasteContra.setText("¿Olvidaste tu contraseña o usuario?");
@@ -290,7 +290,7 @@ public class JFIngresar extends javax.swing.JFrame {
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/gestionDePaquetes.png"))); // NOI18N
         bg.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 30, 440, 120));
 
-        jLabel4.setFont(new java.awt.Font("Roboto Medium", 1, 24)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 24)); // NOI18N
         jLabel4.setText("Iniciar sesión");
         bg.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 160, -1, -1));
         bg.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 250, 340, 10));
