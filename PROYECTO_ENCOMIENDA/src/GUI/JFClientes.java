@@ -422,17 +422,27 @@ public class JFClientes extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTFDireccionRKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFDireccionRKeyReleased
-       direccionEsValida = validarRegistroF.camposDeRegistros(jTFDireccionR, "direccion");
-    }//GEN-LAST:event_jTFDireccionRKeyReleased
-
-    private void jTFCIRegistrarCKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFCIRegistrarCKeyReleased
-       cedulaEsValida=validarRegistroF.camposDeRegistros(jTFDireccionR, "cedula");
-    }//GEN-LAST:event_jTFCIRegistrarCKeyReleased
-
     private void jTFApellidosRKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFApellidosRKeyReleased
        apellidoEsValido=validarRegistroF.camposDeRegistros(jTFDireccionR, "nombre");
     }//GEN-LAST:event_jTFApellidosRKeyReleased
+
+    private void jTFCIRegistrarCKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFCIRegistrarCKeyReleased
+        cedulaEsValida=validarRegistroF.camposDeRegistros(jTFCIRegistrarC, "cedula");
+    }//GEN-LAST:event_jTFCIRegistrarCKeyReleased
+
+    private void jTFCIRegistrarCFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTFCIRegistrarCFocusLost
+        cedulaEsValida=validarRegistroF.camposDeRegistros(jTFCIRegistrarC, "cedula");
+        validarRegistroF.hideTooltip();
+    }//GEN-LAST:event_jTFCIRegistrarCFocusLost
+
+    private void jTFDireccionRKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFDireccionRKeyReleased
+       direccionEsValida=validarRegistroF.camposDeRegistros(jTFDireccionR, "direccion");
+    }//GEN-LAST:event_jTFDireccionRKeyReleased
+
+    private void jTFDireccionRFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTFDireccionRFocusLost
+        direccionEsValida=validarRegistroF.camposDeRegistros(jTFDireccionR, "direccion");
+        validarRegistroF.hideTooltip();
+    }//GEN-LAST:event_jTFDireccionRFocusLost
 
     private void jTFNombresRFocusLost(java.awt.event.FocusEvent evt) {// GEN-FIRST:event_jTFNombresRFocusLost
         nombreEsValido = validarRegistroF.camposDeRegistros(jTFNombresR, "nombre");
