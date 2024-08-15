@@ -45,7 +45,7 @@ public class JFConductores extends javax.swing.JFrame {
     private boolean claveConductorValidar = false;
     private boolean nombre = false;
     private boolean nombre2 = false;
-    
+
 //Mouse
     int xMouse, yMouse;
 
@@ -527,10 +527,10 @@ public class JFConductores extends javax.swing.JFrame {
     }//GEN-LAST:event_jTTelefonoConductorKeyReleased
 
     private void jBRegistrarConductorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBRegistrarConductorActionPerformed
-        String apellidos = jTApellidoConductor.getText();       
-        String telefono = jTTelefonoConductor.getText();      
-        String correo = jTCorreoConductor.getText();      
-        String direccion = jTDireccionConductor.getText();        
+        String apellidos = jTApellidoConductor.getText();
+        String telefono = jTTelefonoConductor.getText();
+        String correo = jTCorreoConductor.getText();
+        String direccion = jTDireccionConductor.getText();
         String nombreUsuario = jTUsuario.getText();
         String nombres = jTNombreConductor.getText();
         String cedula = jTCedulaConductor.getText();
@@ -540,16 +540,16 @@ public class JFConductores extends javax.swing.JFrame {
         Boolean[] booleanoscondu = {cedulaConductorValidar, nombreConductorValidar, apellidoConductorValidar,
             telefonoConductorValidar, telefonoConductorValidar, correoConductorValidar, direccionConductorValidar,
             usuarioConductorValidar, claveConductorValidar};
-        String[] nombresCampos = {"documento", "nombre", "apellido","telefono","correo","dirección"
-        ,"usuario","clave"};
+        String[] nombresCampos = {"documento", "nombre", "apellido", "telefono", "correo", "dirección",
+             "usuario", "clave"};
         List<String> errores = validadorCheck.validarCamposLista(campos, booleanoscondu, nombresCampos);
         errores.addAll(validadorCheck.validarCamposVaciosLista(campos, booleanoscondu, nombresCampos));
-        
+
         if (DataBase.obtenerInstancia().clienteExiste(cedula)) {
             JOptionPane.showMessageDialog(this, "Cédula ya registrada", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
-        
+
         if (!DataBase.obtenerInstancia().esNombreUsuarioUnico(nombreUsuario)) {
             JOptionPane.showMessageDialog(this, "El nombre de usuario ya existe", "Error", JOptionPane.ERROR_MESSAGE);
             return;
@@ -566,19 +566,19 @@ public class JFConductores extends javax.swing.JFrame {
                     JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
             if (opcion == JOptionPane.YES_OPTION) {
                 DataBase.obtenerInstancia().insertarConductor(nombres, apellidos, cedula, direccion, telefono, correo, nombreUsuario, clave, recepcionista.obtenerSucursal());
-        JOptionPane.showMessageDialog(
-                null,
-                "El registro del conductor ha sido exitoso",
-                "Registro Exitoso",
-                JOptionPane.INFORMATION_MESSAGE
-        );
-        
-        Conductor conductor = new Conductor(nombres, apellidos, cedula, direccion, telefono, correo);
-        Asignacion.obtenerInstancia().agregarConductor(conductor);
-        vaciarCampos();
-        cargarConductores();
+                JOptionPane.showMessageDialog(
+                        null,
+                        "El registro del conductor ha sido exitoso",
+                        "Registro Exitoso",
+                        JOptionPane.INFORMATION_MESSAGE
+                );
+
+                Conductor conductor = new Conductor(nombres, apellidos, cedula, direccion, telefono, correo);
+                Asignacion.obtenerInstancia().agregarConductor(conductor);
+                vaciarCampos();
+                cargarConductores();
             }
-        }  
+        }
     }//GEN-LAST:event_jBRegistrarConductorActionPerformed
 
 
@@ -763,8 +763,15 @@ public class JFConductores extends javax.swing.JFrame {
 
     private void cargarConductores() {
         DefaultTableModel model = (DefaultTableModel) jTConductores.getModel();
-        ArrayList<Conductor> conductores = Asignacion.obtenerInstancia().obtenerConductores();
+        // Definir los nombres de las columnas
+        String[] columnNames = {"Nombres", "Apellidos", "Cédula", "Dirección", "Teléfono", "Email"};
+        
+
+        // Limpiar las filas existentes
         model.setRowCount(0);
+        model.setColumnIdentifiers(columnNames);
+        // Obtener la lista de conductores y agregar filas al modelo
+        ArrayList<Conductor> conductores = Asignacion.obtenerInstancia().obtenerConductores();
 
         for (Conductor conductor : conductores) {
             Object[] row = {
@@ -773,8 +780,10 @@ public class JFConductores extends javax.swing.JFrame {
                 conductor.getCedula(),
                 conductor.getDireccion(),
                 conductor.getTelefono(),
-                conductor.getEmail(),};
+                conductor.getEmail()
+            };
             model.addRow(row);
         }
     }
+
 }
