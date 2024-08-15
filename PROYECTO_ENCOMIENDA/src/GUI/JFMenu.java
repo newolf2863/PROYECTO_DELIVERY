@@ -110,7 +110,7 @@ public class JFMenu extends javax.swing.JFrame {
         String nombresConductor = recepcionista.getNombres();
         String nombreConductor = obtenerPrimerNombre(nombresConductor);
         desvanecer();
-        jLInicio.setText("Bienvenido/a " + nombreConductor);
+        jLInicio.setText("Bienvenido/a");
     }
     
     public String obtenerPrimerNombre(String nombres) {

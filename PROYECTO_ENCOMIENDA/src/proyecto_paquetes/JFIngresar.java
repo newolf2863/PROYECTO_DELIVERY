@@ -237,7 +237,7 @@ public class JFIngresar extends javax.swing.JFrame {
         jBIngresar.setBackground(new java.awt.Color(255, 250, 243));
         jBIngresar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/ingresar.png"))); // NOI18N
         jBIngresar.setText("Ingresar");
-        jBIngresar.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jBIngresar.setBorder(null);
         jBIngresar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jBIngresar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
