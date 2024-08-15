@@ -41,7 +41,6 @@ public class JFIncidente extends javax.swing.JFrame {
         setIconImage(new ImageIcon(getClass().getResource("/iconos/exclamacion.png")).getImage());
         JFrame frame = new JFrame();
         frame.getRootPane().setWindowDecorationStyle(JRootPane.NONE);
-        setLocationRelativeTo(null);
         jBRegistrarIncidente.setVisible(false);
         jTablaPaquete.setVisible(false);
         cargarIncidentes();

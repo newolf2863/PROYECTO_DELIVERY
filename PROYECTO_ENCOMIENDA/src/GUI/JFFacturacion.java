@@ -33,7 +33,7 @@ public class JFFacturacion extends javax.swing.JFrame {
         this.recepcionista = recepcionista;
         setIconImage(new ImageIcon(getClass().getResource("/iconos/factura.png")).getImage());
         cargarFacturas();
-        setLocationRelativeTo(null);
+        
         jBGenerarFactura.setVisible(false);
     }
 

@@ -75,7 +75,6 @@ public class JFPaquetes extends javax.swing.JFrame {
                 }
             }
         });
-        setLocationRelativeTo(null);
     }
 
     private void refrescarInventario() {
