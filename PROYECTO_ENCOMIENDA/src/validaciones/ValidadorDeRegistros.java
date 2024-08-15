@@ -1,6 +1,7 @@
 package validaciones;
 
 import java.awt.Color;
+import java.awt.Point;
 import java.awt.Toolkit;
 import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.DataFlavor;
@@ -9,6 +10,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
+import javax.swing.JWindow;
 
 /**
  * La clase ValidadorDeRegistros proporciona métodos para validar distintos
@@ -18,7 +20,7 @@ import javax.swing.JTextField;
  * @author USUARIO
  */
 public class ValidadorDeRegistros {
-
+    JWindow tooltipWindow;
     /**
      * Valida si la placa de un vehículo cumple con el formato especificado.
      * El formato debe ser de 3 letras seguidas de 3 dígitos.
@@ -32,50 +34,210 @@ public class ValidadorDeRegistros {
     }
 
     /**
-     * Valida el contenido del campo de texto basado en el caso especificado
-     * y actualiza el estado del campo y la etiqueta de acuerdo con la validez.
+     * Valida el contenido del campo de texto basado en el caso especificado y
+     * actualiza el estado del campo y la etiqueta de acuerdo con la validez.
      *
      * @param textField El campo de texto a validar.
-     * @param label La etiqueta que mostrará mensajes de error.
      * @param caso El caso que define el tipo de validación a realizar.
      * @return true si el campo es válido; false en caso contrario.
      */
-    public boolean camposDeRegistros(JTextField textField, JLabel label, String caso) {
+    public boolean camposDeRegistros(JTextField textField, String caso) {
         boolean valor = false;
         String texto = textField.getText();
-        label.setVisible(true);
+        String mensaje = generarMensajeError(caso, texto);
 
+        // Realiza la validación según el caso
         switch (caso) {
-            case "d" ->
-                    valor = validarDireccion(texto);
-            case "b" ->
-                    valor = validarRUC(texto);
-            case "n" ->
-                    valor = texto.matches("^[A-Za-záéíóúÁÉÍÓÚñÑüÜ]+( [A-Za-záéíóúÁÉÍÓÚñÑüÜ]+)*$");
-            case "c" ->
-                    valor = validarEmail(texto);
-            case "t" ->
-                    valor = validarTelefono(texto);
+            case "direccion" ->
+                valor = validarDireccion(texto);
+            case "contenido" ->
+                valor = texto.matches("^[A-Za-záéíóúÁÉÍÓÚñÑüÜ0-9]+([,.]?[ ]?[A-Za-záéíóúÁÉÍÓÚñÑüÜ0-9]+)*$");
+            case "ruc" ->
+                valor = validarRUC(texto);
+            case "nombre" ->
+                valor = texto.matches("^[A-Za-záéíóúÁÉÍÓÚñÑüÜ]+( [A-Za-záéíóúÁÉÍÓÚñÑüÜ]+)*$");
+            case "email" ->
+                valor = validarEmail(texto);
+            case "telefonoFijo" ->
+                valor = validarTelefono(texto);
             case "telefono" ->
-                    valor = texto.matches("^\\d{10}$");
+                valor = texto.matches("^\\d{10}$");
             case "cedula" ->
-                    valor = validarCedula(texto);
+                valor = validarCedula(texto);
             case "precio" ->
-                    valor = validarMaximoDosDecimales(texto);
-            case "v" ->
-                    valor = !texto.isEmpty();
-            case "i" ->
-                    valor = texto.matches("^\\d+$");
+                valor = validarMaximoDosDecimales(texto);
+            case "peso" ->
+                valor = validarMaximoDosDecimales(texto);
+            case "vacio" ->
+                valor = !texto.isEmpty();
+            case "enteros" ->
+                valor = texto.matches("^\\d+$");
+            case "contraseña" ->
+                valor = texto.matches("^(?=.*[A-Z])(?=.*[a-z])(?=.*\\d)(?=.*[@#$%^&+=!]).{5,}$");
+            case "usuario" ->
+                valor = texto.matches("^[a-zA-Z0-9]+$");
+
         }
-        if (valor) {
-            textField.setBackground(new Color(255, 255, 255));
-            label.setVisible(false);
-        } else {
+
+        // Mostrar el tooltip si no es válido
+        if (!valor) {
+            showTooltip(textField, mensaje);
             textField.setBackground(new Color(255, 204, 204));
+        } else {
+            hideTooltip();
+            textField.setBackground(new Color(255, 255, 255));
         }
 
         return valor;
     }
+
+    public String generarMensajeContrasenia(String contraseña) {
+        StringBuilder mensaje = new StringBuilder();
+        boolean cumpleRequisitos = true;
+        if (!contraseña.matches(".*[A-Z].*")) {
+            mensaje.append("- Debe contener al menos una letra mayúscula.<br>");
+            cumpleRequisitos = false;
+        }
+        if (!contraseña.matches(".*[a-z].*")) {
+            mensaje.append("- Debe contener al menos una letra minúscula.<br>");
+            cumpleRequisitos = false;
+        }
+        if (!contraseña.matches(".*\\d.*")) {
+            mensaje.append("- Debe contener al menos un dígito.<br>");
+            cumpleRequisitos = false;
+        }
+        if (!contraseña.matches(".*[@#$%^&+=!].*")) {
+            mensaje.append("- Debe contener al menos un carácter especial (@, #, $, %, ^, &, +, =, !).<br>");
+            cumpleRequisitos = false;
+        }
+        if (contraseña.length() < 5) {
+            mensaje.append("- Debe tener una longitud mínima de 5 caracteres.<br>");
+            cumpleRequisitos = false;
+        }
+
+        if (cumpleRequisitos) {
+            // Si cumple todos los requisitos, no se retorna un mensaje de error.
+            return "";
+        } else {
+            mensaje.append("</html>");
+        }
+
+        return mensaje.toString();
+    }
+
+    public String generarMensajeError(String caso, String texto) {
+        StringBuilder mensaje = new StringBuilder();
+        mensaje.append("<html>");
+
+        switch (caso) {
+            case "direccion" -> {
+                if (!validarDireccion(texto)) {
+                    mensaje.append("La dirección no es válida.<br> Asegúrate de que contiene solo letras, números y algunos caracteres especiales.<br>");
+                }
+            }
+            case "ruc" -> {
+                if (!validarRUC(texto)) {
+                    mensaje.append("El RUC no es válido.<br> Debe contener 13 dígitos.<br>");
+                }
+            }
+            case "nombre" -> {
+                if (!texto.matches("^[A-Za-záéíóúÁÉÍÓÚñÑüÜ]+( [A-Za-záéíóúÁÉÍÓÚñÑüÜ]+)*$")) {
+                    mensaje.append("El nombre no es válido.<br> Solo se permiten letras y espacios.<br>");
+                }
+            }
+            case "usuario" -> {
+                if (!texto.matches("^[a-zA-Z0-9]+$")) {
+                    mensaje.append("El nombre de usuario no es válido.<br> Solo se permiten letras y números.<br>");
+                }
+            }
+
+            case "email" -> {
+                if (!validarEmail(texto)) {
+                    mensaje.append("El email no es válido.<br> Asegúrate de que tiene el formato correcto.<br>");
+                }
+            }
+            case "telefonoFijo" -> {
+                if (!validarTelefono(texto)) {
+                    mensaje.append("El teléfono fijo no es válido.<br> Debe seguir el formato +593-XXXXXXXXX.<br>");
+                }
+            }
+            case "telefono" -> {
+                if (!texto.matches("^\\d{10}$")) {
+                    mensaje.append("El teléfono no es válido.<br> Debe contener 10 dígitos.<br>");
+                }
+            }
+            case "cedula" -> {
+                if (!validarCedula(texto)) {
+                    mensaje.append("La cédula no es válida.<br> Asegúrate de que tiene 10 dígitos.<br>");
+                }
+            }
+            case "precio" -> {
+                if (!validarMaximoDosDecimales(texto)) {
+                    mensaje.append("El precio no es válido.<br> Solo se permiten números con hasta dos decimales.<br>");
+                }
+            }
+            case "peso" -> {
+                if (!validarMaximoDosDecimales(texto)) {
+                    mensaje.append("El peso no es válido.<br> Solo se permiten números con hasta dos decimales.<br>");
+                }
+            }
+            case "vacio" -> {
+                if (texto.isEmpty()) {
+                    mensaje.append("Este campo no puede estar vacío.<br>");
+                }
+            }
+            case "enteros" -> {
+                if (!texto.matches("^\\d+$")) {
+                    mensaje.append("Solo se permiten números enteros en este campo.<br>");
+                }
+            }
+            case "contraseña" -> {
+                mensaje.append("La contraseña debe cumplir con lo siguiente:<br>");
+                mensaje.append(generarMensajeContrasenia(texto));
+            }
+            case "contenido" -> {
+                if (!texto.matches("^[A-Za-záéíóúÁÉÍÓÚñÑüÜ0-9]+([,.]?[ ]?[A-Za-záéíóúÁÉÍÓÚñÑüÜ0-9]+)*$")) {
+                    mensaje.append("Contenido Inválido.<br>");
+                }
+
+            }
+        }
+
+        if (mensaje.length() == 6) { // Esto significa que no se agregaron mensajes de error
+            mensaje.setLength(0); // Elimina la etiqueta HTML si no hay errores
+        } else {
+            mensaje.append("</html>");
+        }
+
+        return mensaje.toString();
+    }
+
+    public void showTooltip(JTextField textField, String message) {
+        if (tooltipWindow == null) {
+            tooltipWindow = new JWindow();
+            JLabel label = new JLabel(message);
+            label.setOpaque(true);
+            label.setBackground(new Color(211, 211, 211)); // Color gris claro
+            label.setForeground(Color.BLACK);
+            tooltipWindow.getContentPane().add(label);
+            tooltipWindow.pack();
+        } else {
+            ((JLabel) tooltipWindow.getContentPane().getComponent(0)).setText(message);
+            tooltipWindow.pack();
+        }
+
+        // Calcula la ubicación correcta para mostrar el tooltip
+        Point location = textField.getLocationOnScreen();
+        tooltipWindow.setLocation(location.x + textField.getWidth(), location.y);
+        tooltipWindow.setVisible(true);
+    }
+
+    public void hideTooltip() {
+        if (tooltipWindow != null) {
+            tooltipWindow.setVisible(false);
+        }
+    }
+
 
     /**
      * Valida el contenido del campo de texto para campos específicos de clientes

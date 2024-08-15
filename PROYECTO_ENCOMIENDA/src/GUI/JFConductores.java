@@ -354,9 +354,7 @@ public class JFConductores extends javax.swing.JFrame {
     }// GEN-LAST:event_jTConductoresMouseClicked
 
     private void jTCedulaConductorFocusLost(java.awt.event.FocusEvent evt) {// GEN-FIRST:event_jTCedulaConductorFocusLost
-        // cedulaConductorValidar =
-        // validarRegistroF.camposDeRegistros(jTCedulaConductor, errorProveedores3,
-        // "cedula");
+        cedulaConductorValidar =validarRegistroF.camposDeRegistros(jTCedulaConductor,"cedula");
     }// GEN-LAST:event_jTCedulaConductorFocusLost
 
     private void jTCedulaConductorKeyReleased(java.awt.event.KeyEvent evt) {// GEN-FIRST:event_jTCedulaConductorKeyReleased
