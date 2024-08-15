@@ -164,6 +164,11 @@ public class JFClientes extends javax.swing.JFrame {
                 correoCli2FocusLost(evt);
             }
         });
+        correoCli2.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                correoCli2KeyReleased(evt);
+            }
+        });
 
         jLabel87.setText("Correo");
 
@@ -423,7 +428,7 @@ public class JFClientes extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jTFApellidosRKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFApellidosRKeyReleased
-       apellidoEsValido=validarRegistroF.camposDeRegistros(jTFDireccionR, "nombre");
+       apellidoEsValido=validarRegistroF.camposDeRegistros(jTFApellidosR, "nombre");
     }//GEN-LAST:event_jTFApellidosRKeyReleased
 
     private void jTFCIRegistrarCKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFCIRegistrarCKeyReleased
@@ -444,6 +449,15 @@ public class JFClientes extends javax.swing.JFrame {
         validarRegistroF.hideTooltip();
     }//GEN-LAST:event_jTFDireccionRFocusLost
 
+    private void correoCli2FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_correoCli2FocusLost
+        correoEsValido=validarRegistroF.camposDeRegistros(correoCli2, "email");
+        validarRegistroF.hideTooltip();
+    }//GEN-LAST:event_correoCli2FocusLost
+
+    private void correoCli2KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_correoCli2KeyReleased
+        correoEsValido=validarRegistroF.camposDeRegistros(correoCli2, "email");
+    }//GEN-LAST:event_correoCli2KeyReleased
+
     private void jTFNombresRFocusLost(java.awt.event.FocusEvent evt) {// GEN-FIRST:event_jTFNombresRFocusLost
         nombreEsValido = validarRegistroF.camposDeRegistros(jTFNombresR, "nombre");
          validarRegistroF.hideTooltip();
@@ -457,34 +471,14 @@ public class JFClientes extends javax.swing.JFrame {
 
     }// GEN-LAST:event_jTFTelefonoRFocusLost
 
-    private void jTFCIRegistrarCFocusLost(java.awt.event.FocusEvent evt) {// GEN-FIRST:event_jTFCIRegistrarCFocusLost
-        String cedula = jTFCIRegistrarC.getText();
-        cedulaEsValida = validarRegistroF.camposDeRegistros(jTFCIRegistrarC, "cedula");
-        if (!cedulaEsValida) {
-            return;
-        }
-        if (DataBase.obtenerInstancia().clienteExiste(cedula)) {
-            JOptionPane.showMessageDialog(this, "Cliente ya registrado", "Error", JOptionPane.ERROR_MESSAGE);
-        }
-         validarRegistroF.hideTooltip();
-    }// GEN-LAST:event_jTFCIRegistrarCFocusLost
 
-    private void jTFDireccionRFocusLost(java.awt.event.FocusEvent evt) {// GEN-FIRST:event_jTFDireccionRFocusLost
-        direccionEsValida = validarRegistroF.camposDeRegistros(jTFDireccionR, "direccion");
-        
-    }// GEN-LAST:event_jTFDireccionRFocusLost
-
-    
     private void jTFApellidosRFocusLost(java.awt.event.FocusEvent evt) {// GEN-FIRST:event_jTFApellidosRFocusLost
         apellidoEsValido = validarRegistroF.camposDeRegistros(jTFApellidosR, "nombre");
         validarRegistroF.hideTooltip();
     }// GEN-LAST:event_jTFApellidosRFocusLost
 
    
-    private void correoCli2FocusLost(java.awt.event.FocusEvent evt) {// GEN-FIRST:event_correoCli2FocusLost
-        correoEsValido = validarRegistroF.camposDeRegistros(correoCli2, "email");
-    }// GEN-LAST:event_correoCli2FocusLost
-
+  
     private void jBRegistarClienteActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jBRegistarClienteActionPerformed
         JTextField[] campos = { jTFCIRegistrarC, jTFNombresR, jTFApellidosR, correoCli2,
                 jTFTelefonoR, jTFDireccionR };

@@ -392,46 +392,17 @@ public class JFConductores extends javax.swing.JFrame {
         validarRegistroF.hideTooltip();
     }//GEN-LAST:event_jTClaveConductorFocusLost
 
-                         
-    
-    private void jTCedulaConductorFocusLost(java.awt.event.FocusEvent evt) {
-        cedulaConductorValidar = validarRegistroF.camposDeRegistros(jTCedulaConductor, "cedula");
+    private void jTCorreoConductorKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTCorreoConductorKeyReleased
+       correoConductorValidar=validarRegistroF.camposDeRegistros(jTCorreoConductor, "email");
+    }//GEN-LAST:event_jTCorreoConductorKeyReleased
+
+    private void jTCorreoConductorFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTCorreoConductorFocusLost
+        correoConductorValidar=validarRegistroF.camposDeRegistros(jTCorreoConductor, "email");
         validarRegistroF.hideTooltip();
-    }
+    }//GEN-LAST:event_jTCorreoConductorFocusLost
 
-    private void jTCedulaConductorKeyReleased(java.awt.event.KeyEvent evt) {
-        cedulaConductorValidar = validarRegistroF.camposDeRegistros(jTCedulaConductor, "cedula");
-    }
-
-    private void jTNombreConductorFocusLost(java.awt.event.FocusEvent evt) {
-        nombreConductorValidar = validarRegistroF.camposDeRegistros(jTNombreConductor, "nombre");
-        validarRegistroF.hideTooltip();
-    }
-
-    private void jTNombreConductorKeyReleased(java.awt.event.KeyEvent evt) {
-        nombreConductorValidar = validarRegistroF.camposDeRegistros(jTNombreConductor, "nombre");
-    }
-
-    private void jTApellidoConductorFocusLost(java.awt.event.FocusEvent evt) {
-        apellidoConductorValidar = validarRegistroF.camposDeRegistros(jTApellidoConductor, "nombre");
-        validarRegistroF.hideTooltip();
-    }
-
-    private void jTApellidoConductorKeyReleased(java.awt.event.KeyEvent evt) {
-        apellidoConductorValidar = validarRegistroF.camposDeRegistros(jTApellidoConductor, "nombre");
-    }
-
-    private void jTTelefonoConductorFocusLost(java.awt.event.FocusEvent evt) {
-        telefonoConductorValidar = validarRegistroF.camposDeRegistros(jTTelefonoConductor, "telefono");
-        validarRegistroF.hideTooltip();
-    }
-
-    private void jTTelefonoConductorKeyReleased(java.awt.event.KeyEvent evt) {
-        telefonoConductorValidar = validarRegistroF.camposDeRegistros(jTTelefonoConductor, "telefono");
-    }
-
-    private void jBRegistrarConductorActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jBRegistrarConductorActionPerformed
-        String apellidos = jTApellidoConductor.getText();
+    private void jBRegistrarConductorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBRegistrarConductorActionPerformed
+     String apellidos = jTApellidoConductor.getText();
         String telefono = jTTelefonoConductor.getText();
         String correo = jTCorreoConductor.getText();
         String direccion = jTDireccionConductor.getText();
@@ -484,8 +455,47 @@ public class JFConductores extends javax.swing.JFrame {
                 cargarConductores();
             }
         }
-    }// GEN-LAST:event_jBRegistrarConductorActionPerformed
+    }//GEN-LAST:event_jBRegistrarConductorActionPerformed
 
+                         
+    
+    private void jTCedulaConductorFocusLost(java.awt.event.FocusEvent evt) {
+        cedulaConductorValidar = validarRegistroF.camposDeRegistros(jTCedulaConductor, "cedula");
+        validarRegistroF.hideTooltip();
+    }
+
+    private void jTCedulaConductorKeyReleased(java.awt.event.KeyEvent evt) {
+        cedulaConductorValidar = validarRegistroF.camposDeRegistros(jTCedulaConductor, "cedula");
+    }
+
+    private void jTNombreConductorFocusLost(java.awt.event.FocusEvent evt) {
+        nombreConductorValidar = validarRegistroF.camposDeRegistros(jTNombreConductor, "nombre");
+        validarRegistroF.hideTooltip();
+    }
+
+    private void jTNombreConductorKeyReleased(java.awt.event.KeyEvent evt) {
+        nombreConductorValidar = validarRegistroF.camposDeRegistros(jTNombreConductor, "nombre");
+    }
+
+    private void jTApellidoConductorFocusLost(java.awt.event.FocusEvent evt) {
+        apellidoConductorValidar = validarRegistroF.camposDeRegistros(jTApellidoConductor, "nombre");
+        validarRegistroF.hideTooltip();
+    }
+
+    private void jTApellidoConductorKeyReleased(java.awt.event.KeyEvent evt) {
+        apellidoConductorValidar = validarRegistroF.camposDeRegistros(jTApellidoConductor, "nombre");
+    }
+
+    private void jTTelefonoConductorFocusLost(java.awt.event.FocusEvent evt) {
+        telefonoConductorValidar = validarRegistroF.camposDeRegistros(jTTelefonoConductor, "telefono");
+        validarRegistroF.hideTooltip();
+    }
+
+    private void jTTelefonoConductorKeyReleased(java.awt.event.KeyEvent evt) {
+        telefonoConductorValidar = validarRegistroF.camposDeRegistros(jTTelefonoConductor, "telefono");
+    }
+
+   
     private void jPanel3MouseDragged(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_jPanel3MouseDragged
         int x = evt.getXOnScreen();
         int y = evt.getYOnScreen();
@@ -497,14 +507,8 @@ public class JFConductores extends javax.swing.JFrame {
         yMouse = evt.getY();
     }// GEN-LAST:event_jPanel3MousePressed
 
-    private void jTCorreoConductorFocusLost(java.awt.event.FocusEvent evt) {// GEN-FIRST:event_jTCorreoConductorFocusLost
-        // TODO add your handling code here:
-    }// GEN-LAST:event_jTCorreoConductorFocusLost
-
-    private void jTCorreoConductorKeyReleased(java.awt.event.KeyEvent evt) {// GEN-FIRST:event_jTCorreoConductorKeyReleased
-        // TODO add your handling code here:
-    }// GEN-LAST:event_jTCorreoConductorKeyReleased
-
+   
+ 
     private void jTDireccionConductorFocusLost(java.awt.event.FocusEvent evt) {// GEN-FIRST:event_jTDireccionConductorFocusLost
        direccionConductorValidar=validarRegistroF.camposDeRegistros(jTDireccionConductor, "direccion");
     }// GEN-LAST:event_jTDireccionConductorFocusLost
