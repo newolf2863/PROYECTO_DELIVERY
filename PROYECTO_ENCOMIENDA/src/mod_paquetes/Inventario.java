@@ -40,7 +40,7 @@ public final class Inventario implements Serializable {
         paquetes.remove(paquete);
     }
 
-    public Boolean existePaquete(String codigoTracking) {
+    public boolean existePaquete(String codigoTracking) {
         for (Paquete paquete : paquetes) {
             if (paquete.obtenerCodigo().equals(codigoTracking)) {
                 return true;

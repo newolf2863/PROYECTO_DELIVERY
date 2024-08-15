@@ -330,7 +330,7 @@ public class JFIncidente extends javax.swing.JFrame {
         model.setRowCount(0);
         model.addColumn("Propiedad");
         model.addColumn("Valor");
-        model.addRow(new Object[] { "Código de Tracking", paquete.obtenerCodigo() });
+        model.addRow(new Object[] { "Código de Tracking", paquete.obtenerCodigo()});
         model.addRow(new Object[] { "Volumen", paquete.getVolumen() + " m³" });
         model.addRow(new Object[] { "Peso", paquete.getPeso() + " kg" });
         model.addRow(new Object[] { "Contenido", paquete.getContenido() });
@@ -450,6 +450,9 @@ public class JFIncidente extends javax.swing.JFrame {
             return;
         }
         Seguimiento seguimiento = inventario.obtenerPaquete(jTCodigoResolver.getText()).obtenerSeguimiento();
+        System.out.println(seguimiento.getIncidente());
+        System.out.println(seguimiento.obtenerRegistroIncidente());
+        System.out.println(seguimiento.obtenerResolucion());
         if (!seguimiento.tieneIncidente()) {
             JOptionPane.showMessageDialog(null, "El paquete no tiene un incidente que resolver", "Incidente no existe",
                 JOptionPane.ERROR_MESSAGE);

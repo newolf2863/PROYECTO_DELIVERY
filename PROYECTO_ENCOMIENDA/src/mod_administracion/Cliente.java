@@ -39,10 +39,7 @@ public class Cliente extends Usuario {
     
     @Override
     public void resolverIncidente(Paquete paquete, String[] argumentos) throws ReporteNoPermitido, PaqueteNoTieneIncidente {
-        if (paquete == null || !(paquete.obtenerEstado() instanceof Entregado)) {
-            throw new ReporteNoPermitido();
-        }
-        gestorIncidente.solucionarIncidente(paquete, argumentos);
+        return;
     }
 
     public boolean consultarPaquete(Paquete paquete) {

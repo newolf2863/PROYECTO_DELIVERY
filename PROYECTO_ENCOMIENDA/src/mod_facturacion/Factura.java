@@ -44,7 +44,7 @@ public class Factura implements Serializable {
         this.provinciaOrigen = paquete.getProvinciaOrigen();
         this.provinciaDestino = paquete.getProvinciaDestino();
         this.descripcion = paquete.getContenido();
-        this.codigoTracking = paquete.getCodigoTracking();
+        this.codigoTracking = paquete.obtenerCodigo();
         this.pesoPaquete = paquete.getPeso();
     }
 

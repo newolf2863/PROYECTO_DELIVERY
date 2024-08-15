@@ -72,6 +72,8 @@ public class ValidadorDeRegistros {
                 valor = !texto.isEmpty();
             case "enteros" ->
                 valor = texto.matches("^\\d+$");
+            case "volumen" ->
+                valor = validarMaximoDosDecimales(texto);
             case "contraseña" ->
                 valor = texto.matches("^(?=.*[A-Z])(?=.*[a-z])(?=.*\\d)(?=.*[@#$%^&+=!]).{5,}$");
             case "usuario" ->
@@ -189,6 +191,11 @@ public class ValidadorDeRegistros {
             case "enteros" -> {
                 if (!texto.matches("^\\d+$")) {
                     mensaje.append("Solo se permiten números enteros en este campo.<br>");
+                }
+            }
+            case "volumen" -> {
+                if (!validarMaximoDosDecimales(texto)) {
+                    mensaje.append("Solo se permiten números con hasta dos decimales.<br>");
                 }
             }
             case "contraseña" -> {

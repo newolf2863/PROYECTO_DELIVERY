@@ -254,7 +254,7 @@ public class JFPaquetesConductor extends javax.swing.JFrame {
      */
     private Paquete obtenerPaquete(String codigo) {
         for (Paquete paquete : inventario) {
-            if (paquete.getCodigoTracking().equals(codigo)) {
+            if (paquete.obtenerCodigo().equals(codigo)) {
                 return paquete;
             }
         }

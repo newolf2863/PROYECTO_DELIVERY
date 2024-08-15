@@ -93,10 +93,6 @@ public class Paquete implements Serializable {
         return direccionDestino;
     }
     
-    public String getCodigoTracking(){
-        return codigoTracking;
-    }
-    
     public String getNombreDestinatario() {
         return nombreDestinatario;
     }
