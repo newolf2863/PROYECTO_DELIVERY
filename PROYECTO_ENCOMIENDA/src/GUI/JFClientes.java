@@ -526,7 +526,6 @@ public class JFClientes extends javax.swing.JFrame {
     }//GEN-LAST:event_jTFTelefonoRFocusLost
 
     private void jTFCIRegistrarCFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTFCIRegistrarCFocusLost
-        String cedula = jTFCIRegistrarC.getText();
         cedulaEsValida = validarRegistroF.camposDeRegistros(jTFCIRegistrarC, "cedula");
         validarRegistroF.hideTooltip();
     }//GEN-LAST:event_jTFCIRegistrarCFocusLost
