@@ -483,12 +483,12 @@ public class JFPaquetes extends javax.swing.JFrame {
     }// GEN-LAST:event_jTRemitenteKeyReleased
 
     private void jTVolumenFocusLost(java.awt.event.FocusEvent evt) {// GEN-FIRST:event_jTVolumenFocusLost
-        volumenValidar = validarRegistroF.camposDeRegistros(jTVolumen, "volumen");
+        volumenValidar = validarRegistroF.camposDeRegistros(jTVolumen, "enteros");
         validarRegistroF.hideTooltip();
     }// GEN-LAST:event_jTVolumenFocusLost
 
     private void jTVolumenKeyReleased(java.awt.event.KeyEvent evt) {// GEN-FIRST:event_jTVolumenKeyReleased
-        volumenValidar = validarRegistroF.camposDeRegistros(jTVolumen, "volumen");
+        volumenValidar = validarRegistroF.camposDeRegistros(jTVolumen, "enteros");
     }// GEN-LAST:event_jTVolumenKeyReleased
 
     private void jBRegistrarPAInventarioActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jBRegistrarPAInventarioActionPerformed
