@@ -169,8 +169,6 @@ public class JFVehiculo extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jTPlacaVehiculo3 = new javax.swing.JTextField();
         jLabel37 = new javax.swing.JLabel();
-        jLabel30 = new javax.swing.JLabel();
-        jTCapacidad1 = new javax.swing.JTextField();
         jPanel3 = new javax.swing.JPanel();
         jLabel69 = new javax.swing.JLabel();
 
@@ -526,7 +524,7 @@ public class JFVehiculo extends javax.swing.JFrame {
                 JComboDestino1ActionPerformed(evt);
             }
         });
-        jPEE.add(JComboDestino1, new org.netbeans.lib.awtextra.AbsoluteConstraints(73, 146, 204, -1));
+        jPEE.add(JComboDestino1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 130, 204, -1));
 
         jButton1.setText("Asignar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -534,7 +532,7 @@ public class JFVehiculo extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        jPEE.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 190, 83, 31));
+        jPEE.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 180, 83, 31));
 
         jTPlacaVehiculo3.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
@@ -554,22 +552,10 @@ public class JFVehiculo extends javax.swing.JFrame {
                 jTPlacaVehiculo3KeyTyped(evt);
             }
         });
-        jPEE.add(jTPlacaVehiculo3, new org.netbeans.lib.awtextra.AbsoluteConstraints(73, 59, 204, -1));
+        jPEE.add(jTPlacaVehiculo3, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 60, 204, 30));
 
         jLabel37.setText("Placa");
-        jPEE.add(jLabel37, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 60, 34, 22));
-
-        jLabel30.setText("Capacidad");
-        jPEE.add(jLabel30, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 109, -1, -1));
-
-        jTCapacidad1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jTCapacidad1.setEnabled(false);
-        jTCapacidad1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTCapacidad1ActionPerformed(evt);
-            }
-        });
-        jPEE.add(jTCapacidad1, new org.netbeans.lib.awtextra.AbsoluteConstraints(74, 106, 203, -1));
+        jPEE.add(jLabel37, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, 40, 30));
 
         jTPEmpleados.addTab("Asignar Paquetes", jPEE);
 
@@ -859,7 +845,6 @@ public class JFVehiculo extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel28;
     private javax.swing.JLabel jLabel29;
-    private javax.swing.JLabel jLabel30;
     private javax.swing.JLabel jLabel31;
     private javax.swing.JLabel jLabel32;
     private javax.swing.JLabel jLabel33;
@@ -889,7 +874,6 @@ public class JFVehiculo extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JSlider jSlider1;
     private javax.swing.JTextField jTCapacidad;
-    private javax.swing.JTextField jTCapacidad1;
     private javax.swing.JTextField jTCapacidadVehiculo;
     private javax.swing.JTextField jTCedula2;
     private javax.swing.JTextField jTCedula3;
