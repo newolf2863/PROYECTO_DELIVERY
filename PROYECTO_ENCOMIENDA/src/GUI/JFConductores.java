@@ -121,11 +121,6 @@ public class JFConductores extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jTConductores.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTConductoresMouseClicked(evt);
-            }
-        });
         jScrollPane11.setViewportView(jTConductores);
 
         jPPR.add(jScrollPane11, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 360, 1080, 210));
@@ -242,9 +237,6 @@ public class JFConductores extends javax.swing.JFrame {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 jTClaveConductorKeyReleased(evt);
             }
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                jTClaveConductorKeyTyped(evt);
-            }
         });
         jPanel9.add(jTClaveConductor, new org.netbeans.lib.awtextra.AbsoluteConstraints(371, 111, 187, -1));
 
@@ -256,6 +248,9 @@ public class JFConductores extends javax.swing.JFrame {
         jTUsuario.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 jTUsuarioKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTUsuarioKeyTyped(evt);
             }
         });
         jPanel9.add(jTUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(371, 45, 187, -1));
@@ -360,22 +355,44 @@ public class JFConductores extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTConductoresMouseClicked(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_jTConductoresMouseClicked
+    private void jTUsuarioKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTUsuarioKeyReleased
+         usuarioConductorValidar = validarRegistroF.camposDeRegistros(jTUsuario, "usuario");
+    }//GEN-LAST:event_jTUsuarioKeyReleased
 
-    }// GEN-LAST:event_jTConductoresMouseClicked
-     private void jTUsuarioFocusLost(java.awt.event.FocusEvent evt) {                                    
-        usuarioConductorValidar = validarRegistroF.camposDeRegistros(jTUsuario, "usuario");
+    private void jTUsuarioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTUsuarioKeyTyped
+       char c = evt.getKeyChar();
+        if (c != KeyEvent.VK_BACK_SPACE && c != KeyEvent.VK_DELETE) {
+            if (!((Character.isLetter(c) && Character.isLowerCase(c))
+                    || (Character.isLetter(c) && Character.isUpperCase(c))
+                    || Character.isDigit(c) || c == 'ñ' || c == 'Ñ')) {
+                evt.consume(); // No permite ingresar el carácter
+                // Mostrar mensaje de advertencia
+                JOptionPane.showMessageDialog(this, "Solo se permiten letras y números.");
+            }
+        }
+    }//GEN-LAST:event_jTUsuarioKeyTyped
+
+    private void jTUsuarioFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTUsuarioFocusLost
+         usuarioConductorValidar = validarRegistroF.camposDeRegistros(jTUsuario, "usuario");
         validarRegistroF.hideTooltip();
         String nombreUsuario = jTUsuario.getText();
         if (!DataBase.obtenerInstancia().esNombreUsuarioUnico(nombreUsuario)) {
             JOptionPane.showMessageDialog(this, "El nombre de usuario ya existe", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
-    }                                   
+    }//GEN-LAST:event_jTUsuarioFocusLost
 
-    private void jTUsuarioKeyReleased(java.awt.event.KeyEvent evt) {                                      
-        usuarioConductorValidar = validarRegistroF.camposDeRegistros(jTUsuario, "usuario");
-    }        
+    private void jTClaveConductorKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTClaveConductorKeyReleased
+        claveConductorValidar = validarRegistroF.camposDeRegistros(jTClaveConductor, "contraseña");
+
+    }//GEN-LAST:event_jTClaveConductorKeyReleased
+
+    private void jTClaveConductorFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTClaveConductorFocusLost
+        claveConductorValidar = validarRegistroF.camposDeRegistros(jTClaveConductor, "contraseña");
+        validarRegistroF.hideTooltip();
+    }//GEN-LAST:event_jTClaveConductorFocusLost
+
+                         
     
     private void jTCedulaConductorFocusLost(java.awt.event.FocusEvent evt) {
         cedulaConductorValidar = validarRegistroF.camposDeRegistros(jTCedulaConductor, "cedula");
@@ -489,54 +506,16 @@ public class JFConductores extends javax.swing.JFrame {
     }// GEN-LAST:event_jTCorreoConductorKeyReleased
 
     private void jTDireccionConductorFocusLost(java.awt.event.FocusEvent evt) {// GEN-FIRST:event_jTDireccionConductorFocusLost
-        // TODO add your handling code here:
+       direccionConductorValidar=validarRegistroF.camposDeRegistros(jTDireccionConductor, "direccion");
     }// GEN-LAST:event_jTDireccionConductorFocusLost
 
     private void jTDireccionConductorKeyReleased(java.awt.event.KeyEvent evt) {// GEN-FIRST:event_jTDireccionConductorKeyReleased
-        // TODO add your handling code here:
+        direccionConductorValidar=validarRegistroF.camposDeRegistros(jTDireccionConductor, "direccion");
+        validarRegistroF.hideTooltip();
     }// GEN-LAST:event_jTDireccionConductorKeyReleased
 
-    private void jTClaveConductorFocusLost(java.awt.event.FocusEvent evt) {// GEN-FIRST:event_jTClaveConductorFocusLost
-        // TODO add your handling code here:
-    }// GEN-LAST:event_jTClaveConductorFocusLost
-
-    private void jTClaveConductorKeyReleased(java.awt.event.KeyEvent evt) {// GEN-FIRST:event_jTClaveConductorKeyReleased
-        // TODO add your handling code here:
-    }// GEN-LAST:event_jTClaveConductorKeyReleased
-
-    private void jTNombreUsuario1FocusLost(java.awt.event.FocusEvent evt) {// GEN-FIRST:event_jTNombreUsuario1FocusLost
-        // TODO add your handling code here:
-    }// GEN-LAST:event_jTNombreUsuario1FocusLost
-
-    private void jTNombreUsuario1KeyReleased(java.awt.event.KeyEvent evt) {// GEN-FIRST:event_jTNombreUsuario1KeyReleased
-        // TODO add your handling code here:
-    }// GEN-LAST:event_jTNombreUsuario1KeyReleased
-
-    private void jTNombreUsuario1KeyTyped(java.awt.event.KeyEvent evt) {// GEN-FIRST:event_jTNombreUsuario1KeyTyped
-        char c = evt.getKeyChar();
-        if (c != KeyEvent.VK_BACK_SPACE && c != KeyEvent.VK_DELETE) {
-            if (!((Character.isLetter(c) && Character.isLowerCase(c))
-                    || (Character.isLetter(c) && Character.isUpperCase(c))
-                    || Character.isDigit(c) || c == 'ñ' || c == 'Ñ')) {
-                evt.consume(); // No permite ingresar el carácter
-                // Mostrar mensaje de advertencia
-                JOptionPane.showMessageDialog(this, "Solo se permiten letras y números.");
-            }
-        }
-    }// GEN-LAST:event_jTNombreUsuario1KeyTyped
-
-    private void jTClaveConductorKeyTyped(java.awt.event.KeyEvent evt) {// GEN-FIRST:event_jTClaveConductorKeyTyped
-        char c = evt.getKeyChar();
-        if (c != KeyEvent.VK_BACK_SPACE && c != KeyEvent.VK_DELETE) {
-            if (!((Character.isLetter(c) && Character.isLowerCase(c))
-                    || (Character.isLetter(c) && Character.isUpperCase(c))
-                    || Character.isDigit(c) || c == 'ñ' || c == 'Ñ')) {
-                evt.consume(); // No permite ingresar el carácter
-                // Mostrar mensaje de advertencia
-                JOptionPane.showMessageDialog(this, "Solo se permiten letras y números.");
-            }
-        }
-    }// GEN-LAST:event_jTClaveConductorKeyTyped
+   
+  
 
     private void jBEliminarConductorActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jBEliminarConductorActionPerformed
         int respuesta = JOptionPane.showConfirmDialog(
@@ -647,15 +626,19 @@ public class JFConductores extends javax.swing.JFrame {
         jTUsuario.setText("");
         jTClaveConductor.setText("");
     }
-
+/*DefaultTableModel model = (DefaultTableModel) jTConductores.getModel();
+        ArrayList<Conductor> conductores = recepcionista.obtenerConductores();
+*/
     private void cargarConductores() {
         DefaultTableModel model = (DefaultTableModel) jTConductores.getModel();
-        ArrayList<Conductor> conductores = recepcionista.obtenerConductores();
+        // Definir los nombres de las columnas
+        String[] columnNames = {"Nombres", "Apellidos", "Cédula", "Dirección", "Teléfono", "Email"};
+        
+        // Limpiar las filas existentes
         model.setRowCount(0);
-        String[] columnNames = {
-            "Cedula", "Nombres", "Email", "Telefono"
-        };
         model.setColumnIdentifiers(columnNames);
+        // Obtener la lista de conductores y agregar filas al modelo
+        ArrayList<Conductor> conductores = recepcionista.obtenerConductores();
         for (Conductor conductor : conductores) {
             Object[] row = {
                 conductor.getNombres(),
@@ -663,8 +646,10 @@ public class JFConductores extends javax.swing.JFrame {
                 conductor.getCedula(),
                 conductor.getDireccion(),
                 conductor.getTelefono(),
-                conductor.getEmail(),};
+                conductor.getEmail()
+            };
             model.addRow(row);
         }
     }
+
 }
