@@ -327,6 +327,11 @@ public class JFPaquetes extends javax.swing.JFrame {
                 jTDireccion1FocusLost(evt);
             }
         });
+        jTDireccion1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTDireccion1KeyReleased(evt);
+            }
+        });
         jPanel2.add(jTDireccion1, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 160, 254, -1));
 
         jPIR.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 18, 1140, 530));
@@ -413,6 +418,10 @@ public class JFPaquetes extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jTDireccion1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTDireccion1KeyReleased
+        direccionValidar = validarRegistroF.camposDeRegistros(jTDireccion1, "direccion");
+    }//GEN-LAST:event_jTDireccion1KeyReleased
 
     private void jTPesoFocusLost(java.awt.event.FocusEvent evt) {// GEN-FIRST:event_jTPesoFocusLost
         pesoValidar = validarRegistroF.camposDeRegistros(jTPeso, "peso");

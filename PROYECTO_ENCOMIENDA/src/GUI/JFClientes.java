@@ -127,6 +127,11 @@ public class JFClientes extends javax.swing.JFrame {
                 jTFCIRegistrarCFocusLost(evt);
             }
         });
+        jTFCIRegistrarC.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTFCIRegistrarCKeyReleased(evt);
+            }
+        });
 
         jLabel73.setText("Dirección");
 
@@ -135,10 +140,20 @@ public class JFClientes extends javax.swing.JFrame {
                 jTFDireccionRFocusLost(evt);
             }
         });
+        jTFDireccionR.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTFDireccionRKeyReleased(evt);
+            }
+        });
 
         jTFApellidosR.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 jTFApellidosRFocusLost(evt);
+            }
+        });
+        jTFApellidosR.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTFApellidosRKeyReleased(evt);
             }
         });
 
@@ -407,13 +422,29 @@ public class JFClientes extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jTFDireccionRKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFDireccionRKeyReleased
+       direccionEsValida = validarRegistroF.camposDeRegistros(jTFDireccionR, "direccion");
+    }//GEN-LAST:event_jTFDireccionRKeyReleased
+
+    private void jTFCIRegistrarCKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFCIRegistrarCKeyReleased
+       cedulaEsValida=validarRegistroF.camposDeRegistros(jTFDireccionR, "cedula");
+    }//GEN-LAST:event_jTFCIRegistrarCKeyReleased
+
+    private void jTFApellidosRKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFApellidosRKeyReleased
+       apellidoEsValido=validarRegistroF.camposDeRegistros(jTFDireccionR, "nombre");
+    }//GEN-LAST:event_jTFApellidosRKeyReleased
+
     private void jTFNombresRFocusLost(java.awt.event.FocusEvent evt) {// GEN-FIRST:event_jTFNombresRFocusLost
         nombreEsValido = validarRegistroF.camposDeRegistros(jTFNombresR, "nombre");
+         validarRegistroF.hideTooltip();
+
     }// GEN-LAST:event_jTFNombresRFocusLost
 
 
     private void jTFTelefonoRFocusLost(java.awt.event.FocusEvent evt) {// GEN-FIRST:event_jTFTelefonoRFocusLost
         telefonoEsValido = validarRegistroF.camposDeRegistros(jTFTelefonoR, "telefono");
+         validarRegistroF.hideTooltip();
+
     }// GEN-LAST:event_jTFTelefonoRFocusLost
 
     private void jTFCIRegistrarCFocusLost(java.awt.event.FocusEvent evt) {// GEN-FIRST:event_jTFCIRegistrarCFocusLost
@@ -425,14 +456,18 @@ public class JFClientes extends javax.swing.JFrame {
         if (DataBase.obtenerInstancia().clienteExiste(cedula)) {
             JOptionPane.showMessageDialog(this, "Cliente ya registrado", "Error", JOptionPane.ERROR_MESSAGE);
         }
+         validarRegistroF.hideTooltip();
     }// GEN-LAST:event_jTFCIRegistrarCFocusLost
 
     private void jTFDireccionRFocusLost(java.awt.event.FocusEvent evt) {// GEN-FIRST:event_jTFDireccionRFocusLost
         direccionEsValida = validarRegistroF.camposDeRegistros(jTFDireccionR, "direccion");
+        
     }// GEN-LAST:event_jTFDireccionRFocusLost
 
+    
     private void jTFApellidosRFocusLost(java.awt.event.FocusEvent evt) {// GEN-FIRST:event_jTFApellidosRFocusLost
         apellidoEsValido = validarRegistroF.camposDeRegistros(jTFApellidosR, "nombre");
+        validarRegistroF.hideTooltip();
     }// GEN-LAST:event_jTFApellidosRFocusLost
 
    
