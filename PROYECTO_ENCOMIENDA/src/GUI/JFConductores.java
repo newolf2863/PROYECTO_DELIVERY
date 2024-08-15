@@ -7,11 +7,13 @@ package GUI;
 import basededatos.DataBase;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JFrame;
 import javax.swing.JRootPane;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.ImageIcon;
+import javax.swing.JTextField;
 import mod_administracion.Conductor;
 import mod_administracion.Recepcionista;
 import validaciones.*;
@@ -21,11 +23,23 @@ import validaciones.*;
  * @author USUARIO
  */
 public class JFConductores extends javax.swing.JFrame {
-    // Validadores
 
+    // Validadore
     ValidadorDeRegistros validarRegistroF = new ValidadorDeRegistros();
     ValidadorDeSwings validadorCheck = new ValidadorDeSwings();
     private Recepcionista recepcionista;
+    //Conductores
+    private boolean nombreConductor = false;
+    private boolean cedulaConductorValidar = false;
+    private boolean nombreConductorValidar = false;
+    private boolean apellidoConductorValidar = false;
+    private boolean telefonoConductorValidar = false;
+    private boolean correoConductorValidar = false;
+    private boolean direccionConductorValidar = false;
+    private boolean usuarioConductorValidar = false;
+    private boolean claveConductorValidar = false;
+    private boolean nombre = false;
+    private boolean nombre2 = false;
 
     // Mouse
     int xMouse, yMouse;
@@ -71,7 +85,7 @@ public class JFConductores extends javax.swing.JFrame {
         jLabel25 = new javax.swing.JLabel();
         jLabel26 = new javax.swing.JLabel();
         jTClaveConductor = new javax.swing.JTextField();
-        jTNombreUsuario1 = new javax.swing.JTextField();
+        jTUsuario = new javax.swing.JTextField();
         jBRegistrarConductor = new javax.swing.JButton();
         jPPC = new javax.swing.JPanel();
         jPIA = new javax.swing.JPanel();
@@ -234,20 +248,17 @@ public class JFConductores extends javax.swing.JFrame {
         });
         jPanel9.add(jTClaveConductor, new org.netbeans.lib.awtextra.AbsoluteConstraints(371, 111, 187, -1));
 
-        jTNombreUsuario1.addFocusListener(new java.awt.event.FocusAdapter() {
+        jTUsuario.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
-                jTNombreUsuario1FocusLost(evt);
+                jTUsuarioFocusLost(evt);
             }
         });
-        jTNombreUsuario1.addKeyListener(new java.awt.event.KeyAdapter() {
+        jTUsuario.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
-                jTNombreUsuario1KeyReleased(evt);
-            }
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                jTNombreUsuario1KeyTyped(evt);
+                jTUsuarioKeyReleased(evt);
             }
         });
-        jPanel9.add(jTNombreUsuario1, new org.netbeans.lib.awtextra.AbsoluteConstraints(371, 45, 187, -1));
+        jPanel9.add(jTUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(371, 45, 187, -1));
 
         jPanel15.add(jPanel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(11, 24, 638, 234));
 
@@ -352,114 +363,110 @@ public class JFConductores extends javax.swing.JFrame {
     private void jTConductoresMouseClicked(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_jTConductoresMouseClicked
 
     }// GEN-LAST:event_jTConductoresMouseClicked
-
-    private void jTCedulaConductorFocusLost(java.awt.event.FocusEvent evt) {// GEN-FIRST:event_jTCedulaConductorFocusLost
-        cedulaConductorValidar =validarRegistroF.camposDeRegistros(jTCedulaConductor,"cedula");
-    }// GEN-LAST:event_jTCedulaConductorFocusLost
-
-    private void jTCedulaConductorKeyReleased(java.awt.event.KeyEvent evt) {// GEN-FIRST:event_jTCedulaConductorKeyReleased
-        // cedulaConductorValidar =
-        // validarRegistroF.camposDeRegistros(jTCedulaConductor, errorProveedores3,
-        // "cedula");
-    }// GEN-LAST:event_jTCedulaConductorKeyReleased
-
-    private void jTNombreConductorFocusLost(java.awt.event.FocusEvent evt) {// GEN-FIRST:event_jTNombreConductorFocusLost
-        // nombreConductorValidar =
-        // validarRegistroF.camposDeRegistros(jTNombreConductor, errorProveedores4,
-        // "n");
-    }// GEN-LAST:event_jTNombreConductorFocusLost
-
-    private void jTNombreConductorKeyReleased(java.awt.event.KeyEvent evt) {// GEN-FIRST:event_jTNombreConductorKeyReleased
-        // nombreConductorValidar =
-        // validarRegistroF.camposDeRegistros(jTNombreConductor, errorProveedores4,
-        // "n");
-    }// GEN-LAST:event_jTNombreConductorKeyReleased
-
-    private void jTApellidoConductorFocusLost(java.awt.event.FocusEvent evt) {// GEN-FIRST:event_jTApellidoConductorFocusLost
-        // apellidoConductorValidar =
-        // validarRegistroF.camposDeRegistros(jTApellidoConductor, errorProveedores5,
-        // "n");
-    }// GEN-LAST:event_jTApellidoConductorFocusLost
-
-    private void jTApellidoConductorKeyReleased(java.awt.event.KeyEvent evt) {// GEN-FIRST:event_jTApellidoConductorKeyReleased
-        // apellidoConductorValidar =
-        // validarRegistroF.camposDeRegistros(jTApellidoConductor, errorProveedores5,
-        // "n");
-    }// GEN-LAST:event_jTApellidoConductorKeyReleased
-
-    private void jTTelefonoConductorFocusLost(java.awt.event.FocusEvent evt) {// GEN-FIRST:event_jTTelefonoConductorFocusLost
-        // telefonoConductorValidar =
-        // validarRegistroF.camposDeRegistros(jTTelefonoConductor, errorProveedores6,
-        // "telefono");
-    }// GEN-LAST:event_jTTelefonoConductorFocusLost
-
-    private void jTTelefonoConductorKeyReleased(java.awt.event.KeyEvent evt) {// GEN-FIRST:event_jTTelefonoConductorKeyReleased
-        // telefonoConductorValidar =
-        // validarRegistroF.camposDeRegistros(jTTelefonoConductor, errorProveedores6,
-        // "telefono");
-    }// GEN-LAST:event_jTTelefonoConductorKeyReleased
-
-    private void jBRegistrarConductorActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jBRegistrarConductorActionPerformed
-        String cedula = jTCedulaConductor.getText();
-        if (!ValidadorDeRegistros.validarCedula(cedula)) {
-            JOptionPane.showMessageDialog(this, "Cédula es inválida", "Error", JOptionPane.ERROR_MESSAGE);
+     private void jTUsuarioFocusLost(java.awt.event.FocusEvent evt) {                                    
+        usuarioConductorValidar = validarRegistroF.camposDeRegistros(jTUsuario, "usuario");
+        validarRegistroF.hideTooltip();
+        String nombreUsuario = jTUsuario.getText();
+        if (!DataBase.obtenerInstancia().esNombreUsuarioUnico(nombreUsuario)) {
+            JOptionPane.showMessageDialog(this, "El nombre de usuario ya existe", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
+    }                                   
+
+    private void jTUsuarioKeyReleased(java.awt.event.KeyEvent evt) {                                      
+        usuarioConductorValidar = validarRegistroF.camposDeRegistros(jTUsuario, "usuario");
+    }        
+    
+    private void jTCedulaConductorFocusLost(java.awt.event.FocusEvent evt) {
+        cedulaConductorValidar = validarRegistroF.camposDeRegistros(jTCedulaConductor, "cedula");
+        validarRegistroF.hideTooltip();
+    }
+
+    private void jTCedulaConductorKeyReleased(java.awt.event.KeyEvent evt) {
+        cedulaConductorValidar = validarRegistroF.camposDeRegistros(jTCedulaConductor, "cedula");
+    }
+
+    private void jTNombreConductorFocusLost(java.awt.event.FocusEvent evt) {
+        nombreConductorValidar = validarRegistroF.camposDeRegistros(jTNombreConductor, "nombre");
+        validarRegistroF.hideTooltip();
+    }
+
+    private void jTNombreConductorKeyReleased(java.awt.event.KeyEvent evt) {
+        nombreConductorValidar = validarRegistroF.camposDeRegistros(jTNombreConductor, "nombre");
+    }
+
+    private void jTApellidoConductorFocusLost(java.awt.event.FocusEvent evt) {
+        apellidoConductorValidar = validarRegistroF.camposDeRegistros(jTApellidoConductor, "nombre");
+        validarRegistroF.hideTooltip();
+    }
+
+    private void jTApellidoConductorKeyReleased(java.awt.event.KeyEvent evt) {
+        apellidoConductorValidar = validarRegistroF.camposDeRegistros(jTApellidoConductor, "nombre");
+    }
+
+    private void jTTelefonoConductorFocusLost(java.awt.event.FocusEvent evt) {
+        telefonoConductorValidar = validarRegistroF.camposDeRegistros(jTTelefonoConductor, "telefono");
+        validarRegistroF.hideTooltip();
+    }
+
+    private void jTTelefonoConductorKeyReleased(java.awt.event.KeyEvent evt) {
+        telefonoConductorValidar = validarRegistroF.camposDeRegistros(jTTelefonoConductor, "telefono");
+    }
+
+    private void jBRegistrarConductorActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jBRegistrarConductorActionPerformed
+        String apellidos = jTApellidoConductor.getText();
+        String telefono = jTTelefonoConductor.getText();
+        String correo = jTCorreoConductor.getText();
+        String direccion = jTDireccionConductor.getText();
+        String nombreUsuario = jTUsuario.getText();
+        String nombres = jTNombreConductor.getText();
+        String cedula = jTCedulaConductor.getText();
+        String clave = jTClaveConductor.getText();
+        JTextField[] campos = {jTCedulaConductor, jTNombreConductor, jTApellidoConductor, jTTelefonoConductor,
+            jTCorreoConductor, jTDireccionConductor, jTUsuario, jTClaveConductor};
+        Boolean[] booleanoscondu = {cedulaConductorValidar, nombreConductorValidar, apellidoConductorValidar,
+            telefonoConductorValidar, telefonoConductorValidar, correoConductorValidar, direccionConductorValidar,
+            usuarioConductorValidar, claveConductorValidar};
+        String[] nombresCampos = {"documento", "nombre", "apellido", "telefono", "correo", "dirección",
+            "usuario", "clave"};
+        List<String> errores = validadorCheck.validarCamposLista(campos, booleanoscondu, nombresCampos);
+        errores.addAll(validadorCheck.validarCamposVaciosLista(campos, booleanoscondu, nombresCampos));
+
         if (DataBase.obtenerInstancia().clienteExiste(cedula)) {
             JOptionPane.showMessageDialog(this, "Cédula ya registrada", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
-        String nombres = jTNombreConductor.getText();
-        if (!ValidadorDeRegistros.validarNombres(nombres)) {
-            JOptionPane.showMessageDialog(this, "Los nombres son inválidos", "Error", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-        String apellidos = jTApellidoConductor.getText();
-        if (!ValidadorDeRegistros.validarNombres(apellidos)) {
-            JOptionPane.showMessageDialog(this, "Los apellidos son inválidos", "Error", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-        String telefono = jTTelefonoConductor.getText();
-        if (!ValidadorDeRegistros.validarTelefono(telefono)) {
-            JOptionPane.showMessageDialog(this, "El teléfono es inválido", "Error", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-        String correo = jTCorreoConductor.getText();
-        if (!ValidadorDeRegistros.validarEmail(correo)) {
-            JOptionPane.showMessageDialog(this, "El correo es inválido", "Error", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-        String direccion = jTDireccionConductor.getText();
-        if (!ValidadorDeRegistros.validarDireccion(direccion)) {
-            JOptionPane.showMessageDialog(this, "La dirección es inválida", "Error", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-        String nombreUsuario = jTNombreUsuario1.getText();
-        if (nombreUsuario.isEmpty() || nombreUsuario.length() < 5) {
-            JOptionPane.showMessageDialog(this, "El nombre de usuario es inválido", "Error", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-        String clave = jTClaveConductor.getText();
-        if (clave.isEmpty() || clave.length() < 5) {
-            JOptionPane.showMessageDialog(this, "La clave es inválida", "Error", JOptionPane.ERROR_MESSAGE);
-            return;
-        } else if (!DataBase.obtenerInstancia().esNombreUsuarioUnico(nombreUsuario)) {
+
+        if (!DataBase.obtenerInstancia().esNombreUsuarioUnico(nombreUsuario)) {
             JOptionPane.showMessageDialog(this, "El nombre de usuario ya existe", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
+        if (!errores.isEmpty()) {
+            StringBuilder mensajeError = new StringBuilder("Se encontraron los siguientes errores:\n");
+            for (String error : errores) {
+                mensajeError.append("- ").append(error).append("\n");
+            }
+            JOptionPane.showMessageDialog(null, mensajeError.toString(), "Errores", JOptionPane.ERROR_MESSAGE);
+        } else {
+            Object[] options = {"Si", "No"};
+            int opcion = JOptionPane.showOptionDialog(null, "¿Deseas registrar los datos?", "Confirmación",
+                    JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
+            if (opcion == JOptionPane.YES_OPTION) {
+                DataBase.obtenerInstancia().insertarConductor(nombres, apellidos, cedula, direccion, telefono, correo,
+                        nombreUsuario, clave, recepcionista.obtenerSucursal());
+                Conductor conductor = new Conductor(nombres, apellidos, cedula, direccion, telefono, correo);
+                recepcionista.agregarConductor(conductor);
+                JOptionPane.showMessageDialog(
+                        null,
+                        "El registro del conductor ha sido exitoso",
+                        "Registro Exitoso",
+                        JOptionPane.INFORMATION_MESSAGE
+                );
 
-        DataBase.obtenerInstancia().insertarConductor(nombres, apellidos, cedula, direccion, telefono, correo,
-                nombreUsuario, clave, recepcionista.obtenerSucursal());
-        Conductor conductor = new Conductor(nombres, apellidos, cedula, direccion, telefono, correo);
-        recepcionista.agregarConductor(conductor);
-
-        JOptionPane.showMessageDialog(
-                null,
-                "El registro del conductor ha sido exitoso",
-                "Registro Exitoso",
-                JOptionPane.INFORMATION_MESSAGE);
-        vaciarCampos();
-        cargarConductores();
+                vaciarCampos();
+                cargarConductores();
+            }
+        }
     }// GEN-LAST:event_jBRegistrarConductorActionPerformed
 
     private void jPanel3MouseDragged(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_jPanel3MouseDragged
@@ -578,14 +585,14 @@ public class JFConductores extends javax.swing.JFrame {
         DefaultTableModel model = new DefaultTableModel();
         model.setRowCount(0);
         String[] columnNames = {
-                "Cedula", "Nombres", "Email", "Telefono"
+            "Cedula", "Nombres", "Email", "Telefono"
         };
         model.setColumnIdentifiers(columnNames);
-        model.addRow(new Object[] {
-                conductor.getCedula(),
-                conductor.getNombres() + " " + conductor.getApellidos(),
-                conductor.getEmail(),
-                conductor.getTelefono()
+        model.addRow(new Object[]{
+            conductor.getCedula(),
+            conductor.getNombres() + " " + conductor.getApellidos(),
+            conductor.getEmail(),
+            conductor.getTelefono()
         });
         jTablaConductor.setModel(model);
         jTablaConductor.setVisible(true);
@@ -625,8 +632,8 @@ public class JFConductores extends javax.swing.JFrame {
     private javax.swing.JTextField jTCorreoConductor;
     private javax.swing.JTextField jTDireccionConductor;
     private javax.swing.JTextField jTNombreConductor;
-    private javax.swing.JTextField jTNombreUsuario1;
     private javax.swing.JTextField jTTelefonoConductor;
+    private javax.swing.JTextField jTUsuario;
     private javax.swing.JTable jTablaConductor;
     // End of variables declaration//GEN-END:variables
 
@@ -637,7 +644,7 @@ public class JFConductores extends javax.swing.JFrame {
         jTTelefonoConductor.setText("");
         jTCorreoConductor.setText("");
         jTDireccionConductor.setText("");
-        jTNombreUsuario1.setText("");
+        jTUsuario.setText("");
         jTClaveConductor.setText("");
     }
 
@@ -646,18 +653,17 @@ public class JFConductores extends javax.swing.JFrame {
         ArrayList<Conductor> conductores = recepcionista.obtenerConductores();
         model.setRowCount(0);
         String[] columnNames = {
-                "Cedula", "Nombres", "Email", "Telefono"
+            "Cedula", "Nombres", "Email", "Telefono"
         };
         model.setColumnIdentifiers(columnNames);
         for (Conductor conductor : conductores) {
             Object[] row = {
-                    conductor.getNombres(),
-                    conductor.getApellidos(),
-                    conductor.getCedula(),
-                    conductor.getDireccion(),
-                    conductor.getTelefono(),
-                    conductor.getEmail(),
-            };
+                conductor.getNombres(),
+                conductor.getApellidos(),
+                conductor.getCedula(),
+                conductor.getDireccion(),
+                conductor.getTelefono(),
+                conductor.getEmail(),};
             model.addRow(row);
         }
     }
