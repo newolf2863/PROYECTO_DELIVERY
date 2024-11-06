@@ -157,7 +157,6 @@ public class JFVehiculo extends javax.swing.JFrame {
         jLabel33 = new javax.swing.JLabel();
         jLabel28 = new javax.swing.JLabel();
         jTCapacidad = new javax.swing.JTextField();
-        jLabel29 = new javax.swing.JLabel();
         jPanel45 = new javax.swing.JPanel();
         jTNombreDespachador1 = new javax.swing.JTextField();
         jTTelefono = new javax.swing.JTextField();
@@ -448,12 +447,10 @@ public class JFVehiculo extends javax.swing.JFrame {
 
         jTCapacidad.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jTCapacidad.setEnabled(false);
-        jPCE.add(jTCapacidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 70, 201, -1));
-
-        jLabel29.setText("Conductor");
-        jPCE.add(jLabel29, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 120, -1, -1));
+        jPCE.add(jTCapacidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 70, 200, -1));
 
         jPanel45.setBorder(javax.swing.BorderFactory.createTitledBorder("Conductor Asignado"));
+        jPanel45.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jTNombreDespachador1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jTNombreDespachador1.setEnabled(false);
@@ -462,9 +459,11 @@ public class JFVehiculo extends javax.swing.JFrame {
                 jTNombreDespachador1ActionPerformed(evt);
             }
         });
+        jPanel45.add(jTNombreDespachador1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 70, 206, -1));
 
         jTTelefono.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jTTelefono.setEnabled(false);
+        jPanel45.add(jTTelefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 100, 206, -1));
 
         jTCorreo.setEnabled(false);
         jTCorreo.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -477,60 +476,25 @@ public class JFVehiculo extends javax.swing.JFrame {
                 jTCorreoKeyReleased(evt);
             }
         });
+        jPanel45.add(jTCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 130, 206, -1));
 
-        jLabel31.setText("Cedula");
+        jLabel31.setText("Cédula");
+        jPanel45.add(jLabel31, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, 66, -1));
 
         jLabel34.setText("Nombres");
+        jPanel45.add(jLabel34, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, 66, -1));
 
-        jLabel35.setText("Telefono");
+        jLabel35.setText("Teléfono");
+        jPanel45.add(jLabel35, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, 66, -1));
 
         jLabel36.setText("Correo");
+        jPanel45.add(jLabel36, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, 66, -1));
 
         jTCedula3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jTCedula3.setEnabled(false);
+        jPanel45.add(jTCedula3, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 40, 206, -1));
 
-        javax.swing.GroupLayout jPanel45Layout = new javax.swing.GroupLayout(jPanel45);
-        jPanel45.setLayout(jPanel45Layout);
-        jPanel45Layout.setHorizontalGroup(
-            jPanel45Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel45Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel45Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel31, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel34, javax.swing.GroupLayout.DEFAULT_SIZE, 55, Short.MAX_VALUE)
-                    .addComponent(jLabel35, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel36, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel45Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jTCorreo, javax.swing.GroupLayout.DEFAULT_SIZE, 206, Short.MAX_VALUE)
-                    .addComponent(jTNombreDespachador1)
-                    .addComponent(jTTelefono)
-                    .addComponent(jTCedula3))
-                .addContainerGap())
-        );
-        jPanel45Layout.setVerticalGroup(
-            jPanel45Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel45Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel45Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel31)
-                    .addComponent(jTCedula3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel45Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTNombreDespachador1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel34))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel45Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel35))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel45Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel36, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(15, Short.MAX_VALUE))
-        );
-
-        jPCE.add(jPanel45, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 150, -1, -1));
+        jPCE.add(jPanel45, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 120, 330, 180));
 
         bSeleccionarConductor.setText("Buscar Vehiculo");
         bSeleccionarConductor.addActionListener(new java.awt.event.ActionListener() {
@@ -538,7 +502,7 @@ public class JFVehiculo extends javax.swing.JFrame {
                 bSeleccionarConductorActionPerformed(evt);
             }
         });
-        jPCE.add(bSeleccionarConductor, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 60, -1, 36));
+        jPCE.add(bSeleccionarConductor, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 20, -1, 36));
 
         jTPEmpleados.addTab("Consultar", jPCE);
 
@@ -832,7 +796,6 @@ public class JFVehiculo extends javax.swing.JFrame {
     private javax.swing.JTable jInventarioVehiculo;
     private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel28;
-    private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel31;
     private javax.swing.JLabel jLabel32;
     private javax.swing.JLabel jLabel33;
