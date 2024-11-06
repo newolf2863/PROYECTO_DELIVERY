@@ -29,7 +29,7 @@ public class ValidadorDeRegistros {
      * @return true si la placa es válida; false en caso contrario.
      */
     public static boolean validarPlaca(String placa) {
-        String patron = "^[A-Z]{3}\\d{3}$";
+        String patron = "^[A-Z]{3}\\d{3,4}$";
         return placa.matches(patron);
     }
 
@@ -67,13 +67,13 @@ public class ValidadorDeRegistros {
             case "precio" ->
                 valor = validarMaximoDosDecimales(texto);
             case "peso" ->
-                valor = validarMaximoDosDecimales(texto);
+                valor = validarMaximoDosDecimales(texto) && !texto.matches("^-.*");
             case "vacio" ->
                 valor = !texto.isEmpty();
             case "enteros" ->
                 valor = texto.matches("^\\d+$");
             case "volumen" ->
-                valor = validarMaximoDosDecimales(texto);
+                valor = validarMaximoDosDecimales(texto) && !texto.matches("^-.*");
             case "contraseña" ->
                 valor = texto.matches("^(?=.*[A-Z])(?=.*[a-z])(?=.*\\d)(?=.*[@#$%^&+=!]).{5,}$");
             case "usuario" ->
@@ -179,7 +179,12 @@ public class ValidadorDeRegistros {
                 }
             }
             case "peso" -> {
-                if (!validarMaximoDosDecimales(texto)) {
+                // Primero, verifica si el número es positivo
+                if (texto.matches("^-.*")) {  // Verifica si el número tiene un signo negativo
+                    mensaje.append("El peso no puede ser negativo.<br> Solo se permiten números positivos con hasta dos decimales.<br>");
+                } else if (!texto.matches("^[+]?\\d+(\\.\\d{1,2})?$")) {  // Validación para números positivos con hasta dos decimales
+                    mensaje.append("El peso no es válido.<br> Solo se permiten números positivos con hasta dos decimales.<br>");
+                } else if (!validarMaximoDosDecimales(texto)) {  // Si pasa las otras validaciones, valida los dos decimales
                     mensaje.append("El peso no es válido.<br> Solo se permiten números con hasta dos decimales.<br>");
                 }
             }
@@ -194,8 +199,12 @@ public class ValidadorDeRegistros {
                 }
             }
             case "volumen" -> {
-                if (!validarMaximoDosDecimales(texto)) {
-                    mensaje.append("Solo se permiten números con hasta dos decimales.<br>");
+                if (texto.matches("^-.*")) {  // Verifica si el número tiene un signo negativo
+                    mensaje.append("El volumen no puede ser negativo.<br> Solo se permiten números positivos con hasta dos decimales.<br>");
+                } else if (!texto.matches("^[+]?\\d+(\\.\\d{1,2})?$")) {  // Validación para números positivos con hasta dos decimales
+                    mensaje.append("El volumen no es válido.<br> Solo se permiten números positivos con hasta dos decimales.<br>");
+                } else if (!validarMaximoDosDecimales(texto)) {  // Si pasa las otras validaciones, valida los dos decimales
+                    mensaje.append("El volumen no es válido.<br> Solo se permiten números con hasta dos decimales.<br>");
                 }
             }
             case "contraseña" -> {

@@ -30,15 +30,41 @@ public class ValidadorDeSwings {
 
         for (int i = 0; i < campos.length; i++) {
             JTextField campo = campos[i];
-            Boolean valor = valores[i]; // Cambié `boolean` a `Boolean` para permitir valores nulos
+            Boolean valor = valores[i];
             String nombreCampo = nombresCampos[i];
 
-            if (!valor) { // Valida con el estado booleano pasado
+            if (!valor) {
                 errores.add("Error en el campo " + nombreCampo + ": El campo es inválido");
-              
                 campo.setBackground(new Color(255, 204, 204));
             } else {
                 campo.setBackground(Color.WHITE);
+            }
+        }
+
+        // Agrega los errores de valores negativos
+        errores.addAll(validarValoresPositivos(new JTextField[]{campos[0], campos[1]}, 
+                                               new String[]{"Volumen", "Peso"}));
+
+        return errores;
+    }
+    
+    // Método para validar que los valores de ciertos campos no sean negativos
+    public List<String> validarValoresPositivos(JTextField[] campos, String[] nombresCampos) {
+        List<String> errores = new ArrayList<>();
+
+        for (int i = 0; i < campos.length; i++) {
+            JTextField campo = campos[i];
+            String nombreCampo = nombresCampos[i];
+
+            try {
+                double valor = Double.parseDouble(campo.getText());
+                if (valor < 0) {
+                    errores.add("Error en el campo " + nombreCampo + ": El valor no puede ser negativo");
+                    campo.setBackground(new Color(255, 204, 204));
+                }
+            } catch (NumberFormatException e) {
+                errores.add("Error en el campo " + nombreCampo + ": Debe ser un número válido");
+                campo.setBackground(new Color(255, 204, 204));
             }
         }
 
@@ -55,21 +81,23 @@ public class ValidadorDeSwings {
      * @return Una lista de mensajes de error para los campos vacíos.
      */
     public List<String> validarCamposVaciosLista(JTextField[] campos, Boolean[] valores, String[] nombresCampos) {
-        List<String> errores = new ArrayList<>();
-        for (int i = 0; i < campos.length; i++) {
-            JTextField campo = campos[i];
-            boolean valor = valores[i];
-            if (campo.getText().isEmpty()) {
-                campo.setBackground(new Color(255, 204, 204));
-                String mensajeError = "Error en el campo " + nombresCampos[i] + ": El campo está vacío";
-                errores.add(mensajeError);
-            } else {
-                if (valor) {
-                    campo.setBackground(Color.WHITE);
-                }
-            }
-        }
-        return errores;
+       List<String> errores = new ArrayList<>();
+       for (int i = 0; i < campos.length; i++) {
+           JTextField campo = campos[i];
+           boolean valor = valores[i];
+           if (campo.getText().isEmpty()) {
+               if (!errores.contains("Error en el campo " + nombresCampos[i] + ": El campo está vacío")) { // Comprobar si el error ya fue agregado
+                   campo.setBackground(new Color(255, 204, 204));
+                   String mensajeError = "Error en el campo " + nombresCampos[i] + ": El campo está vacío";
+                   errores.add(mensajeError);
+               }
+           } else {
+               if (valor) {
+                   campo.setBackground(Color.WHITE);
+               }
+           }
+       }
+       return errores;
     }
 
     /**
