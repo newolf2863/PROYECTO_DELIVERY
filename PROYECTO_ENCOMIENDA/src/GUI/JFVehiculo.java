@@ -168,6 +168,7 @@ public class JFVehiculo extends javax.swing.JFrame {
         jLabel36 = new javax.swing.JLabel();
         jTCedula3 = new javax.swing.JTextField();
         bSeleccionarConductor = new javax.swing.JButton();
+        jLabel62 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jLabel69 = new javax.swing.JLabel();
 
@@ -449,7 +450,7 @@ public class JFVehiculo extends javax.swing.JFrame {
         jPCE.add(jLabel33, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 34, 22));
 
         jLabel28.setText("Capacidad");
-        jPCE.add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, -1, -1));
+        jPCE.add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 75, -1, -1));
 
         jTCapacidad.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jTCapacidad.setEnabled(false);
@@ -509,6 +510,10 @@ public class JFVehiculo extends javax.swing.JFrame {
             }
         });
         jPCE.add(bSeleccionarConductor, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 20, -1, 36));
+
+        jLabel62.setText("m3");
+        jLabel62.setRequestFocusEnabled(false);
+        jPCE.add(jLabel62, new org.netbeans.lib.awtextra.AbsoluteConstraints(305, 75, -1, -1));
 
         jTPEmpleados.addTab("Consultar", jPCE);
 
@@ -815,6 +820,7 @@ public class JFVehiculo extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel41;
     private javax.swing.JLabel jLabel42;
     private javax.swing.JLabel jLabel61;
+    private javax.swing.JLabel jLabel62;
     private javax.swing.JLabel jLabel69;
     private javax.swing.JPanel jPAE;
     private javax.swing.JPanel jPCE;

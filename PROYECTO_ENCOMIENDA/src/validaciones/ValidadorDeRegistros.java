@@ -134,7 +134,8 @@ public class ValidadorDeRegistros {
         switch (caso) {
             case "direccion" -> {
                 if (!validarDireccion(texto)) {
-                    mensaje.append("La dirección no es válida.<br> Asegúrate de que contiene solo letras, números y algunos caracteres especiales.<br>");
+                    mensaje.append("La dirección no es válida.<br> Asegúrate de que contiene solo letras, números y algunos caracteres especiales.<br> "
+                            + "Ejemplo: [Nombre de la calle]* [Número de edificio], [Ciudad]* [Código postal]*.<br>");
                 }
             }
             case "ruc" -> {
@@ -361,7 +362,7 @@ public class ValidadorDeRegistros {
      * @return true si la dirección es válida; false en caso contrario.
      */
     public static boolean validarDireccion(String dirNegocio) {
-        return dirNegocio.matches("^[A-Za-záéíóúÁÉÍÓÚñÑüÜ0-9]+([,.]?[ ]?[A-Za-záéíóúÁÉÍÓÚñÑüÜ0-9]+)*$");
+        return dirNegocio.matches("^([A-Za-záéíóúÁÉÍÓÚñÑüÜ]+(\\.\\s?[A-Za-záéíóúÁÉÍÓÚñÑüÜ]+)*(\\s[A-Za-záéíóúÁÉÍÓÚñÑüÜ0-9\\-]+)*)(,\\s[A-Za-záéíóúÁÉÍÓÚñÑüÜ]+(?:\\s+[0-9]{6})?(\\s?[0-9]{6}))*$");
     }
 
     /**
