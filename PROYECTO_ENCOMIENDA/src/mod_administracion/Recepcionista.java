@@ -187,6 +187,13 @@ public class Recepcionista extends Usuario {
         asignacionPaquete.agregarVehiculo(vehiculo);
     }
 
+    public boolean verificarPlacaRegistrada(String placa) {
+        if(asignacionPaquete.estaPlacaRegistrada(placa)){
+            return true;
+        }
+        return false;
+    }
+
 
 
 

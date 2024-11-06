@@ -122,4 +122,14 @@ public class AsignacionPaquete implements Serializable {
     public void agregarVehiculo(Vehiculo vehiculo) {
         flotaVehiculo.agregarVehiculo(vehiculo);
     }
+
+    public boolean estaPlacaRegistrada(String placaBuscada) {
+        ArrayList<Vehiculo> vehiculos = flotaVehiculo.obtenerVehiculos(); 
+        for (Vehiculo vehiculo : vehiculos) {
+            if (vehiculo.getNumeroPlaca().equals(placaBuscada)) {
+                return true;
+            }
+        }
+        return false;
+    }
 }

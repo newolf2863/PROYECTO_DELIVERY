@@ -126,28 +126,9 @@ public class JFVehiculo extends javax.swing.JFrame {
         jPDatosEmpleados = new javax.swing.JPanel();
         jLabel27 = new javax.swing.JLabel();
         jTCapacidadVehiculo = new javax.swing.JTextField();
-        jPanel44 = new javax.swing.JPanel();
         jLabel32 = new javax.swing.JLabel();
         bRegistrarVehiculo = new javax.swing.JButton();
         jTPlacaVehiculo = new javax.swing.JTextField();
-        jPCE = new javax.swing.JPanel();
-        jScrollPane6 = new javax.swing.JScrollPane();
-        jTablaVehiculos = new javax.swing.JTable();
-        jTPlacaVehiculo1 = new javax.swing.JTextField();
-        jLabel33 = new javax.swing.JLabel();
-        jLabel28 = new javax.swing.JLabel();
-        jTCapacidad = new javax.swing.JTextField();
-        jLabel29 = new javax.swing.JLabel();
-        jPanel45 = new javax.swing.JPanel();
-        jTNombreDespachador1 = new javax.swing.JTextField();
-        jTTelefono = new javax.swing.JTextField();
-        jTCorreo = new javax.swing.JTextField();
-        jLabel31 = new javax.swing.JLabel();
-        jLabel34 = new javax.swing.JLabel();
-        jLabel35 = new javax.swing.JLabel();
-        jLabel36 = new javax.swing.JLabel();
-        jTCedula3 = new javax.swing.JTextField();
-        bSeleccionarConductor = new javax.swing.JButton();
         jPAE = new javax.swing.JPanel();
         jPDatosRecuperadosEmpleados = new javax.swing.JPanel();
         jLabel38 = new javax.swing.JLabel();
@@ -169,6 +150,24 @@ public class JFVehiculo extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jTPlacaVehiculo3 = new javax.swing.JTextField();
         jLabel37 = new javax.swing.JLabel();
+        jPCE = new javax.swing.JPanel();
+        jScrollPane6 = new javax.swing.JScrollPane();
+        jTablaVehiculos = new javax.swing.JTable();
+        jTPlacaVehiculo1 = new javax.swing.JTextField();
+        jLabel33 = new javax.swing.JLabel();
+        jLabel28 = new javax.swing.JLabel();
+        jTCapacidad = new javax.swing.JTextField();
+        jLabel29 = new javax.swing.JLabel();
+        jPanel45 = new javax.swing.JPanel();
+        jTNombreDespachador1 = new javax.swing.JTextField();
+        jTTelefono = new javax.swing.JTextField();
+        jTCorreo = new javax.swing.JTextField();
+        jLabel31 = new javax.swing.JLabel();
+        jLabel34 = new javax.swing.JLabel();
+        jLabel35 = new javax.swing.JLabel();
+        jLabel36 = new javax.swing.JLabel();
+        jTCedula3 = new javax.swing.JTextField();
+        bSeleccionarConductor = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel69 = new javax.swing.JLabel();
 
@@ -216,26 +215,10 @@ public class JFVehiculo extends javax.swing.JFrame {
         });
         jPDatosEmpleados.add(jTCapacidadVehiculo, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 120, 201, -1));
 
-        jPanel44.setBorder(javax.swing.BorderFactory.createTitledBorder("Conductor Asignado"));
-
-        javax.swing.GroupLayout jPanel44Layout = new javax.swing.GroupLayout(jPanel44);
-        jPanel44.setLayout(jPanel44Layout);
-        jPanel44Layout.setHorizontalGroup(
-            jPanel44Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-        jPanel44Layout.setVerticalGroup(
-            jPanel44Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 207, Short.MAX_VALUE)
-        );
-
-        jPDatosEmpleados.add(jPanel44, new org.netbeans.lib.awtextra.AbsoluteConstraints(844, 189, -1, -1));
-        jPanel44.getAccessibleContext().setAccessibleName("Conductor Asignado\n");
-
         jLabel32.setText("Placa");
         jPDatosEmpleados.add(jLabel32, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 60, 34, 22));
 
-        bRegistrarVehiculo.setText("Registrar Vehiculo");
+        bRegistrarVehiculo.setText("Registrar Vehículo");
         bRegistrarVehiculo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bRegistrarVehiculoActionPerformed(evt);
@@ -250,9 +233,175 @@ public class JFVehiculo extends javax.swing.JFrame {
         });
         jPDatosEmpleados.add(jTPlacaVehiculo, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 60, 201, -1));
 
-        jPRE.add(jPDatosEmpleados, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 28, 1110, 530));
+        jPRE.add(jPDatosEmpleados, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 1110, 530));
 
         jTPEmpleados.addTab("Registrar Vehiculo", jPRE);
+
+        jPAE.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jPDatosRecuperadosEmpleados.setBorder(javax.swing.BorderFactory.createTitledBorder("Asignar Conductor"));
+        jPDatosRecuperadosEmpleados.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel38.setText("Placa");
+        jPDatosRecuperadosEmpleados.add(jLabel38, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 70, 34, 22));
+
+        jTPlacaVehiculo2.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jTPlacaVehiculo2FocusLost(evt);
+            }
+        });
+        jTPlacaVehiculo2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTPlacaVehiculo2ActionPerformed(evt);
+            }
+        });
+        jTPlacaVehiculo2.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTPlacaVehiculo2KeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTPlacaVehiculo2KeyTyped(evt);
+            }
+        });
+        jPDatosRecuperadosEmpleados.add(jTPlacaVehiculo2, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 70, 210, -1));
+
+        jPanel46.setBorder(javax.swing.BorderFactory.createTitledBorder("Conductor Asignado"));
+        jPanel46.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jTNombreDespachador3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jTNombreDespachador3.setEnabled(false);
+        jTNombreDespachador3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTNombreDespachador3ActionPerformed(evt);
+            }
+        });
+        jPanel46.add(jTNombreDespachador3, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 70, 206, -1));
+
+        jTTelefono1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jTTelefono1.setEnabled(false);
+        jPanel46.add(jTTelefono1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 100, 206, -1));
+
+        jTCorreo1.setEnabled(false);
+        jTCorreo1.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jTCorreo1FocusLost(evt);
+            }
+        });
+        jTCorreo1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTCorreo1ActionPerformed(evt);
+            }
+        });
+        jTCorreo1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTCorreo1KeyReleased(evt);
+            }
+        });
+        jPanel46.add(jTCorreo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 130, 206, -1));
+
+        jLabel39.setText("Cédula");
+        jPanel46.add(jLabel39, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 30, 55, -1));
+
+        jLabel40.setText("Nombres");
+        jPanel46.add(jLabel40, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 70, 55, -1));
+
+        jLabel41.setText("Teléfono");
+        jPanel46.add(jLabel41, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 100, 55, -1));
+
+        jLabel42.setText("Correo");
+        jPanel46.add(jLabel42, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 130, 55, -1));
+
+        jTCedula2.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jTCedula2FocusLost(evt);
+            }
+        });
+        jTCedula2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTCedula2ActionPerformed(evt);
+            }
+        });
+        jTCedula2.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTCedula2KeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTCedula2KeyTyped(evt);
+            }
+        });
+        jPanel46.add(jTCedula2, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 30, 206, -1));
+
+        jPDatosRecuperadosEmpleados.add(jPanel46, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 360, 190));
+
+        jPAE.add(jPDatosRecuperadosEmpleados, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, 810, 250));
+
+        BActualizar.setText("Asignar");
+        BActualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BActualizarActionPerformed(evt);
+            }
+        });
+        jPAE.add(BActualizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 310, 110, 40));
+
+        jTPEmpleados.addTab("Asignar Vehiculo", jPAE);
+
+        jPEE.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jInventarioVehiculo.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane25.setViewportView(jInventarioVehiculo);
+
+        jPEE.add(jScrollPane25, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 235, 1130, 253));
+
+        JComboDestino1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        JComboDestino1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JComboDestino1ActionPerformed(evt);
+            }
+        });
+        jPEE.add(JComboDestino1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 130, 204, -1));
+
+        jButton1.setText("Asignar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jPEE.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 180, 83, 31));
+
+        jTPlacaVehiculo3.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jTPlacaVehiculo3FocusLost(evt);
+            }
+        });
+        jTPlacaVehiculo3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTPlacaVehiculo3ActionPerformed(evt);
+            }
+        });
+        jTPlacaVehiculo3.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTPlacaVehiculo3KeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTPlacaVehiculo3KeyTyped(evt);
+            }
+        });
+        jPEE.add(jTPlacaVehiculo3, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 60, 204, 30));
+
+        jLabel37.setText("Placa");
+        jPEE.add(jLabel37, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, 40, 30));
+
+        jTPEmpleados.addTab("Asignar Paquetes", jPEE);
 
         jPCE.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -269,7 +418,7 @@ public class JFVehiculo extends javax.swing.JFrame {
         ));
         jScrollPane6.setViewportView(jTablaVehiculos);
 
-        jPCE.add(jScrollPane6, new org.netbeans.lib.awtextra.AbsoluteConstraints(49, 348, 1070, 185));
+        jPCE.add(jScrollPane6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 340, 1070, 185));
 
         jTPlacaVehiculo1.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
@@ -289,20 +438,20 @@ public class JFVehiculo extends javax.swing.JFrame {
                 jTPlacaVehiculo1KeyTyped(evt);
             }
         });
-        jPCE.add(jTPlacaVehiculo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(123, 36, 201, -1));
+        jPCE.add(jTPlacaVehiculo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 20, 201, -1));
 
         jLabel33.setText("Placa");
-        jPCE.add(jLabel33, new org.netbeans.lib.awtextra.AbsoluteConstraints(49, 36, 34, 22));
+        jPCE.add(jLabel33, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 34, 22));
 
         jLabel28.setText("Capacidad");
-        jPCE.add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(49, 85, -1, -1));
+        jPCE.add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, -1, -1));
 
         jTCapacidad.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jTCapacidad.setEnabled(false);
-        jPCE.add(jTCapacidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(123, 82, 201, -1));
+        jPCE.add(jTCapacidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 70, 201, -1));
 
         jLabel29.setText("Conductor");
-        jPCE.add(jLabel29, new org.netbeans.lib.awtextra.AbsoluteConstraints(48, 130, -1, -1));
+        jPCE.add(jLabel29, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 120, -1, -1));
 
         jPanel45.setBorder(javax.swing.BorderFactory.createTitledBorder("Conductor Asignado"));
 
@@ -381,7 +530,7 @@ public class JFVehiculo extends javax.swing.JFrame {
                 .addContainerGap(15, Short.MAX_VALUE))
         );
 
-        jPCE.add(jPanel45, new org.netbeans.lib.awtextra.AbsoluteConstraints(48, 158, -1, -1));
+        jPCE.add(jPanel45, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 150, -1, -1));
 
         bSeleccionarConductor.setText("Buscar Vehiculo");
         bSeleccionarConductor.addActionListener(new java.awt.event.ActionListener() {
@@ -389,177 +538,11 @@ public class JFVehiculo extends javax.swing.JFrame {
                 bSeleccionarConductorActionPerformed(evt);
             }
         });
-        jPCE.add(bSeleccionarConductor, new org.netbeans.lib.awtextra.AbsoluteConstraints(342, 76, -1, 36));
+        jPCE.add(bSeleccionarConductor, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 60, -1, 36));
 
         jTPEmpleados.addTab("Consultar", jPCE);
 
-        jPAE.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jPDatosRecuperadosEmpleados.setBorder(javax.swing.BorderFactory.createTitledBorder("Asignar Conductor"));
-        jPDatosRecuperadosEmpleados.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel38.setText("Placa");
-        jPDatosRecuperadosEmpleados.add(jLabel38, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 90, 34, 22));
-
-        jTPlacaVehiculo2.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                jTPlacaVehiculo2FocusLost(evt);
-            }
-        });
-        jTPlacaVehiculo2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTPlacaVehiculo2ActionPerformed(evt);
-            }
-        });
-        jTPlacaVehiculo2.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                jTPlacaVehiculo2KeyReleased(evt);
-            }
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                jTPlacaVehiculo2KeyTyped(evt);
-            }
-        });
-        jPDatosRecuperadosEmpleados.add(jTPlacaVehiculo2, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 90, 210, -1));
-
-        jPanel46.setBorder(javax.swing.BorderFactory.createTitledBorder("Conductor Asignado"));
-        jPanel46.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jTNombreDespachador3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jTNombreDespachador3.setEnabled(false);
-        jTNombreDespachador3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTNombreDespachador3ActionPerformed(evt);
-            }
-        });
-        jPanel46.add(jTNombreDespachador3, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 90, 206, -1));
-
-        jTTelefono1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jTTelefono1.setEnabled(false);
-        jPanel46.add(jTTelefono1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 120, 206, -1));
-
-        jTCorreo1.setEnabled(false);
-        jTCorreo1.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                jTCorreo1FocusLost(evt);
-            }
-        });
-        jTCorreo1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTCorreo1ActionPerformed(evt);
-            }
-        });
-        jTCorreo1.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                jTCorreo1KeyReleased(evt);
-            }
-        });
-        jPanel46.add(jTCorreo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 150, 206, -1));
-
-        jLabel39.setText("Cedula");
-        jPanel46.add(jLabel39, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 55, -1));
-
-        jLabel40.setText("Nombres");
-        jPanel46.add(jLabel40, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 90, 55, -1));
-
-        jLabel41.setText("Telefono");
-        jPanel46.add(jLabel41, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 120, 55, -1));
-
-        jLabel42.setText("Correo");
-        jPanel46.add(jLabel42, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 150, 55, -1));
-
-        jTCedula2.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                jTCedula2FocusLost(evt);
-            }
-        });
-        jTCedula2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTCedula2ActionPerformed(evt);
-            }
-        });
-        jTCedula2.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                jTCedula2KeyReleased(evt);
-            }
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                jTCedula2KeyTyped(evt);
-            }
-        });
-        jPanel46.add(jTCedula2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 50, 206, -1));
-
-        jPDatosRecuperadosEmpleados.add(jPanel46, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 270, 220));
-
-        jPAE.add(jPDatosRecuperadosEmpleados, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, 680, 270));
-
-        BActualizar.setText("Asignar");
-        BActualizar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BActualizarActionPerformed(evt);
-            }
-        });
-        jPAE.add(BActualizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 330, 110, 40));
-
-        jTPEmpleados.addTab("Asignar Vehiculo", jPAE);
-
-        jPEE.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jInventarioVehiculo.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        jScrollPane25.setViewportView(jInventarioVehiculo);
-
-        jPEE.add(jScrollPane25, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 235, 1130, 253));
-
-        JComboDestino1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        JComboDestino1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                JComboDestino1ActionPerformed(evt);
-            }
-        });
-        jPEE.add(JComboDestino1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 130, 204, -1));
-
-        jButton1.setText("Asignar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-        jPEE.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 180, 83, 31));
-
-        jTPlacaVehiculo3.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                jTPlacaVehiculo3FocusLost(evt);
-            }
-        });
-        jTPlacaVehiculo3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTPlacaVehiculo3ActionPerformed(evt);
-            }
-        });
-        jTPlacaVehiculo3.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                jTPlacaVehiculo3KeyReleased(evt);
-            }
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                jTPlacaVehiculo3KeyTyped(evt);
-            }
-        });
-        jPEE.add(jTPlacaVehiculo3, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 60, 204, 30));
-
-        jLabel37.setText("Placa");
-        jPEE.add(jLabel37, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, 40, 30));
-
-        jTPEmpleados.addTab("Asignar Paquetes", jPEE);
-
-        jPEmpleadosTab.add(jTPEmpleados, new org.netbeans.lib.awtextra.AbsoluteConstraints(18, 41, 1150, -1));
+        jPEmpleadosTab.add(jTPEmpleados, new org.netbeans.lib.awtextra.AbsoluteConstraints(18, 41, 1150, 600));
 
         jPanel3.setBackground(new java.awt.Color(146, 10, 48));
         jPanel3.setMinimumSize(new java.awt.Dimension(1180, 35));
@@ -758,8 +741,13 @@ public class JFVehiculo extends javax.swing.JFrame {
     private void bRegistrarVehiculoActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_bRegistrarVehiculoActionPerformed
         double capacidad = Double.parseDouble(jTCapacidadVehiculo.getText());
         String placa = jTPlacaVehiculo.getText();
+        
         if (!ValidadorDeRegistros.validarPlaca(placa)) {
-            JOptionPane.showMessageDialog(this, "La placa no vale papu");
+            JOptionPane.showMessageDialog(this, "La placa no es válida", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        if(recepcionista.verificarPlacaRegistrada(placa)){
+            JOptionPane.showMessageDialog(this, "La placa ya está registrada", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
         Vehiculo vehiculo = new Vehiculo(placa, capacidad, this.recepcionista.obtenerSucursal());
@@ -866,7 +854,6 @@ public class JFVehiculo extends javax.swing.JFrame {
     private javax.swing.JPanel jPEmpleadosTab;
     private javax.swing.JPanel jPRE;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel44;
     private javax.swing.JPanel jPanel45;
     private javax.swing.JPanel jPanel46;
     private javax.swing.JScrollPane jScrollPane1;
