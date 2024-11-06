@@ -5,16 +5,12 @@
         <group>
             <file>file:/E:/source/PROYECTO_DELIVERY/PROYECTO_ENCOMIENDA/src/mod_transporte/AsignacionPaquete.java</file>
             <file>file:/E:/source/PROYECTO_DELIVERY/PROYECTO_ENCOMIENDA/src/mod_administracion/Recepcionista.java</file>
-            <file>file:/E:/source/PROYECTO_DELIVERY/PROYECTO_ENCOMIENDA/src/mod_incidentes/GestorIncidente.java</file>
-            <file>file:/E:/source/PROYECTO_DELIVERY/PROYECTO_ENCOMIENDA/src/GUICONDUCTOR/JFIncidenteConductor.java</file>
-            <file>file:/E:/source/PROYECTO_DELIVERY/PROYECTO_ENCOMIENDA/src/mod_administracion/Usuario.java</file>
-            <file>file:/E:/source/PROYECTO_DELIVERY/PROYECTO_ENCOMIENDA/src/GUICONDUCTOR/JFPaquetesConductor.java</file>
-            <file>file:/E:/source/PROYECTO_DELIVERY/PROYECTO_ENCOMIENDA/src/mod_incidentes/ErrorDireccion.java</file>
-            <file>file:/E:/source/PROYECTO_DELIVERY/PROYECTO_ENCOMIENDA/src/mod_incidentes/DevolucionPaquete.java</file>
-            <file>file:/E:/source/PROYECTO_DELIVERY/PROYECTO_ENCOMIENDA/src/mod_paquetes/Seguimiento.java</file>
-            <file>file:/E:/source/PROYECTO_DELIVERY/PROYECTO_ENCOMIENDA/src/basededatos/DataBase.java</file>
-            <file>file:/E:/source/PROYECTO_DELIVERY/PROYECTO_ENCOMIENDA/src/mod_administracion/Cliente.java</file>
-            <file>file:/E:/source/PROYECTO_DELIVERY/PROYECTO_ENCOMIENDA/src/mod_incidentes/Incidente.java</file>
+            <file>file:/E:/source/PROYECTO_DELIVERY/PROYECTO_ENCOMIENDA/src/GUI/JFPaquetes.java</file>
+            <file>file:/E:/source/PROYECTO_DELIVERY/PROYECTO_ENCOMIENDA/src/validaciones/ValidadorDeSwings.java</file>
+            <file>file:/E:/source/PROYECTO_DELIVERY/PROYECTO_ENCOMIENDA/src/validaciones/ValidadorDeRegistros.java</file>
+            <file>file:/E:/source/PROYECTO_DELIVERY/PROYECTO_ENCOMIENDA/src/GUI/JFVehiculo.java</file>
+            <file>file:/E:/source/PROYECTO_DELIVERY/PROYECTO_ENCOMIENDA/src/mod_transporte/Vehiculo.java</file>
+            <file>file:/E:/source/PROYECTO_DELIVERY/PROYECTO_ENCOMIENDA/src/mod_transporte/FlotaVehiculo.java</file>
         </group>
     </open-files>
 </project-private>

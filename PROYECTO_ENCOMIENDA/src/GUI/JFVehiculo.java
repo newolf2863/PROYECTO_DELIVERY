@@ -124,11 +124,12 @@ public class JFVehiculo extends javax.swing.JFrame {
         jTPEmpleados = new javax.swing.JTabbedPane();
         jPRE = new javax.swing.JPanel();
         jPDatosEmpleados = new javax.swing.JPanel();
-        jLabel27 = new javax.swing.JLabel();
         jTCapacidadVehiculo = new javax.swing.JTextField();
         jLabel32 = new javax.swing.JLabel();
         bRegistrarVehiculo = new javax.swing.JButton();
         jTPlacaVehiculo = new javax.swing.JTextField();
+        jLabel29 = new javax.swing.JLabel();
+        jLabel61 = new javax.swing.JLabel();
         jPAE = new javax.swing.JPanel();
         jPDatosRecuperadosEmpleados = new javax.swing.JPanel();
         jLabel38 = new javax.swing.JLabel();
@@ -194,9 +195,6 @@ public class JFVehiculo extends javax.swing.JFrame {
         jPDatosEmpleados.setBorder(javax.swing.BorderFactory.createTitledBorder("Ingresar datos de un empleado"));
         jPDatosEmpleados.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel27.setText("Capacidad");
-        jPDatosEmpleados.add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 120, -1, -1));
-
         jTCapacidadVehiculo.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 jTCapacidadVehiculoFocusLost(evt);
@@ -231,6 +229,14 @@ public class JFVehiculo extends javax.swing.JFrame {
             }
         });
         jPDatosEmpleados.add(jTPlacaVehiculo, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 60, 201, -1));
+
+        jLabel29.setText("Capacidad");
+        jPDatosEmpleados.add(jLabel29, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 125, -1, -1));
+        jLabel29.getAccessibleContext().setAccessibleDescription("");
+
+        jLabel61.setText("m3");
+        jLabel61.setRequestFocusEnabled(false);
+        jPDatosEmpleados.add(jLabel61, new org.netbeans.lib.awtextra.AbsoluteConstraints(685, 125, -1, -1));
 
         jPRE.add(jPDatosEmpleados, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 1110, 530));
 
@@ -794,8 +800,8 @@ public class JFVehiculo extends javax.swing.JFrame {
     private javax.swing.JButton bSeleccionarConductor;
     private javax.swing.JButton jButton1;
     private javax.swing.JTable jInventarioVehiculo;
-    private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel28;
+    private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel31;
     private javax.swing.JLabel jLabel32;
     private javax.swing.JLabel jLabel33;
@@ -808,6 +814,7 @@ public class JFVehiculo extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel40;
     private javax.swing.JLabel jLabel41;
     private javax.swing.JLabel jLabel42;
+    private javax.swing.JLabel jLabel61;
     private javax.swing.JLabel jLabel69;
     private javax.swing.JPanel jPAE;
     private javax.swing.JPanel jPCE;
