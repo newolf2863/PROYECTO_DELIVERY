@@ -711,7 +711,7 @@ public class JFVehiculo extends javax.swing.JFrame {
             return;
         }
         if(recepcionista.verificarPlacaRegistrada(placa)){
-            JOptionPane.showMessageDialog(this, "La placa ya está registrada", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "La placa ya está registrada en el sistema.", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
         Vehiculo vehiculo = new Vehiculo(placa, capacidad, this.recepcionista.obtenerSucursal());
