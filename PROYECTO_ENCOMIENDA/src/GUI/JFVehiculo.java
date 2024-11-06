@@ -716,7 +716,7 @@ public class JFVehiculo extends javax.swing.JFrame {
         }
         Vehiculo vehiculo = new Vehiculo(placa, capacidad, this.recepcionista.obtenerSucursal());
         recepcionista.agregarVehiculo(vehiculo);
-        JOptionPane.showMessageDialog(this, "El vehiculo se registro con exito");
+        JOptionPane.showMessageDialog(this, "El vehículo se registró con éxito", "Registro Exitoso", JOptionPane.INFORMATION_MESSAGE);
         refrescarVehiculos();
     }// GEN-LAST:event_bRegistrarVehiculoActionPerformed
 
