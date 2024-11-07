@@ -230,6 +230,10 @@ public class ValidadorDeRegistros {
     }
 
     public void showTooltip(JTextField textField, String message) {
+        if (!textField.isShowing()) {
+        // Si el textField no está visible, salimos del método o esperamos a que esté visible
+        return;
+        }
         if (tooltipWindow == null) {
             tooltipWindow = new JWindow();
             JLabel label = new JLabel(message);
